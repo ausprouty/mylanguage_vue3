@@ -1,0 +1,977 @@
+<?php
+function mylanguage_debug(){
+	$output = '';
+	return 'hi';
+	$image_dir = mylanguage_realpath_files() .'/options/';
+	$output .= $image_dir;
+	$output .= 'Bob loves Chris';
+
+	return $output;
+}
+
+
+function mylanguage_cache($hl_id){
+	if (!isset($_SESSION['mylanguage_browser_language'])){
+		mylanguage_language_from_browser();
+	}
+	$browser_language = $_SESSION['mylanguage_browser_language'];
+	$id = $hl_id . '-'. $browser_language->language;
+	db_set_active('my');
+	$cache = db_query('SELECT * FROM my_cache
+		WHERE id = :id',
+		array('id' => $id))->fetchObject();
+	db_set_active('default');
+	return $cache;
+}
+function mylanguage_cache_update($hl_id, $laptop_menu, $mobile_menu ){
+	$existing = mylanguage_cache($hl_id);
+	$browser_language = $_SESSION['mylanguage_browser_language'];
+	$id = $hl_id . '-'. $browser_language->language;
+	db_set_active('my');
+	if ($existing){
+		$fields = array(
+			'laptop_menu' => $laptop_menu,
+			'mobile_menu' => $mobile_menu,
+		);
+		db_update('hl_cache')
+			->fields($fields)
+			->condition('id', $id, '=')
+		->execute();
+		
+	}
+	else{
+		$fields = array(
+			'id' => $id,
+			'laptop_menu' => $laptop_menu,
+			'mobile_menu' => $mobile_menu,
+		);
+		drupal_write_record ('my_cache', $fields);
+	}
+	db_set_active('default');
+}
+function mylanguage_cache_update_intro($hl_id, $intro ){
+	$existing = mylanguage_cache($hl_id);
+	$id = $hl_id . '-'. $_SESSION['mylanguage_browser_language']->language;
+	db_set_active('my');
+	if ($existing){
+		$fields = array(
+			'intro' => $intro,
+		);
+		db_update('my_cache')
+			->fields($fields)
+			->condition('id', $id, '=')
+		->execute();
+	}
+	else{
+		$fields = array(
+			'id' => $id,
+			'intro' => $intro,
+		);
+		drupal_write_record ('my_cache', $fields);
+	}
+	db_set_active('default');
+}
+
+function mylanguage_chinese($hl_id){
+	if (!isset($hl_id) || $hl_id == ''){
+		$hl_id = 'eng00';
+	}
+	db_set_active('my');
+	$data = db_query('SELECT name, ethnic_name, requests, chinese FROM my_language 
+		WHERE hl_id = :hl_id', 
+		array(':hl_id' =>$hl_id)
+	)-> fetchObject();
+	db_set_active('default');
+    $name = isset($data->name) ? $data->name : NULL;
+	$chinese = isset($data->chinese)? $data->chinese : 0;
+  // check to see if Chinese
+	if ($chinese == 1) { 
+		$_SESSION['mylanguage_chinese'] = 'Y';
+		$_SESSION['mylanguage_chinese_written'] = 'chn-s';
+		$_SESSION['mylanguage_written_hl_id'] = 'chn-s';
+	}
+	else{
+		unset ($_SESSION['mylanguage_chinese']);
+		unset ($_SESSION['mylanguage_chinese_written']);
+		$_SESSION['mylanguage_written_hl_id'] = $hl_id;
+	}
+  $_SESSION['mylanguage_name'] = $name;
+  $_SESSION['mylanguage_ethnic_name'] = isset($data->ethnic_name) ? $data->ethnic_name: NULL;
+  if (!$_SESSION['mylanguage_ethnic_name']) { $_SESSION['mylanguage_ethnic_name'] = $name;}
+  return $chinese;
+}
+function mylanguage_chinese_change( $chinese_written, $return_page){
+  $_SESSION['mylanguage_chinese_written'] = $chinese_written;
+  drupal_goto('https://mylanguage.net.au/'. $return_page . '/chn00');
+  return;
+}
+function mylanguage_chinese_display($webpage){
+	if (!isset($_SESSION ['mylanguage_chinese_written'])){
+		$_SESSION ['mylanguage_chinese_written']= 'chn-s';
+	}
+  if ($_SESSION ['mylanguage_chinese_written'] == 'chn-s'){
+    $output =  '<h4>' . l('中文 - 普通话 - Simplified Chinese', 'chinese_change/chn-s/'. $webpage ). '</h4> ';
+    $output .=  '<br><p>('. t ('also available in ') . l('中文 – 華語/國語 - Traditional Chinese', 'chinese_change/chn-t/'. $webpage ) . '</p><br><br>'. "\n";
+  }
+  else {
+   
+    $output =   '<h4>' . l('中文 – 華語/國語 - Traditional Chinese', 'chinese_change/chn-t/'. $webpage) . '</h4> ';
+    $output .=  '<br><p>('. t ('also available in ') .l('中文 - 普通话 - Simplified Chinese' , 'chinese_change/chn-s/' . $webpage) . '</p><br><br> '. "\n";
+  }  
+  return $output;
+}
+
+function mylanguage_find_browser_language() {
+#########################################################
+# Copyright © 2008 Darrin Yeager                        #
+# https://www.dyeager.org/                               #
+# Licensed under BSD license.                           #
+#   https://www.dyeager.org/downloads/license-bsd.txt
+#  from https://www.dyeager.org/post/getting-browser-default-language-in-php.html    #
+#########################################################
+   if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"]))
+      return mylanguage_find_browser_language_parse($_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+ 
+   else
+      return mylanguage_find_browser_language_parse(NULL);
+}
+
+function mylanguage_find_browser_language_parse($http_accept, $deflang = "en") {
+   if(isset($http_accept) && strlen($http_accept) > 1)  {
+      # Split possible languages into array
+      $x = explode(",",$http_accept);
+      foreach ($x as $val) {
+         #check for q-value and create associative array. No q-value means 1 by rule
+         if(preg_match("/(.*);q=([0-1]{0,1}.\d{0,4})/i",$val,$matches))
+            $lang[$matches[1]] = (float)$matches[2];
+         else
+            $lang[$val] = 1.0;
+      }
+
+      #return default language (highest q-value)
+      $qval = 0.0;
+      foreach ($lang as $key => $value) {
+         if ($value > $qval) {
+            $qval = (float)$value;
+            $deflang = $key;
+         }
+      }
+   }
+   return strtolower($deflang);
+}
+
+function mylanguage_find_ethnic_name_browser_language($hl_id){
+	$browser_name_for_language = '';
+	db_set_active('my');
+	$language_number = db_query('SELECT bible_brain FROM my_language
+		WHERE hl_id = :hl_id LIMIT 1',
+		array(':hl_id' => $hl_id))->fetchField();
+	$translation_language_number = db_query('SELECT bible_brain FROM my_language
+		WHERE hl_id = :hl_id LIMIT 1',
+		array(':hl_id' => $_SESSION['mylanguage_browser_hl_id']))->fetchField();
+	if ($language_number && $translation_language_number){
+		$browser_name_for_language = db_query('SELECT translation FROM my_language_translation
+			WHERE language_number = :language_number AND translation_language_number = :translation_language_number
+			LIMIT 1', 
+			array(':language_number' => $language_number, 
+				  ':translation_language_number' => $translation_language_number)
+			)->fetchField();
+	}
+	if ($browser_name_for_language){
+		db_set_active('default');
+		return $browser_name_for_language;
+	}
+	else{
+		$english_name_for_language = db_query('SELECT name FROM my_language
+		WHERE hl_id = :hl_id LIMIT 1',
+		array(':hl_id' => $hl_id))->fetchField();
+		db_set_active('default');
+		return $english_name_for_language;
+	}
+}
+function mylanguage_find_font_width($filename) {
+  $handle = @fopen($filename,"r");
+  $c_wid = @fread($handle,11);
+  @fclose($handle);
+  return(ord($c_wid{8})+ord($c_wid{9})+ord($c_wid{10})+ord($c_wid{11}));
+}
+function mylanguage_find_is_mobile(){
+	$detect = mobile_detect_get_object();
+	$is_mobile = $detect->isMobile();
+	return $is_mobile;
+}
+
+function mylanguage_file_write($filename, $file) {
+  $base_dir = mylanguage_realpath_files();
+  $filename = $base_dir .'/' . $filename;
+  $fp = fopen("$filename", 'w');
+  fwrite($fp, $file);
+}
+
+function mylanguage_hl_validate(){
+	//todo: active if
+	//if (!isset($_SESSION['mylanguage_browser_hl_id']){
+		$_SESSION['mylanguage_browser_hl_id'] = mylanguage_language_from_browser();
+	//}
+	if (isset($_SESSION['mylanguage_hl_id'])){
+		$hl_id = $_SESSION['mylanguage_hl_id'];
+	}
+	else{
+		$hl_id = $_SESSION['mylanguage_browser_hl_id'];
+	}
+	$test = db_query('SELECT hl_id FROM my_language
+		WHERE hl_id = :hl_id',
+		array(':hl_id' => $hl_id))
+		->fetchField();
+	if ($test == NULL){
+		$test = 'eng00';
+	}
+	$_SESSION['mylanguage_hl_id'] = $test;
+	mylanguage_language($_SESSION['mylanguage_hl_id']);
+	mylanguage_chinese($test);
+	return $test;
+}
+function mylanguage_hl_id_to_bible(){
+	$result = db_query('SELECT distinct language_iso FROM dbm_bible');
+	foreach ($result as $data){
+		$hl_id = db_query('SELECT hl_id FROM my_language
+			WHERE language_iso = :iso',
+			array(':iso' => $data-> language_iso))->fetchField();
+		if ($hl_id){
+			db_update('dbm_bible')
+			->fields(array(
+				'hl_id' => $hl_id,
+			))
+			->condition('language_iso', $data-> language_iso)
+			->execute();
+		}
+	}
+	return 'check Bible';
+}
+function mylanguage_injeel_request_form($form, &$form_state){
+	$form['header'] = array(
+    '#value' => '<h2>' . mylanguage_t_ethnic('Free Holy Injeel request') . '</h2>',
+  );
+	$wants = "Arabic, Bengali,Bosnian, Farsi, Hausa, Indonesian, Kurdish / Kurmanji, Somali, Turkish, Urdu, Tajik, Uyghur,Uzbek ";
+	$lang= explode(',', $wants);
+	foreach ($lang as $l){
+		$l = trim($l);
+		$option[$l] = $l;
+	}
+	$form['language'] = array(
+		'#title' => mylanguage_t_ethnic('Which language do you want?'),
+		'#type' => 'select',
+		'#options' => $option,
+	);
+	$form['injil_address']=array(
+		'#title' => mylanguage_t_ethnic('What address do you want the Injeel sent to?'),
+		'#type' => 'textarea',
+		'#columns' => 80,
+		'#rows' => 5,
+	);
+	$form['email'] = array(
+		'#title' => mylanguage_t_ethnic('Email Address'),
+		'#type' => 'textfield',
+		'#required' => TRUE,
+	);
+	$form['injil_comments']=array(
+		'#title' => mylanguage_t_ethnic('Comments'),
+		'#type' => 'textarea',
+		'#columns' => 80,
+		'#rows' => 5,
+	);
+	$form['submit'] = array(
+		'#type' => 'submit',
+		'#value' => mylanguage_t_ethnic('Request Injeel'),
+	);   
+	return $form;
+}
+function mylanguage_injeel_request_form_submit($form, &$form_state){
+	$to = 'Response Center <lifeofjesuschristdvd@pobox.com>';
+	$additional_headers = 'From:MyLanguage <info@mylanguage.net.au>';
+	$additional_headers .=  "\n". 'Content-Type: text/plain' . "\n";
+	$subject = '(MyLanguage)Request for FREE Injeel';
+	$body = 'Language:' . $form_state ['values'] ['language'] . "\n";
+	$body .= 'Address:' . $form_state ['values'] ['injil_address'] . "\n";
+	$body .= 'Email:'   .  $form_state ['values'] ['email'] . "\n";
+	$body .= 'Comments:' . $form_state ['values'] ['injil_comments'] . "\n";
+	mail ($to, $subject, $body, $additional_headers);
+	$form_state['redirect'] = 'https://mylanguage.net.au/injeel/mylanguage_page_thank';
+	return;
+}
+function mylanguage_injeel_request_mylanguage_page_thanks(){
+	$output = '<h2>'. mylanguage_t_ethnic('You have requested a FREE Injeel.') . '</h2>';
+	$output .= mylanguage_t_ethnic('We will send it to you soon');
+	return $output;
+}
+
+function mylanguage_menu_link2($title, $page){
+  $output = l($title , $page ). '<br>'. "\n";
+  return $output;
+}
+function mylanguage_link_language($name, $hl_id){
+  $output = l($name , 'intro/'. $hl_id). '<br>'. "\n";
+  return $output;
+}
+
+ffunction mylanguage_meta_none() {
+  $_SESSION['mylanguage_meta'] = '';
+  return;  
+}
+function mylanguage_meta($page) {
+  $_SESSION['mylanguage_meta'] = '';
+  $languages = 'Arabic, Chinese, Croatian, English, Farsi, Greek, Hindi, Indonesian, Japanese, Korean, Macedonian, Mandarin, Russian, Serbian, Spanish, Tagalog, Turkish, Vietnamese, ';
+  if ($page == 'welcome'){
+    $title = 'My Language - learning about God in MY language MY way' . "\n";
+    $description = 'Meet God in your own language using your preferred learning style: listen, watch, read, study or ask questions in any of 200+ languages';
+    $keywords = 'God, Jesus, JESUS film, Bible, New Testament, Become a Christian'; 
+    mylanguage_meta_maker($title, $description, $keywords);
+    return;
+  } 
+  if ($page == 'listen'){
+    $title = 'Listening to God in MY LANGUAGE';
+    $description = 'Listen to God in your own language. Hear what He has said in the Bible in: '. $languages . ' and 200 other languages';
+    $keywords = 'Bible, New Testament, '. $languages; 
+    mylanguage_meta_maker($title, $description, $keywords);
+    return;
+  }  
+  if ($page == 'jfilm'){
+	  return ;
+    $title = 'Watch Jesus in MY LANGUAGE';
+    $description = 'Watch what Jesus did on earth in: '. $languages .' and 800 other languages';
+    $keywords = 'Jesus, JESUS film, God, '. $languages; 
+    mylanguage_meta_maker($title, $description, $keywords);
+    return;
+  }  
+  
+  if ($page == 'meet' || $page == 'read_bilingual_page'){
+    $title = 'Read a summary of how you can know God personally in MY LANGUAGE';
+    $description = 'Read a summary of how you can know God personally in: '. $languages .' and 50 other languages';
+    $keywords = 'Jesus, Knowing God, God, '. $languages; 
+    mylanguage_meta_maker($title, $description, $keywords);
+    return;
+  }  
+  if ($page == 'mylanguage_tracts_home'){
+    $title = 'Buy tracts about how you can know God personally in MY LANGUAGE' ;
+    $description = 'Buy booklets telling how you can know God personally in: '. $languages .' and 50 other languages';
+    $keywords = 'Jesus, Knowing God, tracts, '. $languages; 
+    mylanguage_meta_maker($title, $description, $keywords);
+    return;
+  } 
+  if ($page == 'mylanguage_tracts_home' || $page == 'order_bilingual_booklet'){
+    $title = 'Buy tracts about how you can know God personally in MY LANGUAGE';
+    $description = 'Buy booklets telling how you can know God personally in: '. $languages .' and 50 other languages';
+    $keywords = 'Jesus, Knowing God, tracts, '. $languages; 
+    mylanguage_meta_maker($title, $description, $keywords);
+    return;
+  } 
+  if ($page == 'bible'){
+    $title = 'Read the Bible in MY LANGUAGE now';
+    $description = 'Read the Bible online in: '. $languages .' and 50 other languages';
+    $keywords = 'Bible, '. $languages; 
+    mylanguage_meta_maker($title, $description, $keywords);
+    return;
+  }   
+  if ($page == 'study_online'){
+    $title = 'The Spirit-filled life in MY LANGUAGE';
+    $description = 'Read how God\'s Spirit can give you power and purpose in: '. $languages .' and 50 other languages';
+    $keywords = 'Holy Spirit, '. $languages; 
+    mylanguage_meta_maker($title, $description, $keywords);
+    return;
+  } 
+  if ($page == 'study_home'){
+    $title = 'Study the Bible at home in MY LANGUAGE';
+    $description = 'Read how God\'s Spirit can give you power and purpose in: '. $languages .' and 50 other languages';
+    $keywords = 'Holy Spirit, '. $languages; 
+    mylanguage_meta_maker($title, $description, $keywords);
+    return;
+  }  
+ if ($page == 'discuss_home'){
+    $title = 'Discover what God is like in MY LANGUAGE';
+    $description = 'Discover with your friends what God is like and how he wants you to live in: '. $languages .' and 50 other languages';
+    $keywords = 'Discover God, '. $languages; 
+    mylanguage_meta_maker($title, $description, $keywords);
+    return;
+  }    
+  if ($page == 'ask'){
+    $title = 'Ask a question about God in MY LANGUAGE';
+    $description = 'Ask a question about God in: '. $languages .' and 5 other languages';
+    $keywords = 'God, Question God, God Questions, Is there a God?, '. $languages; 
+    mylanguage_meta_maker($title, $description, $keywords);
+    return;
+  }   
+
+  return;
+}  
+function mylanguage_meta_maker($title, $description, $keywords){
+   $output = '<title>'. $title .  '</title>' . "\n";
+   $output .= '<meta name="description" content="' . $description . '">'. "\n";
+   $output .= '<meta name="keywords" content="'. $keywords . '">'. "\n";
+   $output .= '<meta name="robots" content="index,follow" />'. "\n";
+   $_SESSION['mylanguage_meta'] = $output;
+   return;
+}
+function mylanguage_find_nation(){
+	$ip = ip_address();
+	$nation = ip2country_get_country($ip);
+	$output = isset($nation->country) ? $nation->country : NULL;
+	return $output;
+}
+
+function mylanguage_page_adventure(){
+	$count = db_query('SELECT count(id) as count 
+		FROM hl_spirit') -> fetchField();
+	$length = ($count->count)/3;
+	$i = 0;
+	$output .= '<table><tr><td>'. "\n";
+	$results = db_query('SELECT * FROM hl_spirit ORDER BY name') ->fetchObject();
+	foreach ($results as $data){
+		$i++;
+		$output .= l( $data->name , 'https://mylanguage.net.au/study_online/'. $data->hl_id ) .'<br>' . "\n";
+		if ($i == $length){
+			$i = 0;
+			$output .= '</td><td>'. "\n";
+		}
+	}
+	$output .= '</td></tr></table>'. "\n";
+	return $output;
+}
+function mylanguage_page_ask($hl_id = 'eng00'){
+	mylanguage_meta('ask');
+	global $language;
+	$_SESSION['mylanguage_hl_id'] = $hl_id;
+	
+	if (isset($_SESSION['mylanguage_chinese'])){
+		$hl_id = 'chn-s';
+	}
+	mylanguage_language($hl_id);
+	db_set_active('hl_online');
+	$everystudent = db_query('SELECT contact FROM hl_online_everystudent
+		WHERE hl_id = :hl_id',
+		array(':hl_id' => $hl_id)) -> fetchField();
+	db_set_active('default');
+	if ($everystudent){
+		drupal_goto($everystudent, $options = array('external'), $http_response_code = 302);
+	}
+	$gmo_website_question = db_query ('SELECT gmo_website_question FROM hl_connect 
+		WHERE hl_id = :hl_id LIMIT 1',
+		array(':hl_id' =>$hl_id)) -> fetchField();
+	if ($gmo_website_question){
+		drupal_goto($gmo_website_question, $options = array('external'), $http_response_code = 302);
+	}
+	else{
+	    $count = 0;
+	    $is_mobile = mylanguage_find_is_mobile();
+		if (!$is_mobile){
+			$columns = 4;
+		}
+		else{
+			$columns = 2;
+		}
+	    $output = '<h1>' . mylanguage_t_ethnic('Ask your questions') . '</h1>';
+		$output .= '<table width = 90%"><tr>';
+		/*$query = db_select('hl_connect', 'c');
+        $query->innerjoin('my_language', 'l', 'c.hl_id = l.hl_id');
+        $query->fields('c', array('gmo_website_question'))
+			->fields ('l', array('name', 'ethnic_name'))
+            ->condition('gmo_website_question', '','!=')
+			->isNotNull('gmo_website_question');
+        $results = $query->execute();
+		*/
+		db_set_active('hl_online');
+		$results = db_query('SELECT ethnic_name, contact FROM hl_online_everystudent 
+			ORDER BY ethnic_name');
+		db_set_active('default');
+		foreach($results as $data){
+		  $language_name = $data->ethnic_name;
+			$count++;
+		  $output .=  '<td>'. l($language_name, $data->contact). '</td>';
+			if (($count) %  $columns == 0){
+		    $output .= '</tr><tr>';	
+	    }
+		}
+		if (($count) %  $columns != 0){
+			$output .= '</tr><tr>';	
+		}
+		
+  return $output . '</table>';
+	}
+}
+
+function mylanguage_page_bilingual_read() {
+  mylanguage_meta('read_bilingual_page');
+  $hl_id = arg(1);
+  $output = '';
+  if ($hl_id) {
+    $_SESSION['mylanguage_hl_id'] = $hl_id;
+  }
+  $hl_id = isset($_SESSION['mylanguage_hl_id']) ? $_SESSION['mylanguage_hl_id'] : 'eng00';
+  mylanguage_language($hl_id);
+  
+   $output .= '<h1>' . mylanguage_t_ethnic('Meet God') . '</h1>';
+  if (isset($_SESSION['mylanguage_chinese'])) {
+     $hl_id = $_SESSION['mylanguage_chinese_written'] ;
+     $output .= mylanguage_chinese_display('read_bilingual_page'); 
+  }
+  $output .= mylanguage_display_loading();
+  $webpage = db_query('SELECT webpage from hl_bilingual
+	WHERE hl_id = :hl_id',
+	array(':hl_id' => $hl_id)
+  ) ->fetchField();
+  drupal_goto($webpage);
+  $output .= '<iframe width = 100% height =1000 src = "' . $webpage . '"> </iframe>';
+  $output .= mylanguage_display_source ($webpage);
+  return $output;
+}
+
+function mylanguage_page_discussA(){
+
+	global $language;
+	$output = '';
+	mylanguage_meta('discuss_home');
+	$hl_id = arg(1);
+	if ($hl_id) {
+		// change chinese to simplified by default
+		if (mylanguage_chinese($hl_id) == 1 &&  $hl_id != 'chn-t'){
+			$hl_id = 'chn-s';
+		}
+		$_SESSION['mylanguage_hl_id'] = $hl_id;
+	}
+	mylanguage_language($hl_id);
+	$session = arg(2);
+	if (!$session){
+		$session = 1;
+	}	
+	$hl_id = mylanguage_hl_validate();
+	$output .= '<h1>' . mylanguage_t_ethnic('Discuss with your friends') . '</h1>';
+	$output .= '<p>' . mylanguage_t_ethnic('Would you like to discover for yourself what God is like and how God wants you to live?') . '</p>';
+	$output .= '<p>' . mylanguage_t_ethnic('Most people like to make these discoveries in a group with their friends.');
+	$output .= ' ' . mylanguage_t_ethnic('Here are some questions to get your discussion started');
+	$output .= '<hr>';
+	
+	$a = drupal_get_form('mylanguage_page_discuss_select_form', $session);
+	$output .= drupal_render($a);
+	$output .= mylanguage_page_discuss($hl_id, $session);
+	return $output;
+}
+
+
+function mylanguage_path_check($image){
+	$real_image_name = str_replace('\\', '/', $image);
+	return $real_image_name;
+}
+function mylanguage_path_real($image){
+	$real_image_name = str_replace('\\', '/', mylanguage_realpath_files(). '/'. $image);
+	return $real_image_name;
+	
+}
+function mylanguage_perm() {
+return array('configure mylanguage', 'view mylanguage');
+}
+function mylanguage_realpath_files(){
+	return '/mylanguage7/sites/default/files';
+}
+function mylanguage_redirect($page=''){
+  drupal_goto($page);
+}
+/**
+ * A function to change persian or arabic text from its logical condition to visual
+ *
+ * @author		Omid Mottaghi Rad 
+ * @param		string	Main text you want to change it
+ * @param		boolean	Apply e'raab characters or not? default is true
+ * @param		boolean	Which encoding? default it "utf8"
+ * @param		boolean	Do you want to change special characters like "allah" or "lam+alef" or "lam+hamza", default is true
+ */
+function mylanguage_rtl(&$str){
+	require_once ('bidi.php');
+	$text = explode("\n", $str);
+	$str = array();
+	$bidi = new bidi();
+	foreach($text as $line){
+		$chars = $bidi->utf8Bidi($bidi->UTF8StringToArray($line), 'R');
+		$line = '';
+		foreach($chars as $char){
+		$line .= $bidi->unichr($char);
+		}
+		
+		$str[] = $line;
+	}
+	$str = implode("\n", $str);
+  return $str;
+}
+
+function mylanguage_stats_update($hl_id){
+	$requests = db_query ('SELECT requests FROM my_language  
+		WHERE hl_id = :hl_id LIMIT 1',
+		array(':hl_id' =>$hl_id )
+		)->fetchField(); 
+		//not a valid URL
+	if (!isset($requests)){
+	   $hl_id = 'eng00';
+	   $_SESSION['mylanguage_hl_id'] = 'eng00';
+	}
+	else{
+		$requests++;
+		db_update('my_language')
+			->fields(array(
+				'requests' => $requests,
+			))
+			->condition('hl_id', $hl_id)
+			->execute();
+		db_insert('hl_stats')
+			->fields(array(
+				'hl_id' => $hl_id,
+			))
+			->execute();
+	}
+}
+
+
+function mylanguage_t_ethnic($term){
+	global $language;
+	if (!isset($_SESSION['mylanguage_ethnic_language'])){
+		mylanguage_language('eng00');
+	}
+	$language = $_SESSION['mylanguage_ethnic_language'];
+	$output = t($term);
+	return $output;
+}
+function mylanguage_t_browser($term){
+	global $language;
+	if (!isset($_SESSION['mylanguage_browser_language'])){
+		mylanguage_language_from_browser();
+	}
+	$language = $_SESSION['mylanguage_browser_language'];
+	$output = t($term);
+	if (isset($_SESSION['mylanguage_ethnic_language'])){
+		$language = $_SESSION['mylanguage_ethnic_language'];
+	}
+	return $output;
+}
+function mylanguage_tell_friend_form( $form, &$form_state,$hl_id, $video){
+	$form['hl_id'] = array(
+    '#type' => 'value',
+    '#default_value' => $hl_id,
+  );
+	$form['video'] = array(
+    '#type' => 'value',
+    '#default_value' => $video,
+  );
+	$form['to'] = array(
+    '#title' => mylanguage_t_browser('Their name'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+  );
+	$form['email'] = array(
+    '#title' => mylanguage_t_browser('Email Address'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+  );
+	$form['from'] = array(
+    '#title' => mylanguage_t_browser('Your name'),
+    '#type' => 'textfield',
+    '#required' => TRUE,
+  );
+	$message = '<h2>' . mylanguage_t_browser('Here is the message you will send:') . '</h2>';
+	$message .=  mylanguage_t_browser('Here is a link to a great video.') .  '<br>';
+	$message .=  mylanguage_t_browser('Let me know what you think of it.') .  '<br><br>';
+	$form['message'] = array(
+    '#value' => $message,
+  );
+
+	$form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => mylanguage_t_browser('Send Email'),
+  );   
+	return $form;
+}
+function mylanguage_tell_friend_form_submit($form, &$form_state){
+	$to = $form_state ['values'] ['to'] .' <'. $form_state ['values'] ['email'] .'>';
+	$additional_headers = 'From:MyLanguage <info@mylanguage.net.au>';
+	$additional_headers .=  "\n". 'Content-Type: text/html' . "\n";
+	$subject =  $form_state ['values'] ['from'] .' '. mylanguage_t_browser('wants you to look at this video');
+	$message .=  $form_state ['values'] ['to'] . ','. '<br>';
+	$message .=  mylanguage_t_browser('Here is a link to a great video: ') ;
+	$link = 'https://mylanguage.net.au/jfilm/'. $form_state ['values'] ['hl_id'] .'/'. $form_state ['values'] ['video'];
+	$message .= '<a href = "'. $link . '">'. $link  .'</a><br>';
+	$message .=  mylanguage_t_browser('Let me know what you think of it.') .  '<br>';
+	$message .=  $form_state ['values'] ['from'] . '<br>';
+	mail ($to, $subject, $message, $additional_headers);
+	db_insert('hl_evangelism')
+      ->fields(array(
+        'date' => date('Y-m-d'),
+        'hl_id' => $form_state ['values'] ['hl_id'],
+		'video' => $form_state ['values'] ['video']
+      ))
+      ->execute();
+	$form_state['redirect'] = 'https://mylanguage.net.au/jfilm/'. $form_state ['values'] ['hl_id'].'/'. $form_state ['values'] ['video'];
+	return;
+}
+/**
+ *  Implementation of hook_theme
+ */
+function mylanguage_theme() {
+  return array(
+    'mylanguage_select_mobile' => array(
+      'render element' => 'element',
+    ),
+	);
+}
+function theme_mylanguage_select_mobile($variables) {
+  $element = $variables['element'];
+	$output = '';
+  //$output .= '<label for="edit-' . $element ["#name"] . '">';
+	if (isset($element['#button'])){
+		$output .= $element['#button'];
+	}
+	//$output .= '<b>' . $element ["#mytitle"];
+  //if ($element ["#required"] !== FALSE) {
+  //  $output .= '<span style="color:red">*</span>';
+  //}
+  //$output .= '</b>&nbsp;&nbsp;</label>';
+  $output .= '<select ';
+	if (isset($element['#attributes'])){
+		foreach ($element['#attributes'] as $key => $value){
+			$output .= $key .' = "'. str_replace('"', "&quot;", $value) . '"  ' ;
+		}
+	}
+	$output .= 'name="' . $element ["#name"] . '" class="' .$element['#class'] .'" id = "edit-' . $element ["#name"] . '" />';
+  $options = $element ["#options"];
+  foreach ($options as $k => $v) {
+    if ($k == $element ["#default_value"]) {
+      $output .= '<option value="' . $k . '" selected ="selected">' . $v . '</option>';
+    }
+    else {
+      $output .= '<option value="' . $k . '">' . $v . '</option>';
+    }
+  }
+  $output .= ' </select>' . "\n";
+	if (isset($element['#button2'])){
+		$output .= $element['#button2'];
+	}
+  return $output;
+}
+
+
+function mylanguage_page_thank($drupal){
+	db_set_active ('info');
+	$l = db_fetch_object(db_query('SELECT * FROM hl_connect WHERE language = :language LIMIT 1', $drupal));
+	$e = db_fetch_object(db_query('SELECT * FROM hl_connect WHERE language = :language LIMIT 1', 'en'));
+	db_set_active('default');
+	
+	$output .= '<h1>'. mylanguage_connect_t($l->message_sent, $e->message_sent) . '</h1>';
+	$output .=  mylanguage_connect_t($l->mylanguage_page_thank_you, $e->mylanguage_page_thank_you);
+	return $output;
+}
+function meet($hl_id = 'eng00') {
+	mylanguage_meta('meet');
+	$hl_id = arg(1);
+	if ($hl_id) {
+		$_SESSION['mylanguage_hl_id'] = $hl_id;
+	}
+	$hl_id = mylanguage_hl_validate();
+	mylanguage_language($hl_id);
+	mylanguage_chinese($hl_id);
+	if (isset($_SESSION['mylanguage_chinese'])) {
+		$hl_id = $_SESSION['mylanguage_chinese_written'] ;
+	}  
+	db_set_active ('hl_online');
+	if (isset($_SESSION['mylanguage_chinese'])){
+		$data = db_query('SELECT * from hl_online_kgp 
+			WHERE hl_id = :hl_id  LIMIT 1', 
+			array(':hl_id' =>$hl_id)) ->fetchObject();
+	}
+	else {
+		$data = db_query('SELECT * from hl_online_kgp 
+			WHERE hl_id = :hl_id LIMIT 1', 
+			array(':hl_id' =>$hl_id)) ->fetchObject();
+	}
+	db_set_active ('default');
+	if($data->tract){
+		$webpage = '4sl/'. $data->tract . '.html';
+		$output = '<br><br>';
+		$output .=  file_get_contents(mylanguage_shared_dir() . $webpage);
+		return $output;
+	}
+	else{
+		$webpage = $data->webpage;
+		drupal_goto($webpage);
+	}
+	return $output;
+	}
+/**
+ *  Returns link to dbm directory
+ *
+ *
+ */
+function mylanguage_url_file() {
+  //$output = file_stream_wrapper_get_instance_by_uri('public://')->getExternalUrl();
+  $output = 'https://mylanguage.net.au/sites/mylanguage.net.au/files/';
+  return $output;
+}
+function mylanguage_vance($hl_id){
+	$wants = "('Arabic', 'Bengali','Bosnian', 'Farsi', 'Hausa', 'Indonesian', 'Kurdish / Kurmanji', 'Somali', 'Turkish', 'Urdu', 'Tajik', 'Uyghur','Uzbek' )";
+	$result = db_query("SELECT id FROM my_language 
+		WHERE hl_id ='$hl_id' AND name IN $wants LIMIT 1") ->fetchField();
+	return $result;
+}
+function mylanguage_vance2(){
+	$output = '';
+	$result = db_query ('SELECT * FROM my_language WHERE jfilm = :yes',
+		array(':yes' => 'Y'));
+	foreach ($result as $data){
+		db_set_active('hl_online');
+		$film_code = db_query('SELECT film_code FROM hl_online_jfilm
+			WHERE hl_id = :hl_id AND segment = :segment AND movie = :jesus LIMIT 1', 
+			array(':hl_id' =>$data->hl_id, ':segment' => 12, ':jesus' => 'JESUS')) ->fetchField();
+		db_set_active('default');
+		$output.= $data->name . '|'. 'https://mylanguage.net.au/jfilm/'. $data->hl_id . '/JESUS/'. $film_code . "\n";
+	}
+	return $output;
+}
+
+function mylanguage_function_finder_form($form, &$form_state){
+	 $form['text']=array(
+		'#type' => 'textarea',
+		'#rows' => 20,
+		'#cols' => 80
+	  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => mylanguage_t_ethnic('Find Functions'),
+  ); 
+	$form['functions'] = array(
+    '#markup' => isset($_SESSION['mylanguage_functions'])? $_SESSION['mylanguage_functions']: NULL,
+  );     
+  unset($_SESSION['mylanguage_functions']);
+  return $form;
+}
+function mylanguage_function_finder_form_submit($form, &$form_state){
+	$output = '<br><br>This is my output<br>';
+	$text = array();
+	$text = explode("\n", $form_state['values']['text']);
+	foreach ($text as $line){
+		if (substr($line, 0 ,8) == 'function'){
+			$l = str_replace('{', ';', substr($line, 8));
+			$output .= '//$output = '.  $l . '<br>';
+		}
+	}
+	$_SESSION['mylanguage_functions'] = $output;
+}
+
+
+/**
+ * Implements hook_stream_wrappers().
+ *
+ * hook_stream_wrappers() is Drupal's way of exposing the class that PHP will
+ * use to provide a new stream wrapper class. In this case, we'll expose the
+ * 'shared' scheme, so a file reference like "shared://example/example.txt"
+ * is readable
+ *
+ * @see FileExampleSessionStreamWrapper
+ */
+function mylanguage_stream_wrappers() {
+  $wrappers = array(
+    'shared' => array(
+      'name' => mylanguage_t_browser('Shared Files'),
+      'class' => 'SharedStreamWrapper',
+      'description' => mylanguage_t_browser('Read Files in sites/all/files'),
+			'type' => STREAM_WRAPPERS_READ_VISIBLE,
+    ),
+	'bible' => array(
+      'name' => mylanguage_t_browser('Bible Files'),
+      'class' => 'BibleStreamWrapper',
+      'description' => mylanguage_t_browser('Read locally stored Bibles'),
+			'type' => STREAM_WRAPPERS_READ_VISIBLE,
+    ),
+  );
+  return $wrappers;
+}
+
+function mylanguage_shared_dir(){
+	return '/home/vx5ui10wb4ln/public_html/drupal7/sites/all/files/';
+}
+function mylanguage_getExternalSharedUrl(){
+	global $base_url;
+	return $base_url .  '/sites/all/files/';
+}
+function mylanguage_getExternalUrl(){
+	global $base_url;
+	return $base_url .  '/sites/mylanguage.net.au/files/';
+}
+/**
+ * Default files (foobar://) stream wrapper class.
+ */
+class SharedStreamWrapper extends DrupalPublicStreamWrapper {
+  public function getDirectoryPath() {
+    return 'sites/all/files';
+  }
+	public function getExternalUrl() {
+		global $base_url;
+    return $base_url .  '/sites/all/files/';
+  }
+  public function realpath() {
+    return '/home/vx5ui10wb4ln/public_html/drupal7/sites/all/files/';
+  }
+
+}
+class BibleStreamWrapper extends DrupalPublicStreamWrapper {
+  public function getDirectoryPath() {
+		global $base_url;
+		if ($base_url == 'mylanguage7'){
+			return 'c:/Projects/dbm/protype/www/sites/all/files/bible/';
+		}
+		else{
+			return '/home/vx5ui10wb4ln/public_html/drupal7/sites/all/files/bible/';
+		}
+  }
+	
+
+}
+
+function mylanguage_film_language_ethnic(){
+	db_set_active('default');
+	$r = db_query('SELECT distinct google, hl_id FROM my_language
+		WHERE google IS NOT NULL');
+	$output = '';
+	foreach ($r as $d){
+		$output .=  '<br>' . $d->google . '<br>';
+		db_set_active('hl_online');
+		$results = db_query('SELECT distinct language FROM hl_online_jfilm 
+			WHERE hl_id = :hl_id AND language_ethnic IS NULL',
+			array(':hl_id' => $d->hl_id));
+		foreach ($results as $data){
+			  $output .= $data->language. '<br>';
+				db_set_active('default');
+				$translated = mylanguage_translate_google_text($data->language, $d->google);
+				db_set_active('hl_online');
+				db_query('UPDATE hl_online_jfilm SET language_ethnic = :language_ethnic
+					WHERE language = :language',
+					array('language_ethnic' => $translated, 'language' => $data->language));	
+		}
+		db_set_active('default');
+	}
+	db_set_active('default');
+ return $output;
+}
+
+function mylanguage_film_language_ethnic2(){
+	db_set_active('default');
+	$r = db_query('SELECT distinct google, language_iso FROM my_language
+		WHERE google IS NOT NULL');
+	$output = '';
+	foreach ($r as $d){
+		$output .=  '<br>' . $d->google . '<br>';
+		db_set_active('hl_online');
+		$results = db_query('SELECT distinct language FROM hl_online_jfilm 
+			WHERE iso_code = :iso_code AND language_ethnic IS NULL',
+			array(':iso_code' => $d->language_iso));
+		foreach ($results as $data){
+			  $output .=  $d->google . '-- ' . $data->language. '<br>';
+		}
+		db_set_active('default');
+	}
+	db_set_active('default');
+ return $output;
+}

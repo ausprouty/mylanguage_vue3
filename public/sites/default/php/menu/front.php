@@ -1,0 +1,276 @@
+<?php
+function mylanguage_front_page(){
+	return mylanguage_page_front();
+}
+
+
+function mylanguage_page_front(){
+  global $language;
+  mylanguage_meta('welcome');
+  $hl_id = mylanguage_language_from_browser();
+  $hl_id = mylanguage_language($hl_id);
+  $is_mobile = mylanguage_find_is_mobile();
+  if (!$is_mobile){
+	  return mylanguage_page_front_laptop($hl_id);
+  }
+  else{
+	  return 'laptop';
+	   return mylanguage_page_front_mobile($hl_id);
+  }  
+}
+function mylanguage_page_front_laptop($hl_id){
+  global $language;
+  return base_path() . drupal_get_path('theme', 'twentyfifteen');
+  mylanguage_meta('welcome');
+  $hl_id = mylanguage_language_from_browser();
+  $hl_id = mylanguage_language($hl_id);
+  $output = '<table align = "center" border = "0" width= "100%"><tr class = "welcome"><td  colspan = "2" >
+  <img src = " '. base_path() . drupal_get_path('theme', 'twentyfifteen') .'/img/newheader.jpg" width = "100%"></td></tr>';
+  $output .='<tr class = "welcome"><td colspan = "2">';
+  $output .=  '<span class = "motto">' . mylanguage_t_browser('Learn about God in your own language using your preferred learning style:'). '</span><br>';
+  $output .= '<span class = "motto">' .  mylanguage_t_browser('listen, watch, read, study or ask questions in any of 200 languages.'). '</span></td></tr>';
+  $output .= '<tr class="world">';
+  $output .= '<td align = "center"   width = "67%" valign="top" ><span class = "motto">';
+  $output .= mylanguage_t_browser('What language do you speak?'). '</span>' . mylanguage_block_select_browser() .'<br>';
+  $output .= mylanguage_block_select_ethnic() . '</td>';
+  $output .= '<td align = "center" width = "33%" align="left"><br>';
+  if ($hl_id != 'eng00'){
+	$output .=  mylanguage_block_select_translated() .'<br>';
+  }
+  $output .= mylanguage_block_select_worldwide() .'<br>';;
+  $a = 	drupal_get_form('mylanguage_language_select_form');
+  $output .= drupal_render($a) .'<br>';
+  $output .=  mylanguage_block_select_aboriginal() . '</td></tr>';
+  $output .= '<tr class = "welcome_white"> <td align = "center" width = "100%" colspan = "3" valign="top">';
+  $space = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+  $output .= l( mylanguage_t_browser('About us'), 'https://mylanguage.net.au/about') . $space . "\n";
+  $output .= l( mylanguage_t_browser('Contact us')  , 'https://mylanguage.net.au/about/'). $space . "\n";
+  $output .= l( mylanguage_t_browser('Listen')  , 'https://mylanguage.net.au/listen_online/'. $hl_id) .$space . "\n";
+  $output .= l( mylanguage_t_browser('Video')  , 'https://mylanguage.net.au/show/'. $hl_id). $space . "\n";
+  $output .= l( mylanguage_t_browser('Bible')  ,'https://mylanguage.net.au/bible/'. $hl_id). $space . "\n";
+  $output .= l( mylanguage_t_browser('Meet God')  ,'https://mylanguage.net.au/meet/'. $hl_id). $space . "\n";
+  $output .= l( mylanguage_t_browser('Adventure')  ,'https://mylanguage.net.au/study_online/'. $hl_id). $space . "\n";
+  $output .= '</td></tr></table>';
+  return $output;
+}
+function mylanguage_page_front_mobile($hl_id){
+  $output = '<table align = "center" border = "0" width= "100%"><tr class = "welcome_light"><td  colspan = "2" >
+   <img src = " '. base_path() . drupal_get_path('theme', 'twentyfifteen') .'/img/newheader.jpg" width = "100%"></td></tr>';
+  $output .='<tr class = "welcome_light"><td>';
+  $output .=  '<span class = "motto_mobile">' . mylanguage_t_browser('Learn about God in your own language using your preferred learning style:') .' &nbsp;';
+  $output .=  mylanguage_t_browser('listen, watch, read, study or ask questions in any of 200 languages.'). '</span></td></tr>';
+  $output .= '<tr class="welcome">';
+  $output .= '<td align = "center"  valign="top" ><span class = "motto_mobile">';
+  $output .= mylanguage_t_browser('What language do you speak?'). '</span><br>' . mylanguage_block_select_ethnic('mobile') . '</td></tr>';
+  $output .= '<tr class = "welcome_yellow"><td style="text-align:center"><br>';
+  $a = 	drupal_get_form('mylanguage_language_select_form');
+  //$a = drupal_get_form('mylanguage_select_form');
+  $output .= drupal_render($a) . '<br><br></td></tr>';
+  $output .= '<tr class = "welcome_white"> <td align = "center" width = "100%" >';
+  $space = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+  $output .= l( mylanguage_t_browser('About us'), 'https://mylanguage.net.au/about') . $space . "\n";
+  $output .= l( mylanguage_t_browser('Contact us')  , 'https://mylanguage.net.au/about/'). $space . "\n";
+  $output .= l( mylanguage_t_browser('Listen')  , 'https://mylanguage.net.au/listen_online/'. $hl_id) .$space . "\n";
+  $output .= l( mylanguage_t_browser('Video')  , 'https://mylanguage.net.au/show/'. $hl_id). $space . "\n";
+  $output .= l( mylanguage_t_browser('Bible')  ,'https://mylanguage.net.au/bible/' . $hl_id). $space . "\n";
+  $output .= l( mylanguage_t_browser('Meet God')  ,'https://mylanguage.net.au/meet/' . $hl_id). $space . "\n";
+  $output .= l( mylanguage_t_browser('Adventure')  ,'https://mylanguage.net.au/study_online/'. $hl_id). $space . "\n";
+  $output .= '(' . $language->language .')';
+  $output .= '</td></tr></table>';
+  return $output;
+}
+function mylanguage_page_frontX($hl_id = null){
+	if (arg(2)){
+		$hl_id = arg(2);
+		watchdog('intro', arg(1). '/'. arg(2));
+		drupal_goto('/'. arg(1). '/'. arg(2));	
+	}
+	if (!$hl_id){
+		$hl_id = mylanguage_language_from_browser();
+		watchdog('intro', 'I looked for browswer language and found '. $hl_id);
+	}
+	if (!$hl_id){
+		// return to languages
+		watchdog('intro', 'I could not find a language '. $hl_id);
+		return mylanguage_front_page();
+		
+	}
+	$hl_id = mylanguage_language($hl_id);
+	$cache = mylanguage_cache($hl_id);
+	if (isset($cache->intro)){
+		$intro = $cache->intro;
+		if ($intro){
+			return $intro;
+		}
+	}
+	//$text = '<p><img class = "header_image" src = "https://mylanguage.net.au/sites/mylanguage.net.au/themes/twentyfifteen/img/newheader.jpg"></p>';
+	$text = '';
+	$title = db_query('SELECT mylanguage, name, direction FROM my_language 
+		WHERE hl_id = :hl_id
+		LIMIT 1',
+		array(':hl_id' => $hl_id)) ->fetchObject();
+	if ($title->mylanguage){
+		$text .= '<h2>'. $title->mylanguage . '</h2>';
+		$english = 'N';
+	}
+	else{
+		if ($title->name){
+			$text .= '<h2>'. $title->name . '</h2>';
+			
+		}
+		$english = 'Y';
+		
+	}
+	if ($title->direction){
+		$direction = $title->direction;
+	}
+	else{
+		$direction = 'ltr';
+	}
+	if ($_SESSION['mylanguage_ethnic_language'] != $_SESSION['mylanguage_browser_language']){
+		$text .= '<p>'. mylanguage_find_ethnic_name_browser_language($hl_id).  '</p>';
+		
+	}
+	$text .= '<hr class = "intro">';
+	$text .= '<h3><a href = "/languages">'  . mylanguage_t_ethnic('Another Language') .'</a></h3>';
+	if (mylanguage_t_ethnic('Another Language') != mylanguage_t_browser('Another Language')){
+		$text .= '<p><a href = "/languages">' . mylanguage_t_browser('Another Language'). '</a></p>';
+	}
+	$text .= '<hr class = "intro">';
+	if (mylanguage_menu_links_spoken( 'hl_online_jfilm',  $hl_id, 'bible')){
+		$text .=  mylanguage_page_front_image('watch.png', $direction);
+		$text .=   '<h2>'. mylanguage_t_ethnic('See what Jesus said') . '</h2>';
+		$text .=  '<p><a class = "intro" href = "/jfilm/'. $hl_id . '">' . mylanguage_t_ethnic('Watch the JESUS film'). '</a></p>';
+		$text .= mylanguage_page_front_section_end();
+	}
+	if (mylanguage_menu_links_written('dbm_questions',   $_SESSION['mylanguage_written_hl_id'], 'common')){
+		$text .= mylanguage_page_front_image('discuss.png', $direction);
+		$text .= '<h2>'. mylanguage_t_ethnic('Discuss with your friends') . '</h2>';
+		$text .= '<p>' . mylanguage_t_ethnic('Would you like to discover for yourself what God is like and how God wants you to live?') . '</p>';
+		$text .= '<p>' . mylanguage_t_ethnic('Most people like to make these discoveries in a group with their friends.');
+		$text .= ' ' . mylanguage_t_ethnic('Here are some questions to get your discussion started') . '</p>';
+		$text .= '<a class = "intro" href = "/discuss/'. $hl_id .'">'. mylanguage_t_ethnic('Read More') . '</a>';
+		$text .= mylanguage_page_front_section_end();
+	}
+	$bible = '';
+	if  (mylanguage_menu_links_written( 'dbm_bible',   $_SESSION['mylanguage_written_hl_id'], 'common')){
+		$text .=  mylanguage_page_front_image('read.png', $direction);
+		$text .=   '<h2>'.mylanguage_t_ethnic('Read God\'s Word: the Bible') . '</h2>';
+		db_set_active('common');
+		$bid = db_query('SELECT bid FROM dbm_bible
+			WHERE hl_id = :hl_id AND (collection_code = :nt OR collection_code = :fu )
+			AND text = :y1 
+			ORDER BY weight DESC LIMIT 1',
+			array(':hl_id' => $_SESSION['mylanguage_written_hl_id'], 
+					':y1' => 'Y', 
+					':nt' => 'NT', 
+					':fu' => 'FU'))
+			->fetchField();
+		db_set_active('default');
+		$bad = array('<p>', '</p>');
+		$bible = mylanguage_page_bible_intro($bid, $_SESSION['mylanguage_written_hl_id']);
+		//$bible = str_replace('<div', '<p', $bible);
+		//$bible = str_replace('</div', '</p', $bible);
+		//$text .= '<p>'. str_replace ($bad, ' ', $bible) . '</p>';
+		$i = strpos($bible, '<!-- end bible -->');
+		if ($i){
+			$bible = substr($bible, 0, $i);
+		}
+		$i = strpos($bible, '<div class="publisher-info-bottom">');
+		if ($i){
+			$bible = substr($bible, 0, $i);
+		}
+		$text .= $bible;
+		$text .= '<p><a class = "intro" href = "/bible/'. $hl_id .'">'. mylanguage_t_ethnic('Read More') . '</a></p>';
+		
+	}
+	$listen = '';
+	if (mylanguage_menu_links_audio_bible($hl_id)){
+		if (!$bible){
+			$text .=  mylanguage_page_front_image('listen.png', $direction);
+			$text .=   '<h2>'. mylanguage_t_ethnic('Listen to what God has said') . '</h2>';
+		}
+		$listen = 'Listen';
+		$text .= '<p><a class = "intro" href = "/listen_online/'. $hl_id . '">' . mylanguage_t_ethnic('Listen'). '</a></p>';
+		
+	}
+	if ($bible || $listen){
+		$text .= mylanguage_page_front_section_end();
+	}
+	$text .= mylanguage_page_front_image('ask.png', $direction);
+	$text .= '<h2><a href = "/ask/'. $hl_id . '">' .mylanguage_t_ethnic('Ask a question'). '</a></h2>';
+	$text .= '<p>'. mylanguage_t_ethnic('We are here to answer any questions you may have.') . '<p>';
+	$text .= '<a class = "intro" href = "/ask/'. $hl_id. '">'. mylanguage_t_ethnic('Ask') . '</a>';
+	$text .= '<br><br>';
+	$text .= mylanguage_page_front_section_end();
+	if (mylanguage_menu_links_written('hl_online_kgp',  $_SESSION['mylanguage_written_hl_id'], 'hl_online')){
+		db_set_active('hl_online');
+		$kgp = db_query('SELECT * FROM hl_online_kgp 
+			WHERE hl_id = :hl_id', 
+			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']))->fetchObject();
+		$text .= mylanguage_page_front_image('tracts.png', $direction);
+	    db_set_active('default');
+		if ($kgp->title){
+			$kgp_title = $kgp->title; // all local files will have title
+		}
+		else{
+			$kgp_title = str_replace('https://www.', '', $kgp->webpage);
+			
+		}
+		$text .=  '<h2>'. mylanguage_t_ethnic('Meet God') .'</h2>';
+		$text .= '<p>'. $kgp->promo . '</p>';
+		$webpage = '/meet/'. $hl_id;
+		$text .= '<a class = "intro" href = "'. $webpage. '">'. mylanguage_t_ethnic('Read More') . '</a>';
+		$text .= mylanguage_page_front_section_end();
+	}
+	
+	
+	if (mylanguage_menu_links_written( 'hl_spirit',  $hl_id)){
+		$text .= mylanguage_page_front_image('study.png', $direction);
+		db_set_active('hl_online');
+		$spirit = db_query('SELECT * FROM hl_online_spirit 
+			WHERE hl_id = :hl_id', 
+			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']))->fetchObject();
+		db_set_active('default');
+		$text .= '<h2>'. mylanguage_t_ethnic('Adventure'). '</h2>';
+		if ($spirit->promo){
+			$text .= '<p>'. $spirit->promo .'</p>';
+		}
+		else{
+			$text .= '<br><br><br>';
+		}
+		$text .= '<a class = "intro" href = "/study_online/'. $hl_id. '">'. mylanguage_t_ethnic('Read More') . '</a>';
+		$text .= mylanguage_page_front_section_end();
+		
+		
+	}
+	
+	if (mylanguage_menu_links_written('hl_online_everystudent',  $_SESSION['mylanguage_written_hl_id'], 'hl_online')){
+		$text .=  mylanguage_page_front_image('everyone.png', $direction);
+		db_set_active('hl_online');
+		$website = db_query('SELECT * FROM hl_online_everystudent 
+			WHERE hl_id = :hl_id', 
+			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']))->fetchObject();
+		db_set_active('default');
+		$text .= '<h2>'. $website->url . '</h2>';
+		$text .='<p>'. $website->promo . '</p>';
+		$text .= '<p><a class = "intro" href = "https://'.$website->url. '">'. mylanguage_t_ethnic('Read More') . '</a></p>';
+		$text .= mylanguage_page_front_section_end();
+	}
+	$text .= '<p>&copy; copyright Power to Change 2011 - 2020</p>';
+	mylanguage_cache_update_intro($hl_id, $text );
+
+	return $text;
+	
+}
+function mylanguage_page_front_image($image, $direction = 'ltr'){
+	$img = mylanguage_getExternalUrl() .'options/' . $image;
+	$output = '<div class = "mylanguage_page_front_image_'. $direction . '">' ."\n";
+	$output .= '<img class = "mylanguage_page_front" src = "'. $img   . '">';
+	$output .= '</div>'   ."\n";
+	$output .= '<div class = "mylanguage_page_front_text_'. $direction . '">' ."\n";
+	return $output;
+}
+function mylanguage_page_front_section_end(){
+	return '<br><br></div><hr class = "intro">'."\n";
+}

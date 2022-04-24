@@ -1,0 +1,455 @@
+<?php
+function mylanguage_block_format($title, $content){
+
+  $output = '<div class="block block-mylanguage">';
+  $output .= '<h2 class="title">'.   $title . '</h2>';
+  $output .= '<p align = "center">' . $content .  '</p>';
+  $output .= '</div><div class="block-bottom"></div>';
+  return $output;
+}
+function mylanguage_block_infoX() {
+	$blocks['welcome'] = array(
+		'info' => mylanguage_t_browser('Welcome'),
+		'status' => TRUE,
+		'cache' => DRUPAL_NO_CACHE,
+		'region' => 'header',
+		'visibility' => BLOCK_VISIBILITY_LISTED,
+		'pages' => '<front>',
+	);
+	$blocks['menu'] = array(
+		'info' => mylanguage_t_browser('Menu Bar'),
+		'status' => TRUE,
+		'cache' => DRUPAL_NO_CACHE,
+		'region' => 'header',
+		'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+		'pages' => "<front>\nadmin/*\nadmin",
+	);
+	$blocks['footer'] = array(
+		'info' => mylanguage_t_browser('Footer'),
+		'status' => TRUE,
+		'cache' => DRUPAL_CACHE_GLOBAL,
+		'region' => 'footer',
+		'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+		'pages' => '',
+	);
+	$blocks['sponsors'] = array(
+		'info' => mylanguage_t_browser('Sponsers'),
+		'status' => TRUE,
+		'cache' => DRUPAL_CACHE_GLOBAL,
+		'region' => 'footer',
+		'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+		'pages' => '',
+	);
+	$blocks['ask_options'] = array(
+		'info' => mylanguage_t_browser('Writing Options'),
+		'status' => TRUE,
+		'cache' => DRUPAL_CACHE_GLOBAL,
+		'region' => 'sidebar_first',
+		'visibility' => BLOCK_VISIBILITY_LISTED,
+		'pages' => 'ask',
+	);
+	$blocks['listen_options'] = array(
+		'info' => mylanguage_t_browser('Programs Available'),
+		'status' => TRUE,
+		'cache' => DRUPAL_CACHE_GLOBAL,
+		'region' => 'sidebar_first',
+		'visibility' => BLOCK_VISIBILITY_LISTED,
+		'pages' => 'listen_online',
+	);
+	$blocks['writing_options'] = array(
+		'info' => mylanguage_t_browser('Writing Options'),
+		'status' => TRUE,
+		'cache' => DRUPAL_CACHE_GLOBAL,
+		'region' => 'sidebar_first',
+		'visibility' => BLOCK_VISIBILITY_LISTED,
+		'pages' => 'ask',
+	);
+	$blocks['other_options'] = array(
+		'info' => mylanguage_t_browser('Other Options'),
+		'status' => TRUE,
+		'cache' => DRUPAL_NO_CACHE,
+		'region' => 'sidebar_first',
+		'visibility' => BLOCK_VISIBILITY_LISTED,
+		'pages' => array("jfilm/*\njfilm\nshow\nshow/*"),
+	);
+	$blocks['5_fish'] = array(
+		'info' => mylanguage_t_browser('5 Fish'),
+		'status' => TRUE,
+		'cache' => DRUPAL_CACHE_GLOBAL,
+		'region' => 'sidebar_second',
+		'visibility' => BLOCK_VISIBILITY_LISTED,
+		'pages' => 'listen_online/*',
+	);
+	$blocks['bible_is'] = array(
+		'info' => mylanguage_t_browser('Bible.is'),
+		'status' => TRUE,
+		'cache' => DRUPAL_CACHE_GLOBAL,
+		'region' => 'sidebar_second',
+		'visibility' => BLOCK_VISIBILITY_LISTED,
+		'pages' => "listen_online/*\nstudy_online/*\nbible/*",
+	);
+	$blocks['jesus_media'] = array(
+		'info' => mylanguage_t_browser('JESUS Media'),
+		'status' => TRUE,
+		'cache' => DRUPAL_CACHE_GLOBAL,
+		'region' => 'sidebar_second',
+		'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+		'pages' => "<front>\nadmin\nadmin/*",
+	);
+	$blocks['free_injil'] = array(
+		'info' => mylanguage_t_browser('FREE Injil'),
+		'status' => TRUE,
+		'cache' => DRUPAL_CACHE_GLOBAL,
+		'region' => 'sidebar_first',
+		'visibility' => BLOCK_VISIBILITY_LISTED,
+		'pages' => "jfilm/*\nstudy_online/*\nask/*\nshow/*",
+	);
+	$blocks['you_version'] = array(
+		'info' => mylanguage_t_browser('You Versions'),
+		'status' => TRUE,
+		'cache' => DRUPAL_CACHE_GLOBAL,
+		'region' => 'sidebar_second',
+		'visibility' => BLOCK_VISIBILITY_LISTED,
+		'pages' => "bible/*\nstudy_online/*",
+	);
+	$blocks['dbs'] = array(
+		'info' => mylanguage_t_browser('DBS Index'),
+		'status' => TRUE,
+		'cache' => DRUPAL_CACHE_GLOBAL,
+		'region' => 'sidebar_first',
+		'visibility' => BLOCK_VISIBILITY_LISTED,
+		'pages' => "discuss/*\ndiscuss",
+	);
+	return $blocks;
+}
+function mylanguage_block_select_aboriginal(){
+ return;
+ //todo: add from Australia
+ $a = drupal_get_form('mylanguage_select_aboriginal_form');
+ $output_form = drupal_render($a);
+ $output = mylanguage_menu_block_format_191('aboriginal_top.jpg',mylanguage_t_browser('Aboriginal Languages'), $output_form );
+ return $output;
+}
+function mylanguage_block_select_australia(){
+	return null;
+ //todo: only open if australia
+ $a = drupal_get_form('mylanguage_select_country_form');
+ $output_form = drupal_render($a);
+ $output = mylanguage_menu_block_format_191('australian_top.jpg',mylanguage_t_browser('Australian Languages'), $output_form );
+ return $output;
+}
+function mylanguage_block_select_browser(){
+	$space = '<span style="white-space: pre-wrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+	$hl_id = isset($_SESSION['mylanguage_browser_hl_id']) ? $_SESSION['mylanguage_browser_hl_id'] : 'eng00';
+	db_set_active('my');
+	$ethnic_name = db_query('SELECT ethnic_name FROM my_language
+			WHERE hl_id = :hl_id',
+			array(':hl_id'=> $hl_id)) ->fetchField();
+	if (mylanguage_find_is_mobile()){
+		$class = 'welcome_ethnic_mobile';
+	}
+	else{
+		$class = 'welcome_ethnic';
+	}
+	$output = $space . l($ethnic_name, 
+			'intro/'. $hl_id,
+			 array('attributes' => array('class' => array($class))));
+	db_set_active('default');
+	return $output;
+}	
+function mylanguage_block_select_common(){
+  $half = 10;
+  $count = 0;
+  $output = '';
+  $output .= '<table cellspacing="10"> <tr><td align = "left">';
+  db_set_active('my');
+  $result = db_query('SELECT hl_id, name  FROM my_language 
+	ORDER BY requests DESC LIMIT 20');
+	db_set_active('default');
+  foreach ($result as $data){
+    $top[$data->hl_id] = $data->name;
+  }
+  asort($top);
+  foreach ($top as $key => $value){
+    $output .=  mylanguage_link_language ($value, $key);
+    $count++;
+    if ($count == $half) {
+      $output .= '</td><td align = "left">' ;
+    }
+  }
+  $output .= '</td></tr></table>';
+  $output = mylanguage_block_format( mylanguage_t_browser('Most Common Requests'), $output);
+  return $output;
+}
+function mylanguage_block_select_ethnic ($format = 'laptop'){
+	$output = '<div class = "ethnic">';
+	$space = '<span style="white-space: pre-wrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+	$ethnic = array(
+        'Arabic',
+		'Chinese',
+		'Croatian',
+		'English',
+		'French',
+		'Farsi',
+		'Greek',
+		'Indonesian',
+		'Japanese',
+		'Korean',
+		'Macedonian',
+		'Russian',
+		'Serbian',
+		'Spanish',
+		'Tagalog',
+		'Turkish',
+		'Vietnamese'
+	);
+	if (mylanguage_find_is_mobile()){
+		$class = 'welcome_ethnic_mobile';
+		$rows = 2;
+	}
+	else{
+		$class = 'welcome_ethnic';
+		$rows = 4;
+	}
+	
+	$i = 0;
+	foreach ($ethnic as $lang){
+		db_set_active('my');
+		$data = db_query('SELECT ethnic_name, hl_id FROM my_language
+			WHERE name = :name',
+			array(':name'=> $lang)) ->fetchObject();
+		db_set_active('default');	
+		$output .= l($data->ethnic_name, 
+			'intro/'. $data->hl_id,
+			 array('attributes' => array('class' => array($class)))) . $space;
+		$i ++;
+    if ($i == $rows) {
+			$i = 0;
+			$output .= '<br>'. "\n";
+		}
+	}
+	
+	$output .= '</div>';
+  return $output;
+}
+function mylanguage_block_select_translated(){
+    global $base_url;
+	$output = '<div class="block-191">';
+	$output .= '<p class = "title"><img  src = "'. $base_url . '/' ;
+    $output .=	file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath()  .'/img/' ;
+	$output .= 'worldwide_top.jpg' . '" alt = "'. mylanguage_t_browser('Worldwide Languages') . '">';
+	$a = drupal_get_form('mylanguage_select_translated_form');
+	$output .= drupal_render($a);
+	$output .='<div class="block-bottom-191"></p></div>';
+    $output .= '</div>';
+ return $output;
+}
+function mylanguage_block_select_worldwide(){
+    global $base_url;
+	$output = '<div class="block-191">';
+	$output .= '<p class = "title"><img  src = "'. $base_url . '/' ;
+    $output .=	file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath()  .'/img/' ;
+	$output .= 'worldwide_top.jpg' . '" alt = "'. mylanguage_t_browser('English Names') . '">';
+	$a = drupal_get_form('mylanguage_select_form');
+	$output .= drupal_render($a);
+	$output .='<div class="block-bottom-191"></p></div>';
+    $output .= '</div>';
+ return $output;
+}
+function mylanguage_block_sponsors(){
+  $output = '<h2>'. mylanguage_t_browser('Our valued sponsors') .'</h2><br>';
+  $i = 0;
+  $sponsors = mylanguage_find_dirList (mylanguage_path_real('sponsors'));
+  asort ($sponsors);
+  foreach ($sponsors as $sponsor){
+    $output .= '<img src = "'. mylanguage_url_file() .'sponsors/' . $sponsor. '">&nbsp;&nbsp;&nbsp;&nbsp;';
+    $i++;
+    if ($i == 5){$output .= '<br>';}
+  }
+  return $output;
+}
+function mylanguage_block_view($block_key){
+  $block = array();
+  switch ($block_key) {  
+    case 'welcome':
+		$block['content'] = mylanguage_front_page();
+		break;
+	case 'menu':
+	    $block['content']  = mylanguage_menu_show();
+		break;
+	case 'sponsors':
+	    $block['content']  = mylanguage_block_sponsors();
+		break;
+	case 'footer':
+	    $block['content']  = mylanguage_page_footer();
+		break;
+    case 'ask_options':
+		$block['subject']  = mylanguage_t_browser('Other Options');
+		$block['content'] ='';
+		db_set_active('hl');
+		$results = db_query('SELECT name, ethnic_name, hl_id 
+			FROM hl_connect  WHERE arc_id != :arc_id ORDER BY name',
+			array(':arc_id' => ''));
+		db_set_active('default');
+		foreach($results as $data){
+		    $block['content'] .= l($data->ethnic_name , '/ask/' . $data->hl_id ). ' - '. $data->name . '<br><br>' . "\n";
+		}  
+		break;
+	case 'listen_options':
+		$block['content']= '';
+		$block['subject']  = mylanguage_t_browser('Programs Available') . '<br><br>';
+		$hl_id = isset($_SESSION['mylanguage_hl_id']) ? $_SESSION['mylanguage_hl_id'] : 'eng00';
+		$i = '';
+		 db_set_active('common');	
+		$results = db_query ('SELECT volume_name, dam_id FROM dbm_bible 
+			WHERE hl_id = :hl_id AND text = :text  AND collection_code= :nt', 
+			array(':hl_id' =>$hl_id, ':text' =>'', ':nt'=> 'NT' )
+		);
+		db_set_active('default');	
+		foreach ($results as $data){
+			if (!$i) {
+				$block['content'] .= mylanguage_t_ethnic('Listen to the Bible') . '<br>';
+				$i = '1';
+			}  
+			$block['content'] .= '&nbsp;&nbsp;&nbsp;&nbsp;'. l($data->volume_name, 'listen_online/' . $hl_id . '/New Testament/'. $data->dam_id) . '<br>'. "\n";
+		}
+		$block['content'] .= '<br>';
+		db_set_active('hl');
+		$results = db_query('SELECT DISTINCT title  FROM hl_recording WHERE 
+			hl_id = :hl_id AND audio_file_1 != :audio_file_1 AND exclude !=:exclude ORDER by title ',
+			array(':hl_id' => $hl_id, ':audio_file_1' => '', ':exclude' => 'x')
+		);
+		db_set_active('default');
+		foreach($results as $data){
+			$title = trim($data->title);                      
+			$block['content'] = $title . '<br>';
+			$block['content'] .= '&nbsp;&nbsp;&nbsp;&nbsp;' . l('Part 1', 'listen_online/' . $hl_id . '/'. $title .'/1') . '<br>'. "\n";
+			$block['content'] .= '&nbsp;&nbsp;&nbsp;&nbsp;' . l('Part 2', 'listen_online/' . $hl_id . '/'. $title .'/2') . '<br>'. "\n";
+		}
+		break;
+	case 'other_options':
+		$block['subject']  = mylanguage_t_ethnic('Other Videos');
+		$hl_id = mylanguage_hl_validate();
+		$videos = '';
+		$output='';
+		$video_count = 0;
+		// what if Chinese?
+		mylanguage_chinese($hl_id);
+		if (isset($_SESSION['mylanguage_chinese'])){
+			db_set_active('my');
+			$results = db_query('SELECT hl_id FROM my_language WHERE chinese = 1');
+			db_set_active('default');
+			$chinese_codes = '';
+			foreach($results as $data){
+				$chinese_codes .= '\'' . $data->hl_id . '\',';
+			}
+			$chinese_codes = substr($chinese_codes, 0, -1);
+			db_set_active('hl_online');
+			$results = db_query ('SELECT * FROM hl_online_jfilm WHERE hl_id IN (' . $chinese_codes . ')  AND 
+				(title = :title1 OR title = :title2 OR title  = :title3)  ORDER BY language',
+				array(':title1' => 'JESUS', 
+					':title2' => 'The Story of JESUS for Children', 
+					':title3' => 'Magdalena' )
+			);
+			db_set_active('default');
+		}
+		// non Chinese
+		else{
+			db_set_active('hl_online');
+			$results = db_query ('SELECT * FROM hl_online_jfilm WHERE hl_id = :hl_id  AND 
+				(title = :title1 OR title = :title2 OR title  = :title3)  ORDER BY language',
+				array(':hl_id' => $hl_id,
+					':title1' => 'JESUS', 
+					':title2' => 'The Story of JESUS for Children', 
+					':title3' => 'Magdalena' )
+			);
+			db_set_active('default');
+		}  
+		$last_language = '';
+		foreach($results as $data){
+			if ($last_language != $data->language){
+				$lang = !empty($data->language_ethnic)? $data->language_ethnic : $data->language;
+				$videos .= '<br><br><b>'. $lang . '</b><br>';
+				$last_language = $data->language;
+			}
+			$videos .= '<br>'. l(t($data->title) , 
+				'https://mylanguage.net.au/jfilm/'. $hl_id . '/'. $data->title .'/'. $data->film_code). '<br>';
+			$video_count++;
+		}
+		if ($video_count > 1) {
+			$output .= $videos. '<br>';
+		} 
+		$block['content'] = $output;
+		break;
+	case('5_fish'):
+		$block['subject']  = mylanguage_t_ethnic('5 Fish');
+		$block['content'] = '<div class ="sidebar_box">';
+		$block['content'] .= '<a href = "https://www.5fish.mobi">';
+		$block['content'] .= '<image  align = "center" width = "90%" src = "'. mylanguage_url_file() .'apps/5fish.png"></a><br>';
+		$block['content'] .= '<div style = "text-align:center; padding-top:25px;"><b>'. mylanguage_t_ethnic('FREE  Android App') . '</b></a></div>'; 
+		$block['content'] .= mylanguage_t_ethnic('Listen to the message of God spoken in over 5,000 languages and dialects. Download free Bible stories, basic Bible teaching, Scripture, Christian songs and testimonies. Sharing it with others.');
+		$block['content'] .= '</div>';
+		break;
+	case('bible_is'):
+		$block['subject']  = mylanguage_t_ethnic('Listen or Read');
+		$block['content']  = '<a href = "https://play.google.com/store/apps/details?id=com.faithcomesbyhearing.android.bibleis&hl=en">';
+		$block['content'] .= '<image align = "center" width = "90%" src = "'. mylanguage_url_file() .'apps/bible.is.png"><br>';
+		$block['content'] .= '<div style = "text-align:center; padding-top:25px;"><b>'. mylanguage_t_ethnic('FREE  Android App') . '</b></a></div>'; 
+		$block['content'] .= mylanguage_t_ethnic('READ the Bible, LISTEN to the Bible, and SEE the Bible as never before with anyone in the world.');
+		$block['content'] .= '  ';
+		$block['content'] .= mylanguage_t_ethnic('Bible.is offers mobile access to more languages and Bible translations than any other Bible App, and includes dramatized Bible Audio and The JESUS Film Project.');
+		break;
+	case('jesus_media'):
+		$block['subject']  = mylanguage_t_ethnic('JESUS Film Media');
+		$block['content']  = '<image  align = "center" width = "90%" src = "'. mylanguage_url_file() .'apps/JESUSfilm.png"><br>';
+		$block['content'] .= '<div style = "text-align:center; padding-top:25px;"><b>'. mylanguage_t_ethnic('FREE  App') . '</b></div>'; 
+		$block['content'] .= mylanguage_t_ethnic('Access films in over 1,100 languages! Featuring the films JESUS, Magdalena, Story of Jesus for Children in full length and segments; the series Following Jesus and Walking with Jesus and catalog of short films like My Last Day.');
+		$block['content'] .= '<br><br><a href = "https://play.google.com/store/apps/details?id=com.jesusfilmmedia.android.jesusfilm&hl=en">';
+		$block['content'] .= '<img width = "90%" src = "'. mylanguage_url_file() .'apps/google.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+		$block['content'] .= ' <br><a href = "https://itunes.apple.com/us/app/jesus-film-media/id550525738">';
+		$block['content'] .= '<img width = "90%" src = "'. mylanguage_url_file() .'apps/apple.png"></a>';
+		break;
+			
+	case('free_injil'): // only shown where Vance wants
+		$country = mylanguage_find_nation();
+		$hl_id = mylanguage_hl_validate();
+		if ( mylanguage_vance($hl_id)) {
+			$block['subject']  = mylanguage_t_ethnic('FREE HOLY INJEEL');
+			$block['content'] = '<img  align = "center" width = "90%" src = "'. mylanguage_url_file() .'apps/injil.jpg"><br>';
+			$block['content'] .= l(mylanguage_t_ethnic('Ask for your FREE HOLY INJEEL today') , 'injeel') .'<br>';
+			$block['content'] .= '<p style="color:green; font-size:0.7em">'. mylanguage_t_ethnic('Offer valid in USA and Canada') . '</p>';
+    }
+		break;
+	case('you_version'):
+		$block['subject']  = mylanguage_t_ethnic('God\'s Word');
+		$block['content'] = '<a href = "https://www.bible.com/app">';
+		$block['content'] .= '<image  align = "center" width = "90%" src = "'. mylanguage_url_file() .'apps/youversion.png"><br>';
+		$block['content'] .= '<div style = "text-align:center; padding-top:25px;"><b>'. mylanguage_t_ethnic('FREE Mobile App') . '</b></a></div>'; 
+		$block['content'] .= mylanguage_t_ethnic('Tens of millions of people are using this to make God\'s Word a part of their daily lives. Available in more than 100 languages worldwide, all on your mobile device');
+		break;
+	case('dbs'):
+		global $language;
+		if (isset($_SESSION['mylanguage_chinese'])){
+			$hl_id = 'chn-s';
+			if ($_SESSION['mylanguage_chinese_written'] == 'chn-t') {
+				$hl_id = 'chn-t';
+			}
+		}
+		$hl_id = mylanguage_hl_validate();
+		mylanguage_language($hl_id);
+		$block['subject']  = mylanguage_t_ethnic('Discussions');
+		db_set_active('hl_online');
+		$results = db_query('SELECT reference, session FROM hl_online_passage 
+			WHERE study = :study AND hl_id = :hl_id ORDER BY session',
+			array(':study'=> 'dbs', ':hl_id' => $_SESSION['mylanguage_hl_id'])
+		);
+		db_set_active('default');
+		$block['content']= '';
+		foreach($results as $data){
+			$block['content'] .= l( $data->session . '. ' . $data->reference, 
+			'https://mylanguage.net.au/discuss/'. $_SESSION['mylanguage_hl_id'] . '/'. $data->session). '<br><br>' . "\n";
+		}
+		break;
+  }
+   return $block; 
+}

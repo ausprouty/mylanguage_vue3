@@ -43,11 +43,11 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import AuthorService from "@/services/AuthorService.js";
-import LogService from "@/services/LogService.js";
-import NavBar from "@/components/NavBarAdmin.vue";
-import { required } from "vuelidate/lib/validators";
+import { mapState } from 'vuex'
+import AuthorService from '@/services/AuthorService.js'
+import LogService from '@/services/LogService.js'
+import NavBar from '@/components/NavBarAdmin.vue'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
   components: {
@@ -59,9 +59,9 @@ export default {
       password: null,
       submitted: false,
       wrong: null,
-    };
+    }
   },
-  computed: mapState(["user"]),
+  computed: mapState(['user']),
   validations: {
     username: { required },
     password: { required },
@@ -71,26 +71,26 @@ export default {
     async saveForm() {
       if (this.submitted == false) {
         try {
-          this.submitted = true;
-          var params = {};
+          this.submitted = true
+          var params = {}
           //var response = {}
-          params.username = this.username;
-          params.password = this.password;
-          let res = await AuthorService.login(params);
-          console.log(res);
-          this.$store.dispatch("loginUser", [res]);
-          localStorage.setItem("user", JSON.stringify(res));
-          var start_page = process.env.VUE_APP_SITE_START_PAGE;
-          if (typeof res.start_page !== "undefined") {
-            start_page = res.start_page;
+          params.username = this.username
+          params.password = this.password
+          let res = await AuthorService.login(params)
+          console.log(res)
+          this.$store.dispatch('loginUser', [res])
+          localStorage.setItem('user', JSON.stringify(res))
+          var start_page = process.env.VUE_APP_SITE_START_PAGE
+          if (typeof res.start_page !== 'undefined') {
+            start_page = res.start_page
           }
-          console.log(start_page);
-          this.$router.push(start_page);
+          console.log(start_page)
+          this.$router.push(start_page)
         } catch (error) {
-          LogService.consoleLogError("Login There was an error ", error); //
+          LogService.consoleLogError('Login There was an error ', error) //
         }
       }
     },
   },
-};
+}
 </script>
