@@ -1,34 +1,28 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Login',
-    component: Login,
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: Home,
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/About.vue')
-    },
-  },
-
-  {
     path: '/dbs_home',
     name: 'DBS',
-    component: function () {
-      return import(/* webpackChunkName: "dbs" */ '../views/pages/DBS.vue')
+    component: () =>
+      import(/* webpackChunkName: "dbs" */ '../views/pages/DBS.vue'),
+    meta: {
+      title: 'Discover what God is like in MY LANGUAGE',
+      metaTags: [
+        {
+          name: 'description',
+          content:
+            'Discover with your friends what God is like and how he wants you to live in 50 languages',
+        },
+        {
+          property: 'keywords',
+          content: 'Discover God',
+        },
+      ],
     },
   },
   {
@@ -42,28 +36,50 @@ const routes = [
     path: '/listen',
     name: 'Listen',
     component: function () {
-      return import(/* webpackChunkName: "listen" */ '../views/pages/Listen.vue')
+      return import(
+        /* webpackChunkName: "listen" */ '../views/pages/Listen.vue'
+      )
     },
   },
   {
-    path: '/dbs_home',
-    name: 'DBS',
+    path: '/watch_online',
+    name: 'Watch',
     component: function () {
-      return import(/* webpackChunkName: "dbs" */ '../views/pages/DBS.vue')
+      return import(/* webpackChunkName: "watch" */ '../views/pages/Watch.vue')
     },
   },
   {
-    path: '/dbs_home',
-    name: 'DBS',
+    path: '/ask',
+    name: 'Ask',
     component: function () {
-      return import(/* webpackChunkName: "dbs" */ '../views/pages/DBS.vue')
+      return import(/* webpackChunkName: "ask" */ '../views/pages/Ask.vue')
     },
   },
   {
-    path: '/dbs_home',
-    name: 'DBS',
+    path: '/meet',
+    name: 'Gospel',
     component: function () {
-      return import(/* webpackChunkName: "dbs" */ '../views/pages/DBS.vue')
+      return import(
+        /* webpackChunkName: "gospel" */ '../views/pages/Gospel.vue'
+      )
+    },
+  },
+  {
+    path: '/study_online',
+    name: 'Spirit',
+    component: function () {
+      return import(
+        /* webpackChunkName: "spirit" */ '../views/pages/Spirit.vue'
+      )
+    },
+  },
+  {
+    path: '/link',
+    name: 'EveryPerson',
+    component: function () {
+      return import(
+        /* webpackChunkName: "everyperson" */ '../views/pages/Link.vue'
+      )
     },
   },
 ]
