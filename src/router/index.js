@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/dbs_home',
+    path: '/dbs_home/:hl_id?',
     name: 'DBS',
     component: () =>
       import(/* webpackChunkName: "dbs" */ '../views/pages/DBS.vue'),
@@ -26,14 +26,14 @@ const routes = [
     },
   },
   {
-    path: '/bible_online',
+    path: '/bible_online/:hl_id?',
     name: 'Bible',
     component: function () {
       return import(/* webpackChunkName: "bible" */ '../views/pages/Bible.vue')
     },
   },
   {
-    path: '/listen',
+    path: '/listen/:hl_id?',
     name: 'Listen',
     component: function () {
       return import(
@@ -42,21 +42,21 @@ const routes = [
     },
   },
   {
-    path: '/watch_online',
+    path: '/watch_online/:hl_id?',
     name: 'Watch',
     component: function () {
       return import(/* webpackChunkName: "watch" */ '../views/pages/Watch.vue')
     },
   },
   {
-    path: '/ask',
+    path: '/ask/:hl_id?',
     name: 'Ask',
     component: function () {
       return import(/* webpackChunkName: "ask" */ '../views/pages/Ask.vue')
     },
   },
   {
-    path: '/meet',
+    path: '/meet/:hl_id?',
     name: 'Gospel',
     component: function () {
       return import(
@@ -65,7 +65,7 @@ const routes = [
     },
   },
   {
-    path: '/study_online',
+    path: '/study_online/:hl_id?',
     name: 'Spirit',
     component: function () {
       return import(
@@ -74,7 +74,7 @@ const routes = [
     },
   },
   {
-    path: '/link',
+    path: '/link/:hl_id?',
     name: 'EveryPerson',
     component: function () {
       return import(
