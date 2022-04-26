@@ -6,8 +6,7 @@ const log = process.env.VUE_APP_SITE_SHOW_CONSOLE_LOG
 const apiURL = process.env.VUE_APP_DEFAULT_SITES_URL
 const apiLocation = process.env.VUE_APP_SITE_LOCATION
 //const apiLocation = 'author'
-const postDestination =
-  'AuthorApi.php?location=' + apiLocation
+const postDestination = 'AuthorApi.php?location=' + apiLocation
 const apiSELECT = axios.create({
   baseURL: apiURL,
   withCredentials: false, // This is the default
@@ -17,14 +16,7 @@ const apiSELECT = axios.create({
     'Content-Type': 'application/json',
   },
 })
-const apiIMAGE = axios.create({
-  baseURL: apiURL,
-  withCredentials: false, // This is the default
-  crossDomain: true,
-  headers: {
-    'Content-Type': 'multipart/form-data',
-  },
-})
+
 // I want to export a JSON.stringified of response.data.text
 export default {
   async getBiblePassage(params) {
@@ -157,7 +149,6 @@ export default {
   toAuthorizedFormData(params) {
     params.my_uid = store.state.user.uid
     params.token = store.state.user.token
-    params.site = apiSite
     var form_data = new FormData()
     for (var key in params) {
       form_data.append(key, params[key])

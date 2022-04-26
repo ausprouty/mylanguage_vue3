@@ -1,0 +1,744 @@
+﻿<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+
+<!-- Start Wayback Rewrite JS Include -->
+<script type="text/javascript" src="/static/js/analytics.js" ></script>
+
+<script type="text/javascript" src="/static/js/jwplayer/jwplayer.js" ></script>
+<script type="text/javascript" src="/static/js/video-embed-rewriter.js"></script>
+<script type="text/javascript">
+function initYTVideo(id)
+{
+	_wmVideos_.init("/web/", id);
+}
+</script>
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<title>Брошурата &quot;Светия Дух&quot;</title>
+</head>
+
+<body stylesrc="http://216.97.116.126/bulgarian/default.htm">
+<!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script> if (window.archive_analytics) { window.archive_analytics.values['server_ms']=window.archive_analytics.get_cookie("wb_total_perf"); window.archive_analytics.values['server_name']="wwwb-app0.us.archive.org"}; </script>
+
+<script type="text/javascript" src="/static/js/disclaim-element.js" ></script>
+<script type="text/javascript" src="/static/js/graph-calc.js" ></script>
+<script type="text/javascript" src="/static/jflot/jquery.min.js" ></script>
+<script type="text/javascript">
+//<![CDATA[
+var firstDate = 820454400000;
+var lastDate = 1388534399999;
+var wbPrefix = "/web/";
+var wbCurrentUrl = "http:\/\/www.jesuswho.org\/bulgarian\/spirit.htm";
+
+var curYear = -1;
+var curMonth = -1;
+var yearCount = 18;
+var firstYear = 1996;
+var imgWidth = 450;
+var yearImgWidth = 25;
+var monthImgWidth = 2;
+var trackerVal = "none";
+var displayDay = "23";
+var displayMonth = "Jul";
+var displayYear = "2011";
+var prettyMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+function showTrackers(val) {
+	if(val == trackerVal) {
+		return;
+	}
+	if(val == "inline") {
+		document.getElementById("displayYearEl").style.color = "#ec008c";
+		document.getElementById("displayMonthEl").style.color = "#ec008c";
+		document.getElementById("displayDayEl").style.color = "#ec008c";		
+	} else {
+		document.getElementById("displayYearEl").innerHTML = displayYear;
+		document.getElementById("displayYearEl").style.color = "#ff0";
+		document.getElementById("displayMonthEl").innerHTML = displayMonth;
+		document.getElementById("displayMonthEl").style.color = "#ff0";
+		document.getElementById("displayDayEl").innerHTML = displayDay;
+		document.getElementById("displayDayEl").style.color = "#ff0";
+	}
+   document.getElementById("wbMouseTrackYearImg").style.display = val;
+   document.getElementById("wbMouseTrackMonthImg").style.display = val;
+   trackerVal = val;
+}
+function getElementX2(obj) {
+	var thing = jQuery(obj);
+	if((thing == undefined) 
+			|| (typeof thing == "undefined") 
+			|| (typeof thing.offset == "undefined")) {
+		return getElementX(obj);
+	}
+	return Math.round(thing.offset().left);
+}
+function trackMouseMove(event,element) {
+
+   var eventX = getEventX(event);
+   var elementX = getElementX2(element);
+   var xOff = eventX - elementX;
+	if(xOff < 0) {
+		xOff = 0;
+	} else if(xOff > imgWidth) {
+		xOff = imgWidth;
+	}
+   var monthOff = xOff % yearImgWidth;
+
+   var year = Math.floor(xOff / yearImgWidth);
+	var yearStart = year * yearImgWidth;
+   var monthOfYear = Math.floor(monthOff / monthImgWidth);
+   if(monthOfYear > 11) {
+       monthOfYear = 11;
+   }
+   // 1 extra border pixel at the left edge of the year:
+   var month = (year * 12) + monthOfYear;
+   var day = 1;
+	if(monthOff % 2 == 1) {
+		day = 15;
+	}
+	var dateString = 
+		zeroPad(year + firstYear) + 
+		zeroPad(monthOfYear+1,2) +
+		zeroPad(day,2) + "000000";
+
+	var monthString = prettyMonths[monthOfYear];
+	document.getElementById("displayYearEl").innerHTML = year + 1996;
+	document.getElementById("displayMonthEl").innerHTML = monthString;
+	// looks too jarring when it changes..
+	//document.getElementById("displayDayEl").innerHTML = zeroPad(day,2);
+
+	var url = wbPrefix + dateString + '/' +  wbCurrentUrl;
+	document.getElementById('wm-graph-anchor').href = url;
+
+   //document.getElementById("wmtbURL").value="evX("+eventX+") elX("+elementX+") xO("+xOff+") y("+year+") m("+month+") monthOff("+monthOff+") DS("+dateString+") Moy("+monthOfYear+") ms("+monthString+")";
+   if(curYear != year) {
+       var yrOff = year * yearImgWidth;
+       document.getElementById("wbMouseTrackYearImg").style.left = yrOff + "px";
+       curYear = year;
+   }
+   if(curMonth != month) {
+       var mtOff = year + (month * monthImgWidth) + 1;
+       document.getElementById("wbMouseTrackMonthImg").style.left = mtOff + "px";
+       curMonth = month;
+   }
+}
+//]]>
+</script>
+
+<style type="text/css">body{margin-top:0!important;padding-top:0!important;min-width:800px!important;}#wm-ipp a:hover{text-decoration:underline!important;}</style>
+<div id="wm-ipp" style="display:none; position:relative;padding:0 5px;min-height:70px;min-width:800px; z-index:9000;">
+<div id="wm-ipp-inside" style="position:fixed;padding:0!important;margin:0!important;width:97%;min-width:780px;border:5px solid #000;border-top:none;background-image:url(/static/images/toolbar/wm_tb_bk_trns.png);text-align:center;-moz-box-shadow:1px 1px 3px #333;-webkit-box-shadow:1px 1px 3px #333;box-shadow:1px 1px 3px #333;font-size:11px!important;font-family:'Lucida Grande','Arial',sans-serif!important;">
+   <table style="border-collapse:collapse;margin:0;padding:0;width:100%;"><tbody><tr>
+   <td style="padding:10px;vertical-align:top;min-width:110px;">
+   <a href="/web/" title="Wayback Machine home page" style="background-color:transparent;border:none;"><img src="/static/images/toolbar/wayback-toolbar-logo.png" alt="Wayback Machine" width="110" height="39" border="0"/></a>
+   </td>
+   <td style="padding:0!important;text-align:center;vertical-align:top;width:100%;">
+
+       <table style="border-collapse:collapse;margin:0 auto;padding:0;width:570px;"><tbody><tr>
+       <td style="padding:3px 0;" colspan="2">
+       <form target="_top" method="get" action="/web/form-submit.jsp" name="wmtb" id="wmtb" style="margin:0!important;padding:0!important;"><input type="text" name="url" id="wmtbURL" value="http://www.jesuswho.org/bulgarian/spirit.htm" style="width:400px;font-size:11px;font-family:'Lucida Grande','Arial',sans-serif;" onfocus="javascript:this.focus();this.select();" /><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20110723103325" /><input type="submit" value="Go" style="font-size:11px;font-family:'Lucida Grande','Arial',sans-serif;margin-left:5px;" /><span id="wm_tb_options" style="display:block;"></span></form>
+       </td>
+       <td style="vertical-align:bottom;padding:5px 0 0 0!important;" rowspan="2">
+           <table style="border-collapse:collapse;width:110px;color:#99a;font-family:'Helvetica','Lucida Grande','Arial',sans-serif;"><tbody>
+			
+           <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+           <tr style="width:110px;height:16px;font-size:10px!important;">
+           	<td style="padding-right:9px;font-size:11px!important;font-weight:bold;text-transform:uppercase;text-align:right;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+		                <a href="http://www.jesuswho.org/bulgarian/spirit.htm" style="text-decoration:none;color:#33f;font-weight:bold;background-color:transparent;border:none;" title="23 May 2011"><strong>MAY</strong></a>
+		                
+               </td>
+               <td id="displayMonthEl" style="background:#000;color:#ff0;font-size:11px!important;font-weight:bold;text-transform:uppercase;width:34px;height:15px;padding-top:1px;text-align:center;" title="You are here: 10:33:25 Jul 23, 2011">JUL</td>
+				<td style="padding-left:9px;font-size:11px!important;font-weight:bold;text-transform:uppercase;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+		                <a href="/web/20110925015755/http://www.jesuswho.org/bulgarian/spirit.htm" style="text-decoration:none;color:#33f;font-weight:bold;background-color:transparent;border:none;" title="25 Sep 2011"><strong>SEP</strong></a>
+		                
+               </td>
+           </tr>
+
+           <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+           <tr>
+               <td style="padding-right:9px;white-space:nowrap;overflow:visible;text-align:right!important;vertical-align:middle!important;" nowrap="nowrap">
+               
+		                <a href="http://www.jesuswho.org/bulgarian/spirit.htm" title="9:35:36 May 23, 2011" style="background-color:transparent;border:none;"><img src="/static/images/toolbar/wm_tb_prv_on.png" alt="Previous capture" width="14" height="16" border="0" /></a>
+		                
+               </td>
+               <td id="displayDayEl" style="background:#000;color:#ff0;width:34px;height:24px;padding:2px 0 0 0;text-align:center;font-size:24px;font-weight: bold;" title="You are here: 10:33:25 Jul 23, 2011">23</td>
+				<td style="padding-left:9px;white-space:nowrap;overflow:visible;text-align:left!important;vertical-align:middle!important;" nowrap="nowrap">
+               
+		                <a href="http://jesuswho.org/bulgarian/spirit.htm" title="1:09:43 Jul 26, 2011" style="background-color:transparent;border:none;"><img src="/static/images/toolbar/wm_tb_nxt_on.png" alt="Next capture" width="14" height="16" border="0"/></a>
+		                
+			    </td>
+           </tr>
+
+           <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+           <tr style="width:110px;height:13px;font-size:9px!important;">
+				<td style="padding-right:9px;font-size:11px!important;font-weight: bold;text-align:right;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+		                <a href="/web/20090514030532/http://www.jesuswho.org/bulgarian/spirit.htm" style="text-decoration:none;color:#33f;font-weight:bold;background-color:transparent;border:none;" title="14 May 2009"><strong>2009</strong></a>
+		                
+               </td>
+               <td id="displayYearEl" style="background:#000;color:#ff0;font-size:11px!important;font-weight: bold;padding-top:1px;width:34px;height:13px;text-align:center;" title="You are here: 10:33:25 Jul 23, 2011">2011</td>
+				<td style="padding-left:9px;font-size:11px!important;font-weight: bold;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+                       2012
+                       
+				</td>
+           </tr>
+           </tbody></table>
+       </td>
+
+       </tr>
+       <tr>
+       <td style="vertical-align:middle;padding:0!important;">
+           <a href="/web/20110723103325*/http://www.jesuswho.org/bulgarian/spirit.htm" style="color:#33f;font-size:11px;font-weight:bold;background-color:transparent;border:none;" title="See a list of every capture for this URL"><strong>38 captures</strong></a>
+           <div style="margin:0!important;padding:0!important;color:#666;font-size:9px;padding-top:2px!important;white-space:nowrap;" title="Timespan for captures of this URL">1 Mar 02 - 25 Sep 11</div>
+       </td>
+       <td style="padding:0!important;">
+       <a style="position:relative; white-space:nowrap; width:450px;height:27px;" href="" id="wm-graph-anchor">
+       <div id="wm-ipp-sparkline" style="position:relative; white-space:nowrap; width:450px;height:27px;background-color:#fff;cursor:pointer;border-right:1px solid #ccc;" title="Explore captures for this URL">
+			<img id="sparklineImgId" style="position:absolute; z-index:9012; top:0px; left:0px;"
+				onmouseover="showTrackers('inline');" 
+				onmouseout="showTrackers('none');"
+				onmousemove="trackMouseMove(event,this)"
+				alt="sparklines"
+				width="450"
+				height="27"
+				border="0"
+				src="/web/jsp/graph.jsp?graphdata=450_27_1996:-1:000000000000_1997:-1:000000000000_1998:-1:000000000000_1999:-1:000000000000_2000:-1:000000000000_2001:-1:000000000000_2002:-1:001001010000_2003:-1:101011001001_2004:-1:001011010101_2005:-1:010000020100_2006:-1:110001000000_2007:-1:101100100101_2008:-1:001011100100_2009:-1:000010000000_2010:-1:000000000000_2011:6:000010201000_2012:-1:000000000000_2013:-1:000000000000"></img>
+			<img id="wbMouseTrackYearImg" 
+				style="display:none; position:absolute; z-index:9010;"
+				width="25" 
+				height="27"
+				border="0"
+				src="/static/images/toolbar/transp-yellow-pixel.png"></img>
+			<img id="wbMouseTrackMonthImg"
+				style="display:none; position:absolute; z-index:9011; " 
+				width="2"
+				height="27" 
+				border="0"
+				src="/static/images/toolbar/transp-red-pixel.png"></img>
+       </div>
+		</a>
+
+       </td>
+       </tr></tbody></table>
+   </td>
+   <td style="text-align:right;padding:5px;width:65px;font-size:11px!important;">
+       <a href="javascript:;" onclick="document.getElementById('wm-ipp').style.display='none';" style="display:block;padding-right:18px;background:url(/static/images/toolbar/wm_tb_close.png) no-repeat 100% 0;color:#33f;font-family:'Lucida Grande','Arial',sans-serif;margin-bottom:23px;background-color:transparent;border:none;" title="Close the toolbar">Close</a>
+       <a href="http://faq.web.archive.org/" style="display:block;padding-right:18px;background:url(/static/images/toolbar/wm_tb_help.png) no-repeat 100% 0;color:#33f;font-family:'Lucida Grande','Arial',sans-serif;background-color:transparent;border:none;" title="Get some help using the Wayback Machine">Help</a>
+   </td>
+   </tr></tbody></table>
+
+</div>
+</div>
+<script type="text/javascript">
+ var wmDisclaimBanner = document.getElementById("wm-ipp");
+ if(wmDisclaimBanner != null) {
+   disclaimElement(wmDisclaimBanner);
+ }
+</script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+
+<!--webbot bot="Include" u-include="head1.htm" tag="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="5" cellspacing="0" width="90%">
+  <tr>
+    <td width="50%" bgcolor="#800080"><font color="#FFFFFF" size="4">Българска
+    страница</font></td>
+    <td align="right" width="50%" bgcolor="#800080"><a href="/web/20110723103325/http://www.greatcom.org/"><font size="4" color="#C0C0C0">Други езици</font></a></td>
+  </tr>
+</table>
+</center></div>
+
+<p>&nbsp; </p>
+<!--webbot bot="Include" i-checksum="39844" endspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="10" cellspacing="0" width="90%">
+  <tr>
+    <td width="25%" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif" bgcolor="#BFBFFF">
+	<font size="2">Всеки
+    ден открива нови възможности пред християнина,
+    който познава изпълването със Светия Дух и
+    неотклонно следва милостивите Му напътствия.</font></td>
+    <td width="50%" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/qeustbak.gif" bgcolor="#000080"><p align="center">
+	<font color="#FFF7EE" size="5"><strong>Открихте ли вече изпълнения
+    със Светия Дух живот?</strong></font></td>
+    <td width="25%" bgcolor="#000080">
+	<!--webbot bot="Include" u-include="menu1.htm" tag="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="4" width="90%">
+  <tr>
+    <td align="center" width="100%" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif" bgcolor="#C4C4FF"><font size="3"><a href="/web/20110723103325/http://www.jesuswho.org/bulgarian/IAM.htm">Аз Съм</a></font></td>
+  </tr>
+  <tr>
+    <td align="center" width="100%" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif" bgcolor="#C4C4FF"><font color="#800080" size="3"><a href="/web/20110723103325/http://www.jesuswho.org/bulgarian/whois.htm">Кой е Исус?</a></font></td>
+  </tr>
+  <tr>
+    <td align="center" width="100%" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif" bgcolor="#C4C4FF"><font color="#800080" size="3"><a href="/web/20110723103325/http://www.jesuswho.org/bulgarian/four.htm">Познайте Исус лично</a></font></td>
+  </tr>
+  <tr>
+    <td align="center" width="100%" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif" bgcolor="#C4C4FF"><font color="#800080" size="3"><a href="/web/20110723103325/http://www.jesuswho.org/bulgarian/jesusfil.htm">Филмът &quot;Исус</a>&quot;</font></td>
+  </tr>
+  <tr>
+    <td align="center" width="100%" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif" bgcolor="#C4C4FF"><font color="#800080" size="3"><a href="/web/20110723103325/http://www.jesuswho.org/bulgarian/spirit.htm">Живот, изпълнен с Духа</a></font></td>
+  </tr>
+  <tr>
+    <td align="center" width="100%" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif" bgcolor="#C4C4FF"><a href="/web/20110723103325/http://www.jesuswho.org/bulgarian/oportuni.htm"><font size="3">Възможности</font></a></td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="100%" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif" bgcolor="#C4C4FF"><a href="/web/20110723103325/http://www.jesuswho.org/bulgarian/resource.htm"><font size="3">Източници</font></a></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" i-checksum="34917" endspan -->
+</td>
+  </tr>
+</table>
+</center></div>
+
+<p align="center"><br>
+</p>
+<div align="center"><center>
+
+<table border="0" cellpadding="25" width="90%">
+  <tr>
+    <td valign="top" width="100%" bgcolor="#FFF7EE"><p align="left"><font size="4">Библията
+    ни казва, че има три вида хора</font></p>
+    <ol>
+      <li><font size="4"><b>Естествен човек </b></font>(който не е
+        приел Христос) <br>
+        <font color="#000080">&quot;Но естественият човек не подбира
+        това, което е от Божия Дух, защото за него е
+        глупост и не може да го разбере, понеже то се
+        изпитва духовно.&quot; <b>(1 Коринтяни 2:14).</b></font> <br>
+        <br>
+        <img src="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/law4.1.gif" WIDTH="387" HEIGHT="197"><br>
+      </li>
+      <li><p align="left"><font size="4"><b>Духовен човек</b></font> (който се
+        ръководи и укрепва от Светия Дух) <br>
+        <font color="#000080">&quot;Но духовният човек изпитва
+        всичко...&quot;<b> <br>
+        (1 Коринтяни 2:15).</b></font> <br>
+        <img src="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/law4.2.gif" WIDTH="415" HEIGHT="186"></p>
+      </li>
+      <li><p align="left"><font size="4"><b>Плътски човек</b></font> (който е
+        приел Христос, но като християнин разчита изцяло
+        на себе си и за това живее пораженчески) <font color="#000080"><br>
+        &quot;И аз братя, не можех да говоря на вас като на
+        духовни, но като на плътски, като на младенци в
+        Христа. С мляко ви храних, не с твърда храна,
+        защото още не можехте да го приемете, а и сега още
+        не можете. Понеже и досега сте плътски, защото,
+        докато има между вас завист и разпра, не сте ли
+        плътски, и не постъпвате ли по човешки?&quot; <b>(1
+        Коринтяни 3:1-3).</b></font> <br>
+        <br>
+        <img src="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/law4.5.gif" WIDTH="387" HEIGHT="197"><br>
+        </p>
+      </li>
+    </ol>
+    <div align="center"><center><table border="0" cellpadding="25" width="90%">
+      <tr>
+        <td width="100%" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif" bgcolor="#BFBFFF"><b><font size="6">1</font><font size="4">. Бог е подсигурил пълноценен и плодотворен
+        християнски живот за нас</font></b></td>
+      </tr>
+    </table>
+    </center></div><blockquote>
+      <p align="left">Исус казва: &quot;...Аз дойдох да имат живот
+      и да го имат изобилно&quot; <b>(Йоан 10:10). </b></p>
+      <p>&quot;Аз съм лозата, вие сте пръчките, вие сте
+      пръчките; който пребъдва в Мене и аз в него, той
+      дава много плод; защото отделени от Мене, не
+      можете да сторите нищо&quot; <b>(Йоан 15:5)</b>.</p>
+      <p>&quot;А плодът на Духа е: любов, радост, мир,
+      дълготърпение, благост, милост, милосърдие,
+      вярност, кротост, себеобуздание; против такива
+      неща няма закон&quot;&nbsp; <b>(Галатяни 5:22-23)</b>. </p>
+      <p>&quot;Но ще приемете сила, когато дойде върху вас
+      Светия Дух и ще бъдете свидетели за Мене, както в
+      Ерусалим, тъй и в цяла Юдея и Самария и до края на
+      земята&quot; <b>(Деяния 1:8)</b>. <br>
+      <br>
+      <font size="4"><b>Духовният човек</b></font> - Някои
+      отличителни черти, които се проявяват вследствие
+      неговото уповаване на Бога:<br>
+      <br>
+      <img src="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spiritualman.gif" WIDTH="460" HEIGHT="180"> <br>
+      </p>
+    </blockquote>
+    <p>Доколко тези черти се проявяват в християнина
+    зависи от това доколко той се уповава на Бога за
+    всяко нещо в живота си и от неговата духовна
+    зрялост. Човекът, който тепърва започва да
+    разбира служението на Светия Дух, не бива да се
+    обезсърчава, ако животът му не е така
+    плодотворен, както животът на по-зрели християни,
+    които познават и следват тази истина по-отдавна.<br>
+    <br>
+    <em>Защо повечето християни не водят такъв
+    плодотворен живот?</em><br>
+    </p>
+    <div align="center"><center><table border="0" cellpadding="25" width="90%">
+      <tr>
+        <td width="100%" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif" bgcolor="#BFBFFF"><b><font size="6">2</font><font size="4">. Плътските хора не могат да водят
+        пълноценен и плодотворен християнски живот</font></b></td>
+      </tr>
+    </table>
+    </center></div><p align="left">Плътският човек се опитва да
+    живее по християнски, като за това разчита изцяло
+    на собствените си усилия.</p>
+    <ol>
+      <li>Той или не е чувал, или е забравил за Божията
+        любов, прошка и сила (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Romans%205:8-10;&version=21;">Римляни 5:8-10</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Hebrews%2010:1-25;&version=21;">Евреи 10:1-25</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=1%20John%201;&version=21;">1 Йоан 1</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=1%20John%202:1-3;&version=21;">1 Йоан 2:1-3</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=2%20Peter%201:9;&version=21;">2 Петрово 1:9</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Acts%201:8;&version=21;">Деяния 1:8</a>).<br>
+        <br>
+      </li>
+      <li>Характерно за духовния му живот е постоянното
+        редуване на &quot;добри&quot; и &quot;лоши&quot; периоди във
+        взаимоотношенията му с Бога. <br>
+        <br>
+      </li>
+      <li>Не може да разбере себе си - иска да върши това,
+        което е правилно, а не може.<br>
+        <br>
+      </li>
+      <li>Не разчита на сила от Светия Дух, за да живее
+        като християнин (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=1%20Corinthians%203:1-3;&version=21;">1 Коринтяни 3:1-3</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Romans%207:15-24;&version=21;">Римляни 7:15-24</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Romans%208:7;&version=21;">8:7</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Galatians%205:16-18;&version=21;">Галатяни 5:16-18</a>) </li>
+    </ol>
+    <p><br>
+    <br>
+    </p>
+    <p align="left"><font size="4"><b>Плътският човек</b></font> -
+    отделни черти или всичко от изброеното по-долу е
+    характерно за живота на християнина, който не се
+    уповава на Бога:<br>
+    </p>
+    <p align="left"><img src="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/carnalman.gif" WIDTH="468" HEIGHT="180"><br>
+    </p>
+    <p align="left">(Човекът, който твърди, че е християнин, а
+    продължава да живее в грях, трябва да осъзнае, че
+    съгласно <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=1%20John%202:3;&version=21;">1 Йоан 2:3</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=1%20John%203:6;&version=21;">3:6</a>, <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=1%20john%203:9;&version=21;">9</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Ephesians%205:5;&version=21;">Ефесяни 5:5</a> е
+    възможно той въобще да не е християнин). Щракнете <a href="/web/20110723103325/http://www.ccci.org/transferable_concepts/christian/">тук</a> за да
+    откриете със сигурност дали сте християнин.<br>
+    <br>
+    <em>Третата истина посочва единственото
+    разрешение на този проблем... </em></p>
+    <div align="center"><center><table border="0" cellpadding="25" width="90%">
+      <tr>
+        <td width="100%" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif" bgcolor="#BFBFFF"><b><font size="6">3</font><font size="4">. Исус Христос ни обещава пълноценен и
+        плодотворен живот вследствие на&nbsp; изпълването
+        със Светия Дух </font></b></td>
+      </tr>
+    </table>
+    </center></div><blockquote>
+      <p>Изпълнен с Духа живот е животът на човек, който
+      се ръководи от Христос и който позволява на
+      Христос да живее в него и чрез него със силата на
+      Светия Дух<font color="#000000"> (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=John%2015;&version=21;">Йоан 15</a>). </font></p>
+    </blockquote>
+    <ul>
+      <li><font color="#000000">Съгласно <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=John%203:1-8;&version=21;">Йоан 3:1-8</a> човек става
+        християнин вследствие служението на Светия Дух.
+        От момента на духовното си новораждане
+        християнинът получава Светия Дух, който остава в
+        него завинаги (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=John%201:12;&version=21;">Йоан
+        1:12</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Colossians%202:9;&version=21;">Колосяни 2:9</a>,
+        <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Colossians%202:10;&version=21;">10</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=John%2014:16,17;&version=21;">Йоан 14:16, 17</a>). </font></li>
+    </ul>
+    <blockquote>
+      <p><strong><font color="#000000">Макар Светият Дух да живее във
+      всички християни, не всички християни са
+      изпълвани&nbsp;(направлявани и укрепвани) от Светия
+      Дух.</font></strong></p>
+    </blockquote>
+    <ul>
+      <li><font color="#000000">Светият Дух е източник на
+        пълноценния и плодотворен живот (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=John%207:37-39;&version=21;">Йоан 7:37-39</a>). <br>
+        </font></li>
+      <li><font color="#000000">Светият Дух идва, за да прослави
+        Христос (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=John%2016:1-15;&version=21;">Йоан 16:1-15</a>).
+        Когато християнинът е изпълван със Светия Дух,
+        той е истински последовател на Христос.<br>
+        </font></li>
+      <li><font color="#000000">В последната си заповед преди
+        Възнесението, Христос обещава да получим силата
+        на Светия Дух, за да можем да свидетелстваме за
+        Него (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Acts%201:8;&version=21;">Деяния 1:8</a>). </font></li>
+    </ul>
+    <p><em>Но как става изпълването със Светия Дух? </em></p>
+    <div align="center"><center><table border="0" cellpadding="25" width="90%">
+      <tr>
+        <td width="100%" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif" bgcolor="#BFBFFF"><b><font size="6">4</font><font size="4">. </b>Ние сме изпълвани със Светия Дух
+        (направлявани и укрепвани от него) чрез вяра; само
+        тогава животът ни ще е така пълноценен и
+        плодотворен, както Христос обещава на всеки
+        християнин. </font></td>
+      </tr>
+    </table>
+    </center></div><p><font color="#000000">Можете да бъдете изпълнени
+    със Светия Дух в<strong> </strong>още сега, ако: <br>
+    </font><ul>
+      <li><font color="#000000">Искрено желаете да бъдете
+        направлявани и укрепвани от Светия Дух (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Matthew%205:6;&version=21;">Mатей 5:6</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=John%207:37-39;&version=21;">Йоан 7:37-39</a>). <br>
+        </font></li>
+      <li><font color="#000000">Изповядате греховете си. </font></li>
+    </ul>
+    <blockquote>
+      <p><font color="#000000">С <strong>вяра</strong> благодарете на
+      Бога, че е простил всичките ви грехове - минали,
+      сегашни и бъдещи, понеже Христос е умрял и заради
+      вас&nbsp; (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Colossians%202:13-15;&version=21;">Колосяни
+      2:13-15</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=1%20John%201;&version=21;">1 Йоан 1</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=1%20John%202:1-3;&version=21;">2:1-3</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Hebrews%2010:1-17;&version=21;">Евреи 10:1-17</a>). <br>
+      </font></p>
+    </blockquote>
+    <ul>
+      <li><font color="#000000">Представите живота си изцяло на
+        Божията воля (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Romans%2012:1;&version=21;">Римляни
+        12:1</a>, <a href="/web/20110723103325/http://www.gospelcom.net/bible?Romans+2">2</a>). <br>
+        <br>
+        </font></li>
+      <li>С <strong>вяра</strong> поискате да бъдете изпълнени
+        със Светия Дух съгласно: <blockquote>
+          <p>1.<b><font color="#000080"> Божията заповед</font> -</b>
+          изпълвайте се с Духа!</p>
+          <p>&quot;и не се опивайте с вино, следствието от което
+          е разврат, но изпълняйте се с Духа&quot; (<b>Eфесяни 5:18</b>).
+          </p>
+          <p>2.<b> <font color="#000080">Божието обещание</font> -</b> Бог ще
+          ни отговоря винаги, когато молитвите ни
+          съответстват на Неговата воля. </p>
+          <p>&quot;И увереността, която имаме спрямо Него е
+          това, че ако просим нещо по Неговата воля, Той ни
+          слуша, и ако знаем, че ни слуша, за каквото и да Му
+          попросим, знаем че получаваме това, което сме
+          просили от Него&quot; (<b>1 Йоан 5:14, 15</b>). </p>
+        </blockquote>
+      </li>
+    </ul>
+    <p><em>Вяратa може да се изрази чрез молитва... </em></p>
+    <div align="center"><center><table border="0" cellpadding="25" width="90%">
+      <tr>
+        <td width="100%" bgcolor="#FFFFFF"><p align="center"><font size="4"><b>Как с вяра
+        да се молим да бъдем изпълнени със Светия Дух</b></font></p>
+        <p>Ние сме изпълвани със Светия Дух единствено
+        чрез <strong>вяра</strong>. Искрената молитва обаче е
+        начин да изразим вярата си. Ето една примерна
+        молитва:</p>
+        <blockquote>
+          <p><em>&quot;Свети Отче, аз се нуждая от Теб. Признавам,
+          че сам направлявам живота си и така, съгрешавам
+          против Теб. Благодаря Ти, че си опростил
+          греховете ми чрез Христовата смърт на кръста.
+          Сега моля Христос отново да застане начело на
+          живота ми. Изпълни ме със Светия Си Дух така,
+          както Си ни заповядал да бъдем изпълвани и както
+          Слово Ти ни обещава да направиш, ако искаме с
+          вяра. Моля се за това в името на Исус Христос. В
+          израз на вярата си сега Ти благодаря,&nbsp; че водиш
+          живота ми и ме изпълваш със Светия Дух. Амин.&quot; <br>
+          </em></p>
+        </blockquote>
+        <p>Тази молитва съответства ли на искреното ви
+        желанието? Ако е така, <strong>още сега</strong> се
+        помолете с нея с вярата, че Бог ви изпълва със
+        Светия Дух.</p>
+        <hr>
+        <p align="center"><font size="4"><b>Как разбираме, че сме
+        изпълнени със Светия Дух (че той ни води и
+        укрепва)</b></font></p>
+        <p>Помолихте ли Бога да ви изпълни със Светия Дух?
+        Сигурни ли сте, че сега сте изпълнени със Светия
+        Дух? На какво се основава тази увереност? (на
+        верността на самия Бог и на неговото Слово: <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Hebrews%2011:6;&version=21;">Евреи 11:6</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Romans%2014:22,23;&version=21;">Римляни 14:22, 23</a>.)</p>
+        <p>Не разчитайте на чувствата си. Ние се
+        позоваваме на обещанията от Божието Слово, а не
+        чувствата си. Християнинът живее с вяра
+        (уповаване) в непогрешимостта на самия Бог и на
+        Неговото Слово. Този влак показва нагледно
+        връзката между <strong>факта</strong> (Бог и Неговото
+        Слово), <strong>вярата </strong>(нашето уповаване на Бога
+        и Слово Му) и <strong>чувствата</strong> (следствието от
+        вярата и покорството ни) (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=John%2014:21;&version=21;">Йоан 14:21</a>). </p>
+        <p><img src="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/train.gif" WIDTH="450" HEIGHT="101"><br>
+        </p>
+        <p>Влакът се движи независимо от това дали има или
+        няма вагон. Не е възможно обаче той да бъде теглен
+        от вагона. По същия начин, като християни ние не
+        се доверяваме на своите усещания или емоции, а
+        разчитаме на Божията вярност и на обещанията в
+        Неговото Слово. </p>
+        <hr>
+        <p align="center"><font size="4"><b>Как да ходим по Духа</b></font></p>
+        <p>Християните могат да следват насоките на
+        Светия Дух в живота си единствено чрез вяра
+        (уповаване в Бога и обещанията Му). Когато се &nbsp;
+        доверяваме на Христос за всичко:<br>
+        <ol>
+          <li>Характерът ни ще отразява плода на Духа във все
+            по-голяма степен (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Galatians%205:22,23;&version=21;">Галатяни
+            5:22, 23</a>) и ние ще ставаме все по-подобни на Христос
+            (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Romans%2012:2;&version=21;">Римляни 12:2</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=2%20Corinthians%203:18;&version=21;">2 Коринтяни 3:18</a>). <br>
+          </li>
+          <li>Молитвата и изучаването на Библията ще добият
+            повече значимост за нас.<br>
+          </li>
+          <li>Ще свидетелстваме със сила (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Acts%201:8;&version=21;">Деяния 1:8</a>). <br>
+          </li>
+          <li>Ще бъдем подготвени за духовния сблъсък със
+            света (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=1%20John%202:15-17;&version=21;">1 Йоан 2:15-17</a>);
+            с плътта (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Galatians%205:16-17;&version=21;">Галатяни
+            5:16-17</a>); и със Сатаната (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=1%20Peter%205:7-9;&version=21;">1Петрово 5:7-9</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Ephesians%206:10-13;&version=21;">Eфесяни 6:10-13</a>). <br>
+          </li>
+          <li>Ще имаме сила да устояваме на изкушенията и
+            греха (<a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=1%20Corinthians%2010:13;&version=21;">1
+            Коринтяни 10:13</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Philippians%204:13;&version=21;">Филипяни
+            4:13</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Ephesians%201:19-23;&version=21;">Eфесяни 1:19-23</a>;
+            &nbsp; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Ephesians%206:10;&version=21;">6:10</a>;&nbsp; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=2%20Timothy%201:7;&version=21;">2 Тимотей 1:7</a>; <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Romans%206:1-16;&version=21;">Римляни 6:1-16</a>). </li>
+        </ol>
+        <hr>
+        <p align="center"><font size="4"><b>Духовно дишане</b></font></p>
+        <p>Чрез вяра можем да продължим да изпитваме върху
+        себе си Божията любов и прошка. <br>
+        <br>
+        Ако осъзнаете, че макар да следвате Господа и
+        искрено да желаете да му служите, в живота има
+        нещо (отношение, мотив или действие), което не му е
+        угодно, просто Му благодарете, че въз основа на
+        Христовата смърт на кръста Той вече е опростил
+        греховете ви - минали, сегашни и бъдещи. С вяра
+        изповядайте любовта и прошката Му и продължете
+        близките си отношения с Него.</p>
+        <p>Ако отново поемете в свои ръце контрола на
+        живота си - което е непокорство, <strong>дишайте
+        духовно!</strong><br>
+        <br>
+        <strong>Духовното дишане</strong> (когато издишваме
+        нечистото и вдишваме чистото) е стъпка на вяра,
+        която ни дава възможност непрестанно да
+        изпитваме върху себе си Божията любов и прошка.<br>
+        </p>
+        <blockquote>
+          <p>1. <strong>Издишайте</strong> - изповядайте греха си.
+          Съгласете се с Бога, че сте&nbsp; съгрешили,&nbsp; и &nbsp;
+          Му благодарете,&nbsp; че&nbsp; ви&nbsp; прощава &nbsp;
+          съгласно <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=1%20john%201:9;&version=21;">1 Йоан 1:9</a> и
+          <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Hebrews%2010:1-25;&version=21;">Евреи 10:1-25</a>.
+          Изповядването включва в себе се и покаяние -
+          промяна на отношението или поведението.</p>
+          <p>2.<strong> Вдишайте</strong> - покорете живота си на
+          Христос&nbsp; и с вяра изповядайте (приемете)
+          пълнотата на Светия Дух. Вярвайте, че сега Той ви
+          води и укрепва така, както е заповядано в <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=Ephesians%205:18;&version=21;">Eфесяни 5:18</a>, и е
+          обещано в <a href="/web/20110723103325/http://www.biblegateway.com/passage/?search=1%20John%205:14,15;&version=21;">1 Йоан 5:14,
+          15</a>. </p>
+        </blockquote>
+        <p><em>Вие желаете да споделите това важно
+        откритие...</em><br>
+        </p>
+        <hr>
+        <p><strong>Ако тези страници са ви били полезни,
+        споделете ги с някой друг.</strong><br>
+        <br>
+        Книжките със заглавие <strong>&quot;Открихте ли вече
+        изпълнения със Светия Дух живот?&quot;</strong> са вече
+        достояние на милиони хора в превод на повечето
+        говорими езици по света. Така хиляди християни са
+        се научили да живеят със силата на&nbsp; Светия Дух
+        и да следват неговите насоки непрестанно. Понеже
+        те живеят пълноценния и плодотворен живот, който
+        Христос обещава, тези хора са станали по-успешни
+        свидетели за Христос. Техният опит свидетелства
+        за уместността на Христовата заповед към
+        учениците - да изчакат да получат силата на
+        Светия Дух, преди да отидат по света и да
+        разгласят благата вест за Неговата любов и
+        прошка. След като научат тази истина за Светия
+        Дух, повечето християни проявяват желание да
+        свидетелстват активно за Христос, като така
+        подпомогат изпълнението на Великото поръчение в
+        нашето поколение.</p>
+        <p align="center"><strong>Ако желаете да получите тази
+        книжка <a href="/web/20110723103325/http://www.jesuswho.org/bulgarian/oportuni.htm">щракнете тук</a>.</strong></td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+</table>
+</center></div>
+
+<p>&nbsp;</p>
+<div align="center"><center>
+
+<table border="0" cellpadding="25" width="90%">
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF"><p align="center"><font size="4" face="Arial"><strong><a href="/web/20110723103325/http://www.jesuswho.org/english/lang_question.htm">Допълнителна
+    информация</a></strong></font></p>
+      <p><font face="Arial">Ако вашия Интернет-браузър не
+    поддържа форми и вие желаете допълнителна
+    информация, моля обърнете се към: </font></p>
+    <font face="Arial"><p ALIGN="CENTER">“Агапе България” – София
+    1172, П.К.56,</font></p>
+    <p align="center"><font face="Arial">e-mail :</font><font face="Arial" color="navy"><span style="color: navy; font-family: Arial"><a title="mailto:lev@boss.bg" style="color: blue; text-decoration: underline" href="mailto:lev@boss.bg">lev@boss.bg</a></span></font><p ALIGN="CENTER"></td>
+  </tr>
+</table>
+</center></div><!--webbot bot="Include" u-include="foot1.htm" tag="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="4" width="90%">
+  <tr>
+    <td align="center" width="15%" bgcolor="#A4A4FF" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif"><a href="/web/20110723103325/http://www.jesuswho.org/bulgarian/default.htm"><font face="Arial" size="2">Заглавна
+    страница</font></a></td>
+    <td align="center" width="14%" bgcolor="#A4A4FF" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif"><a href="/web/20110723103325/http://www.jesuswho.org/bulgarian/whois.htm"><font face="Arial" size="2">Кой е Исус?</font></a></td>
+    <td align="center" width="14%" bgcolor="#A4A4FF" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif"><a href="/web/20110723103325/http://www.jesuswho.org/bulgarian/jesusfil.htm"><font face="Arial" size="2">Филмът &quot;Исус</font></a><font face="Arial" size="2">&quot;</font></td>
+    <td align="center" width="14%" bgcolor="#A4A4FF" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif"><a href="/web/20110723103325/http://www.jesuswho.org/bulgarian/four.htm"><font face="Arial" size="2">Четирите принципа</font></a>
+    </td>
+    <td align="center" width="14%" bgcolor="#A4A4FF" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif"><a href="/web/20110723103325/http://www.jesuswho.org/bulgarian/spirit.htm"><font face="Arial" size="2">Живот, изпълнен
+    с Духа</font></a></td>
+    <td align="center" width="14%" bgcolor="#A4A4FF" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif"><a href="/web/20110723103325/http://www.jesuswho.org/bulgarian/oportuni.htm"><font face="Arial" size="2">Възможности</font></a></td>
+    <td align="center" width="15%" bgcolor="#A4A4FF" background="/web/20110723103325im_/http://www.jesuswho.org/bulgarian/images/spirback.gif"><a href="/web/20110723103325/http://www.jesuswho.org/bulgarian/resource.htm"><font face="Arial" size="2">Източници</font></a></td>
+  </tr>
+</table>
+</center></div>
+<!--StatsInSight Collector-->
+<script language='javascript'>
+  //SiteName : Greatcom-Total //
+  var StatsInSightId = 179;
+</script>
+<script language='javascript' src="/web/20110723103325js_/http://collector.statsinsight.com/stats.js"></script>
+<noscript>
+  <img src='/web/20110723103325im_/http://collector.statsinsight.com/index.cgi?statsid=179' /></noscript>
+<!-- End StatsInSight -->
+<!--webbot bot="Include" i-checksum="47728" endspan -->
+<!--webbot bot="Include" u-include="foot2.htm" tag="BODY" startspan -->
+
+<p align="center"><font color="#808080" size="1">© 1995-1999 Campus Crusade for Christ
+International </font><font color="#808080" size="3">|</font><font color="#808080" size="1">
+ <a href="mailto:webmaster@nle.ccci.org">webmaster@nle.ccci.org</a></font></p>
+<!--webbot bot="Include" i-checksum="31758" endspan -->
+
+
+<p><font color="#808080" size="1">
+<!--webbot bot="Timestamp" s-type="EDITED" s-format="%m/%d/%y" startspan -->04/08/05<!--webbot bot="Timestamp" i-checksum="12980" endspan --></font></p>
+</body>
+</html>
+
+
+
+
+
+<!--
+     FILE ARCHIVED ON 10:33:25 Jul 23, 2011 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 4:38:45 Oct 20, 2013.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->

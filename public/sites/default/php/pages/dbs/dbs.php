@@ -93,14 +93,14 @@ function page_discuss($hl_id = 'eng00', $session = 1){
 	db_set_active('default');
 	$output = '';
 	mylanguage_language($hl_id);
-	$output .= '<p style = "text-align:right">'. mylanguage_t_ethnic('Discovering Spiritual Community') . '  #'. $session . '</p>';
-	$output .= '<h2>'. mylanguage_t_ethnic('Caring for one another'). '</h2>';
+	$output .= '<p style = "text-align:right">'.translate('Discovering Spiritual Community') . '  #'. $session . '</p>';
+	$output .= '<h2>'.translate('Caring for one another'). '</h2>';
 	$output .= mylanguage_page_discuss_q(1,  $hl_id, $dir);
 	$output .= mylanguage_page_discuss_q(2,  $hl_id, $dir);
-	$output .= '<h2>'. mylanguage_t_ethnic('Accountability'). '</h2>';
+	$output .= '<h2>'.translate('Accountability'). '</h2>';
 	$output .= mylanguage_page_discuss_q(3,  $hl_id, $dir);
 	$output .= mylanguage_page_discuss_q(4,  $hl_id, $dir);
-	$output .= '<h2>'. mylanguage_t_ethnic('Discover'). '</h2>';
+	$output .= '<h2>'.translate('Discover'). '</h2>';
 	$output .= mylanguage_page_discuss_q(5, $hl_id, $dir);
 	$output .= mylanguage_page_discuss_q(6,  $hl_id, $dir);
 	$output .= mylanguage_page_discuss_q(7,  $hl_id, $dir);
@@ -111,11 +111,11 @@ function page_discuss($hl_id = 'eng00', $session = 1){
 	
 	$output .= '<p>'. dmm_bible_verses($ot, $nt, $dbt_array).  "\n";
 	// continue with questions
-	$output .= '<h2>'. mylanguage_t_ethnic('Application'). '</h2>';
+	$output .= '<h2>'.translate('Application'). '</h2>';
 	$output .= mylanguage_page_discuss_q(9, $hl_id, $dir);
 	$output .= mylanguage_page_discuss_q(10, $hl_id, $dir);
 	$output .= mylanguage_page_discuss_q(11, $hl_id, $dir);
-	$output .= '<h2>'. mylanguage_t_ethnic('Planning'). '</h2>';
+	$output .= '<h2>'.translate('Planning'). '</h2>';
 	$output .= mylanguage_page_discuss_q(12,  $hl_id, $dir);
 	$output .= mylanguage_page_discuss_q(13,  $hl_id, $dir);
 	$output .= mylanguage_page_discuss_q(14,  $hl_id, $dir);
@@ -127,18 +127,18 @@ function page_discuss_design_form($form_values = NULL){
 		WHERE study = :study AND language = :language ORDER BY session',
 		array(':study' =>'dbs', ':language' =>'en')
 	);
-	$passage[''] = mylanguage_t_ethnic('SELECT VALUE');
+	$passage[''] =translate('SELECT VALUE');
 	foreach($results3 as $data3){
 	   $passage[$data3->session] = $data3->session . '. '. $data3->reference;
 	}
 	$form['session']=array(
-    '#title' => mylanguage_t_ethnic('Bible Passage'),
+    '#title' =>translate('Bible Passage'),
     '#type' => 'select',
     '#options' => $passage,
     '#default_value' => $_SESSION['mylanguage_page_discuss_session'],
   );
     $results2 = db_query('SELECT distinct(language) FROM hl_online_passage  ORDER BY language');
-	 $lang[''] = mylanguage_t_ethnic('SELECT VALUE');
+	 $lang[''] =translate('SELECT VALUE');
     foreach($results2 as $data2){
         $data3 = db_query('SELECT name, native FROM {languages} WHERE language= :language', 
 			array('language' =>$data2->language)
@@ -146,27 +146,27 @@ function page_discuss_design_form($form_values = NULL){
 	    $lang[$data2->language] = $data3->name . '  ('. $data3->native. ')';
     }
     $form ['language']=array(
-		'#title' => mylanguage_t_ethnic('Language') . ' #1',
+		'#title' =>translate('Language') . ' #1',
 		'#type' => 'select',
 		'#options' => $lang,
 		'#default_value' => $_SESSION['mylanguage_page_discuss_language'],
 	 );
 	// set default value for language2
     $form ['language2']=array(
-		'#title' => mylanguage_t_ethnic('Language') . ' #2',
+		'#title' =>translate('Language') . ' #2',
 		'#type' => 'select',
 		'#options' => $lang,
 		'#default_value' => $_SESSION['mylanguage_page_discuss_language2'],
 	 );
     $form ['language3']=array(
-		'#title' => mylanguage_t_ethnic('Language') . ' #3',
+		'#title' =>translate('Language') . ' #3',
 		'#type' => 'select',
 		'#options' => $lang,
 		'#default_value' => $_SESSION['mylanguage_page_discuss_language3'],
 	 );
 	$form['submit'] = array(
 		'#type' => 'submit',
-		'#value' => mylanguage_t_ethnic('Show Passage and Questions'),
+		'#value' =>translate('Show Passage and Questions'),
 	);
     return $form;
 }
@@ -281,7 +281,7 @@ function page_discuss_select_form($form, &$form_state, $session){
 		'#button' => $menu,
 		'#default_value' => $session,
 		'#class' => $class,
-		'#mytitle' => mylanguage_t_ethnic('Conversation'),
+		'#mytitle' =>translate('Conversation'),
 		'#theme' => 'mylanguage_select_mobile',
 		'#options'=> $conversations,
 		'#attributes' => array('onchange' => 'form.submit("mylanguage_page_discuss_select_form")'),
@@ -291,7 +291,7 @@ function page_discuss_select_form($form, &$form_state, $session){
 	$form['submit'] = array(
 	  '#type' => 'image_button',
 		'#src' => mylanguage_url_file() . 'icons/blank_1x1.png',
-    '#value' => mylanguage_t_ethnic('Watch Segment'),
+    '#value' =>translate('Watch Segment'),
     );
 	return $form;
 }

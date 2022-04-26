@@ -1,12 +1,14 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-
-
-Vue.use(VueRouter)
+import { createWebHistory, createRouter } from 'vue-router'
+import Home from '../views/Home.vue'
 
 const routes = [
   {
-    path: '/dbs_home/:hl_id?',
+    path: '/',
+    name: 'home',
+    component: Home,
+  },
+  {
+    path: '/discuss/:hl_id?',
     name: 'DBS',
     component: () =>
       import(/* webpackChunkName: "dbs" */ '../views/pages/DBS.vue'),
@@ -26,7 +28,7 @@ const routes = [
     },
   },
   {
-    path: '/bible_online/:hl_id?',
+    path: '/read/:hl_id?',
     name: 'Bible',
     component: function () {
       return import(/* webpackChunkName: "bible" */ '../views/pages/Bible.vue')
@@ -42,7 +44,7 @@ const routes = [
     },
   },
   {
-    path: '/watch_online/:hl_id?',
+    path: '/watch/:hl_id?',
     name: 'Watch',
     component: function () {
       return import(/* webpackChunkName: "watch" */ '../views/pages/Watch.vue')
@@ -65,7 +67,7 @@ const routes = [
     },
   },
   {
-    path: '/study_online/:hl_id?',
+    path: '/spirit/:hl_id?',
     name: 'Spirit',
     component: function () {
       return import(
@@ -84,7 +86,8 @@ const routes = [
   },
 ]
 
-const router = new VueRouter({
+const router = createRouter({
+  history: createWebHistory(),
   routes,
 })
 

@@ -1,0 +1,976 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="../Templates/main.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<!-- Start Wayback Rewrite JS Include -->
+<script type="text/javascript" src="/static/js/analytics.js" ></script>
+
+<script type="text/javascript" src="/static/js/jwplayer/jwplayer.js" ></script>
+<script type="text/javascript" src="/static/js/video-embed-rewriter.js"></script>
+<script type="text/javascript">
+function initYTVideo(id)
+{
+	_wmVideos_.init("/web/", id);
+}
+</script>
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>Vise Jésus: Vie Remplie de l'Esprit</title>
+<!-- InstanceEndEditable -->
+<meta name="description" content="Vise Jesus: Un site complet pour tous les Chrétiens Disciples: étude de la Bible, connecter avec des Chrétiens, apprendre cooment partager l'évangile avec les autres, et plus" />
+<meta name="keywords" content="Vise Jesus, disciples, global media outreach, campus crusade for christ, l'évangélisation, la Bible, Dieu, Saint Esprit, Cropissqnce spirituelle, prier, fellowship, groupe de chat , chat room, Eglise; église, Foi; faith, answers; Reponse" />
+<link href="/web/20100425074742cs_/http://visejesus.com/css/follow_up.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="/web/20100425074742im_/http://visejesus.com/images/favicon.ico" />
+<!--StatsInsight Collector-->
+<script language='javascript'>
+  //SiteName : ViseJesus //
+  var StatsInsightId = 676;
+</script>
+<script language='javascript'
+src='/web/20100425074742js_/http://collector.statsinsight.com/stats.js'></script>
+<noscript>
+  <img src='/web/20100425074742im_/http://collector.statsinsight.com/index.cgi?statsid=676' /> </noscript>
+<!-- End StatsInsight -->
+
+<!-- InstanceBeginEditable name="head" -->
+<script type="text/javascript"></script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body>
+<!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script> if (window.archive_analytics) { window.archive_analytics.values['server_ms']=window.archive_analytics.get_cookie("wb_total_perf"); window.archive_analytics.values['server_name']="wwwb-app13.us.archive.org"}; </script>
+
+<script type="text/javascript" src="/static/js/disclaim-element.js" ></script>
+<script type="text/javascript" src="/static/js/graph-calc.js" ></script>
+<script type="text/javascript" src="/static/jflot/jquery.min.js" ></script>
+<script type="text/javascript">
+//<![CDATA[
+var firstDate = 820454400000;
+var lastDate = 1388534399999;
+var wbPrefix = "/web/";
+var wbCurrentUrl = "http:\/\/visejesus.com\/tab\/spirit_life.html";
+
+var curYear = -1;
+var curMonth = -1;
+var yearCount = 18;
+var firstYear = 1996;
+var imgWidth = 450;
+var yearImgWidth = 25;
+var monthImgWidth = 2;
+var trackerVal = "none";
+var displayDay = "25";
+var displayMonth = "Apr";
+var displayYear = "2010";
+var prettyMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+function showTrackers(val) {
+	if(val == trackerVal) {
+		return;
+	}
+	if(val == "inline") {
+		document.getElementById("displayYearEl").style.color = "#ec008c";
+		document.getElementById("displayMonthEl").style.color = "#ec008c";
+		document.getElementById("displayDayEl").style.color = "#ec008c";		
+	} else {
+		document.getElementById("displayYearEl").innerHTML = displayYear;
+		document.getElementById("displayYearEl").style.color = "#ff0";
+		document.getElementById("displayMonthEl").innerHTML = displayMonth;
+		document.getElementById("displayMonthEl").style.color = "#ff0";
+		document.getElementById("displayDayEl").innerHTML = displayDay;
+		document.getElementById("displayDayEl").style.color = "#ff0";
+	}
+   document.getElementById("wbMouseTrackYearImg").style.display = val;
+   document.getElementById("wbMouseTrackMonthImg").style.display = val;
+   trackerVal = val;
+}
+function getElementX2(obj) {
+	var thing = jQuery(obj);
+	if((thing == undefined) 
+			|| (typeof thing == "undefined") 
+			|| (typeof thing.offset == "undefined")) {
+		return getElementX(obj);
+	}
+	return Math.round(thing.offset().left);
+}
+function trackMouseMove(event,element) {
+
+   var eventX = getEventX(event);
+   var elementX = getElementX2(element);
+   var xOff = eventX - elementX;
+	if(xOff < 0) {
+		xOff = 0;
+	} else if(xOff > imgWidth) {
+		xOff = imgWidth;
+	}
+   var monthOff = xOff % yearImgWidth;
+
+   var year = Math.floor(xOff / yearImgWidth);
+	var yearStart = year * yearImgWidth;
+   var monthOfYear = Math.floor(monthOff / monthImgWidth);
+   if(monthOfYear > 11) {
+       monthOfYear = 11;
+   }
+   // 1 extra border pixel at the left edge of the year:
+   var month = (year * 12) + monthOfYear;
+   var day = 1;
+	if(monthOff % 2 == 1) {
+		day = 15;
+	}
+	var dateString = 
+		zeroPad(year + firstYear) + 
+		zeroPad(monthOfYear+1,2) +
+		zeroPad(day,2) + "000000";
+
+	var monthString = prettyMonths[monthOfYear];
+	document.getElementById("displayYearEl").innerHTML = year + 1996;
+	document.getElementById("displayMonthEl").innerHTML = monthString;
+	// looks too jarring when it changes..
+	//document.getElementById("displayDayEl").innerHTML = zeroPad(day,2);
+
+	var url = wbPrefix + dateString + '/' +  wbCurrentUrl;
+	document.getElementById('wm-graph-anchor').href = url;
+
+   //document.getElementById("wmtbURL").value="evX("+eventX+") elX("+elementX+") xO("+xOff+") y("+year+") m("+month+") monthOff("+monthOff+") DS("+dateString+") Moy("+monthOfYear+") ms("+monthString+")";
+   if(curYear != year) {
+       var yrOff = year * yearImgWidth;
+       document.getElementById("wbMouseTrackYearImg").style.left = yrOff + "px";
+       curYear = year;
+   }
+   if(curMonth != month) {
+       var mtOff = year + (month * monthImgWidth) + 1;
+       document.getElementById("wbMouseTrackMonthImg").style.left = mtOff + "px";
+       curMonth = month;
+   }
+}
+//]]>
+</script>
+
+<style type="text/css">body{margin-top:0!important;padding-top:0!important;min-width:800px!important;}#wm-ipp a:hover{text-decoration:underline!important;}</style>
+<div id="wm-ipp" style="display:none; position:relative;padding:0 5px;min-height:70px;min-width:800px; z-index:9000;">
+<div id="wm-ipp-inside" style="position:fixed;padding:0!important;margin:0!important;width:97%;min-width:780px;border:5px solid #000;border-top:none;background-image:url(/static/images/toolbar/wm_tb_bk_trns.png);text-align:center;-moz-box-shadow:1px 1px 3px #333;-webkit-box-shadow:1px 1px 3px #333;box-shadow:1px 1px 3px #333;font-size:11px!important;font-family:'Lucida Grande','Arial',sans-serif!important;">
+   <table style="border-collapse:collapse;margin:0;padding:0;width:100%;"><tbody><tr>
+   <td style="padding:10px;vertical-align:top;min-width:110px;">
+   <a href="/web/" title="Wayback Machine home page" style="background-color:transparent;border:none;"><img src="/static/images/toolbar/wayback-toolbar-logo.png" alt="Wayback Machine" width="110" height="39" border="0"/></a>
+   </td>
+   <td style="padding:0!important;text-align:center;vertical-align:top;width:100%;">
+
+       <table style="border-collapse:collapse;margin:0 auto;padding:0;width:570px;"><tbody><tr>
+       <td style="padding:3px 0;" colspan="2">
+       <form target="_top" method="get" action="/web/form-submit.jsp" name="wmtb" id="wmtb" style="margin:0!important;padding:0!important;"><input type="text" name="url" id="wmtbURL" value="http://visejesus.com/tab/spirit_life.html" style="width:400px;font-size:11px;font-family:'Lucida Grande','Arial',sans-serif;" onfocus="javascript:this.focus();this.select();" /><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20100425074742" /><input type="submit" value="Go" style="font-size:11px;font-family:'Lucida Grande','Arial',sans-serif;margin-left:5px;" /><span id="wm_tb_options" style="display:block;"></span></form>
+       </td>
+       <td style="vertical-align:bottom;padding:5px 0 0 0!important;" rowspan="2">
+           <table style="border-collapse:collapse;width:110px;color:#99a;font-family:'Helvetica','Lucida Grande','Arial',sans-serif;"><tbody>
+			
+           <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+           <tr style="width:110px;height:16px;font-size:10px!important;">
+           	<td style="padding-right:9px;font-size:11px!important;font-weight:bold;text-transform:uppercase;text-align:right;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+		                <a href="/web/20090922224001/http://www.visejesus.com/tab/spirit_life.html" style="text-decoration:none;color:#33f;font-weight:bold;background-color:transparent;border:none;" title="22 Sep 2009"><strong>SEP</strong></a>
+		                
+               </td>
+               <td id="displayMonthEl" style="background:#000;color:#ff0;font-size:11px!important;font-weight:bold;text-transform:uppercase;width:34px;height:15px;padding-top:1px;text-align:center;" title="You are here: 7:47:42 Apr 25, 2010">APR</td>
+				<td style="padding-left:9px;font-size:11px!important;font-weight:bold;text-transform:uppercase;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+		                <a href="/web/20100527160615/http://visejesus.com/tab/spirit_life.html" style="text-decoration:none;color:#33f;font-weight:bold;background-color:transparent;border:none;" title="27 May 2010"><strong>MAY</strong></a>
+		                
+               </td>
+           </tr>
+
+           <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+           <tr>
+               <td style="padding-right:9px;white-space:nowrap;overflow:visible;text-align:right!important;vertical-align:middle!important;" nowrap="nowrap">
+               
+		                <a href="/web/20090922224001/http://www.visejesus.com/tab/spirit_life.html" title="22:40:01 Sep 22, 2009" style="background-color:transparent;border:none;"><img src="/static/images/toolbar/wm_tb_prv_on.png" alt="Previous capture" width="14" height="16" border="0" /></a>
+		                
+               </td>
+               <td id="displayDayEl" style="background:#000;color:#ff0;width:34px;height:24px;padding:2px 0 0 0;text-align:center;font-size:24px;font-weight: bold;" title="You are here: 7:47:42 Apr 25, 2010">25</td>
+				<td style="padding-left:9px;white-space:nowrap;overflow:visible;text-align:left!important;vertical-align:middle!important;" nowrap="nowrap">
+               
+		                <a href="/web/20100426102824/http://visejesus.com/tab/spirit_life.html" title="10:28:24 Apr 26, 2010" style="background-color:transparent;border:none;"><img src="/static/images/toolbar/wm_tb_nxt_on.png" alt="Next capture" width="14" height="16" border="0"/></a>
+		                
+			    </td>
+           </tr>
+
+           <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+           <tr style="width:110px;height:13px;font-size:9px!important;">
+				<td style="padding-right:9px;font-size:11px!important;font-weight: bold;text-align:right;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+                       2009
+                       
+               </td>
+               <td id="displayYearEl" style="background:#000;color:#ff0;font-size:11px!important;font-weight: bold;padding-top:1px;width:34px;height:13px;text-align:center;" title="You are here: 7:47:42 Apr 25, 2010">2010</td>
+				<td style="padding-left:9px;font-size:11px!important;font-weight: bold;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+		                <a href="/web/20110518221259/http://www.visejesus.com/tab/spirit_life.html" style="text-decoration:none;color:#33f;font-weight:bold;background-color:transparent;border:none;" title="18 May 2011"><strong>2011</strong></a>
+		                
+				</td>
+           </tr>
+           </tbody></table>
+       </td>
+
+       </tr>
+       <tr>
+       <td style="vertical-align:middle;padding:0!important;">
+           <a href="/web/20100415000000*/http://visejesus.com/tab/spirit_life.html" style="color:#33f;font-size:11px;font-weight:bold;background-color:transparent;border:none;" title="See a list of every capture for this URL"><strong>15 captures</strong></a>
+           <div style="margin:0!important;padding:0!important;color:#666;font-size:9px;padding-top:2px!important;white-space:nowrap;" title="Timespan for captures of this URL">14 May 09 - 15 Sep 12</div>
+       </td>
+       <td style="padding:0!important;">
+       <a style="position:relative; white-space:nowrap; width:450px;height:27px;" href="" id="wm-graph-anchor">
+       <div id="wm-ipp-sparkline" style="position:relative; white-space:nowrap; width:450px;height:27px;background-color:#fff;cursor:pointer;border-right:1px solid #ccc;" title="Explore captures for this URL">
+			<img id="sparklineImgId" style="position:absolute; z-index:9012; top:0px; left:0px;"
+				onmouseover="showTrackers('inline');" 
+				onmouseout="showTrackers('none');"
+				onmousemove="trackMouseMove(event,this)"
+				alt="sparklines"
+				width="450"
+				height="27"
+				border="0"
+				src="/web/jsp/graph.jsp?graphdata=450_27_1996:-1:000000000000_1997:-1:000000000000_1998:-1:000000000000_1999:-1:000000000000_2000:-1:000000000000_2001:-1:000000000000_2002:-1:000000000000_2003:-1:000000000000_2004:-1:000000000000_2005:-1:000000000000_2006:-1:000000000000_2007:-1:000000000000_2008:-1:000000000000_2009:-1:000010101000_2010:3:000211000000_2011:-1:000010010111_2012:-1:100000101000_2013:-1:000000000000"></img>
+			<img id="wbMouseTrackYearImg" 
+				style="display:none; position:absolute; z-index:9010;"
+				width="25" 
+				height="27"
+				border="0"
+				src="/static/images/toolbar/transp-yellow-pixel.png"></img>
+			<img id="wbMouseTrackMonthImg"
+				style="display:none; position:absolute; z-index:9011; " 
+				width="2"
+				height="27" 
+				border="0"
+				src="/static/images/toolbar/transp-red-pixel.png"></img>
+       </div>
+		</a>
+
+       </td>
+       </tr></tbody></table>
+   </td>
+   <td style="text-align:right;padding:5px;width:65px;font-size:11px!important;">
+       <a href="javascript:;" onclick="document.getElementById('wm-ipp').style.display='none';" style="display:block;padding-right:18px;background:url(/static/images/toolbar/wm_tb_close.png) no-repeat 100% 0;color:#33f;font-family:'Lucida Grande','Arial',sans-serif;margin-bottom:23px;background-color:transparent;border:none;" title="Close the toolbar">Close</a>
+       <a href="http://faq.web.archive.org/" style="display:block;padding-right:18px;background:url(/static/images/toolbar/wm_tb_help.png) no-repeat 100% 0;color:#33f;font-family:'Lucida Grande','Arial',sans-serif;background-color:transparent;border:none;" title="Get some help using the Wayback Machine">Help</a>
+   </td>
+   </tr></tbody></table>
+
+</div>
+</div>
+<script type="text/javascript">
+ var wmDisclaimBanner = document.getElementById("wm-ipp");
+ if(wmDisclaimBanner != null) {
+   disclaimElement(wmDisclaimBanner);
+ }
+</script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+
+<div id="wrapper">
+	<div id="banner">
+		<ul id="nav_top">
+			<li><a href="/web/20100425074742/http://visejesus.com/index.html">Accueil </a>| <a href="/web/20100425074742/http://visejesus.com/info/about.html">Qui Sommes Nous </a>|  <a href="/web/20100425074742/http://visejesus.com/info/map.html">Site Map</a></li>
+		</ul>
+  </div>
+	<ul id="nav">
+		<li id="nav01"><a href="/web/20100425074742/http://visejesus.com/sub/besure.html">Step 1<span></span></a></li>
+		<li id="nav02"><a href="/web/20100425074742/http://visejesus.com/sub/spirit.html">Step 2<span></span></a></li>
+		<li id="nav03"><a href="/web/20100425074742/http://visejesus.com/sub/bible.html">Step 3<span></span></a></li>
+		<li id="nav04"><a href="/web/20100425074742/http://visejesus.com/sub/church.html">Step 4<span></span></a></li>
+		<li id="nav05"><a href="/web/20100425074742/http://visejesus.com/sub/prayer.html">Step 5<span></span></a></li>
+		<li id="nav06"><a href="/web/20100425074742/http://visejesus.com/sub/share.html">Step 6<span></span></a></li>
+	</ul>
+	<ul id="tab">
+		<li id="tab_tc"><a href="/web/20100425074742/http://visejesus.com/tc/tc.html"></a></li>
+		<li id="tab_spirit"><a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html"></a></li>
+		<li id="tab_guide"><a href="/web/20100425074742/http://visejesus.com/tab/guide.html"></a></li>
+        <li id="tab_connected"><a href="/web/20100425074742/http://visejesus.com/sub/connect.html"></a></li>
+		<li id="tab_worship"><a href="/web/20100425074742/http://visejesus.com/tab/worship.html"></a></li>
+	</ul>
+	<!-- InstanceBeginEditable name="main-content" -->	
+	<div id="contentSub">
+		<div id="contentSub_head"></div>
+		<div id="booklet">
+		<p align="center"><img src="/web/20100425074742im_/http://visejesus.com/images/booklet_SpiritEnglish.gif" width="429" height="210" alt="Have you made the wonderful discovery of the spirit-filled life?" /></p>
+		<p style="font-size:15px; color:#012951; font-weight:bold; font-family: Geneva, Arial, Helvetica, sans-serif; line-height:24px;">Chaque jour peut être une aventure formidable pour le chrétien rempli du Saint-Esprit, et qui vit continuellement, à chaque instant, sous Sa direction.&nbsp;</p>
+		
+		<p>La Bible présente trois sortes d’hommes. 
+		
+		
+		<h4>L’homme naturel </h4>
+		<p>(La personne qui n’a pas reçu Christ) </p>
+		
+		<p align="center"><img src="/web/20100425074742im_/http://visejesus.com/images/booklet_Law4.1.gif"  width="482" height="238" /> </p>
+		<p>&quot;L’homme naturel ne reçoit pas les choses de l’Esprit de Dieu, car elles sont une folie pour lui, parce que c’est spirituellement qu’on en juge.&quot;<br/> (<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">1 Corinthiens  2:14<span><sup>14</sup>Mais l'homme livré à lui-même ne reçoit pas ce qui vient de l'Esprit de Dieu; à ses yeux, c'est «pure folie» et il est incapable de le comprendre, car seul l'Esprit de Dieu permet d'en juger.</span></a>). </p>
+		
+		<h4>L’Homme Spirituel</h4>
+		<p>(Un homme dirigé et rempli par le Saint-Esprit) </p>
+		<p align="center"><img src="/web/20100425074742im_/http://visejesus.com/images/booklet_Law4.2.gif"  width="506" height="222" /> </p>
+		
+		<p>&quot;L’homme spirituel, n’est juge par personne… nous avons la pensée de Christ&quot; <br />
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">1 Corinthiens  2:15<span><sup>15</sup>L'homme spirituel, au contraire, juge de tout, et il n'est lui-même jugé par personne.</span></a>). </p>
+		
+		<h4>L’Homme Charnel</h4>
+		<p>(Celui qui a reçu Christ, mais vit une défaite car il essaie de vivre la vie chrétienne s’appuyant sur ses propres forces) </p>
+		<p align="center"><img src="/web/20100425074742im_/http://visejesus.com/images/booklet_Law4.5.gif"  width="498" height="243" /> </p>
+		
+		<p>&quot;Pour moi, frères, ce n’est pas comme à des hommes spirituels que j’ai pu vous parler, mais comme à des hommes charnels. Comme à des enfants en Christ.  Je vous ai donné du lait, non de la nourriture solide, car vous ne pouviez pas la supporter ; et vous ne le pouvez pas même à présent, parce que vous êtes encore charnels.  En effet, puisqu’il y a parmi vous de la jalousie et des disputes, n’êtes-vous pas charnels , et ne marchez-vous pas selon l’homme ? &quot; (<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">1 Corinthiens 3:1-3<span style="left: -220px;">
+        <sup>1</sup>Pour moi, frères, ce n'est pas comme à des hommes spirituels que j'ai pu vous parler, mais comme à des hommes charnels, comme à des enfants en Christ.
+
+    <sup>2</sup>Je vous ai donné du lait, non de la nourriture solide, car vous ne pouviez pas la supporter; et vous ne le pouvez pas même à présent, parce que vous êtes encore charnels.
+
+    <sup>3</sup>En effet, puisqu'il y a parmi vous de la jalousie et des disputes, n'êtes-vous pas charnels, et ne marchez-vous pas selon l'homme?</span></a>). </p>
+		
+		<h3>Dieu nous a permis de vivre une vie chrétienne abondante et fructueuse.&nbsp;</h3>
+		
+		<p>Jésus a dit, "je suis venu afin qu’elles aient la vie, et qu’elle l’aient en abondance"
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Jean 10:10<span><sup>10</sup>Le voleur ne vient que pour dérober, égorger et détruire; moi, je suis venu afin que les brebis aient la vie, et qu'elles soient dans l'abondance.</span></a>). </p>
+		
+		<p>&quot;Je suis le cep, vous êtes les sarments.  Celui qui demeure en moi et en qui je demeure porte beaucoup de fruit, car sans moi vous ne pouvez rien faire&quot; (<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Jean 15:5<span style="left: -220px;"><sup>5</sup>Je suis le cep, vous êtes les sarments. Celui qui demeure en moi et en qui je demeure porte beaucoup de fruit, car sans moi vous ne pouvez rien faire.</span></a>). </p>
+		
+		<p>&quot;Mais le fruit de l’esprit, c’est l’amour, la joie, la paix, la patience, la bonté, la bienveillance, la foi, la douceur, la maîtrise de soi; la loi n’est pas contre ces choses.&quot;
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Galates 5:22, 23<span><sup>22</sup>Or, j'étais inconnu de visage aux Églises de Judée qui sont en Christ;
+
+    <sup>23</sup>seulement, elles avaient entendu dire: Celui qui autrefois nous persécutait annonce maintenant la foi qu'il s'efforçait alors de détruire.</span></a>). </p>
+		
+		<p>&quot;Mais vous recevrez une puissance, le Saint-Esprit, survenant sur vous, et vous serez mes témoins à Jérusalem, dans tout la Judée, dans la Samarie, et jusqu’aux extrémités de la terre&quot; (<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Actes 1:8<span><sup>8</sup>Mais vous recevrez une puissance, le Saint Esprit survenant sur vous, et vous serez mes témoins à Jérusalem, dans toute la Judée, dans la Samarie, et jusqu'aux extrémités de la terre.</span></a>). </p>
+		
+		<h4>L’homme Spirituel -</h4> 
+		<p>Certains traits spirituels qui résultent d’une confiance en Dieu: </p>
+		
+		<p align="center"><img src="/web/20100425074742im_/http://visejesus.com/images/booklet_SpiritualMan.gif" width="500" height="200" /> </p>
+		
+		<p>La mesure dans laquelle ces traits se manifestent dépend du degré de confiance en Dieu  dans tous les domaines de la vie, et sur la maturité en Christ.  Un chrétien qui vient tout juste de commencer à comprendre le ministère du Saint-Esprit ne devrait pas être découragé s’il ne porte pas autant de fruit que des chrétiens matures qui ont connus et expérimentés la vérité depuis un moment. </p>
+		
+		<p><i>Pourquoi se fait-il que la plupart des chrétiens n’expérimentent pas une vie abondante?</i> </p>
+		
+		<h3>Les chrétiens charnels ne peuvent pas expérimenter une vie chrétienne fructueuse et abondante </h3>
+		
+		<p>L’homme charnel s’appuie sur ses propres forces pour vivre la vie chrétienne: 
+		<p>1. Il est soit, mal informé, ou a oublié, l’amour de Dieu, Son pardon, et Son pouvoir  (
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Romains 5:8-10<span><sup>8</sup>Mais Dieu prouve son amour envers nous, en ce que, lorsque nous étions encore des pécheurs, Christ est mort pour nous.
+
+    <sup>9</sup>A plus forte raison donc, maintenant que nous sommes justifiés par son sang, serons-nous sauvés par lui de la colère.
+
+    <sup>10</sup>Car si, lorsque nous étions ennemis, nous avons été réconciliés avec Dieu par la mort de son Fils, à plus forte raison, étant réconciliés, serons-nous sauvés par sa vie.</span></a>; 
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Hébreux 10:1-25<span><sup>1</sup>En effet, la loi, qui
+possède une ombre des biens à venir, et non l'exacte représentation des
+choses, ne peut jamais, par les mêmes sacrifices qu'on offre
+perpétuellement chaque année, amener les assistants à la perfection.     <sup>2</sup>Autrement,
+n'aurait-on pas cessé de les offrir, parce que ceux qui rendent ce
+culte, étant une fois purifiés, n'auraient plus eu aucune conscience de
+leurs péchés?     <sup>3</sup>Mais le souvenir des péchés est renouvelé chaque année par ces sacrifices;     
+<sup>4</sup>car il est impossible que le sang des taureaux et des boucs ôte les péchés.     
+<sup>5</sup>C'est pourquoi Christ, entrant dans le monde, dit: Tu n'as voulu ni sacrifice ni offrande, Mais tu m'as formé un corps;    
+ <sup>6</sup>Tu n'as agréé ni holocaustes ni sacrifices pour le péché.   
+   <sup>7</sup>Alors j'ai dit: Voici, je viens (Dans le rouleau du livre il est question de moi) Pour faire, ô Dieu, ta volonté.
+        <sup>8</sup>Après
+avoir dit d'abord: Tu n'as voulu et tu n'as agréé ni sacrifices ni
+offrandes, Ni holocaustes ni sacrifices pour le péché (ce qu'on offre
+selon la loi),    
+ <sup>9</sup>il dit ensuite: Voici, je viens Pour faire ta volonté. Il abolit ainsi la première chose pour établir la seconde.  
+    <sup>10</sup>C'est en vertu de cette volonté que nous sommes sanctifiés, par l'offrande du corps de Jésus Christ, une fois pour toutes.   
+   <sup>11</sup>Et
+tandis que tout sacrificateur fait chaque jour le service et offre
+souvent les mêmes sacrifices, qui ne peuvent jamais ôter les péchés,    
+ <sup>12</sup>lui, après avoir offert un seul sacrifice pour les péchés, s'est assis pour toujours à la droite de Dieu,   
+   <sup>13</sup>attendant désormais que ses ennemis soient devenus son marchepied.  
+      <sup>14</sup>Car, par une seule offrande, il a amené à la perfection pour toujours ceux qui sont sanctifiés.  
+      <sup>15</sup>C'est ce que le Saint Esprit nous atteste aussi; car, après avoir dit:   
+     <sup>16</sup>Voici
+l'alliance que je ferai avec eux, Après ces jours-là, dit le Seigneur:
+Je mettrai mes lois dans leurs coeurs, Et je les écrirai dans leur
+esprit, il ajoute:     <sup>17</sup>Et je ne me souviendrai plus de leurs péchés ni de leurs iniquités.    
+ <sup>18</sup>Or, là où il y a pardon des péchés, il n'y a plus d'offrande pour le péché.    
+  <sup>19</sup>Ainsi donc, frères, puisque nous avons, au moyen du sang de Jésus, une libre entrée dans le sanctuaire    
+   <sup>20</sup>par la route nouvelle et vivante qu'il a inaugurée pour nous au travers du voile, c'est-à-dire, de sa chair,
+     
+      <sup>21</sup>et puisque nous avons un souverain sacrificateur établi sur la maison de Dieu,   
+     <sup>22</sup>approchons-nous
+avec un coeur sincère, dans la plénitude de la foi, les coeurs purifiés
+d'une mauvaise conscience, et le corps lavé d'une eau pure.    
+ <sup>23</sup>Retenons fermement la profession de notre espérance, car celui qui a fait la promesse est fidèle.  
+    <sup>24</sup>Veillons les uns sur les autres, pour nous exciter à la charité et aux bonnes oeuvres.   
+   <sup>25</sup>N'abandonnons
+pas notre assemblée, comme c'est la coutume de quelques-uns; mais
+exhortons-nous réciproquement, et cela d'autant plus que vous voyez
+s'approcher le jour.</span></a>; 
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">1 Jean 1; 2:1-3<span style="left: -220px;">1 John <sup>1</sup>Ce qui était dès le commencement, ce que nous avons entendu, ce que nous avons vu de nos yeux, ce que nous avons contemplé et que nos mains ont touché, concernant la parole de vie, -
+
+    <sup>2</sup>car la vie a été manifestée, et nous l'avons vue et nous lui rendons témoignage, et nous vous annonçons la vie éternelle, qui était auprès du Père et qui nous a été manifestée, -
+
+    <sup>3</sup>ce que nous avons vu et entendu, nous vous l'annonçons, à vous aussi, afin que vous aussi vous soyez en communion avec nous. Or, notre communion est avec le Père et avec son Fils Jésus Christ.
+
+    <sup>4</sup>Et nous écrivons ces choses, afin que notre joie soit parfaite.
+
+    <sup>5</sup>La nouvelle que nous avons apprise de lui, et que nous vous annonçons, c'est que Dieu est lumière, et qu'il n'y a point en lui de ténèbres.
+
+    <sup>6</sup>Si nous disons que nous sommes en communion avec lui, et que nous marchions dans les ténèbres, nous mentons, et nous ne pratiquons pas la vérité.
+
+    <sup>7</sup>Mais si nous marchons dans la lumière, comme il est lui-même dans la lumière, nous sommes mutuellement en communion, et le sang de Jésus son Fils nous purifie de tout péché.
+
+    <sup>8</sup>Si nous disons que nous n'avons pas de péché, nous nous séduisons nous-mêmes, et la vérité n'est point en nous.
+
+    <sup>9</sup>Si nous confessons nos péchés, il est fidèle et juste pour nous les pardonner, et pour nous purifier de toute iniquité.
+
+    <sup>10</sup>Si nous disons que nous n'avons pas péché, nous le faisons menteur, et sa parole n'est point en nous.<br />
+		1 John 2:1-3 <sup>1</sup>1Mes petits enfants, je vous écris ces choses, afin que vous ne péchiez point. Et si quelqu'un a péché, nous avons un avocat auprès du Père, Jésus Christ le juste.
+
+    <sup>2</sup>Il est lui-même une victime expiatoire pour nos péchés, non seulement pour les nôtres, mais aussi pour ceux du monde entier.
+
+    <sup>3</sup>Si nous gardons ses commandements, par là nous savons que nous l'avons connu.</span></a>; <br />
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">2 Pierre 1:9<span><sup>9</sup>Mais celui en qui ces choses ne sont point est aveugle, il ne voit pas de loin, et il a mis en oubli la purification de ses anciens péchés.</span></a>; 
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Actes 1:8<span><sup>8</sup>Mais vous recevrez une puissance, le Saint Esprit survenant sur vous, et vous serez mes témoins à Jérusalem, dans toute la Judée, dans la Samarie, et jusqu'aux extrémités de la terre.</span></a>). </p>
+		<p>2. Il vit une expérience spirituelle de haut en bas. </p>
+		
+		<p>3. Il ne peut pas se comprendre- il désire faire ce qui est bien, mais ne le peut pas! </p>
+<p>4. Il ne réussit pas à puiser de la puissance du Saint-Esprit pour vivre la vie chrétienne. </p>
+ 
+		
+		<p>(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">1 Corinthiens 3:1-3<span><sup>1</sup>Pour moi, frères, ce n'est pas comme à des hommes spirituels que j'ai pu vous parler, mais comme à des hommes charnels, comme à des enfants en Christ.
+
+    2Je vous ai donné du lait, non de la nourriture solide, car vous ne pouviez pas la supporter; et vous ne le pouvez pas même à présent, parce que vous êtes encore charnels.
+
+    3En effet, puisqu'il y a parmi vous de la jalousie et des disputes, n'êtes-vous pas charnels, et ne marchez-vous pas selon l'homme?</span></a>; 
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Romains 7:15-24; 8:7<span><sup>15</sup>Car je ne sais pas ce que je fais: je ne fais point ce que je veux, et je fais ce que je hais.
+
+    16Or, si je fais ce que je ne veux pas, je reconnais par là que la loi est bonne.
+
+    17Et maintenant ce n'est plus moi qui le fais, mais c'est le péché qui habite en moi.
+
+    18Ce qui est bon, je le sais, n'habite pas en moi, c'est-à-dire dans ma chair: j'ai la volonté, mais non le pouvoir de faire le bien.
+
+    19Car je ne fais pas le bien que je veux, et je fais le mal que je ne veux pas.
+
+    20Et si je fais ce que je ne veux pas, ce n'est plus moi qui le fais, c'est le péché qui habite en moi.
+
+    21Je trouve donc en moi cette loi: quand je veux faire le bien, le mal est attaché à moi.
+
+    22Car je prends plaisir à la loi de Dieu, selon l'homme intérieur;
+
+    23mais je vois dans mes membres une autre loi, qui lutte contre la loi de mon entendement, et qui me rend captif de la loi du péché, qui est dans mes membres.
+
+    24Misérable que je suis! Qui me délivrera du corps de cette mort?...<br />
+		Romans 8: <sup>7</sup>car l'affection de la chair est inimitié contre Dieu, parce qu'elle ne se soumet pas à la loi de Dieu, et qu'elle ne le peut même pas.
+		</span></a>; <br/>
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Galates 5:16-18<span style="left: -220px;"><sup>16</sup>Je dis donc: Marchez selon l'Esprit, et vous n'accomplirez pas les désirs de la chair.
+
+    17Car la chair a des désirs contraires à ceux de l'Esprit, et l'Esprit en a de contraires à ceux de la chair; ils sont opposés entre eux, afin que vous ne fassiez point ce que vous voudriez.
+
+    18Si vous êtes conduits par l'Esprit, vous n'êtes point sous la loi.</span></a>) </p>
+		
+		<h4>L’homme charnel - </h4>
+		
+		<p>Certains traits suivants pourraient caractériser le chrétien qui ne s’appuie pas entièrement sur Dieu: </p>
+		
+		<p align="center"><img src="/web/20100425074742im_/http://visejesus.com/images/booklet_CarnalMan.gif" width="500" height="200" /> </p>
+		
+		<p>(L’individu qui se dit chrétien, mais qui continue à pratiquer le pêche devrait réaliser qu’il n’est peut-être pas un chrétien ,d’après <br />
+		
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">1 Jean 2:3; 3:6, 9<span>1 John <sup>2</sup>Si nous gardons ses commandements, par là nous savons que nous l'avons connu.<br />
+		1 John 3<sup>6</sup>Quiconque demeure en lui ne pèche point; quiconque pèche ne l'a pas vu, et ne l'a pas connu.
+
+    7Petits enfants, que personne ne vous séduise. Celui qui pratique la justice est juste, comme lui-même est juste.
+
+    8Celui qui pèche est du diable, car le diable pèche dès le commencement. Le Fils de Dieu a paru afin de détruire les oeuvres du diable.
+
+    9Quiconque est né de Dieu ne pratique pas le péché, parce que la semence de Dieu demeure en lui; et il ne peut pécher, parce qu'il est né de Dieu.</span></a>; 
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Ephésiens 5:5<span><sup>5</sup>Car, sachez-le bien, aucun impudique, ou impur, ou cupide, c'est-à-dire, idolâtre, n'a d'héritage dans le royaume de Christ et de Dieu.</span></a>). </p>
+		
+		<p><em>La troisième vérité nous donne l’unique solution à ce problème... </em></p>
+		
+		<h3>Jésus a promis une vie abondante et fructueuse  <br />
+		comme résultat d’une vie dirigée et habilitée par le Saint-Esprit.</h3>
+		
+		<p>La vie remplie de l’Esprit  est la vie dirigée par Christ, dans laquelle Jésus-Christ vie Sa vie en nous et à travers nous par la puissance du Saint-Esprit.<br/>		
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Jean 15<span><sup>1</sup>Je suis le vrai cep, et mon Père est le vigneron.
+
+    2Tout sarment qui est en moi et qui ne porte pas de fruit, il le retranche; et tout sarment qui porte du fruit, il l'émonde, afin qu'il porte encore plus de fruit.
+
+    3Déjà vous êtes purs, à cause de la parole que je vous ai annoncée.
+
+    4Demeurez en moi, et je demeurerai en vous. Comme le sarment ne peut de lui-même porter du fruit, s'il ne demeure attaché au cep, ainsi vous ne le pouvez non plus, si vous ne demeurez en moi.
+
+    5Je suis le cep, vous êtes les sarments. Celui qui demeure en moi et en qui je demeure porte beaucoup de fruit, car sans moi vous ne pouvez rien faire.
+
+    6Si quelqu'un ne demeure pas en moi, il est jeté dehors, comme le sarment, et il sèche; puis on ramasse les sarments, on les jette au feu, et ils brûlent.
+
+    7Si vous demeurez en moi, et que mes paroles demeurent en vous, demandez ce que vous voudrez, et cela vous sera accordé.
+
+    8Si vous portez beaucoup de fruit, c'est ainsi que mon Père sera glorifié, et que vous serez mes disciples.
+
+    9Comme le Père m'a aimé, je vous ai aussi aimés. Demeurez dans mon amour.
+
+    10Si vous gardez mes commandements, vous demeurerez dans mon amour, de même que j'ai gardé les commandements de mon Père, et que je demeure dans son amour.
+
+    11Je vous ai dit ces choses, afin que ma joie soit en vous, et que votre joie soit parfaite.
+
+    12C'est ici mon commandement: Aimez-vous les uns les autres, comme je vous ai aimés.
+
+    13Il n'y a pas de plus grand amour que de donner sa vie pour ses amis.
+
+    14Vous êtes mes amis, si vous faites ce que je vous commande.
+
+    15Je ne vous appelle plus serviteurs, parce que le serviteur ne sait pas ce que fait son maître; mais je vous ai appelés amis, parce que je vous ai fait connaître tout ce que j'ai appris de mon Père.
+
+    16Ce n'est pas vous qui m'avez choisi; mais moi, je vous ai choisis, et je vous ai établis, afin que vous alliez, et que vous portiez du fruit, et que votre fruit demeure, afin que ce que vous demanderez au Père en mon nom, il vous le donne.
+
+    17Ce que je vous commande, c'est de vous aimer les uns les autres.
+
+    18Si le monde vous hait, sachez qu'il m'a haï avant vous.
+
+    19Si vous étiez du monde, le monde aimerait ce qui est à lui; mais parce que vous n'êtes pas du monde, et que je vous ai choisis du milieu du monde, à cause de cela le monde vous hait.
+
+    20Souvenez-vous de la parole que je vous ai dite: Le serviteur n'est pas plus grand que son maître. S'ils m'ont persécuté, ils vous persécuteront aussi; s'ils ont gardé ma parole, ils garderont aussi la vôtre.
+
+    21Mais ils vous feront toutes ces choses à cause de mon nom, parce qu'ils ne connaissent pas celui qui m'a envoyé.
+
+    22Si je n'étais pas venu et que je ne leur eusses point parlé, ils n'auraient pas de péché; mais maintenant ils n'ont aucune excuse de leur péché.
+
+    23Celui qui me hait, hait aussi mon Père.
+
+    24Si je n'avais pas fait parmi eux des oeuvres que nul autre n'a faites, ils n'auraient pas de péché; mais maintenant ils les ont vues, et ils ont haï et moi et mon Père.
+
+    25Mais cela est arrivé afin que s'accomplît la parole qui est écrite dans leur loi: Ils m'ont haï sans cause.
+
+    26Quand sera venu le consolateur, que je vous enverrai de la part du Père, l'Esprit de vérité, qui vient du Père, il rendra témoignage de moi;
+
+    27et vous aussi, vous rendrez témoignage, parce que vous êtes avec moi dès le commencement.</a>). 
+		
+		<p>Une personne devient un chrétien grâce au ministère du Saint-Esprit, d’après <br />
+		
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Jean 3:1-8<span><sup>1</sup>Mais il y eut un homme d'entre les pharisiens, nommé Nicodème, un chef des Juifs,
+
+    2qui vint, lui, auprès de Jésus, de nuit, et lui dit: Rabbi, nous savons que tu es un docteur venu de Dieu; car personne ne peut faire ces miracles que tu fais, si Dieu n'est avec lui.
+
+    3Jésus lui répondit: En vérité, en vérité, je te le dis, si un homme ne naît de nouveau, il ne peut voir le royaume de Dieu.
+
+    4Nicodème lui dit: Comment un homme peut-il naître quand il est vieux? Peut-il rentrer dans le sein de sa mère et naître?
+
+    5Jésus répondit: En vérité, en vérité, je te le dis, si un homme ne naît d'eau et d'Esprit, il ne peut entrer dans le royaume de Dieu.
+
+    6Ce qui est né de la chair est chair, et ce qui est né de l'Esprit est Esprit.
+
+    7Ne t'étonne pas que je t'aie dit: Il faut que vous naissiez de nouveau.
+
+    8Le vent souffle où il veut, et tu en entends le bruit; mais tu ne sais d'où il vient, ni où il va. Il en est ainsi de tout homme qui est né de l'Esprit.</span></a>. Dès  la naissance spirituelle,le Saint-Esprit habite dans le chrétien en tout temps   
+		
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">John 1:12<span><sup>12</sup>Mais à tous ceux qui l'ont reçue, à ceux qui croient en son nom, elle a donné le pouvoir de devenir enfants de Dieu, lesquels sont nés,</span></a>; 
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Colossiens 2:9, 10<span><sup>9</sup>Car en lui habite corporellement toute la plénitude de la divinité.
+
+    10Vous avez tout pleinement en lui, qui est le chef de toute domination et de toute autorité.</span></a>; 
+		
+		<br/>
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Jean 14:16, 17<span style="left: -220px;"><sup>16</sup>Et moi, je prierai le Père, et il vous donnera un autre consolateur, afin qu'il demeure éternellement avec vous,
+
+    17l'Esprit de vérité, que le monde ne peut recevoir, parce qu'il ne le voit point et ne le connaît point; mais vous, vous le connaissez, car il demeure avec vous, et il sera en vous.</span></a>).<br/><strong>Bien que tous chrétiens a le Saint-Esprit en eux, tous les chrétiens ne sont pas nécessairement remplis du Saint-Esprit. </strong></p>
+		
+		<p>Le Saint-Esprit est la source d’une vie débordante 
+		
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Jean 7:37-39<span style="left: -220px;"><sup>37</sup>Le dernier jour, le grand jour de la fête, Jésus, se tenant debout, s'écria: Si quelqu'un a soif, qu'il vienne à moi, et qu'il boive.
+
+    38Celui qui croit en moi, des fleuves d'eau vive couleront de son sein, comme dit l'Écriture.
+
+    39Il dit cela de l'Esprit que devaient recevoir ceux qui croiraient en lui; car l'Esprit n'était pas encore, parce que Jésus n'avait pas encore été glorifié.</span></a>). </p>
+		
+		<p>Le Saint-Esprit est venu pour glorifier Jésus-Christ 
+		
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Jean 16:1-15<span><sup>1</sup>Je vous ai dit ces choses, afin qu'elles ne soient pas pour vous une occasion de chute.
+
+    2Ils vous excluront des synagogues; et même l'heure vient où quiconque vous fera mourir croira rendre un culte à Dieu.
+
+    3Et ils agiront ainsi, parce qu'ils n'ont connu ni le Père ni moi.
+
+    4Je vous ai dit ces choses, afin que, lorsque l'heure sera venue, vous vous souveniez que je vous les ai dites. Je ne vous en ai pas parlé dès le commencement, parce que j'étais avec vous.
+
+    5Maintenant je m'en vais vers celui qui m'a envoyé, et aucun de vous ne me demande: Où vas-tu?
+
+    6Mais, parce que je vous ai dit ces choses, la tristesse a rempli votre coeur.
+
+    7Cependant je vous dis la vérité: il vous est avantageux que je m'en aille, car si je ne m'en vais pas, le consolateur ne viendra pas vers vous; mais, si je m'en vais, je vous l'enverrai.
+
+    8Et quand il sera venu, il convaincra le monde en ce qui concerne le péché, la justice, et le jugement:
+
+    9en ce qui concerne le péché, parce qu'ils ne croient pas en moi;
+
+    10la justice, parce que je vais au Père, et que vous ne me verrez plus;
+
+    11le jugement, parce que le prince de ce monde est jugé.
+
+    12J'ai encore beaucoup de choses à vous dire, mais vous ne pouvez pas les porter maintenant.
+
+    13Quand le consolateur sera venu, l'Esprit de vérité, il vous conduira dans toute la vérité; car il ne parlera pas de lui-même, mais il dira tout ce qu'il aura entendu, et il vous annoncera les choses à venir.
+
+    14Il me glorifiera, parce qu'il prendra de ce qui est à moi, et vous l'annoncera.
+
+    15Tout ce que le Père a est à moi; c'est pourquoi j'ai dit qu'il prend de ce qui est à moi, et qu'il vous l'annoncera.</span></a>). Lorsque quelqu’un est rempli du Saint-Esprit, il est un véritable disciple de Christ. </p>
+		<p>
+Dans le dernier ordre avant Son ascension, Jésus-Christ a promis la puissance du Saint-Esprit pour nous aider a être des témoins pour Lui.
+<br/>
+		
+		
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Actes 1:1-9<span style="left: -220px;"><sup>1</sup>Théophile, j'ai parlé, dans mon premier livre, de tout ce que Jésus a commencé de faire et d'enseigner dès le commencement
+
+    2jusqu'au jour où il fut enlevé au ciel, après avoir donné ses ordres, par le Saint Esprit, aux apôtres qu'il avait choisis.
+
+    3Après qu'il eut souffert, il leur apparut vivant, et leur en donna plusieurs preuves, se montrant à eux pendant quarante jours, et parlant des choses qui concernent le royaume de Dieu.
+
+    4Comme il se trouvait avec eux, il leur recommanda de ne pas s'éloigner de Jérusalem, mais d'attendre ce que le Père avait promis, ce que je vous ai annoncé, leur dit-il;
+
+    5car Jean a baptisé d'eau, mais vous, dans peu de jours, vous serez baptisés du Saint Esprit.
+
+    6Alors les apôtres réunis lui demandèrent: Seigneur, est-ce en ce temps que tu rétabliras le royaume d'Israël?
+
+    7Il leur répondit: Ce n'est pas à vous de connaître les temps ou les moments que le Père a fixés de sa propre autorité.
+
+    8Mais vous recevrez une puissance, le Saint Esprit survenant sur vous, et vous serez mes témoins à Jérusalem, dans toute la Judée, dans la Samarie, et jusqu'aux extrémités de la terre.
+
+    9Après avoir dit cela, il fut élevé pendant qu'ils le regardaient, et une nuée le déroba à leurs yeux.</span></a>). </p>
+		
+		<p><em>Comment, donc, pouvons-nous être remplis du Saint-Esprit? </em></p>
+		
+		<h3>Nous sommes remplis du Saint-Esprit par la foi;<br/>
+puis nous pouvons expérimenter la vie abondante et fructueuse que Christ a promis a chaque chrétien.
+ </h3>
+		
+		<p>Vous pouvez vous remplir du Saint-Esprit  <strong>dès maintenant </strong> si vous: 
+		
+		<p>désirez sincèrement être dirigé et fortifié par le Saint-Esprit  <br />
+		
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Matthieu 5:6<span><sup>6</sup>Heureux ceux qui ont faim et soif de la justice, car ils seront rassasiés!</span></a>; 
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Jean 7:37-39<span><sup>37</sup>Le dernier jour, le grand jour de la fête, Jésus, se tenant debout, s'écria: Si quelqu'un a soif, qu'il vienne à moi, et qu'il boive.
+
+    38Celui qui croit en moi, des fleuves d'eau vive couleront de son sein, comme dit l'Écriture.
+
+    39Il dit cela de l'Esprit que devaient recevoir ceux qui croiraient en lui; car l'Esprit n'était pas encore, parce que Jésus n'avait pas encore été glorifié.</span></a>). </p>
+		
+		<p> Conféssez vos péchés.<br>
+		Par <strong>la foi, remerciez Dieu d’avoir </strong> pardonné tous vos péchés- passés, présents, et futurs- parce que Christ est mort pour vous 
+		
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Colossiens 2:13-15<span><sup>13</sup>When you were dead in your transgressions and the uncircumcision of your flesh, He made you alive together with Him, having forgiven us all our transgressions,<sup>14</sup>having canceled out the certificate of debt consisting of decrees against us, which was hostile to us; and He has taken it out of the way, having nailed it to the cross.<sup>15</sup>When He had disarmed the rulers and authorities, He made a public display of them, having triumphed over them through Him.</span></a>; 
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">1 Jean 1; 2:1-3<span style="left: -220px;"><sup>1</sup>Ce qui était dès le commencement, ce que nous avons entendu, ce que nous avons vu de nos yeux, ce que nous avons contemplé et que nos mains ont touché, concernant la parole de vie, -
+
+    2car la vie a été manifestée, et nous l'avons vue et nous lui rendons témoignage, et nous vous annonçons la vie éternelle, qui était auprès du Père et qui nous a été manifestée, -
+
+    3ce que nous avons vu et entendu, nous vous l'annonçons, à vous aussi, afin que vous aussi vous soyez en communion avec nous. Or, notre communion est avec le Père et avec son Fils Jésus Christ.
+
+    4Et nous écrivons ces choses, afin que notre joie soit parfaite.
+
+    5La nouvelle que nous avons apprise de lui, et que nous vous annonçons, c'est que Dieu est lumière, et qu'il n'y a point en lui de ténèbres.
+
+    6Si nous disons que nous sommes en communion avec lui, et que nous marchions dans les ténèbres, nous mentons, et nous ne pratiquons pas la vérité.
+
+    7Mais si nous marchons dans la lumière, comme il est lui-même dans la lumière, nous sommes mutuellement en communion, et le sang de Jésus son Fils nous purifie de tout péché.
+
+    8Si nous disons que nous n'avons pas de péché, nous nous séduisons nous-mêmes, et la vérité n'est point en nous.
+
+    9Si nous confessons nos péchés, il est fidèle et juste pour nous les pardonner, et pour nous purifier de toute iniquité.
+
+    10Si nous disons que nous n'avons pas péché, nous le faisons menteur, et sa parole n'est point en nous.<sup>2</sup>Mes petits enfants, je vous écris ces choses, afin que vous ne péchiez point. Et si quelqu'un a péché, nous avons un avocat auprès du Père, Jésus Christ le juste.
+
+    2Il est lui-même une victime expiatoire pour nos péchés, non seulement pour les nôtres, mais aussi pour ceux du monde entier.
+
+    3Si nous gardons ses commandements, par là nous savons que nous l'avons connu.</span></a>; 
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Hébreux 10:1-17<span><sup>1</sup>En effet, la loi, qui possède une ombre des biens à venir, et non l'exacte représentation des choses, ne peut jamais, par les mêmes sacrifices qu'on offre perpétuellement chaque année, amener les assistants à la perfection.
+
+    2Autrement, n'aurait-on pas cessé de les offrir, parce que ceux qui rendent ce culte, étant une fois purifiés, n'auraient plus eu aucune conscience de leurs péchés?
+
+    3Mais le souvenir des péchés est renouvelé chaque année par ces sacrifices;
+
+    4car il est impossible que le sang des taureaux et des boucs ôte les péchés.
+
+    5C'est pourquoi Christ, entrant dans le monde, dit: Tu n'as voulu ni sacrifice ni offrande, Mais tu m'as formé un corps;
+
+    6Tu n'as agréé ni holocaustes ni sacrifices pour le péché.
+
+    7Alors j'ai dit: Voici, je viens (Dans le rouleau du livre il est question de moi) Pour faire, ô Dieu, ta volonté.
+
+    8Après avoir dit d'abord: Tu n'as voulu et tu n'as agréé ni sacrifices ni offrandes, Ni holocaustes ni sacrifices pour le péché (ce qu'on offre selon la loi),
+
+    9il dit ensuite: Voici, je viens Pour faire ta volonté. Il abolit ainsi la première chose pour établir la seconde.
+
+    10C'est en vertu de cette volonté que nous sommes sanctifiés, par l'offrande du corps de Jésus Christ, une fois pour toutes.
+
+    11Et tandis que tout sacrificateur fait chaque jour le service et offre souvent les mêmes sacrifices, qui ne peuvent jamais ôter les péchés,
+
+    12lui, après avoir offert un seul sacrifice pour les péchés, s'est assis pour toujours à la droite de Dieu,
+
+    13attendant désormais que ses ennemis soient devenus son marchepied.
+
+    14Car, par une seule offrande, il a amené à la perfection pour toujours ceux qui sont sanctifiés.
+
+    15C'est ce que le Saint Esprit nous atteste aussi; car, après avoir dit:
+
+    16Voici l'alliance que je ferai avec eux, Après ces jours-là, dit le Seigneur: Je mettrai mes lois dans leurs coeurs, Et je les écrirai dans leur esprit, il ajoute:
+
+    17Et je ne me souviendrai plus de leurs péchés ni de leurs iniquités.</span></a>). </p>
+		
+		<p>Présentez tous les domaines de votre vie à Dieu  
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Romains 12:1, 2<span><sup>1</sup>Je vous exhorte donc, frères, par les compassions de Dieu, à offrir vos corps comme un sacrifice vivant, saint, agréable à Dieu, ce qui sera de votre part un culte raisonnable.
+
+    2Ne vous conformez pas au siècle présent, mais soyez transformés par le renouvellement de l'intelligence, afin que vous discerniez quelle est la volonté de Dieu, ce qui est bon, agréable et parfait.</span></a>). </p>
+		
+		<p><strong>Par la foi</strong>, réclamez la plénitude du Saint-Esprit, d’après: 
+		<p>
+		<p><strong>Son ordre -</strong> soyez remplis du Saint-Esprit. "Ne vous enivrez pas de vin; c’est de la débauche.  Soyez, au contraire, remplis de l’Esprit" 
+		
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Ephésiens 5:18<span><sup>18</sup>Ne vous enivrez pas de vin: c'est de la débauche. Soyez, au contraire, remplis de l'Esprit;</span></a>).</p>
+		<p><strong>Sa promesse -</strong> Il nous répondra toujours lorsque nous prions selon Son désir. "Nous avons auprès de lui cette assurance que si nous demandons quelque chose selon sa volonté, il nous écoute.  Et si vous savons qu’il nous écoute, nous savons que nous que nous possédons la chose que nous lui avons demandée, quelle qu’elle soit." 
+		
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">1 Jean 5:14, 15<span><sup>14</sup>Nous avons auprès de lui cette assurance, que si nous demandons quelque chose selon sa volonté, il nous écoute.
+
+    15Et si nous savons qu'il nous écoute, quelque chose que nous demandions, nous savons que nous possédons la chose que nous lui avons demandée.</span></a>). </p>
+		<p><em>La foi peut être exprimée par la prière... </em></p>
+		
+		<h3>Comment prier par la foi afin d’être remplis du Saint-Esprit </h3>
+		
+		<p>C’est uniquement par <strong>la foi</strong>  que nous pouvons être remplis du Saint-Esprit. Cependant, une prière sincère est un moyen d’exprimer notre foi. Voici une prière suggérée: </p>
+		
+		<p>"Père Céleste, j’ai besoin de Toi.  J’admets que j’ai dirigé ma propre vie, et qu’en faisant cela, j’ai péché contre toi.  Je te remercie d’avoir pardonné mes péchés par la mort de Jésus sur la croix.  Je t’invite maintenant Jésus-Christ à prendre de nouveau la place sur le trône de ma vie. Remplis moi du Saint-Esprit comme tu me l’as <strong>demandé</strong>, et comme tu as <strong>promis</strong> de le faire si je te le demandais par la foi.  Je te remercie dès à présent pour ta direction dans ma vie, et pour m’avoir rempli de ton Saint-Esprit." </p>
+		
+		<p>Cette prière, exprime t-elle le désir de votre cœur ?  Si oui, inclinez vous dans la prière, et ayez confiance que Dieu vous remplira du Saint-Esprit <strong>dès maintenant</strong></p>
+		
+		<h3>Comment savoir que vous êtes remplis du <br/>Saint-Esprit </h3>
+		
+		<p>Avez-vous demandé à Dieu de vous remplir du Saint-Esprit?  Savez-vous que vous êtes à présent remplis du Saint-Esprit ?  Sur quelle autorité ? (sur la fiabilité de Dieu et de Sa Parole: 
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Hébreux 11:6<span><sup>6</sup>Or sans la foi il est impossible de lui être agréable; car il faut que celui qui s'approche de Dieu croie que Dieu existe, et qu'il est le rémunérateur de ceux qui le cherchent.</span></a>; 
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Romains 14:22, 23<span><sup>22</sup>Cette foi que tu as, garde-la pour toi devant Dieu. Heureux celui qui ne se condamne pas lui-même dans ce qu'il approuve!
+
+    23Mais celui qui a des doutes au sujet de ce qu'il mange est condamné, parce qu'il n'agit pas par conviction. Tout ce qui n'est pas le produit d'une conviction est péché.</span></a>.)<br>
+		
+		Ne dépendez par sur vos sentiments.  La promesse de la Parole de Dieu, et non nos sentiments, est l’autorité.  Le chrétien vit par la foi (la confiance) dans la fidélité de Dieu Lui-même et de Sa Parole. 
+ Ce train illustre la relation entre le<strong> fait</strong> (Dieu et Sa Parole), <strong>La foi</strong> (notre confiance en Dieu et en Sa Parole), et nos <strong>sentiments</strong> (le résultat de notre foi et de notre obéissance 
+ (
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Jean 14:21<span style="left: -220px;"><sup>21</sup>Celui qui a mes commandements et qui les garde, c'est celui qui m'aime; et celui qui m'aime sera aimé de mon Père, je l'aimerai, et je me ferai connaître à lui.</span></a>).</p>
+		
+		<p align="center"><img src="/web/20100425074742im_/http://visejesus.com/images/booklet_Train.gif" width="450" height="101" /> </p>
+		
+		<p>Le train roulera avec ou sans un fourgon. Cependant, il serait inutile de tirer le train par le fourgon. De la même manière, en tant que Chrétiens, nous ne dépendons pas de nos sentiments ou émotions, mais nous plaçons notre foi (notre confiance) dans la fidélité de Dieu et des promesses dans Sa parole. </p>
+		
+		<h3>Comment marcher selon l’Esprit</h3>
+		
+		<p>La foi (confiance en Dieu et en Ses promesses) est le seul moyen par lequel un chrétien peut vivre une vie dirigée par le Saint-Esprit.  En continuant à faire confiance à Christ un jour à la fois: 
+		<p>
+		<p>Votre vie démontrera de plus en plus de fruit de l’Esprit <br />
+		  (
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Galates 5:22, 23<span><sup>22</sup>Mais le fruit de l'Esprit, c'est l'amour, la joie, la paix, la patience, la bonté, la bénignité, la fidélité, la douceur, la tempérance;
+
+    23la loi n'est pas contre ces choses.</span></a>) 
+		
+		et vous serez de plus en plus conforme à l’image de Christ  (
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Romains 12:2<span><sup>2</sup>Ne vous conformez pas au siècle présent, mais soyez transformés par le renouvellement de l'intelligence, afin que vous discerniez quelle est la volonté de Dieu, ce qui est bon, agréable et parfait.</span></a>; 
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">2 Corinthiens 3:18<span><sup>18</sup>Nous tous qui, le visage découvert, contemplons comme dans un miroir la gloire du Seigneur, nous sommes transformés en la même image, de gloire en gloire, comme par le Seigneur, l'Esprit.</span></a>). </p>
+		
+		<p>Votre vie de prière et études de la Parole sera plus importante.  </p>
+		<p> Vous expérimenterez Sa puissance dans votre témoignage (
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Actes 1:8<span><sup>8</sup>Mais vous recevrez une puissance, le Saint Esprit survenant sur vous, et vous serez mes témoins à Jérusalem, dans toute la Judée, dans la Samarie, et jusqu'aux extrémités de la terre.</span></a>). </p>
+		
+		<p>Vous serez préparés pour des conflits spirituels contre le monde  (
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">1 Jean 2:15-17<span style="left: -220px;"><sup>15</sup>N'aimez point le monde, ni les choses qui sont dans le monde. Si quelqu'un aime le monde, l'amour du Père n'est point en lui;
+
+    16car tout ce qui est dans le monde, la convoitise de la chair, la convoitise des yeux, et l'orgueil de la vie, ne vient point du Père, mais vient du monde.
+
+    17Et le monde passe, et sa convoitise aussi; mais celui qui fait la volonté de Dieu demeure éternellement.</span></a>); contre la chair
+		
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Galates 5:16-17<span><sup>16</sup>Je dis donc: Marchez selon l'Esprit, et vous n'accomplirez pas les désirs de la chair.
+
+    17Car la chair a des désirs contraires à ceux de l'Esprit, et l'Esprit en a de contraires à ceux de la chair; ils sont opposés entre eux, afin que vous ne fassiez point ce que vous voudriez.</span></a>);
+		
+		et contre Satan 
+		
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">1 Pierre 5:7-9<span style="left: -220px;"><sup>7</sup>et déchargez-vous sur lui de tous vos soucis, car lui-même prend soin de vous.
+
+    8Soyez sobres, veillez. Votre adversaire, le diable, rôde comme un lion rugissant, cherchant qui il dévorera.
+
+    9Résistez-lui avec une foi ferme, sachant que les mêmes souffrances sont imposées à vos frères dans le monde.</span></a>;
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Ephésiens 6:10-13<span><sup>10</sup>Au reste, fortifiez-vous dans le Seigneur, et par sa force toute-puissante.
+
+    11Revêtez-vous de toutes les armes de Dieu, afin de pouvoir tenir ferme contre les ruses du diable.
+
+    12Car nous n'avons pas à lutter contre la chair et le sang, mais contre les dominations, contre les autorités, contre les princes de ce monde de ténèbres, contre les esprits méchants dans les lieux célestes.
+
+    13C'est pourquoi, prenez toutes les armes de Dieu, afin de pouvoir résister dans le mauvais jour, et tenir ferme après avoir tout surmonté.</span></a>). </p>
+		
+		<p>Vous expérimenterez Sa puissance pour résister à la tentation et au péché. <br />
+		
+		(<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">1 Corinthiens 10:13<span><sup>13</sup>Aucune tentation ne vous est survenue qui n'ait été humaine, et Dieu, qui est fidèle, ne permettra pas que vous soyez tentés au delà de vos forces; mais avec la tentation il préparera aussi le moyen d'en sortir, afin que vous puissiez la supporter.</span></a>; 
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Philippiens 4:13<span><sup>13</sup>Je puis tout par celui qui me fortifie.</span></a>; 
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Ephésiens 1:19-23<span><sup>19</sup>et quelle est envers nous qui croyons l'infinie grandeur de sa puissance, se manifestant avec efficacité par la vertu de sa force.
+
+    20Il l'a déployée en Christ, en le ressuscitant des morts, et en le faisant asseoir à sa droite dans les lieux célestes,
+
+    21au-dessus de toute domination, de toute autorité, de toute puissance, de toute dignité, et de tout nom qui se peut nommer, non seulement dans le siècle présent, mais encore dans le siècle à venir.
+
+    22Il a tout mis sous ses pieds, et il l'a donné pour chef suprême à l'Église,
+
+    23qui est son corps, la plénitude de celui qui remplit tout en tous.</span></a>;<br />
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">2 Timothée 1:7<span><sup>7</sup>Car ce n'est pas un esprit de timidité que Dieu nous a donné, mais un esprit de force, d'amour et de sagesse.</span></a>;
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Romains 6:1-16<span><sup>1</sup>Que dirons-nous donc? Demeurerions-nous dans le péché, afin que la grâce abonde?
+
+    2Loin de là! Nous qui sommes morts au péché, comment vivrions-nous encore dans le péché?
+
+    3Ignorez-vous que nous tous qui avons été baptisés en Jésus Christ, c'est en sa mort que nous avons été baptisés?
+
+    4Nous avons donc été ensevelis avec lui par le baptême en sa mort, afin que, comme Christ est ressuscité des morts par la gloire du Père, de même nous aussi nous marchions en nouveauté de vie.
+
+    5En effet, si nous sommes devenus une même plante avec lui par la conformité à sa mort, nous le serons aussi par la conformité à sa résurrection,
+
+    6sachant que notre vieil homme a été crucifié avec lui, afin que le corps du péché fût détruit, pour que nous ne soyons plus esclaves du péché;
+
+    7car celui qui est mort est libre du péché.
+
+    8Or, si nous sommes morts avec Christ, nous croyons que nous vivrons aussi avec lui,
+
+    9sachant que Christ ressuscité des morts ne meurt plus; la mort n'a plus de pouvoir sur lui.
+
+    10Car il est mort, et c'est pour le péché qu'il est mort une fois pour toutes; il est revenu à la vie, et c'est pour Dieu qu'il vit.
+
+    11Ainsi vous-mêmes, regardez-vous comme morts au péché, et comme vivants pour Dieu en Jésus Christ.
+
+    12Que le péché ne règne donc point dans votre corps mortel, et n'obéissez pas à ses convoitises.
+
+    13Ne livrez pas vos membres au péché, comme des instruments d'iniquité; mais donnez-vous vous-mêmes à Dieu, comme étant vivants de morts que vous étiez, et offrez à Dieu vos membres, comme des instruments de justice.
+
+    14Car le péché n'aura point de pouvoir sur vous, puisque vous êtes, non sous la loi, mais sous la grâce.
+
+    15Quoi donc! Pécherions-nous, parce que nous sommes, non sous la loi, mais sous la grâce? Loin de là!
+
+    16Ne savez-vous pas qu'en vous livrant à quelqu'un comme esclaves pour lui obéir, vous êtes esclaves de celui à qui vous obéissez, soit du péché qui conduit à la mort, soit de l'obéissance qui conduit à la justice?</span></a>). </p>
+
+		
+		<h3>La respiration spirituelle </h3>
+		
+		<p>Par la foi, vous pouvez continuer à expérimenter l’amour et le pardon de Dieu</p>
+		
+		<p>Par la foi, vous pouvez continuer à expérimenter l’amour et le pardon de Dieu
+Si vous sentez qu’une partie de votre vie (une attitude ou une action) ne plait pas à Dieu, même si vous marchez avec Lui et que vous désirez sincèrement le servir, remerciez Dieu qu’Il vous a pardonné vos péchés- passés, présents et futurs- sur la base de la mort de Jésus sur la croix.  Réclamez Son amour et son pardon par la foi, et continuez à avoir une communion avec Lui.</p>
+		
+		<p>Si vous reprenez le trône de votre vie à travers le péché – un acte de désobéissance certain - respirez spirituellement. </p>
+		
+		<p><strong>La Respiration Spirituelle</strong> (expirer ce qui est impure et inspirer ce qui est pure) est un exercice de foi qui vous permet de continuer à expérimenter l’amour et le pardon de Dieu. 
+		
+		<p><strong>Expirer</strong> - confessez votre péché – soyez en accord avec Dieu concernant votre péché, et remerciez-le  de vous avoir pardonné, selon 
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">1 Jean 1:9<span><sup>9</sup>Si nous confessons nos péchés, il est fidèle et juste pour nous les pardonner, et pour nous purifier de toute iniquité.</span></a>
+		
+		 et <a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Hébreux 10:1-25<span style="left: -220px;"><sup>1</sup>En effet, la loi, qui possède une ombre des biens à venir, et non l'exacte représentation des choses, ne peut jamais, par les mêmes sacrifices qu'on offre perpétuellement chaque année, amener les assistants à la perfection.
+
+    2Autrement, n'aurait-on pas cessé de les offrir, parce que ceux qui rendent ce culte, étant une fois purifiés, n'auraient plus eu aucune conscience de leurs péchés?
+
+    3Mais le souvenir des péchés est renouvelé chaque année par ces sacrifices;
+
+    4car il est impossible que le sang des taureaux et des boucs ôte les péchés.
+
+    5C'est pourquoi Christ, entrant dans le monde, dit: Tu n'as voulu ni sacrifice ni offrande, Mais tu m'as formé un corps;
+
+    6Tu n'as agréé ni holocaustes ni sacrifices pour le péché.
+
+    7Alors j'ai dit: Voici, je viens (Dans le rouleau du livre il est question de moi) Pour faire, ô Dieu, ta volonté.
+
+    8Après avoir dit d'abord: Tu n'as voulu et tu n'as agréé ni sacrifices ni offrandes, Ni holocaustes ni sacrifices pour le péché (ce qu'on offre selon la loi),
+
+    9il dit ensuite: Voici, je viens Pour faire ta volonté. Il abolit ainsi la première chose pour établir la seconde.
+
+    10C'est en vertu de cette volonté que nous sommes sanctifiés, par l'offrande du corps de Jésus Christ, une fois pour toutes.
+
+    11Et tandis que tout sacrificateur fait chaque jour le service et offre souvent les mêmes sacrifices, qui ne peuvent jamais ôter les péchés,
+
+    12lui, après avoir offert un seul sacrifice pour les péchés, s'est assis pour toujours à la droite de Dieu,
+
+    13attendant désormais que ses ennemis soient devenus son marchepied.
+
+    14Car, par une seule offrande, il a amené à la perfection pour toujours ceux qui sont sanctifiés.
+
+    15C'est ce que le Saint Esprit nous atteste aussi; car, après avoir dit:
+
+    16Voici l'alliance que je ferai avec eux, Après ces jours-là, dit le Seigneur: Je mettrai mes lois dans leurs coeurs, Et je les écrirai dans leur esprit, il ajoute:
+
+    17Et je ne me souviendrai plus de leurs péchés ni de leurs iniquités.
+
+    18Or, là où il y a pardon des péchés, il n'y a plus d'offrande pour le péché.
+
+    19Ainsi donc, frères, puisque nous avons, au moyen du sang de Jésus, une libre entrée dans le sanctuaire
+
+    20par la route nouvelle et vivante qu'il a inaugurée pour nous au travers du voile, c'est-à-dire, de sa chair,
+
+    21et puisque nous avons un souverain sacrificateur établi sur la maison de Dieu,
+
+    22approchons-nous avec un coeur sincère, dans la plénitude de la foi, les coeurs purifiés d'une mauvaise conscience, et le corps lavé d'une eau pure.
+
+    23Retenons fermement la profession de notre espérance, car celui qui a fait la promesse est fidèle.
+
+    24Veillons les uns sur les autres, pour nous exciter à la charité et aux bonnes oeuvres.
+
+    25N'abandonnons pas notre assemblée, comme c'est la coutume de quelques-uns; mais exhortons-nous réciproquement, et cela d'autant plus que vous voyez s'approcher le jour.</span></a>.
+		 
+		La confession implique la repentance- un changement d’attitude et d’action.  </p>
+
+		
+		<p><strong>Inspirer</strong> - replacez votre vie sous le contrôle de Christ, et recevez la plénitude du Saint-Esprit par la foi. Ayez confiance qu’Il dirige et vous fortifie; selon <strong>l’ordre</strong> d’ 
+		
+		<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">Ephésiens 5:18<span><sup>18</sup>Ne vous enivrez pas de vin: c'est de la débauche. Soyez, au contraire, remplis de l'Esprit;</span></a>, et la <strong>promesse</strong> de 
+		
+	<a href="/web/20100425074742/http://visejesus.com/tab/spirit_life.html#" onclick="return false;">1 Jean 5:14, 15<span><sup>14</sup>Nous avons auprès de lui cette assurance, que si nous demandons quelque chose selon sa volonté, il nous écoute.
+
+    15Et si nous savons qu'il nous écoute, quelque chose que nous demandions, nous savons que nous possédons la chose que nous lui avons demandée.</span></a></p>
+
+		
+		<p><em>Vous allez vouloir partager cette importante découverte... </em></p>
+		
+		<p><strong>Si cette page vous a aidée, partagez-la avec quelqu’un. </strong></p>
+		
+		<p>Des millions de copies de ce livret “Avez-vous fait la découverte d’une vie remplie de l’Esprit?” ont été distribué dans plusieurs langues à travers le monde.  Ainsi, des milliers de chrétiens ont appris comment expérimenter la puissance et le contrôle du Saint-Esprit jour après jour.  A travers la vie abondante que Christ nous a promis, et par laquelle ils vivent, ils sont devenus plus efficaces à partager la foi en Christ avec d’autres.  L’expérience a confirmé la validité de l’ordre de Christ à ses disciples : d’attendre pour recevoir la puissance du Saint-Esprit avant d’aller dans le monde pour partager la bonne nouvelle de Son amour et Son pardon.  La plupart des chrétiens, en apprenant cette vérité concernant le Saint-Esprit, veut devenir un témoin actif et veut répondre présent à l’appel de l’ordre de mission dans notre génération.</p>
+		
+		<p align="center">Si vous désirez commander une copie de ces ressources,<br/> 
+		visitez  
+		<a href="/web/20100425074742/http://www.campuscrusade.com/Tracts_and_Booklets/spirit_filled_life.htm" target="_blank">New Life 
+		Resources</a> en line. </p>
+
+		
+		<p>Nous vous encourageons à utiliser ce matériel; toutefois, afin de maintenir la qualité et protéger le contenu, ni cette page , ni d’autres pages ne peut être reproduite sous n’importe quel format sans une permission écrite de Campus Crusade for Christ International, 100 Lake Hart Dr., Orlando, FL 32832. </p>
+		<p></p>
+	  </div>
+		<div id="contentSub_foot"></div>
+	</div>
+	<!-- InstanceEndEditable -->
+	<ul id="footer">
+		<li> <a href="/web/20100425074742/http://visejesus.com/info/privacy.html">Confidentialité</a> |</li>
+	  <li><a href="/web/20100425074742/http://visejesus.com/info/terms.html">Condition d'Utilisation</a> |</li>
+		<li><a href="/web/20100425074742/http://visejesus.com/info/about.html">Qui Sommes Nous</a> |</li>
+		<li><a href="/web/20100425074742/http://visejesus.com/info/contact.html">Contact</a> |</li>
+		<li><a href="/web/20100425074742/http://visejesus.com/info/map.html">Site Map</a></li>
+    <li class="beneath">
+		  <div align="center">© 2008-09 Global Media Outreach.  Tous les droits sont réservés.</div>
+		</li>
+  </ul>
+</div>
+</body>
+<!-- InstanceEnd --></html>
+
+
+
+
+<!--
+     FILE ARCHIVED ON 7:47:42 Apr 25, 2010 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 5:18:44 Oct 20, 2013.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->

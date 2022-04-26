@@ -250,7 +250,7 @@ function mylanguage_hl_id_to_bible(){
 }
 function mylanguage_injeel_request_form($form, &$form_state){
 	$form['header'] = array(
-    '#value' => '<h2>' . mylanguage_t_ethnic('Free Holy Injeel request') . '</h2>',
+    '#value' => '<h2>' .translate('Free Holy Injeel request') . '</h2>',
   );
 	$wants = "Arabic, Bengali,Bosnian, Farsi, Hausa, Indonesian, Kurdish / Kurmanji, Somali, Turkish, Urdu, Tajik, Uyghur,Uzbek ";
 	$lang= explode(',', $wants);
@@ -259,30 +259,30 @@ function mylanguage_injeel_request_form($form, &$form_state){
 		$option[$l] = $l;
 	}
 	$form['language'] = array(
-		'#title' => mylanguage_t_ethnic('Which language do you want?'),
+		'#title' =>translate('Which language do you want?'),
 		'#type' => 'select',
 		'#options' => $option,
 	);
 	$form['injil_address']=array(
-		'#title' => mylanguage_t_ethnic('What address do you want the Injeel sent to?'),
+		'#title' =>translate('What address do you want the Injeel sent to?'),
 		'#type' => 'textarea',
 		'#columns' => 80,
 		'#rows' => 5,
 	);
 	$form['email'] = array(
-		'#title' => mylanguage_t_ethnic('Email Address'),
+		'#title' =>translate('Email Address'),
 		'#type' => 'textfield',
 		'#required' => TRUE,
 	);
 	$form['injil_comments']=array(
-		'#title' => mylanguage_t_ethnic('Comments'),
+		'#title' =>translate('Comments'),
 		'#type' => 'textarea',
 		'#columns' => 80,
 		'#rows' => 5,
 	);
 	$form['submit'] = array(
 		'#type' => 'submit',
-		'#value' => mylanguage_t_ethnic('Request Injeel'),
+		'#value' =>translate('Request Injeel'),
 	);   
 	return $form;
 }
@@ -300,8 +300,8 @@ function mylanguage_injeel_request_form_submit($form, &$form_state){
 	return;
 }
 function mylanguage_injeel_request_mylanguage_page_thanks(){
-	$output = '<h2>'. mylanguage_t_ethnic('You have requested a FREE Injeel.') . '</h2>';
-	$output .= mylanguage_t_ethnic('We will send it to you soon');
+	$output = '<h2>'.translate('You have requested a FREE Injeel.') . '</h2>';
+	$output .=translate('We will send it to you soon');
 	return $output;
 }
 
@@ -468,7 +468,7 @@ function mylanguage_page_ask($hl_id = 'eng00'){
 		else{
 			$columns = 2;
 		}
-	    $output = '<h1>' . mylanguage_t_ethnic('Ask your questions') . '</h1>';
+	    $output = '<h1>' .translate('Ask your questions') . '</h1>';
 		$output .= '<table width = 90%"><tr>';
 		/*$query = db_select('hl_connect', 'c');
         $query->innerjoin('my_language', 'l', 'c.hl_id = l.hl_id');
@@ -508,7 +508,7 @@ function mylanguage_page_bilingual_read() {
   $hl_id = isset($_SESSION['mylanguage_hl_id']) ? $_SESSION['mylanguage_hl_id'] : 'eng00';
   mylanguage_language($hl_id);
   
-   $output .= '<h1>' . mylanguage_t_ethnic('Meet God') . '</h1>';
+   $output .= '<h1>' .translate('Meet God') . '</h1>';
   if (isset($_SESSION['mylanguage_chinese'])) {
      $hl_id = $_SESSION['mylanguage_chinese_written'] ;
      $output .= mylanguage_chinese_display('read_bilingual_page'); 
@@ -543,10 +543,10 @@ function mylanguage_page_discussA(){
 		$session = 1;
 	}	
 	$hl_id = mylanguage_hl_validate();
-	$output .= '<h1>' . mylanguage_t_ethnic('Discuss with your friends') . '</h1>';
-	$output .= '<p>' . mylanguage_t_ethnic('Would you like to discover for yourself what God is like and how God wants you to live?') . '</p>';
-	$output .= '<p>' . mylanguage_t_ethnic('Most people like to make these discoveries in a group with their friends.');
-	$output .= ' ' . mylanguage_t_ethnic('Here are some questions to get your discussion started');
+	$output .= '<h1>' .translate('Discuss with your friends') . '</h1>';
+	$output .= '<p>' .translate('Would you like to discover for yourself what God is like and how God wants you to live?') . '</p>';
+	$output .= '<p>' .translate('Most people like to make these discoveries in a group with their friends.');
+	$output .= ' ' .translate('Here are some questions to get your discussion started');
 	$output .= '<hr>';
 	
 	$a = drupal_get_form('mylanguage_page_discuss_select_form', $session);
@@ -731,24 +731,24 @@ function mylanguage_page_frontX($hl_id = null){
 		
 	}
 	$text .= '<hr class = "intro">';
-	$text .= '<h3><a href = "/languages">'  . mylanguage_t_ethnic('Another Language') .'</a></h3>';
+	$text .= '<h3><a href = "/languages">'  .translate('Another Language') .'</a></h3>';
 	if (mylanguage_t_ethnic('Another Language') != mylanguage_t_browser('Another Language')){
 		$text .= '<p><a href = "/languages">' . mylanguage_t_browser('Another Language'). '</a></p>';
 	}
 	$text .= '<hr class = "intro">';
 	if (mylanguage_menu_links_spoken( 'hl_online_jfilm',  $hl_id, 'bible')){
 		$text .=  mylanguage_page_front_image('watch.png', $direction);
-		$text .=   '<h2>'. mylanguage_t_ethnic('See what Jesus said') . '</h2>';
-		$text .=  '<p><a class = "intro" href = "/jfilm/'. $hl_id . '">' . mylanguage_t_ethnic('Watch the JESUS film'). '</a></p>';
+		$text .=   '<h2>'.translate('See what Jesus said') . '</h2>';
+		$text .=  '<p><a class = "intro" href = "/jfilm/'. $hl_id . '">' .translate('Watch the JESUS film'). '</a></p>';
 		$text .= mylanguage_page_front_section_end();
 	}
 	if (mylanguage_menu_links_written('dbm_questions',   $_SESSION['mylanguage_written_hl_id'], 'common')){
 		$text .= mylanguage_page_front_image('discuss.png', $direction);
-		$text .= '<h2>'. mylanguage_t_ethnic('Discuss with your friends') . '</h2>';
-		$text .= '<p>' . mylanguage_t_ethnic('Would you like to discover for yourself what God is like and how God wants you to live?') . '</p>';
-		$text .= '<p>' . mylanguage_t_ethnic('Most people like to make these discoveries in a group with their friends.');
-		$text .= ' ' . mylanguage_t_ethnic('Here are some questions to get your discussion started') . '</p>';
-		$text .= '<a class = "intro" href = "/discuss/'. $hl_id .'">'. mylanguage_t_ethnic('Read More') . '</a>';
+		$text .= '<h2>'.translate('Discuss with your friends') . '</h2>';
+		$text .= '<p>' .translate('Would you like to discover for yourself what God is like and how God wants you to live?') . '</p>';
+		$text .= '<p>' .translate('Most people like to make these discoveries in a group with their friends.');
+		$text .= ' ' .translate('Here are some questions to get your discussion started') . '</p>';
+		$text .= '<a class = "intro" href = "/discuss/'. $hl_id .'">'.translate('Read More') . '</a>';
 		$text .= mylanguage_page_front_section_end();
 	}
 	$bible = '';
@@ -780,17 +780,17 @@ function mylanguage_page_frontX($hl_id = null){
 			$bible = substr($bible, 0, $i);
 		}
 		$text .= $bible;
-		$text .= '<p><a class = "intro" href = "/bible/'. $hl_id .'">'. mylanguage_t_ethnic('Read More') . '</a></p>';
+		$text .= '<p><a class = "intro" href = "/bible/'. $hl_id .'">'.translate('Read More') . '</a></p>';
 		
 	}
 	$listen = '';
 	if (mylanguage_menu_links_audio_bible($hl_id)){
 		if (!$bible){
 			$text .=  mylanguage_page_front_image('listen.png', $direction);
-			$text .=   '<h2>'. mylanguage_t_ethnic('Listen to what God has said') . '</h2>';
+			$text .=   '<h2>'.translate('Listen to what God has said') . '</h2>';
 		}
 		$listen = 'Listen';
-		$text .= '<p><a class = "intro" href = "/listen_online/'. $hl_id . '">' . mylanguage_t_ethnic('Listen'). '</a></p>';
+		$text .= '<p><a class = "intro" href = "/listen_online/'. $hl_id . '">' .translate('Listen'). '</a></p>';
 		
 	}
 	if ($bible || $listen){
@@ -798,8 +798,8 @@ function mylanguage_page_frontX($hl_id = null){
 	}
 	$text .= mylanguage_page_front_image('ask.png', $direction);
 	$text .= '<h2><a href = "/ask/'. $hl_id . '">' .mylanguage_t_ethnic('Ask a question'). '</a></h2>';
-	$text .= '<p>'. mylanguage_t_ethnic('We are here to answer any questions you may have.') . '<p>';
-	$text .= '<a class = "intro" href = "/ask/'. $hl_id. '">'. mylanguage_t_ethnic('Ask') . '</a>';
+	$text .= '<p>'.translate('We are here to answer any questions you may have.') . '<p>';
+	$text .= '<a class = "intro" href = "/ask/'. $hl_id. '">'.translate('Ask') . '</a>';
 	$text .= '<br><br>';
 	$text .= mylanguage_page_front_section_end();
 	if (mylanguage_menu_links_written('hl_online_kgp',  $_SESSION['mylanguage_written_hl_id'], 'hl_online')){
@@ -816,10 +816,10 @@ function mylanguage_page_frontX($hl_id = null){
 			$kgp_title = str_replace('https://www.', '', $kgp->webpage);
 			
 		}
-		$text .=  '<h2>'. mylanguage_t_ethnic('Meet God') .'</h2>';
+		$text .=  '<h2>'.translate('Meet God') .'</h2>';
 		$text .= '<p>'. $kgp->promo . '</p>';
 		$webpage = '/meet/'. $hl_id;
-		$text .= '<a class = "intro" href = "'. $webpage. '">'. mylanguage_t_ethnic('Read More') . '</a>';
+		$text .= '<a class = "intro" href = "'. $webpage. '">'.translate('Read More') . '</a>';
 		$text .= mylanguage_page_front_section_end();
 	}
 	
@@ -831,14 +831,14 @@ function mylanguage_page_frontX($hl_id = null){
 			WHERE hl_id = :hl_id', 
 			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']))->fetchObject();
 		db_set_active('default');
-		$text .= '<h2>'. mylanguage_t_ethnic('Adventure'). '</h2>';
+		$text .= '<h2>'.translate('Adventure'). '</h2>';
 		if ($spirit->promo){
 			$text .= '<p>'. $spirit->promo .'</p>';
 		}
 		else{
 			$text .= '<br><br><br>';
 		}
-		$text .= '<a class = "intro" href = "/study_online/'. $hl_id. '">'. mylanguage_t_ethnic('Read More') . '</a>';
+		$text .= '<a class = "intro" href = "/study_online/'. $hl_id. '">'.translate('Read More') . '</a>';
 		$text .= mylanguage_page_front_section_end();
 		
 		
@@ -853,7 +853,7 @@ function mylanguage_page_frontX($hl_id = null){
 		db_set_active('default');
 		$text .= '<h2>'. $website->url . '</h2>';
 		$text .='<p>'. $website->promo . '</p>';
-		$text .= '<p><a class = "intro" href = "https://'.$website->url. '">'. mylanguage_t_ethnic('Read More') . '</a></p>';
+		$text .= '<p><a class = "intro" href = "https://'.$website->url. '">'.translate('Read More') . '</a></p>';
 		$text .= mylanguage_page_front_section_end();
 	}
 	$text .= '<p>&copy; copyright Power to Change 2011 - 2020</p>';
@@ -941,7 +941,7 @@ function mylanguage_select_form($form, &$form_state) {
   );
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => mylanguage_t_ethnic('View Resources'),
+    '#value' =>translate('View Resources'),
   );   
   return $form;
 }
@@ -966,7 +966,7 @@ function mylanguage_select_aboriginal_form($form, &$form_state) {
   );
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => mylanguage_t_ethnic('View Resources'),
+    '#value' =>translate('View Resources'),
   );   
   return $form;
 }
@@ -992,7 +992,7 @@ function mylanguage_select_country_form($form, &$form_state) {
   );
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => mylanguage_t_ethnic('View Resources'),
+    '#value' =>translate('View Resources'),
   );   
   return $form;
 }
@@ -1051,7 +1051,7 @@ function mylanguage_select_translated_form($form, &$form_state) {
   );
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => mylanguage_t_ethnic('View Translated Resources'),
+    '#value' =>translate('View Translated Resources'),
   );   
   return $form;
 }
@@ -1088,7 +1088,7 @@ function mylanguage_stats_update($hl_id){
 }
 
 
-function mylanguage_t_ethnic($term){
+functiontranslate($term){
 	global $language;
 	if (!isset($_SESSION['mylanguage_ethnic_language'])){
 		mylanguage_language('eng00');
@@ -1299,7 +1299,7 @@ function mylanguage_function_finder_form($form, &$form_state){
 	  );
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => mylanguage_t_ethnic('Find Functions'),
+    '#value' =>translate('Find Functions'),
   ); 
 	$form['functions'] = array(
     '#markup' => isset($_SESSION['mylanguage_functions'])? $_SESSION['mylanguage_functions']: NULL,

@@ -7,8 +7,7 @@
 <script>
 import { mapState } from 'vuex'
 import NavBar from '@/components/NavBar.vue'
-import ContentService from '@/services/ContentService.js'
-import LogService from '@/services/LogService.js'
+
 
 export default {
   props: ['hl_id'],
@@ -37,21 +36,6 @@ export default {
       loading: false,
       loaded: null,
       error: null,
-    }
-  },
-  beforeCreate() {
-    this.$route.params.version = 'current'
-  },
-  async created() {
-    try {
-      await ContentService.getBible(this.$route.params)
-      this.loaded = true
-      this.loading = false
-    } catch (error) {
-      LogService.consoleLogError(
-        'There was an error in LibraryEdit.vue:',
-        error
-      ) // Logs out the error
     }
   },
 }

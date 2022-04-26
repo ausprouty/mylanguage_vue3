@@ -1,7 +1,14 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">Front</router-link> |
+    <router-link to="/discuss">Discuss</router-link> |
+    <router-link to="/read">Read the Bible</router-link> |
+    <router-link to="/listen">Listen</router-link>|
+    <router-link to="/watch">Watch</router-link> |
+    <router-link to="/ask">Ask</router-link> |
+    <router-link to="/meet">Meet God</router-link> |
+    <router-link to="/spirit">Adventure</router-link> |
+    <router-link to="/links">Link</router-link> |
   </div>
   <router-view />
 </template>

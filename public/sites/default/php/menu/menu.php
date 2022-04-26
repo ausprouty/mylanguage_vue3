@@ -505,7 +505,7 @@ function menu_image_another_language($hl_id, $i){
 	}  
   // Choose another langauge
   $text_size = 10;
-  $text = mylanguage_t_ethnic('Another language');
+  $text =translate('Another language');
   if ($data_direction == 'rtl'){ 
     $text = mylanguage_rtl($text);
   }
@@ -538,7 +538,7 @@ function menu_links_5fish($hl_id) {
 		array(':hl_id' => $hl_id))->fetchObject();
 	if ($result){
 		$link = array(
-		 'title'=> mylanguage_t_ethnic('Watch'), 
+		 'title'=>translate('Watch'), 
 		 'image' => $hl_id . '_goodnews.jpg', 
 		 'link' => $result->url, 
 		 'image_blank'=> 'goodnews_blank.jpg',
@@ -564,7 +564,7 @@ function menu_links_adventure($hl_id) {
 	}
 	if ($result){
 		$link = array(
-			'title'=> mylanguage_t_ethnic('Adventure'), 
+			'title'=>translate('Adventure'), 
 			'image' => $hl_id . '_study.jpg', 
 			'link' => 'study_online/'. $hl_id,  
 			'image_blank' => 'study_blank.jpg',
@@ -596,7 +596,7 @@ function menu_links_ask($hl_id){
 		$contact_link = 'ask/'. $hl_id;
 	}
 	$link = array(
-		'title'=> mylanguage_t_ethnic('Ask a question'), 
+		'title'=>translate('Ask a question'), 
 		'image' => $hl_id . '_ask.jpg', 
 		'link' => $contact_link,
 		'image_blank'=> 'ask_blank.jpg',
@@ -616,7 +616,7 @@ function menu_links_audio_bible($hl_id) {
 	if ($dam_id){
 		$bible = substr($dam_id,0,6);
 		$link= array(
-			'title'=> mylanguage_t_ethnic('Listen'), 
+			'title'=>translate('Listen'), 
 			'image' => $hl_id . '_listen.jpg', 
 			'link' => 'https://live.bible.is/bible/' . $bible . '/LUK/1',  
 			'image_blank' => 'listen_blank.jpg',
@@ -642,7 +642,7 @@ function menu_links_discuss($hl_id) {
 	}
 	if ($result){
 		$link = array(
-		 'title'=> mylanguage_t_ethnic('Discuss'), 
+		 'title'=>translate('Discuss'), 
 		 'image' => $hl_id . '_discuss.jpg', 
 		 'link' => 'discuss/'. $hl_id, 
 		 'image_blank'=> 'discuss_blank.jpg',
@@ -662,7 +662,7 @@ function menu_links_jfilm( $hl_id) {
 	db_set_active('default');
 	if ($result){
 		$link = array(
-			'title'=> mylanguage_t_ethnic('Watch the JESUS film'), 
+			'title'=>translate('Watch the JESUS film'), 
 			'image' => $hl_id . '_watch.jpg', 
 			'link' => 'jfilm/' . $hl_id, 
 			'image_blank'=> 'watch_blank.jpg',
@@ -683,7 +683,7 @@ function menu_links_change_language($hl_id, $links) {
 	}
 	$image_name = mylanguage_menu_image_another_language($hl_id, $count_links);
 	$link = array(
-		'title'=> mylanguage_t_ethnic('Another Language'), 
+		'title'=>translate('Another Language'), 
 		'image' =>	$image_name, 
 		'link' => 	 '/'. $hl_id, 
 		'image_blank'=> '',
@@ -706,7 +706,7 @@ function menu_links_meet_god($hl_id) {
 	}
 	if ($result){
 		$link = array(
-			'title'=> mylanguage_t_ethnic('Meet God'), 
+			'title'=>translate('Meet God'), 
 			'image' =>	$hl_id . '_tracts.jpg', 
 			'link' => 	 $hl_id .'meet/'. $hl_id, 
 			'image_blank'=> 'tracts_blank.jpg',
@@ -746,7 +746,7 @@ function menu_links_read_bible($hl_id) {
 	db_set_active('default');
 	if ($h){
 		$link = array(
-			'title'=> mylanguage_t_ethnic('Read the Bible'), 
+			'title'=>translate('Read the Bible'), 
 			'image' => $hl_id . '_read.jpg', 
 			'link' => 'bible/'. $hl_id . '/1', 
 			'image_blank' => 'read_blank.jpg',
@@ -896,4 +896,3 @@ function menu_show() {
 	  return mylanguage_menu_maker($hl_id);
 	}
 }
-

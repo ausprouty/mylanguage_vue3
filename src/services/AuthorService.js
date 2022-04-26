@@ -4,11 +4,10 @@ import LogService from '@/services/LogService.js'
 
 const log = process.env.VUE_APP_SITE_SHOW_CONSOLE_LOG
 const apiURL = process.env.VUE_APP_DEFAULT_SITES_URL
-const apiSite = process.env.VUE_APP_SITE
 const apiLocation = process.env.VUE_APP_SITE_LOCATION
 //const apiLocation = 'author'
 const postDestination =
-  'AuthorApi.php?site=' + apiSite + '&location=' + apiLocation
+  'AuthorApi.php?location=' + apiLocation
 const apiSELECT = axios.create({
   baseURL: apiURL,
   withCredentials: false, // This is the default

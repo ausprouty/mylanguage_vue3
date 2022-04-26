@@ -46,7 +46,7 @@ function page_bible($hl_id = 'eng00', $chapter_id = 1) {
 		$chapter_id = 24;
 	}
 	$output .= '<div style = "margin-left:' . $margin . '%">';
-	$output .= '<h1>' . mylanguage_t_ethnic('Read God\'s Word: the Bible') . '</h1>';
+	$output .= '<h1>' .translate('Read God\'s Word: the Bible') . '</h1>';
 	$output .= mylanguage_page_bible_questions();
 	$output .= '</div>';
 	$output .= '<hr>' ."\n";
@@ -197,7 +197,7 @@ function page_bible_navigation_form($form, &$form_state, $hl_id, $chapter = 1){
 		'#size' => 4,
 		'#default_value' => $chapter,
 		'#class' => 'form-select-mobile',
-		'#title' => mylanguage_t_ethnic('Chapter'),
+		'#title' =>translate('Chapter'),
 		'#theme' => 'mylanguage_select_mobile',
 		'#options'=> $options,
 		'#attributes' => array('onchange' => 'form.submit("mylanguage_page_bible_navigation_form")'),
@@ -210,7 +210,7 @@ function page_bible_navigation_form($form, &$form_state, $hl_id, $chapter = 1){
 	$form['submit'] = array(
 	  '#type' => 'image_button',
 		'#src' => mylanguage_url_file() . '/icons/blank_1x1.png',
-    '#value' => mylanguage_t_ethnic('Read Chapter'),
+    '#value' =>translate('Read Chapter'),
     );		
 		return $form;
 }
@@ -220,11 +220,11 @@ function page_bible_navigation_form_submit($form, &$form_state){
 }
 function page_bible_questions(){
 	$output = '<ul>';
-	$output .= '<li>'. mylanguage_t_ethnic('What does this tell you about God?') . '</li>' . "\n";
-	$output .= '<li>'. mylanguage_t_ethnic('What does this tell you about Jesus?') . '</li>' . "\n";
-	$output .= '<li>'. mylanguage_t_ethnic('What does this tell you about people?') . '</li>' . "\n";
-	$output .= '<li>'. mylanguage_t_ethnic('If this is true, what difference would it make in your life?') . '</li>' . "\n";
-	$output .= '<li>'. mylanguage_t_ethnic('Who are five people who you can share your discoveries with?') . '</li>' . "\n";
+	$output .= '<li>'.translate('What does this tell you about God?') . '</li>' . "\n";
+	$output .= '<li>'.translate('What does this tell you about Jesus?') . '</li>' . "\n";
+	$output .= '<li>'.translate('What does this tell you about people?') . '</li>' . "\n";
+	$output .= '<li>'.translate('If this is true, what difference would it make in your life?') . '</li>' . "\n";
+	$output .= '<li>'.translate('Who are five people who you can share your discoveries with?') . '</li>' . "\n";
 	$output .= '</ul>' . "\n";
 	return $output;
 }

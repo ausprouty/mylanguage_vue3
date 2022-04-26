@@ -104,9 +104,9 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
 	$f = explode('-', $film_code); //1_10014-jf6128-0-0
 	$film = $f[0] . '-'; //1-10014
 	$segment = array();
-  $segment[]= mylanguage_t_ethnic('SELECT SEGMENT');
+  $segment[]=translate('SELECT SEGMENT');
 	if ($movie == 'JESUS'){
-		$luke = mylanguage_t_ethnic('Luke');
+		$luke =translate('Luke');
 		db_set_active('hl_online');
 		$results = db_query('SELECT * FROM hl_online_jfilm
 			 WHERE film_code LIKE :film_code AND movie = :movie ORDER BY segment',
@@ -206,7 +206,7 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
 			'#button' => $menu,
 	    '#default_value' => $film_code,
 			'#class' => $class,
-      '#mytitle' => mylanguage_t_ethnic('Segment'),
+      '#mytitle' =>translate('Segment'),
 			'#theme' => 'mylanguage_select_mobile',
       '#options'=> $segment,
 			'#attributes' => array('onchange' => 'form.submit("mylanguage_page_jfilm_segments_form")'),
@@ -216,7 +216,7 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
 	$form['submit'] = array(
 	  '#type' => 'image_button',
 		'#src' => mylanguage_url_file() . 'icons/blank_1x1.png',
-    '#value' => mylanguage_t_ethnic('Watch Segment'),
+    '#value' =>translate('Watch Segment'),
     );
 	return $form;
 }
@@ -314,7 +314,7 @@ function page_study($hl_id = 'eng00', $page = 1) {
   $output = '';
   mylanguage_language($hl_id);
   //return "line 3000";
-  $output .= '<h1>' . mylanguage_t_ethnic('Adventure') . '</h1>';
+  $output .= '<h1>' .translate('Adventure') . '</h1>';
   if (isset($_SESSION['mylanguage_chinese']) || $hl_id == 'chn00'){
     $hl_id = 'chn-s';
 	if (!isset($_SESSION['mylanguage_chinese_written'])){

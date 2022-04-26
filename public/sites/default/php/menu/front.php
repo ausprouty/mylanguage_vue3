@@ -132,24 +132,24 @@ function mylanguage_page_frontX($hl_id = null){
 		
 	}
 	$text .= '<hr class = "intro">';
-	$text .= '<h3><a href = "/languages">'  . mylanguage_t_ethnic('Another Language') .'</a></h3>';
+	$text .= '<h3><a href = "/languages">'  .translate('Another Language') .'</a></h3>';
 	if (mylanguage_t_ethnic('Another Language') != mylanguage_t_browser('Another Language')){
 		$text .= '<p><a href = "/languages">' . mylanguage_t_browser('Another Language'). '</a></p>';
 	}
 	$text .= '<hr class = "intro">';
 	if (mylanguage_menu_links_spoken( 'hl_online_jfilm',  $hl_id, 'bible')){
 		$text .=  mylanguage_page_front_image('watch.png', $direction);
-		$text .=   '<h2>'. mylanguage_t_ethnic('See what Jesus said') . '</h2>';
-		$text .=  '<p><a class = "intro" href = "/jfilm/'. $hl_id . '">' . mylanguage_t_ethnic('Watch the JESUS film'). '</a></p>';
+		$text .=   '<h2>'.translate('See what Jesus said') . '</h2>';
+		$text .=  '<p><a class = "intro" href = "/jfilm/'. $hl_id . '">' .translate('Watch the JESUS film'). '</a></p>';
 		$text .= mylanguage_page_front_section_end();
 	}
 	if (mylanguage_menu_links_written('dbm_questions',   $_SESSION['mylanguage_written_hl_id'], 'common')){
 		$text .= mylanguage_page_front_image('discuss.png', $direction);
-		$text .= '<h2>'. mylanguage_t_ethnic('Discuss with your friends') . '</h2>';
-		$text .= '<p>' . mylanguage_t_ethnic('Would you like to discover for yourself what God is like and how God wants you to live?') . '</p>';
-		$text .= '<p>' . mylanguage_t_ethnic('Most people like to make these discoveries in a group with their friends.');
-		$text .= ' ' . mylanguage_t_ethnic('Here are some questions to get your discussion started') . '</p>';
-		$text .= '<a class = "intro" href = "/discuss/'. $hl_id .'">'. mylanguage_t_ethnic('Read More') . '</a>';
+		$text .= '<h2>'.translate('Discuss with your friends') . '</h2>';
+		$text .= '<p>' .translate('Would you like to discover for yourself what God is like and how God wants you to live?') . '</p>';
+		$text .= '<p>' .translate('Most people like to make these discoveries in a group with their friends.');
+		$text .= ' ' .translate('Here are some questions to get your discussion started') . '</p>';
+		$text .= '<a class = "intro" href = "/discuss/'. $hl_id .'">'.translate('Read More') . '</a>';
 		$text .= mylanguage_page_front_section_end();
 	}
 	$bible = '';
@@ -181,17 +181,17 @@ function mylanguage_page_frontX($hl_id = null){
 			$bible = substr($bible, 0, $i);
 		}
 		$text .= $bible;
-		$text .= '<p><a class = "intro" href = "/bible/'. $hl_id .'">'. mylanguage_t_ethnic('Read More') . '</a></p>';
+		$text .= '<p><a class = "intro" href = "/bible/'. $hl_id .'">'.translate('Read More') . '</a></p>';
 		
 	}
 	$listen = '';
 	if (mylanguage_menu_links_audio_bible($hl_id)){
 		if (!$bible){
 			$text .=  mylanguage_page_front_image('listen.png', $direction);
-			$text .=   '<h2>'. mylanguage_t_ethnic('Listen to what God has said') . '</h2>';
+			$text .=   '<h2>'.translate('Listen to what God has said') . '</h2>';
 		}
 		$listen = 'Listen';
-		$text .= '<p><a class = "intro" href = "/listen_online/'. $hl_id . '">' . mylanguage_t_ethnic('Listen'). '</a></p>';
+		$text .= '<p><a class = "intro" href = "/listen_online/'. $hl_id . '">' .translate('Listen'). '</a></p>';
 		
 	}
 	if ($bible || $listen){
@@ -199,8 +199,8 @@ function mylanguage_page_frontX($hl_id = null){
 	}
 	$text .= mylanguage_page_front_image('ask.png', $direction);
 	$text .= '<h2><a href = "/ask/'. $hl_id . '">' .mylanguage_t_ethnic('Ask a question'). '</a></h2>';
-	$text .= '<p>'. mylanguage_t_ethnic('We are here to answer any questions you may have.') . '<p>';
-	$text .= '<a class = "intro" href = "/ask/'. $hl_id. '">'. mylanguage_t_ethnic('Ask') . '</a>';
+	$text .= '<p>'.translate('We are here to answer any questions you may have.') . '<p>';
+	$text .= '<a class = "intro" href = "/ask/'. $hl_id. '">'.translate('Ask') . '</a>';
 	$text .= '<br><br>';
 	$text .= mylanguage_page_front_section_end();
 	if (mylanguage_menu_links_written('hl_online_kgp',  $_SESSION['mylanguage_written_hl_id'], 'hl_online')){
@@ -217,10 +217,10 @@ function mylanguage_page_frontX($hl_id = null){
 			$kgp_title = str_replace('https://www.', '', $kgp->webpage);
 			
 		}
-		$text .=  '<h2>'. mylanguage_t_ethnic('Meet God') .'</h2>';
+		$text .=  '<h2>'.translate('Meet God') .'</h2>';
 		$text .= '<p>'. $kgp->promo . '</p>';
 		$webpage = '/meet/'. $hl_id;
-		$text .= '<a class = "intro" href = "'. $webpage. '">'. mylanguage_t_ethnic('Read More') . '</a>';
+		$text .= '<a class = "intro" href = "'. $webpage. '">'.translate('Read More') . '</a>';
 		$text .= mylanguage_page_front_section_end();
 	}
 	
@@ -232,14 +232,14 @@ function mylanguage_page_frontX($hl_id = null){
 			WHERE hl_id = :hl_id', 
 			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']))->fetchObject();
 		db_set_active('default');
-		$text .= '<h2>'. mylanguage_t_ethnic('Adventure'). '</h2>';
+		$text .= '<h2>'.translate('Adventure'). '</h2>';
 		if ($spirit->promo){
 			$text .= '<p>'. $spirit->promo .'</p>';
 		}
 		else{
 			$text .= '<br><br><br>';
 		}
-		$text .= '<a class = "intro" href = "/study_online/'. $hl_id. '">'. mylanguage_t_ethnic('Read More') . '</a>';
+		$text .= '<a class = "intro" href = "/study_online/'. $hl_id. '">'.translate('Read More') . '</a>';
 		$text .= mylanguage_page_front_section_end();
 		
 		
@@ -254,7 +254,7 @@ function mylanguage_page_frontX($hl_id = null){
 		db_set_active('default');
 		$text .= '<h2>'. $website->url . '</h2>';
 		$text .='<p>'. $website->promo . '</p>';
-		$text .= '<p><a class = "intro" href = "https://'.$website->url. '">'. mylanguage_t_ethnic('Read More') . '</a></p>';
+		$text .= '<p><a class = "intro" href = "https://'.$website->url. '">'.translate('Read More') . '</a></p>';
 		$text .= mylanguage_page_front_section_end();
 	}
 	$text .= '<p>&copy; copyright Power to Change 2011 - 2020</p>';

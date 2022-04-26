@@ -1,0 +1,672 @@
+﻿<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+
+<!-- Start Wayback Rewrite JS Include -->
+<script type="text/javascript" src="/static/js/analytics.js" ></script>
+
+<script type="text/javascript" src="/static/js/jwplayer/jwplayer.js" ></script>
+<script type="text/javascript" src="/static/js/video-embed-rewriter.js"></script>
+<script type="text/javascript">
+function initYTVideo(id)
+{
+	_wmVideos_.init("/web/", id);
+}
+</script>
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="keywords" content="святой, дух, святой дух, исполненный, исполнение, христианин, христианский, душевный, духовный, плотской, жизнь, избыток, вера, руководство, повеление, обещание, молитва, уверенность, просьба, чувства, эмоции, факт, поезд, плод, изучение, библия, свидетельство, борьба, дьявол, искушение, грех, дыхание, прощение, вдох, выдох">
+<meta name="description" contents="Жизнь, исполненная Святым Духом - что это такое? и как это связано с жизнью с избытком?">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Буклет Святой Дух - The Holy Spirit Booklet</title>
+</head>
+
+<body bgcolor="#FFFFFF" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/back1.jpg" bgproperties="fixed">
+<!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script> if (window.archive_analytics) { window.archive_analytics.values['server_ms']=window.archive_analytics.get_cookie("wb_total_perf"); window.archive_analytics.values['server_name']="wwwb-app13.us.archive.org"}; </script>
+
+<script type="text/javascript" src="/static/js/disclaim-element.js" ></script>
+<script type="text/javascript" src="/static/js/graph-calc.js" ></script>
+<script type="text/javascript" src="/static/jflot/jquery.min.js" ></script>
+<script type="text/javascript">
+//<![CDATA[
+var firstDate = 820454400000;
+var lastDate = 1388534399999;
+var wbPrefix = "/web/";
+var wbCurrentUrl = "http:\/\/www.jesuswho.org\/russian\/spirit.htm";
+
+var curYear = -1;
+var curMonth = -1;
+var yearCount = 18;
+var firstYear = 1996;
+var imgWidth = 450;
+var yearImgWidth = 25;
+var monthImgWidth = 2;
+var trackerVal = "none";
+var displayDay = "13";
+var displayMonth = "Jan";
+var displayYear = "2002";
+var prettyMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+function showTrackers(val) {
+	if(val == trackerVal) {
+		return;
+	}
+	if(val == "inline") {
+		document.getElementById("displayYearEl").style.color = "#ec008c";
+		document.getElementById("displayMonthEl").style.color = "#ec008c";
+		document.getElementById("displayDayEl").style.color = "#ec008c";		
+	} else {
+		document.getElementById("displayYearEl").innerHTML = displayYear;
+		document.getElementById("displayYearEl").style.color = "#ff0";
+		document.getElementById("displayMonthEl").innerHTML = displayMonth;
+		document.getElementById("displayMonthEl").style.color = "#ff0";
+		document.getElementById("displayDayEl").innerHTML = displayDay;
+		document.getElementById("displayDayEl").style.color = "#ff0";
+	}
+   document.getElementById("wbMouseTrackYearImg").style.display = val;
+   document.getElementById("wbMouseTrackMonthImg").style.display = val;
+   trackerVal = val;
+}
+function getElementX2(obj) {
+	var thing = jQuery(obj);
+	if((thing == undefined) 
+			|| (typeof thing == "undefined") 
+			|| (typeof thing.offset == "undefined")) {
+		return getElementX(obj);
+	}
+	return Math.round(thing.offset().left);
+}
+function trackMouseMove(event,element) {
+
+   var eventX = getEventX(event);
+   var elementX = getElementX2(element);
+   var xOff = eventX - elementX;
+	if(xOff < 0) {
+		xOff = 0;
+	} else if(xOff > imgWidth) {
+		xOff = imgWidth;
+	}
+   var monthOff = xOff % yearImgWidth;
+
+   var year = Math.floor(xOff / yearImgWidth);
+	var yearStart = year * yearImgWidth;
+   var monthOfYear = Math.floor(monthOff / monthImgWidth);
+   if(monthOfYear > 11) {
+       monthOfYear = 11;
+   }
+   // 1 extra border pixel at the left edge of the year:
+   var month = (year * 12) + monthOfYear;
+   var day = 1;
+	if(monthOff % 2 == 1) {
+		day = 15;
+	}
+	var dateString = 
+		zeroPad(year + firstYear) + 
+		zeroPad(monthOfYear+1,2) +
+		zeroPad(day,2) + "000000";
+
+	var monthString = prettyMonths[monthOfYear];
+	document.getElementById("displayYearEl").innerHTML = year + 1996;
+	document.getElementById("displayMonthEl").innerHTML = monthString;
+	// looks too jarring when it changes..
+	//document.getElementById("displayDayEl").innerHTML = zeroPad(day,2);
+
+	var url = wbPrefix + dateString + '/' +  wbCurrentUrl;
+	document.getElementById('wm-graph-anchor').href = url;
+
+   //document.getElementById("wmtbURL").value="evX("+eventX+") elX("+elementX+") xO("+xOff+") y("+year+") m("+month+") monthOff("+monthOff+") DS("+dateString+") Moy("+monthOfYear+") ms("+monthString+")";
+   if(curYear != year) {
+       var yrOff = year * yearImgWidth;
+       document.getElementById("wbMouseTrackYearImg").style.left = yrOff + "px";
+       curYear = year;
+   }
+   if(curMonth != month) {
+       var mtOff = year + (month * monthImgWidth) + 1;
+       document.getElementById("wbMouseTrackMonthImg").style.left = mtOff + "px";
+       curMonth = month;
+   }
+}
+//]]>
+</script>
+
+<style type="text/css">body{margin-top:0!important;padding-top:0!important;min-width:800px!important;}#wm-ipp a:hover{text-decoration:underline!important;}</style>
+<div id="wm-ipp" style="display:none; position:relative;padding:0 5px;min-height:70px;min-width:800px; z-index:9000;">
+<div id="wm-ipp-inside" style="position:fixed;padding:0!important;margin:0!important;width:97%;min-width:780px;border:5px solid #000;border-top:none;background-image:url(/static/images/toolbar/wm_tb_bk_trns.png);text-align:center;-moz-box-shadow:1px 1px 3px #333;-webkit-box-shadow:1px 1px 3px #333;box-shadow:1px 1px 3px #333;font-size:11px!important;font-family:'Lucida Grande','Arial',sans-serif!important;">
+   <table style="border-collapse:collapse;margin:0;padding:0;width:100%;"><tbody><tr>
+   <td style="padding:10px;vertical-align:top;min-width:110px;">
+   <a href="/web/" title="Wayback Machine home page" style="background-color:transparent;border:none;"><img src="/static/images/toolbar/wayback-toolbar-logo.png" alt="Wayback Machine" width="110" height="39" border="0"/></a>
+   </td>
+   <td style="padding:0!important;text-align:center;vertical-align:top;width:100%;">
+
+       <table style="border-collapse:collapse;margin:0 auto;padding:0;width:570px;"><tbody><tr>
+       <td style="padding:3px 0;" colspan="2">
+       <form target="_top" method="get" action="/web/form-submit.jsp" name="wmtb" id="wmtb" style="margin:0!important;padding:0!important;"><input type="text" name="url" id="wmtbURL" value="http://www.jesuswho.org/russian/spirit.htm" style="width:400px;font-size:11px;font-family:'Lucida Grande','Arial',sans-serif;" onfocus="javascript:this.focus();this.select();" /><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20020113210001" /><input type="submit" value="Go" style="font-size:11px;font-family:'Lucida Grande','Arial',sans-serif;margin-left:5px;" /><span id="wm_tb_options" style="display:block;"></span></form>
+       </td>
+       <td style="vertical-align:bottom;padding:5px 0 0 0!important;" rowspan="2">
+           <table style="border-collapse:collapse;width:110px;color:#99a;font-family:'Helvetica','Lucida Grande','Arial',sans-serif;"><tbody>
+			
+           <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+           <tr style="width:110px;height:16px;font-size:10px!important;">
+           	<td style="padding-right:9px;font-size:11px!important;font-weight:bold;text-transform:uppercase;text-align:right;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+                       Dec
+                       
+               </td>
+               <td id="displayMonthEl" style="background:#000;color:#ff0;font-size:11px!important;font-weight:bold;text-transform:uppercase;width:34px;height:15px;padding-top:1px;text-align:center;" title="You are here: 21:00:01 Jan 13, 2002">JAN</td>
+				<td style="padding-left:9px;font-size:11px!important;font-weight:bold;text-transform:uppercase;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+		                <a href="/web/20020823094923/http://www.jesuswho.org/russian/spirit.htm" style="text-decoration:none;color:#33f;font-weight:bold;background-color:transparent;border:none;" title="23 Aug 2002"><strong>AUG</strong></a>
+		                
+               </td>
+           </tr>
+
+           <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+           <tr>
+               <td style="padding-right:9px;white-space:nowrap;overflow:visible;text-align:right!important;vertical-align:middle!important;" nowrap="nowrap">
+               
+                       <img src="/static/images/toolbar/wm_tb_prv_off.png" alt="Previous capture" width="14" height="16" border="0" />
+                       
+               </td>
+               <td id="displayDayEl" style="background:#000;color:#ff0;width:34px;height:24px;padding:2px 0 0 0;text-align:center;font-size:24px;font-weight: bold;" title="You are here: 21:00:01 Jan 13, 2002">13</td>
+				<td style="padding-left:9px;white-space:nowrap;overflow:visible;text-align:left!important;vertical-align:middle!important;" nowrap="nowrap">
+               
+		                <a href="/web/20020823094923/http://www.jesuswho.org/russian/spirit.htm" title="9:49:23 Aug 23, 2002" style="background-color:transparent;border:none;"><img src="/static/images/toolbar/wm_tb_nxt_on.png" alt="Next capture" width="14" height="16" border="0"/></a>
+		                
+			    </td>
+           </tr>
+
+           <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+           <tr style="width:110px;height:13px;font-size:9px!important;">
+				<td style="padding-right:9px;font-size:11px!important;font-weight: bold;text-align:right;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+                       2001
+                       
+               </td>
+               <td id="displayYearEl" style="background:#000;color:#ff0;font-size:11px!important;font-weight: bold;padding-top:1px;width:34px;height:13px;text-align:center;" title="You are here: 21:00:01 Jan 13, 2002">2002</td>
+				<td style="padding-left:9px;font-size:11px!important;font-weight: bold;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+		                <a href="/web/20030503104459/http://www.jesuswho.org/russian/spirit.htm" style="text-decoration:none;color:#33f;font-weight:bold;background-color:transparent;border:none;" title="3 May 2003"><strong>2003</strong></a>
+		                
+				</td>
+           </tr>
+           </tbody></table>
+       </td>
+
+       </tr>
+       <tr>
+       <td style="vertical-align:middle;padding:0!important;">
+           <a href="/web/20020113210001*/http://www.jesuswho.org/russian/spirit.htm" style="color:#33f;font-size:11px;font-weight:bold;background-color:transparent;border:none;" title="See a list of every capture for this URL"><strong>46 captures</strong></a>
+           <div style="margin:0!important;padding:0!important;color:#666;font-size:9px;padding-top:2px!important;white-space:nowrap;" title="Timespan for captures of this URL">13 Jan 02 - 28 Sep 11</div>
+       </td>
+       <td style="padding:0!important;">
+       <a style="position:relative; white-space:nowrap; width:450px;height:27px;" href="" id="wm-graph-anchor">
+       <div id="wm-ipp-sparkline" style="position:relative; white-space:nowrap; width:450px;height:27px;background-color:#fff;cursor:pointer;border-right:1px solid #ccc;" title="Explore captures for this URL">
+			<img id="sparklineImgId" style="position:absolute; z-index:9012; top:0px; left:0px;"
+				onmouseover="showTrackers('inline');" 
+				onmouseout="showTrackers('none');"
+				onmousemove="trackMouseMove(event,this)"
+				alt="sparklines"
+				width="450"
+				height="27"
+				border="0"
+				src="/web/jsp/graph.jsp?graphdata=450_27_1996:-1:000000000000_1997:-1:000000000000_1998:-1:000000000000_1999:-1:000000000000_2000:-1:000000000000_2001:-1:000000000000_2002:0:100000010000_2003:-1:100010001010_2004:-1:001010110101_2005:-1:010100000100_2006:-1:110011741000_2007:-1:010102100000_2008:-1:000011100100_2009:-1:000010000101_2010:-1:000000000000_2011:-1:000000201000_2012:-1:000000000000_2013:-1:000000000000"></img>
+			<img id="wbMouseTrackYearImg" 
+				style="display:none; position:absolute; z-index:9010;"
+				width="25" 
+				height="27"
+				border="0"
+				src="/static/images/toolbar/transp-yellow-pixel.png"></img>
+			<img id="wbMouseTrackMonthImg"
+				style="display:none; position:absolute; z-index:9011; " 
+				width="2"
+				height="27" 
+				border="0"
+				src="/static/images/toolbar/transp-red-pixel.png"></img>
+       </div>
+		</a>
+
+       </td>
+       </tr></tbody></table>
+   </td>
+   <td style="text-align:right;padding:5px;width:65px;font-size:11px!important;">
+       <a href="javascript:;" onclick="document.getElementById('wm-ipp').style.display='none';" style="display:block;padding-right:18px;background:url(/static/images/toolbar/wm_tb_close.png) no-repeat 100% 0;color:#33f;font-family:'Lucida Grande','Arial',sans-serif;margin-bottom:23px;background-color:transparent;border:none;" title="Close the toolbar">Close</a>
+       <a href="http://faq.web.archive.org/" style="display:block;padding-right:18px;background:url(/static/images/toolbar/wm_tb_help.png) no-repeat 100% 0;color:#33f;font-family:'Lucida Grande','Arial',sans-serif;background-color:transparent;border:none;" title="Get some help using the Wayback Machine">Help</a>
+   </td>
+   </tr></tbody></table>
+
+</div>
+</div>
+<script type="text/javascript">
+ var wmDisclaimBanner = document.getElementById("wm-ipp");
+ if(wmDisclaimBanner != null) {
+   disclaimElement(wmDisclaimBanner);
+ }
+</script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+
+<!--webbot bot="Include" u-include="head1.htm" tag="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="5" cellspacing="0" width="90%">
+  <tr>
+    <td width="50%" bgcolor="#800080"><font color="#BDBDFF" size="3" face="Times New Roman">РУССКАЯ
+    СТРАНИЦА</font></td>
+    <td align="right" width="50%" bgcolor="#800080"><font size="3" face="Times New Roman" color="#00FFFF"><a href="/web/20020113210001/http://www.greatcom.org/">ДРУГИЕ ЯЗЫКИ</a></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" endspan i-checksum="6022" -->
+
+<font face="Times New Roman">
+
+<div align="center"><center>
+
+
+<table border="0" cellpadding="10" cellspacing="0" width="90%" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/qeustbak.gif" bgcolor="#FFFFFF">
+ <tr>
+  <td width="25%" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg" bgcolor="#BFBFFF"><font size="1">КАЖДЫЙ ДЕНЬ МОЖЕТ БЫТЬ ДЛЯ ХРИСТИАНИНА ВОЛНУЮЩИМ СОБЫТИЕМ,</font>
+  <font size="2"> если его жизнь исполнена Духом Святым, а каждый миг ее находится под Его благодатным воздействием.</font></td>
+  <td width="50%" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/qeustbak.gif" bgcolor="#000080">
+  <h1 align="center"><font color="#B7B7FF">Жизнь,<br>
+  ИСПОЛНЕННАЯ<br>
+  СВЯТЫМ ДУХОМ</font></h1>
+  </td>
+  <td width="25%" bgcolor="#000080"><!--webbot bot="Include" u-include="menu1.htm" tag="BODY" startspan -->
+<div align="center">
+
+<table border="0" cellpadding="4" width="90%">
+  <tr>
+    <td align="center" width="100%" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg" bgcolor="#C4C4FF"><font size="2" face="Times New Roman"><a href="/web/20020113210001/http://www.jesuswho.org/russian/whois.htm">Кто Он, Иисус</a></font></td>
+  </tr>
+  <tr>
+    <td align="center" width="100%" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg" bgcolor="#C4C4FF"><font size="2" face="Times New Roman"><a href="/web/20020113210001/http://www.jesuswho.org/russian/four.htm">Узнайте Иисуса
+      лично</a></font></td>
+  </tr>
+  <tr>
+    <td align="center" width="100%" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg" bgcolor="#C4C4FF"><font size="2" face="Times New Roman"><a href="/web/20020113210001/http://www.jesuswho.org/russian/jesusfil.htm">Фильм «ИИСУС»</a></font></td>
+  </tr>
+  <tr>
+    <td align="center" width="100%" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg" bgcolor="#C4C4FF"><font size="2" face="Times New Roman"><a href="/web/20020113210001/http://www.jesuswho.org/russian/spirit.htm">Жизнь, исполненная
+      Святым Духом</a></font></td>
+  </tr>
+  <tr>
+    <td align="center" width="100%" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg" bgcolor="#C4C4FF"><font size="2" face="Times New Roman"><a href="/web/20020113210001/http://www.jesuswho.org/russian/cmnl.htm">Христианская
+      миссия &quot;Новая Жизнь&quot;</a></font></td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="100%" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg" bgcolor="#C4C4FF"><font size="2" face="Times New Roman"><a href="/web/20020113210001/http://www.jesuswho.org/russian/resource.htm">Источники </a></font></td>
+  </tr>
+</table>
+</div>
+
+<!--webbot bot="Include" endspan i-checksum="3860" -->
+  </td>
+ </tr>
+</table>
+</center></div>
+
+<p align="center">&nbsp;</p>
+<div align="center"><center>
+
+<table border="0" cellpadding="25" width="90%">
+ <tr>
+  <td valign="top" width="100%" bgcolor="#FFF7EE">Библия говорит нам о трех типах людей...
+  <p><strong>1. ДУШЕВНЫЙ ЧЕЛОВЕК</strong>
+  (тот, кто не принял Христа) «Душевный человек не принимает того, потому что он почитает это безумием; и не может разуметь,
+  потому что о сем надобно судить духовно» (1 Коринфянам, 2:14).</p>
+  <p><img src="/web/20020113210001im_/http://www.jesuswho.org/russian/images/law4.1.gif" WIDTH="387" HEIGHT="197"></p>
+  <p><strong>2. ДУХОВНЫЙ ЧЕЛОВЕК </strong>
+  (тот, чья жизнь подчинена Духу Святому)<br>
+  «Но духовный судит о всем...» (1 Коринфянам, 2:15).</p>
+  <p><img src="/web/20020113210001im_/http://www.jesuswho.org/russian/images/law4.2.gif" WIDTH="405" HEIGHT="220"></p>
+  <p><strong>3. ПЛОТСКИЙ ЧЕЛОВЕК</strong></p>
+  <p>(тот, кто принял Христа, но полагается в христианской жизни на собственные силы)<br>
+  «И я не мог говорить с вами, братия, как с духовными, но как с плотскими, как с младенцами во
+  Христе. Я питал вас молоком, а не твердою пищею, ибо вы были еще не в силах, да и теперь не в силах,
+  потому что вы еще плотские. Ибо если между вами зависть, споры и разногласия, то не плотские ли вы
+  и не по человеческому ли обычаю поступаете?» <strong>(1 Коринфянам, 3:1 - 3)</strong>.</p>
+  <p><img src="/web/20020113210001im_/http://www.jesuswho.org/russian/images/law4.5.gif" WIDTH="387" HEIGHT="197"></p>
+
+<div align="center"><center>
+<table border="0" cellpadding="25" width="90%">
+ <tr>
+  <td width="100%" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg" bgcolor="#BFBFFF">
+  <b>1. БОГ ПРИГОТОВИЛ КАЖДОМУ ХРИСТИАНИНУ ПЛОДОТВОРНУЮ ЖИЗНЬ - «ЖИЗНЬ С ИЗБЫТКОМ».</b><br></td>
+ </tr>
+</table>
+</center></div>
+
+<p>Иисус сказал: «Я пришел для того, чтоб имели жизнь, и имели с избытком» (Иоанна, 10:10).</p>
+<p>«Я есмь Лоза, а вы ветви; кто пребывает во Мне, и Я в нем, тот приносит много
+плода; ибо без Меня не можете делать ничего» (Иоанна,15:5).</p>
+<p>«Плод же духа: любовь, радость, мир, долготерпение, благость, милосердие, вера, кротость, воздержание. На таковых нет закона» (Галатам, 5:22,23).</p>
+<p>"Но вы примете силу, когда сойдет на вас Дух Святый, и будете Мне свидетелями в Иерусалиме и во всей Иудее и
+    Самарии и даже до края земли" (Деяния,1:8).</p>
+<p><strong>ДУХОВНЫЙ ЧЕЛОВЕК</strong> - качества, присущие тому, кто полагается на Бога: <br>
+ <img src="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spiritualman.gif" WIDTH="460" HEIGHT="180"></p>
+<p>Проявление этих качеств в жизни зависит от того, насколько христианин доверяет свою жизнь Господу, и от его
+христианской зрелости. Тому, кто только начинает понимать служение Святого Духа, не следует смущаться, если он менее плодотворен, чем давно
+познавший эту истину.</p>
+<p>Почему же большинство христиан не имеют эту «жизнь с избытком»?></p>
+
+<div align="center"><center>
+<table border="0" cellpadding="25" width="90%">
+ <tr>
+  <td width="100%" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg" bgcolor="#BFBFFF">
+   <strong>2. ПЛОТСКИЙ ХРИСТИАНИН НЕ СПОСОБЕН ЖИТЬ ПЛОДОТВОРНОЙ ЖИЗНЬЮ, «ЖИЗНЬЮ С ИЗБЫТКОМ».</strong></td>
+ </tr>
+</table>
+</center></div>
+<p>Плотский человек полагается в христианской жизни на собственные силы:</p>
+<p>А. Любовь, прощение и сила Божья забыты им, - или же он вообще о них не знает (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Rom-5.html#8">Римлянам 5:8-10</a>;
+ <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Heb-10.html#1">Евреям 10:1-25</a>;
+ <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/1Jo-1.html#1">1 Иоанна 1</a>; <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/1Jo-2.html#1">2:1-3</a>; <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/2Pe-1.html#9">2 Петра 1:9</a>; <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Act-1.html#8">Деяния 1:8</a>).</p>
+<p>Б. Его духовная жизнь нестабильна, она сопровождается взлетами и падениями.</p>
+<p>В. Плотский человек не понимает самого себя. Он хочет поступать как надо, но не может.</p>
+<p>Г. Он не умеет жить по-христиански, черпая силы у Духа Святого (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/1Co-3.html#1">1 Коринфянам 3:1-3</a>;
+ <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Rom-7.html#15">Римлянам 7:15-24</a>;
+ <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Rom-8.html#7">8:7</a>;
+ <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Gal-5.html#16">Галатам 5:16-18</a>).</p>
+<p><strong>ПЛОТСКИЙ ЧЕЛОВЕК</strong> - христианин, который не полностью полагается на Бога. Ему могут быть присущи следующие черты:</p>
+<p><img src="/web/20020113210001im_/http://www.jesuswho.org/russian/images/carnalman.gif" WIDTH="468" HEIGHT="180"></p>
+<p>На единственный выход из этого тупика нам указывает третья истина... </p>
+
+<div align="center"><center>
+<table border="0" cellpadding="25" width="90%">
+ <tr>
+  <td width="100%" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg" bgcolor="#BFBFFF">
+  <strong>3. ИИСУС ОБЕЩАЛ ПЛОДОТВОРНУЮ ЖИЗНЬ, «ЖИЗНЬ С ИЗБЫТКОМ» ТЕМ, КТО ИСПОЛНЕН ДУХОМ СВЯТЫМ. </strong></td>
+ </tr>
+</table>
+</center></div>
+
+<p>Жизнь, исполненная Духом Святым - это жизнь, которой управляет Христос. Когда мы исполняемся Духом Святым, Иисус поселяется в нас и действует через нас
+ (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Joh-15.html#1">Иоанна 15</a>). <br>
+ <ul>
+  <li>Согласно Евангелию от Иоанна (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Joh-3.html#1">3:1-8</a>),
+      мы становимся христианами в результате действия Духа Святого. Он постоянно пребывает в нас с
+      момента нашего.духовного рождения (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Joh-1.html#12">Иоанна 1:12</a>; <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Col-2.html#9">Колоссянам 2:9,10</a>;
+      <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Joh-14.html#16">Иоанна 14:16,17</a>).
+      <strong>Хотя Святой Дух живет в каждом христианине, это не означает, что каждый христианин исполнен Святым Духом.</strong><br></li>
+  <li>Дух Святой - неиссякаемый источник плодотворной жизни (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Joh-7.html#37">Иоанна 7:37-39</a>).<br></li>
+  <li>Дух Святой пришел, чтобы прославить Христа (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Joh-16.html#1">Иоанна 16:1-15</a>).
+        Тот, кто исполнен Духом Святым - истинный ученик Христа.<br></li>
+  <li>Перед вознесением Иисус сказал, что Дух Святой дает нам силу свидетельствовать о Нем людям (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Act-1.html#1">Деяния 1:1-9</a>).<br></li>
+ </ul>
+<p>Как же мы можем исполниться Духом Святым?</p>
+
+<div align="center"><center>
+<table border="0" cellpadding="25" width="90%">
+ <tr>
+  <td width="100%" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg" bgcolor="#BFBFFF">
+   <strong>4. ВЕРОЙ И ТОЛЬКО ВЕРОЙ МЫ ИСПОЛНЯЕМСЯ СВЯТЫМ ДУХОМ, КОТОРЫЙ РУКОВОДИТ НАШЕЙ ЖИЗНЬЮ И ДАЕТ НАМ СИЛЫ.</strong><br></td>
+ </tr>
+</table>
+</center></div>
+
+<p>Вы можете <strong>прямо сейчас</strong> исполниться Духом Святым, если вы:
+ <ul>
+  <li><p>Искренне желаете вручить руководство своей жизнью Духу Святому (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Mat-5.html#6">Матфея 5:6</a>; <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Joh-7.html#37">Иоанна 7:37-39</a>).</p>
+      <p>Исповедуйте свои грехи (1 Иоанна 1:9). Согласитесь с Богом, что вы согрешили. Возблагодарите Бога с <b>верой</b> за то, что Он <b>простил</b> все ваши грехи - прошлые, настоящие и будущие - ибо Христос умер за вас
+       (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Col-2.html#13">Колоссянам 2:13-15</a>; 
+       <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/1Jo-1.html#1">1 Иоанна 1:1</a>; 
+       <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/1Jo-2.html#1">2:1-3</a>;
+       <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Heb-10.html#1">Евреям 10:1-17</a>).
+       </p>
+  </li>
+ </ul>
+ <ul>
+  <li>Через <b>веру </b>получите исполнение Духом Святым, согласно:
+     <p>1. <strong>Его повелению</strong> - исполняйтесь Духом.«И не упивайтесь вином, от которого бывает распутство, но исполняйтесь Духом» (Ефесянам, 5:18).</p>
+     <p>2. <strong>Его обетованию</strong> - Он всегда отвечает на нашу молитву, если мы
+          молимся в соответствии с Его волей. «И вот какое дерзновение мы имеем к Нему, что, когда просим
+          чего по воле Его, Он слушает нас; а когда мы знаем, что Он слушает нас во всем, чего бы мы ни просили, -
+          знаем и то, что получаем просимое от Него» (1 Иоанна, 5:14,15).</p>
+     <p>Вера находит свое выражение в молитве...</p>
+  </li>
+ </ul>
+
+<div align="center"><center>
+<table border="0" cellpadding="25" width="90%">
+ <tr>
+  <td width="100%" bgcolor="#FFFFFF">
+  <p align="center"><strong>КАК МОЛИТЬСЯ С ВЕРОЙ О ТОМ, ЧТОБЫ ИСПОЛНИТЬСЯ ДУХОМ СВЯТЫМ</strong></p>
+  <p>Мы исполняемся Духом Святым только верой. Одно из выражений этой веры - молитва. Например, можно помолиться так:</p>
+  <blockquote>
+  <p>«Отец мой Небесный, Ты нужен мне. Я каюсь, что пытался сам управлять своей жизнью, и этим согрешил против Тебя.
+     Благодарю Тебя за прощение моих грехов, искупленных крестной смертью Твоего Сына. Теперь я снова приглашаю Христа занять Его место на
+     троне моей жизни. Исполни меня Духом Святым, как Ты <b>повелел </b>мне исполниться и как Ты <b>обещал </b>в
+     Своем Слове, что сделаешь так, если я попрошу Тебя об этом с верой. Как знак моей веры, прими
+     благодарность мою за то, что Ты один управляешь отныне моей жизнью и исполняешь Духом Святым».</p>
+  </blockquote>
+  <p>Выражают ли эти слова желание вашего сердца? Если да - склонитесь в молитве, и Бог исполнит вас Духом Святым <strong>прямо сейчас.</strong></p>
+  <hr>
+  <p align="center"><strong>НА ЧЕМ ОСНОВАНА НАША УВЕРЕННОСТЬ В ТОМ, ЧТО МЫ ИСПОЛНИЛИСЬ ДУХОМ СВЯТЫМ</strong></p>
+  <p>Обратились ли вы к Богу с просьбой исполнить вас Духом Святым? Уверены ли вы в том, что Он выполнил вашу просьбу?</p>
+  <p>На чем основана ваша уверенность? (На том, что на Бога и Его Слово можно безусловно положиться:
+   <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Heb-11.html#6">Евреям 11:б</a>; <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Rom-14.html#22">Римлянам, 14:22,23</a>).</p>
+  <p>Не полагайтесь на свои чувства. Основание вашей веры - не наши чувства, а незыблемые Божьи обетования, данные нам в Библии. Христианин живет верой в Бога и Его Слово. Этот
+     рисунок, изображающий поезд, показывает взаимоотношения между <b>фактом </b>(Бог и Его Слово), <b>верой </b>(наше доверие Богу и Его Слову) и<strong> чувствами</strong>
+     (результатом нашей веры и послушания)
+     (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Joh-14.html#21">Иоанна, 14:21</a>).</p>
+  <p><img src="/web/20020113210001im_/http://www.jesuswho.org/russian/images/train.gif" WIDTH="450" HEIGHT="101"></p>
+  <p>Понятно, что паровоз может ехать и без вагона. Однако было бы совершенно бесполезно пытаться тянуть поезд при помощи вагона.
+     Подобным образом мы, христиане, не должны полагаться на наши чувства. Двигатель нашей жизни - это Бог и Его Слово.</p>
+  <hr>
+  <p align="center"><strong>ЧТО ТАКОЕ - «ПОСТУПАТЬ ПО ДУХУ»?</strong></p>
+  <p>Вера (в Бога и Его обещания) вот единственное средство, позволяющее христианину подчинить жизнь контролю и
+     водительству Святого Духа. Если вы будете полагаться на Христа ежедневно, ежечасно, ежеминутно, то:<br>
+    <ol>
+      <li>Все яснее будут видны в вашей жизни плоды Духа 
+          (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Gal-5.html#22">Галатам 5:22,23</a>).
+          Вы станете все больше походить на Христа, преобразуясь в Его образ 
+          (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Rom-12.html#2">Римлянам 12:2</a>;
+           <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/2Co-5.html#18">2 Коринфянам 3:18</a>).<br></li>
+      <li>Ваша молитвенная жизнь и изучение Слова Божьего обретут новое, глубокое значение.<br></li>
+      <li>Дух Святой даст вам силу свидетельствовать людям о Христе 
+          (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Act-1.html#8">Деяния 1:8</a>).<br></li>
+      <li>Вы будете готовы к духовной борьбе с миром 
+          (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/1Jo-2.html#15">1 Иоанна 2:15-17</a>), с плотью 
+          (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Gal-5.html#17">Галатам 5:16,17</a>) и с дьяволом 
+          (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/1Pe-5.html#7">1 Петра 5:7-9</a>; 
+          <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Eph-6.html#10">Ефесянам 6:10-13</a>).<br></li>
+      <li>Дух Святой даст вам силу противостоять искушению и греху 
+          (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/1Co-10.html#13">1 Коринфянам 10:13</a>; 
+          <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Phi-4.html#13">Филиппийцам 4:13</a>;
+           <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Eph-1.html#19">Ефесянам 1:19-23</a>; 
+           <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Eph-6.html#10">6:10</a>; 
+           <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/2Ti-1.html#7">2 Тимофею 1:7</a>; 
+           <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Rom-6.html#1">Римлянам 6:1-16</a>).<br></li>
+    </ol>
+  <hr>
+  <p align="center"><strong>ДУХОВНОЕ ДЫХАНИЕ</strong></p>
+  <p>Любовь и прощение Бога даются нам верой.<br>
+     Если вы совершили что-то неугодное (поведение или поступок) Господу, несмотря на вашу искреннюю веру и желание служить Ему,
+     сделайте так: поблагодарите Бога за то, что Он простил ваши грехи - прошлые, настоящие и будущие - во имя жертвы на Голгофе. 
+     Вспомните о Его любви и прощении, укрепитесь в вере - и больше не отступайте от Христа.</p>
+
+  <p>Если вы совершите грех и снова возьмете жизнь в свои руки (явное непослушание), тогда надо сделать духовные выдох и вдох.<br>
+     Духовное дыхание (выдыхание нечистого воздуха и вдыхание чистого) помогает восстановить веру и вновь ощутить Божью любовь и прощение.</p>
+  <blockquote>
+  <p>1. <strong>Выдох</strong> - исповедуйтесь в грехе - согласитесь с Богом в том, что вы совершили грех. Поблагодарите Его за то, что Он простил ваш грех 
+     (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/1Jo-1.html#9">1 Иоанна 1:9</a> и 
+     <a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Heb-10.html#1">Евреям 10:1-25</a>).
+     Покаянию сопутствует исповедь в грехе, отказ от него.</p>
+  <p>2. <strong>Вдох</strong> - отдайте свою жизнь в руки Христа и примите верой полноту Духа Святого. Веруйте в то, что теперь Он
+     руководит вашей жизнью и дает вам силы, согласно повелению 
+     (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/Eph-5.html#18">Ефесянам 5:18</a>) и обетованию 
+     (<a href="/web/20020113210001/http://www.serve.com/irr-tv/Russian/Bible/1Jo-5.html#14">1 Иоанна 5:14,15</a>).</p>
+  </blockquote>
+  <hr>
+  <p><font size="2">Если эти станицы показались вам важными и полезными, пожалуйста
+        расскажите о них вашим знакомым. Буклет «Жизнь, исполненная Святым Духом» был издан в миллионах
+        экземпляров на основных языках нашей планеты, благодаря чему тысячи христиан узнали как
+        беспрестанно чувствовать силу и руководство Святого Духа. Живя теперь изобильной жизнью,
+        обещанной Христом,они получили возможность еще эффективнее делиться с окружающими своей верой в
+        Христа. Опыт подтверждает необходимость соблюдения повеления Христа Своим ученикам
+        ждать пока их укрепит Святой Дух, прежде чем иди по всему миру с Благой Вестью о Его любви и
+        прощении. Большинство христиан, узнавших эту истину, касающуюся Святого Духа, стремятся
+        активно делиться своей верой в Христа и участвовать в исполнении нашим поколением Великого Поручения. </font></p>
+  <p><font size="2">Если вы хотите получить экземпляры этого буклета, укажите это в строке Комментарии.</font></td>
+ </tr>
+</table>
+</center></div>
+  </td>
+ </tr>
+</table>
+</center></div>
+
+<p>&nbsp;</p>
+<div align="center"><center>
+
+<table border="0" cellpadding="25" width="90%" bgcolor="#FFFFFF">
+ <tr>
+  <td width="100%">
+    <p align="center"><font size="4"><b>ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ</b></font></p>
+    <!--webbot BOT="GeneratedScript" PREVIEW=" " startspan --><script Language="JavaScript"><!--
+function FrontPage_Form1_Validator(theForm)
+{
+
+  if (theForm.Email.value == "")
+  {
+    alert("Please enter a value for the \"Email\" field.");
+    theForm.Email.focus();
+    return (false);
+  }
+
+  if (theForm.Email.value.length < 1)
+  {
+    alert("Please enter at least 1 characters in the \"Email\" field.");
+    theForm.Email.focus();
+    return (false);
+  }
+  return (true);
+}
+//--></script><!--webbot BOT="GeneratedScript" endspan --><form method="POST" enctype="Cyrillic" action="/web/20020113210001/http://www.jesuswho.org/russian/_vti_bin/shtml.exe/spirit.htm" onsubmit="return FrontPage_Form1_Validator(this)" name="FrontPage_Form1" webbot-action="--WEBBOT-SELF--">
+      <!--webbot bot="SaveResults" startspan S-Email-Format="TEXT/PRE"
+      B-Email-Label-Fields="TRUE" B-Email-ReplyTo-From-Field="TRUE"
+      S-Email-ReplyTo="email" B-Email-Subject-From-Field="FALSE"
+      S-Email-Subject="Response from the Holy Spirit Page"
+      S-Builtin-Fields="Date Time REMOTE_USER" U-Confirmation-Url="confirm.htm"
+      S-Email-Address="russianresponse@greatcom.org" U-File="russian_response"
+      S-Format --><input TYPE="hidden" NAME="VTI-GROUP" VALUE="0"><!--webbot
+      bot="SaveResults" endspan i-checksum="43374" --><input type="hidden" name="form_name" value="russian_response"><input type="hidden" name="Response source" value="Holy_Spirit_Booklet"><p><font size="2" face="Times New Roman"><input type="checkbox" name="Prayed_Fill_Holy_Spirit" value="Send_More_Info">
+      Я помолился и попросил Святого Духа
+      руководить мною и
+      укрепить меня. Пожалуйста, пришлите мне информацию, которая поможет мне возрастать как христианину.</font></p>
+    <p><font size="2"><input type="checkbox" name="Not_Sure_A_Christian" value="How_I_Become_Christian">
+      Я не уверен в том, что я христианин. Не могли бы вы прислать мне больше информации о том, как я могу стать христианином.</font></p>
+    <p><font size="2"><input type="checkbox" name="Have_More_Questions" value="Send_More_Information">
+      Я еще не получил ответа на все свои вопросы. Пожалуйста, пришлите мне больше информации об Иисусе Христе.</font></p>
+
+   <div align="center"><center>
+   <table border="0" cellpadding="2">
+     <tr>
+      <td align="right"><font size="3"><strong>Страна:</strong></font></td>
+      <td align="right" width="202"><font size="2"><input type="text" size="24" name="Country"></font></td>
+     </tr>
+     <tr>
+      <td align="right"><font size="3"><strong>Город:</strong></font></td>
+      <td align="right" width="202"><font size="2" face="Times New Roman"><input type="text" size="24" name="City"></font></td>
+     </tr>
+     <tr>
+      <td align="right"><font size="3"><strong>Почтовый индекс:</strong></font></td>
+      <td align="right" width="202"><font size="2"><input type="text" size="24" name="Postal Index"></font></td>
+     </tr>
+     <tr>
+      <td align="right"><font size="3"><strong>Улица:</strong></font></td>
+      <td align="right" width="202"><font size="2"><input type="text" size="24" name="Street"></font></td>
+     </tr>
+     <tr>
+      <td align="right"><font size="3"><strong>Дом:</strong></font></td>
+      <td align="right" width="202"><font size="2"><input type="text" size="24" name="House#"></font></td>
+     </tr>
+     <tr>
+      <td align="right"><font size="3"><strong>Корпус:</strong></font>
+        <font size="2"><input type="text" size="10" name="Building#"></font></td>
+      <td align="right" width="202"><font size="3"><strong>Квартира:</strong></font>
+        <font size="2"><input type="text" size="10" name="Apartment/Flat#"></font></td>
+     </tr>
+     <tr>
+      <td align="right"><font size="3"><strong>ФИО</strong></font></td>
+      <td align="right" width="202"><font size="2"><input type="text" size="24" name="Name-Last-First-Middle"></font></td>
+     </tr>
+     <tr>
+      <td align="right"><font size="3"><strong>Телефон:</strong></font><font size="2"><input type="text" size="12" name="Telephone"></font></td>
+      <td align="right" width="202"><font size="3"><strong>Факс:</strong></font><font size="2"> <input type="text" size="12" name="FAXNumber"></font></td>
+     </tr>
+     <tr>
+      <td align="right"><font size="3"><strong>E-mail:</strong></font></td>
+      <td align="right" width="202"><font size="2"><!--webbot bot="Validation"
+        S-Data-Type="String" B-Value-Required="TRUE" I-Minimum-Length="1" --><input type="text" size="24" name="Email"></font></td>
+     </tr>
+     <tr>
+      <td align="right"><font size="3"><strong>Комментарии:</strong></font></td>
+      <td align="right" width="202"><font size="2"><input type="text" size="24" name="Comments"></font></td>
+     </tr>
+     <tr>
+      <td align="right"></td>
+      <td align="right" width="202"></td>
+     </tr>
+     <tr>
+      <td align="left" colspan="2"><font size="3"><strong><div align="left"><p></strong></font>
+      <font size="2"><input type="submit" name="submit" value="    ">&nbsp;&nbsp; </font>
+      <font size="3"><strong>заказать<br>
+      <input type="reset" value="    " name="reset">&nbsp; очистить бланк</strong></font></div>
+      </td>
+     </tr>
+      </table>
+      </center></div>
+    </form>
+    </td>
+  </tr>
+</table>
+</center></div><!--webbot bot="Include" u-include="foot1.htm" tag="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="4" width="90%">
+  <tr>
+    <td align="center" width="15%" bgcolor="#FFFFFF" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg"><font size="2" face="Times New Roman"><a href="/web/20020113210001/http://www.jesuswho.org/russian/default.htm">домашняя страница</a></font></td>
+    <td align="center" width="14%" bgcolor="#FFFFFF" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg"><font size="2" face="Times New Roman"><a href="/web/20020113210001/http://www.jesuswho.org/russian/whois.htm">кто Он, Иисус?</a></font></td>
+    <td align="center" width="14%" bgcolor="#FFFFFF" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg"><font size="2" face="Times New Roman"><a href="/web/20020113210001/http://www.jesuswho.org/russian/four.htm">четыре закона</a></font></td>
+    <td align="center" width="14%" bgcolor="#FFFFFF" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg"><font size="2" face="Times New Roman"><a href="/web/20020113210001/http://www.jesuswho.org/russian/jesusfil.htm">фильм «ИИСУС» </a></font></td>
+    <td align="center" width="14%" bgcolor="#FFFFFF" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg"><font size="2" face="Times New Roman"><a href="/web/20020113210001/http://www.jesuswho.org/russian/spirit.htm">жизнь, исполненная
+    Духом</a></font></td>
+    <td align="center" width="14%" bgcolor="#FFFFFF" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg"><font size="2" face="Times New Roman"><a href="/web/20020113210001/http://www.jesuswho.org/russian/cmnl.htm">миссия
+      &quot;Новая Жизнь&quot;</a></font></td>
+    <td align="center" width="15%" bgcolor="#FFFFFF" background="/web/20020113210001im_/http://www.jesuswho.org/russian/images/spirback.jpg"><font size="2" face="Times New Roman"><a href="/web/20020113210001/http://www.jesuswho.org/russian/resource.htm">источники</a></font></td>
+  </tr>
+</table>
+</center></div>
+
+<!--webbot bot="Include" endspan i-checksum="26827" -->
+<!--webbot bot="Include" u-include="foot2.htm" tag="BODY" startspan -->
+
+<p align="center"><font color="#808080" size="1" face="Times New Roman">© 2000
+Христианская миссия &quot;Новая
+Жизнь&quot;</font><font face="Times New Roman"><font color="#808080" size="1"> </font><font color="#808080" size="3">|</font></font><font color="#808080" size="1" face="Times New Roman"> <a href="mailto:webmaster@nle.ccci.org">webmaster@nle.ccci.org</a></font><font color="#808080" size="1"> </font></p>
+<!--webbot bot="Include" endspan i-checksum="17720" -->
+
+<p><font color="#808080" size="1">Последние изменения: <!--webbot bot="Timestamp" s-type="EDITED" s-format="%d/%m/%y" startspan -->30/05/01<!--webbot bot="Timestamp" endspan i-checksum="12415" --></font></p>
+<p><font size="2">&nbsp;</font></p>
+
+</font>
+
+</body>
+</html>
+
+
+
+
+
+<!--
+     FILE ARCHIVED ON 21:00:01 Jan 13, 2002 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 8:25:17 Oct 21, 2013.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->

@@ -21,7 +21,7 @@ function select_form($form, &$form_state) {
   );
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => mylanguage_t_ethnic('View Resources'),
+    '#value' =>translate('View Resources'),
   );   
   return $form;
 }
@@ -46,7 +46,7 @@ function select_aboriginal_form($form, &$form_state) {
   );
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => mylanguage_t_ethnic('View Resources'),
+    '#value' =>translate('View Resources'),
   );   
   return $form;
 }
@@ -72,7 +72,7 @@ function select_country_form($form, &$form_state) {
   );
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => mylanguage_t_ethnic('View Resources'),
+    '#value' =>translate('View Resources'),
   );   
   return $form;
 }
@@ -133,7 +133,7 @@ function select_translated_form($form, &$form_state) {
   );
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => mylanguage_t_ethnic('View Translated Resources'),
+    '#value' =>translate('View Translated Resources'),
   );   
   return $form;
 }

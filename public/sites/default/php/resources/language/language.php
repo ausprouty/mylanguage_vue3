@@ -106,13 +106,13 @@ function language_select_form($form, &$form_state){
 	// from https://timonweb.com/posts/how-to-create-an-ajax-autocomplete-textfield-in-drupal-7/
 	$form ['language'] = array(
 	  '#type' => 'textfield',
-		'#title' => mylanguage_t_ethnic('Other Languages'),
+		'#title' =>translate('Other Languages'),
 		'#size'=> 20,
 		'#autocomplete_path' =>'language/autocomplete',
 	);
 	$form ['submit'] = array(
 		'#type' => 'submit',
-		'#value'=> mylanguage_t_ethnic('Find'),
+		'#value'=>translate('Find'),
 		'#suffix' => '<br><br>'
 	);
 	return $form;

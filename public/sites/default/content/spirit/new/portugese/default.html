@@ -1,0 +1,903 @@
+﻿<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+
+<!-- Start Wayback Rewrite JS Include -->
+<script type="text/javascript" src="/static/js/analytics.js" ></script>
+
+<script type="text/javascript" src="/static/js/jwplayer/jwplayer.js" ></script>
+<script type="text/javascript" src="/static/js/video-embed-rewriter.js"></script>
+<script type="text/javascript">
+function initYTVideo(id)
+{
+	_wmVideos_.init("/web/", id);
+}
+</script>
+<!-- End Wayback Rewrite JS Include -->
+
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>A Vida Cheia do Espírito Santo</title>
+</head>
+
+<body bgcolor="#FFFFFF" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/back1.gif" link="#000080">
+<!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script> if (window.archive_analytics) { window.archive_analytics.values['server_ms']=window.archive_analytics.get_cookie("wb_total_perf"); window.archive_analytics.values['server_name']="wwwb-app19.us.archive.org"}; </script>
+
+<script type="text/javascript" src="/static/js/disclaim-element.js" ></script>
+<script type="text/javascript" src="/static/js/graph-calc.js" ></script>
+<script type="text/javascript" src="/static/jflot/jquery.min.js" ></script>
+<script type="text/javascript">
+//<![CDATA[
+var firstDate = 820454400000;
+var lastDate = 1388534399999;
+var wbPrefix = "/web/";
+var wbCurrentUrl = "http:\/\/www.jesuswho.org\/portugues\/spirit.htm";
+
+var curYear = -1;
+var curMonth = -1;
+var yearCount = 18;
+var firstYear = 1996;
+var imgWidth = 450;
+var yearImgWidth = 25;
+var monthImgWidth = 2;
+var trackerVal = "none";
+var displayDay = "30";
+var displayMonth = "Nov";
+var displayYear = "2001";
+var prettyMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+function showTrackers(val) {
+	if(val == trackerVal) {
+		return;
+	}
+	if(val == "inline") {
+		document.getElementById("displayYearEl").style.color = "#ec008c";
+		document.getElementById("displayMonthEl").style.color = "#ec008c";
+		document.getElementById("displayDayEl").style.color = "#ec008c";		
+	} else {
+		document.getElementById("displayYearEl").innerHTML = displayYear;
+		document.getElementById("displayYearEl").style.color = "#ff0";
+		document.getElementById("displayMonthEl").innerHTML = displayMonth;
+		document.getElementById("displayMonthEl").style.color = "#ff0";
+		document.getElementById("displayDayEl").innerHTML = displayDay;
+		document.getElementById("displayDayEl").style.color = "#ff0";
+	}
+   document.getElementById("wbMouseTrackYearImg").style.display = val;
+   document.getElementById("wbMouseTrackMonthImg").style.display = val;
+   trackerVal = val;
+}
+function getElementX2(obj) {
+	var thing = jQuery(obj);
+	if((thing == undefined) 
+			|| (typeof thing == "undefined") 
+			|| (typeof thing.offset == "undefined")) {
+		return getElementX(obj);
+	}
+	return Math.round(thing.offset().left);
+}
+function trackMouseMove(event,element) {
+
+   var eventX = getEventX(event);
+   var elementX = getElementX2(element);
+   var xOff = eventX - elementX;
+	if(xOff < 0) {
+		xOff = 0;
+	} else if(xOff > imgWidth) {
+		xOff = imgWidth;
+	}
+   var monthOff = xOff % yearImgWidth;
+
+   var year = Math.floor(xOff / yearImgWidth);
+	var yearStart = year * yearImgWidth;
+   var monthOfYear = Math.floor(monthOff / monthImgWidth);
+   if(monthOfYear > 11) {
+       monthOfYear = 11;
+   }
+   // 1 extra border pixel at the left edge of the year:
+   var month = (year * 12) + monthOfYear;
+   var day = 1;
+	if(monthOff % 2 == 1) {
+		day = 15;
+	}
+	var dateString = 
+		zeroPad(year + firstYear) + 
+		zeroPad(monthOfYear+1,2) +
+		zeroPad(day,2) + "000000";
+
+	var monthString = prettyMonths[monthOfYear];
+	document.getElementById("displayYearEl").innerHTML = year + 1996;
+	document.getElementById("displayMonthEl").innerHTML = monthString;
+	// looks too jarring when it changes..
+	//document.getElementById("displayDayEl").innerHTML = zeroPad(day,2);
+
+	var url = wbPrefix + dateString + '/' +  wbCurrentUrl;
+	document.getElementById('wm-graph-anchor').href = url;
+
+   //document.getElementById("wmtbURL").value="evX("+eventX+") elX("+elementX+") xO("+xOff+") y("+year+") m("+month+") monthOff("+monthOff+") DS("+dateString+") Moy("+monthOfYear+") ms("+monthString+")";
+   if(curYear != year) {
+       var yrOff = year * yearImgWidth;
+       document.getElementById("wbMouseTrackYearImg").style.left = yrOff + "px";
+       curYear = year;
+   }
+   if(curMonth != month) {
+       var mtOff = year + (month * monthImgWidth) + 1;
+       document.getElementById("wbMouseTrackMonthImg").style.left = mtOff + "px";
+       curMonth = month;
+   }
+}
+//]]>
+</script>
+
+<style type="text/css">body{margin-top:0!important;padding-top:0!important;min-width:800px!important;}#wm-ipp a:hover{text-decoration:underline!important;}</style>
+<div id="wm-ipp" style="display:none; position:relative;padding:0 5px;min-height:70px;min-width:800px; z-index:9000;">
+<div id="wm-ipp-inside" style="position:fixed;padding:0!important;margin:0!important;width:97%;min-width:780px;border:5px solid #000;border-top:none;background-image:url(/static/images/toolbar/wm_tb_bk_trns.png);text-align:center;-moz-box-shadow:1px 1px 3px #333;-webkit-box-shadow:1px 1px 3px #333;box-shadow:1px 1px 3px #333;font-size:11px!important;font-family:'Lucida Grande','Arial',sans-serif!important;">
+   <table style="border-collapse:collapse;margin:0;padding:0;width:100%;"><tbody><tr>
+   <td style="padding:10px;vertical-align:top;min-width:110px;">
+   <a href="/web/" title="Wayback Machine home page" style="background-color:transparent;border:none;"><img src="/static/images/toolbar/wayback-toolbar-logo.png" alt="Wayback Machine" width="110" height="39" border="0"/></a>
+   </td>
+   <td style="padding:0!important;text-align:center;vertical-align:top;width:100%;">
+
+       <table style="border-collapse:collapse;margin:0 auto;padding:0;width:570px;"><tbody><tr>
+       <td style="padding:3px 0;" colspan="2">
+       <form target="_top" method="get" action="/web/form-submit.jsp" name="wmtb" id="wmtb" style="margin:0!important;padding:0!important;"><input type="text" name="url" id="wmtbURL" value="http://www.jesuswho.org/portugues/spirit.htm" style="width:400px;font-size:11px;font-family:'Lucida Grande','Arial',sans-serif;" onfocus="javascript:this.focus();this.select();" /><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20011130082010" /><input type="submit" value="Go" style="font-size:11px;font-family:'Lucida Grande','Arial',sans-serif;margin-left:5px;" /><span id="wm_tb_options" style="display:block;"></span></form>
+       </td>
+       <td style="vertical-align:bottom;padding:5px 0 0 0!important;" rowspan="2">
+           <table style="border-collapse:collapse;width:110px;color:#99a;font-family:'Helvetica','Lucida Grande','Arial',sans-serif;"><tbody>
+			
+           <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+           <tr style="width:110px;height:16px;font-size:10px!important;">
+           	<td style="padding-right:9px;font-size:11px!important;font-weight:bold;text-transform:uppercase;text-align:right;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+                       Oct
+                       
+               </td>
+               <td id="displayMonthEl" style="background:#000;color:#ff0;font-size:11px!important;font-weight:bold;text-transform:uppercase;width:34px;height:15px;padding-top:1px;text-align:center;" title="You are here: 8:20:10 Nov 30, 2001">NOV</td>
+				<td style="padding-left:9px;font-size:11px!important;font-weight:bold;text-transform:uppercase;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+		                <a href="/web/20020309001305/http://www.jesuswho.org/portugues/spirit.htm" style="text-decoration:none;color:#33f;font-weight:bold;background-color:transparent;border:none;" title="9 Mar 2002"><strong>MAR</strong></a>
+		                
+               </td>
+           </tr>
+
+           <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+           <tr>
+               <td style="padding-right:9px;white-space:nowrap;overflow:visible;text-align:right!important;vertical-align:middle!important;" nowrap="nowrap">
+               
+                       <img src="/static/images/toolbar/wm_tb_prv_off.png" alt="Previous capture" width="14" height="16" border="0" />
+                       
+               </td>
+               <td id="displayDayEl" style="background:#000;color:#ff0;width:34px;height:24px;padding:2px 0 0 0;text-align:center;font-size:24px;font-weight: bold;" title="You are here: 8:20:10 Nov 30, 2001">30</td>
+				<td style="padding-left:9px;white-space:nowrap;overflow:visible;text-align:left!important;vertical-align:middle!important;" nowrap="nowrap">
+               
+		                <a href="/web/20011214024406/http://www.jesuswho.org/portugues/spirit.htm" title="2:44:06 Dec 14, 2001" style="background-color:transparent;border:none;"><img src="/static/images/toolbar/wm_tb_nxt_on.png" alt="Next capture" width="14" height="16" border="0"/></a>
+		                
+			    </td>
+           </tr>
+
+           <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+           <tr style="width:110px;height:13px;font-size:9px!important;">
+				<td style="padding-right:9px;font-size:11px!important;font-weight: bold;text-align:right;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+                       2000
+                       
+               </td>
+               <td id="displayYearEl" style="background:#000;color:#ff0;font-size:11px!important;font-weight: bold;padding-top:1px;width:34px;height:13px;text-align:center;" title="You are here: 8:20:10 Nov 30, 2001">2001</td>
+				<td style="padding-left:9px;font-size:11px!important;font-weight: bold;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+		                <a href="/web/20030113060408/http://www.jesuswho.org/portugues/spirit.htm" style="text-decoration:none;color:#33f;font-weight:bold;background-color:transparent;border:none;" title="13 Jan 2003"><strong>2003</strong></a>
+		                
+				</td>
+           </tr>
+           </tbody></table>
+       </td>
+
+       </tr>
+       <tr>
+       <td style="vertical-align:middle;padding:0!important;">
+           <a href="/web/20010604131348*/http://www.jesuswho.org/portugues/spirit.htm" style="color:#33f;font-size:11px;font-weight:bold;background-color:transparent;border:none;" title="See a list of every capture for this URL"><strong>57 captures</strong></a>
+           <div style="margin:0!important;padding:0!important;color:#666;font-size:9px;padding-top:2px!important;white-space:nowrap;" title="Timespan for captures of this URL">30 Nov 01 - 13 Dec 11</div>
+       </td>
+       <td style="padding:0!important;">
+       <a style="position:relative; white-space:nowrap; width:450px;height:27px;" href="" id="wm-graph-anchor">
+       <div id="wm-ipp-sparkline" style="position:relative; white-space:nowrap; width:450px;height:27px;background-color:#fff;cursor:pointer;border-right:1px solid #ccc;" title="Explore captures for this URL">
+			<img id="sparklineImgId" style="position:absolute; z-index:9012; top:0px; left:0px;"
+				onmouseover="showTrackers('inline');" 
+				onmouseout="showTrackers('none');"
+				onmousemove="trackMouseMove(event,this)"
+				alt="sparklines"
+				width="450"
+				height="27"
+				border="0"
+				src="/web/jsp/graph.jsp?graphdata=450_27_1996:-1:000000000000_1997:-1:000000000000_1998:-1:000000000000_1999:-1:000000000000_2000:-1:000000000000_2001:10:000000000011_2002:-1:001101000010_2003:-1:110100000101_2004:-1:010010010101_2005:-1:010100010100_2006:-1:220001600001_2007:-1:001011100000_2008:-1:101010a20200_2009:-1:110000000000_2010:-1:000000000000_2011:-1:000000100001_2012:-1:000000000000_2013:-1:000000000000"></img>
+			<img id="wbMouseTrackYearImg" 
+				style="display:none; position:absolute; z-index:9010;"
+				width="25" 
+				height="27"
+				border="0"
+				src="/static/images/toolbar/transp-yellow-pixel.png"></img>
+			<img id="wbMouseTrackMonthImg"
+				style="display:none; position:absolute; z-index:9011; " 
+				width="2"
+				height="27" 
+				border="0"
+				src="/static/images/toolbar/transp-red-pixel.png"></img>
+       </div>
+		</a>
+
+       </td>
+       </tr></tbody></table>
+   </td>
+   <td style="text-align:right;padding:5px;width:65px;font-size:11px!important;">
+       <a href="javascript:;" onclick="document.getElementById('wm-ipp').style.display='none';" style="display:block;padding-right:18px;background:url(/static/images/toolbar/wm_tb_close.png) no-repeat 100% 0;color:#33f;font-family:'Lucida Grande','Arial',sans-serif;margin-bottom:23px;background-color:transparent;border:none;" title="Close the toolbar">Close</a>
+       <a href="http://faq.web.archive.org/" style="display:block;padding-right:18px;background:url(/static/images/toolbar/wm_tb_help.png) no-repeat 100% 0;color:#33f;font-family:'Lucida Grande','Arial',sans-serif;background-color:transparent;border:none;" title="Get some help using the Wayback Machine">Help</a>
+   </td>
+   </tr></tbody></table>
+
+</div>
+</div>
+<script type="text/javascript">
+ var wmDisclaimBanner = document.getElementById("wm-ipp");
+ if(wmDisclaimBanner != null) {
+   disclaimElement(wmDisclaimBanner);
+ }
+</script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+
+<!--webbot bot="Include" u-include="head1.htm" tag="BODY" startspan -->
+
+<p align="center"><STYLE TYPE="text/css">
+
+<!--
+
+A:link {text-decoration: none}
+
+
+
+
+
+-->
+
+</STYLE></p>
+<div align="center"><center>
+
+<table border="0" cellpadding="5" cellspacing="0" width="93%" height="31">
+  <tr>
+    <td width="50%" bgcolor="#800080" height="21"><font color="#FFFFFF" size="4" face="Arial">português
+    site </font></td>
+    <td align="right" width="50%" bgcolor="#800080" height="21"><font size="4" face="Arial" color="#FFFFFF"><a href="/web/20011130082010/http://www.jesuswho.org/portugues/lang.htm">outras linguagens</a></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" endspan i-checksum="15204" -->
+
+<div align="center"><center>
+
+<table border="0" cellpadding="10" cellspacing="0" width="93%">
+  <tr>
+    <td width="30%" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif" bgcolor="#BFBFFF"><p align="left"><font face="Arial" size="2" color="#000080"><strong>Cada dia pode ser uma aventura emocionante
+    para o cristão que conhece a realidade de viver cheio do Espírito Santo e que vive
+    constantemente, cada momento, sob Sua maravilhosa orientação. </strong></font></td>
+    <td width="42%" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/qeustbak.gif" bgcolor="#000080"><b><font SIZE="4"><p align="center"></font><font size="6" color="#C4C4FF" face="Arial">Você Já Fez a
+    Maravilhosa Descoberta da Vida Cheia do Espírito? </font></b></td>
+    <td width="28%" bgcolor="#000080"><!--webbot bot="Include" u-include="menu1.htm" tag="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="4" width="90%">
+  <tr>
+    <td align="center" width="100%" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif" bgcolor="#C4C4FF"><strong><font
+    color="#800080" face="Arial" size="2"><a href="/web/20011130082010/http://www.jesuswho.org/portugues/whois.htm">Quem é Jesus?</a></font></strong></td>
+  </tr>
+  <tr>
+    <td align="center" width="100%" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif" bgcolor="#C4C4FF"><strong><font
+    color="#800080" face="Arial" size="2"><a href="/web/20011130082010/http://www.jesuswho.org/portugues/four.htm">Conheça Jesus Pessoalmente</a></font></strong></td>
+  </tr>
+  <tr>
+    <td align="center" width="100%" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif" bgcolor="#C4C4FF"><strong><font
+    color="#800080" face="Arial" size="2"><a href="/web/20011130082010/http://www.jesuswho.org/portugues/jesusfil.htm">O Filme JESUS</a> </font></strong></td>
+  </tr>
+  <tr>
+    <td align="center" width="100%" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif" bgcolor="#C4C4FF"><strong><font
+    color="#800080" face="Arial" size="2"><a href="/web/20011130082010/http://www.jesuswho.org/portugues/spirit.htm">Uma vida cheia do Espírito
+    Santo</a></font></strong></td>
+  </tr>
+  <tr>
+    <td align="center" width="100%" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif" bgcolor="#C4C4FF"><strong><font
+    face="Arial" size="2"><a href="/web/20011130082010/http://www.jesuswho.org/portugues/oportuni.htm">Oportunidades</a></font></strong></td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="100%" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif" bgcolor="#C4C4FF"><strong><font
+    face="Arial" size="2"><a href="/web/20011130082010/http://www.jesuswho.org/portugues/resource.htm">Recursos</a></font></strong></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" endspan i-checksum="36583" -->
+</td>
+  </tr>
+</table>
+</center></div><div align="center"><center>
+
+<table border="0" cellpadding="25" width="93%" cellspacing="1">
+  <tr>
+    <td valign="top" width="100%" bgcolor="#FFF7EE"><font face="Arial"><big><strong>A Bíblia
+    diz que há três espécies de pessoas:</strong></big></font><blockquote>
+      <p><font face="Arial"><b><font SIZE="4">1.&nbsp; </font>O Homem Natural</b> <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (aquele que ainda não recebeu a Cristo)<br>
+      <em><br>
+      </em>&quot;O homem que não tem o Espírito não aceita as coisas que vêm do Espírito de
+      Deus, pois lhe são loucura; e não é capaz de entendê-las, porque elas são discernidas
+      espiritualmente&quot; <strong>(1 Coríntios 2:14)</strong></font></p>
+    </blockquote>
+    <div align="center"><center><table border="0" width="90%" cellpadding="4">
+      <tr>
+        <td align="center" width="47%"><font face="Arial"><img src="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/law4.1.gif" align="left" WIDTH="191" HEIGHT="198"></font></td>
+        <td width="53%"><p align="center"><font face="Arial"><big><strong>VIDA<br>
+        CONTROLADA PELO &quot;EU&quot;</strong></big></font></p>
+        <p><font face="Arial"><small><strong>O <em>&quot;EU&quot;</em> no centro da vida.</strong></small></font></p>
+        <p><font face="Arial"><small><strong>CRISTO do lado de fora da vida.</strong></small></font></p>
+        <p><font face="Arial"><small><strong>Ações e atitudes controladas pelo <em>&quot;EU&quot;</em>
+        , resultando em discórdias e frustrações.</strong></small></font></td>
+      </tr>
+    </table>
+    </center></div><blockquote>
+      <p><font face="Arial"><br>
+      <b><font SIZE="4">2.&nbsp; </font>O Homem Espiritual</b> <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (aquele recebeu a Cristo e tem a sua vida dirigida pelo
+      Espírito de Deus)<br>
+      <br>
+      &quot;O homem espiritual discerne todas as coisas&quot; <strong>(1 Coríntios 2:15,16).</strong></font></p>
+    </blockquote>
+    <div align="center"><center><table border="0" width="90%" cellpadding="4">
+      <tr>
+        <td width="47%" align="center"><font face="Arial"><img src="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/law4.2.gif" width="187" height="184" alt="law4.2.gif (4586 bytes)"></font></td>
+        <td width="53%"><p align="center"><font face="Arial"><big><strong>VIDA CONTROLADA POR <em>CRISTO</em></strong></big></font></p>
+        <p><font face="Arial"><small><strong><em>CRISTO</em>&nbsp; no centro da vida.</strong></small></font></p>
+        <p><font face="Arial"><small><strong>O <em>&quot;EU&quot;</em> fora do centro.</strong></small></font></p>
+        <p><font face="Arial"><small><strong>Ações a atitudes controladas por <em>CRISTO</em>,
+        resultando&nbsp;em harmonia com o plano de Deus.</strong></small></font></td>
+      </tr>
+    </table>
+    </center></div><blockquote>
+      <p align="left"><font face="Arial"><b><font SIZE="4">3.&nbsp; </font>O Homem Carnal</b> <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (aquele que já recebeu a Cristo, mas vive em
+      derrota, porque confia em seus próprios esforços para viver a vida cristã)<br>
+      <br>
+      &quot;Irmãos, não lhes pude falar como a espirituais, mas como a carnais, como a
+      crianças em Cristo. Dei-lhes leite e não alimento sólido, pois vocês não estavam em
+      condições para isso. De fato, vocês ainda não estão em condições, porque ainda são
+      carnais. Pois, visto que há inveja e divisão entre vocês, não estão sendo carnais e
+      agindo como mundanos? <strong>(1 Coríntios 3:1-3)</strong></font></p>
+    </blockquote>
+    <div align="center"><center><table border="0" width="90%" cellpadding="4">
+      <tr>
+        <td width="47%" valign="middle" align="center"><font face="Arial"><img src="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/law4.5.gif" width="186" height="184" alt="law4.5.gif (4425 bytes)"></font></td>
+        <td width="53%"><p align="center"><font face="Arial"><big><strong>VIDA<br>
+        CONTROLADA PELO &quot;EU&quot;</strong></big></font></p>
+        <p><font face="Arial"><small><strong>O <em>&quot;EU&quot;</em> entronizado.</strong></small></font></p>
+        <p><font face="Arial"><small><strong>CRISTO destronado.</strong></small></font></p>
+        <p><font face="Arial"><small><strong>Ações e atitudes controladas pelo <em>&quot;EU&quot;</em>,
+        resultando em discórdias e frustrações.</strong></small></font></td>
+      </tr>
+    </table>
+    </center></div><p align="left">&nbsp;</p>
+    <div align="left"><table border="0" cellpadding="25" width="100%">
+      <tr>
+        <td width="100%" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif" bgcolor="#BFBFFF"><p align="center"><font face="Arial"><b><font size="6">1</font><font SIZE="4">. </font><font size="5">Deus
+        Providenciou para nós Uma Vida Cristã Frutífera e Abundante</font></b></font></td>
+      </tr>
+    </table>
+    </div><ul>
+      <li><font face="Arial">Disse Jesus: &quot;Eu vim para que tenham vida, e a tenham
+        plenamente.&quot; <strong>(João10:10)</strong></font></li>
+    </ul>
+    <ul>
+      <li><font face="Arial">&quot;Eu sou a videira;&nbsp; vocês são os ramos. Se alguém
+        permanecer em mim e eu nele, esse dá muito fruto; pois sem mim, vocês não podem fazer
+        coisa alguma.&quot; <strong>(João 15:5)</strong></font></li>
+    </ul>
+    <ul>
+      <li><font face="Arial">&quot;Mas o fruto do Espírito é amor, alegria, paz, paciência,
+        amabilidade, bondade, fidelidade, mansidão e domínio próprio. Contra essas coisas não
+        há lei.&quot;<b> (Gálatas 5:22,23)</b>. </font></li>
+    </ul>
+    <ul>
+      <li><font face="Arial">&quot;Mas receberão poder quando o Espírito Santo descer sobre
+        vocês, e serão minhas testemunhas em Jerusalém, em toda a Judéia e Samaria, e até os
+        confins da terra&quot; <strong>(Atos 1:8)</strong></font><b><font SIZE="4"><p></font><font face="Arial" SIZE="4">O Homem Espiritual</font></b><font face="Arial"> - Algumas
+        características pessoais resultantes da sua confiança em Deus: </font></p>
+      </li>
+    </ul>
+    <div align="center"><center><table border="0" width="90%" cellpadding="4">
+      <tr>
+        <td width="35%"><font face="Arial"><small><strong>É Cristocêntrico</strong></small><br>
+        <small><strong>É dirigido pelo Espírito Santo<br>
+        Conduz outros a Cristo<br>
+        Possui vida efetiva de Oração<br>
+        Conhece a Palavra de Deus<br>
+        Confia em Deus<br>
+        Obedece a Deus</strong></small></font></td>
+        <td width="42%"><p align="center"><font face="Arial"><img src="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/law4.2.gif" alt="law4.2.gif (4586 bytes)" WIDTH="178" HEIGHT="175"></font></td>
+        <td width="23%" valign="middle"><font face="Arial"><strong><small>Amor<br>
+        Alegria<br>
+        Paz<br>
+        Paciência<br>
+        Bondade<br>
+        Fé<br>
+        Fifelidade</small><br>
+        <small>Mansidão</small><br>
+        <small>Domínio próprio</small></strong></font></td>
+      </tr>
+    </table>
+    </center></div><blockquote>
+      <p align="left"><font face="Arial"><br>
+      À medida que o cristão vai confiando no Senhor em todos os detalhes da sua existência e
+      segundo a sua maturidade em Cristo, essas características se manifestam em sua vida.
+      Aquele que está apenas começando a compreender o ministério do Espírito Santo não
+      deve desanimar, se não é tão frutífero como cristãos mais maturos que já
+      experimentaram esta verdade por um período mais extenso. </font></p>
+    </blockquote>
+    <p align="left"><font face="Arial"><br>
+    <strong>Por que a maior parte dos cristãos não está experimentando esta &quot;vida
+    abundante&quot;?</strong></font></p>
+    <div align="left"><table border="0" cellpadding="25" width="100%">
+      <tr>
+        <td width="100%" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif" bgcolor="#BFBFFF"><p align="center"><font face="Arial"><b><font size="6">2</font><font SIZE="4">. </font><big><big>O Homem Carnal
+        não pode experimentar a vida cristã abundante e frutífera</big></big></b></font></td>
+      </tr>
+    </table>
+    </div><p><font face="Arial">O Homem carnal confia em seus próprios esforços para viver a
+    vida cristã:</font><ol>
+      <li><font face="Arial">Ou ele não está informado a respeito do amor de Deus, seu perdão e
+        poder ou se esqueceu deles (<small><a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Romanos+5:8-10" target="_blank">Romanos 5:8-10</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Hebreus+10.1-25" target="_blank">Hebreus 10:1-25</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=1Joao+1" target="_blank">1 João 1</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=1Joao+2:1-3" target="_blank">1 João 2:1-3</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=2Pedro+1:9" target="_blank">2 Pedro 1:9</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Atos+1:8" target="_blank">Atos 1:8</a>).</small><br>
+        <br>
+        </font></li>
+      <li><font face="Arial">Tem uma experiência espiritual cheia de altos e baixos.<br>
+        <br>
+        </font></li>
+      <li><font face="Arial">Não entende a si mesmo - deseja fazer o que é certo, mas não
+        consegue.<br>
+        <br>
+        </font></li>
+      <li><font face="Arial">Deixa de receber o poder do Espírito Santo para viver a vida
+        cristã.<br>
+        (<small><a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=1Corintios+3:1-3" target="_blank">1 Coríntios 3:1-3</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Romanos+7:15-24" target="_blank">Romanos 7:15-24</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Romanos+8:7" target="_blank">8:7</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Galatas+5:16-18" target="_blank">Gálatas 5:16-18</a>) </small></font></li>
+    </ol>
+    <p><font face="Arial"><br>
+    <b>O Homem Carnal</b> - Algumas ou todas as caracterísiticas seguintes identificam o
+    cristão que não confia plenamente em Deus:</font></p>
+    <div align="center"><center><table border="0" width="90%" cellpadding="4">
+      <tr>
+        <td width="32%"><font face="Arial"><small><strong>ignorância de sua herança espiritual<br>
+        Incredulidade<br>
+        Desobediência<br>
+        Perda do amor para com Deus e com os outros<br>
+        Vida pobre de oração<br>
+        Falta de desejo de estudar a Bíblia</strong></small></font></td>
+        <td width="38%"><p align="center"><font face="Arial"><strong><img src="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/law4.5.gif" alt="law4.5.gif (4424 bytes)" WIDTH="176" HEIGHT="174"></strong></font></td>
+        <td width="30%"><font face="Arial"><small><strong>Atitudes Legalistas<br>
+        Pensamentos impuros<br>
+        Ciúmes<br>
+        Inveja<br>
+        Preocupação<br>
+        Desânimo<br>
+        Espírito de Crítica<br>
+        Frustração<br>
+        Falta de Propósito na vida</strong></small></font></td>
+      </tr>
+    </table>
+    </center></div><p align="left"><font face="Arial"><br>
+    (A pessoa que se declara cristã mas continua na prática do pecado, deve compenetrar-se
+    de que talvez não seja&nbsp; verdadeiramente cristã, de acordo com (<small><a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=1Joao+2:3" target="_blank">1 João 2:3</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=1Joao+3:6" target="_blank">3:6</a>, <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=1Joao+3:9" target="_blank">9</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Efesios+5:5" target="_blank">Efésios 5:5</a></small>). Clique <a href="/web/20011130082010/http://www.ccci.org/transferable_concepts/christian/" target="_blank">aqui</a> para
+    obter a certeza de que você é realmente um cristão.<br>
+    <br>
+    <font size="3"><strong>A terceira verdade, nos oferece a única solução deste
+    problema...</strong></font></font></p>
+    <div align="center"><center><table border="0" cellpadding="25" width="100%">
+      <tr>
+        <td width="100%" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif" bgcolor="#BFBFFF"><p align="center"><font face="Arial"><b><font size="6">3</font><font size="4">. </font><big><big>Jesus prometeu a
+        vida abundante e frutífera como resultado da plenitude </big></big><font size="5">(controle
+        e poder)</font><font size="6"> </font><big><big>do Espírito Santo</big></big></b></font></td>
+      </tr>
+    </table>
+    </center></div><p><font face="Arial">A vida cheia do Espírito é a vida dirigida por
+    Cristo, pela qual Cristo vive sua vida em nós e através de nós, no poder do Espírito
+    Santo <font color="#000000">(<a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Joao+15" target="_blank"><small>João 15</small></a>).<br>
+    </font></font><ul>
+      <li><font face="Arial">Uma pessoa se torna cristã através do poder do Espírito Santo,
+        conforme <font color="#000000"><a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Joao+3:1-8" target="_blank">João<small> 3:1-8</small></a>. </font>Desde o nascimento espiritual de
+        novo o Espírito Santo permanentemente no cristão <font color="#000000">(<small><a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Joao+1:12" target="_blank">João1:12</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Colossenses+2:9" target="_blank">Colossenses 2:9</a>, <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Colossenses+2:10" target="_blank">10</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Joao+14:16,17" target="_blank">João14:16,17</a></small>).</font><b> Embora o Espírito Santo habite em
+        todos os cristãos, nem todos os cristãos são cheios (vivem sob o controle e poder) do
+        Seu poder.<br>
+        </b></font></li>
+    </ul>
+    <ul>
+      <li><font face="Arial">O Espírito Santo é a fonte da vida transbordante<font color="#000000"> (<a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Joao+14:16,17" target="_blank"><small>João 7:37-39</small></a>).<br>
+        <br>
+        </font></font></li>
+      <li><font face="Arial">O Espírito Santo veio para glorificar a Cristo <font color="#000000">(<a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Joao+16:1-15" target="_blank"><small>João 16:1-15</small></a>). </font>Quando alguém é cheio do
+        Espírito Santo, ele é um verdadeiro discípulo de Cristo.<br>
+        <br>
+        </font></li>
+      <li><font face="Arial">Antes de ascender aos céus, Cristo prometeu enviar-nos o poder do
+        Espirito Santo para nos capacitar a fim de sermos suas testemunhas <font color="#000000">(<a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Atos+1:1-9" target="_blank"><small>Atos 1:1-9</small></a>). </font></font></li>
+    </ul>
+    <font size="3"><i><p align="left"></i><font face="Arial"><strong>Então, como alguém pode
+    ser cheio do Espírito Santo?</strong></font></font></p>
+    <div align="center"><center><table border="0" cellpadding="25" width="100%">
+      <tr>
+        <td width="100%" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif" bgcolor="#BFBFFF"><p align="center"><font face="Arial"><b><font size="6">4</font><font size="4">. </font><big><big>Somos cheios do
+        Espírito Santo pela fé; Podemos, então, experimentar a vida abundante e frutífera que
+        Cristo prometeu a todo cristão</big></big></b></font></td>
+      </tr>
+    </table>
+    </center></div><p><font face="Arial">Você pode ser cheio do Espírito Santo <b>agora
+    mesmo</b>, se você:</font><ul>
+      <li><font face="Arial">Desejar sinceramente ser controlado e fortalecido pelo Espírito
+        Santo<font color="#000000"> (<small><a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Mateus+5:6" target="_blank">Mateus 5:6</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/cgi-bin/bible?language=Portuguese&version=NVI&search=&passage=Joao+7:37-39" target="_blank">João 7:37-39</a></small>). <br>
+        <br>
+        </font></font></li>
+      <li><font face="Arial">Confessar os seus pecados. Pela <b>fé</b> agradeça a Deus o fato de
+        lhe haver perdoado todos os pecado - passados, presentes e futuros - porque Cristo morreu
+        por você<font color="#000000"> (<small><a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Colossenses+2:13-15" target="_blank">Colossenses 2:13-15</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=1Joao+1" target="_blank">1 João 1</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=1Joao+2:1-3" target="_blank">2:1-3</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Hebreus+10:1-17" target="_blank">Hebreus10:1-17</a></small>). <br>
+        <br>
+        </font></font></li>
+      <li><font face="Arial">Apresente cada área de sua vida a Deus <font color="#000000">(<a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Romanos+12:1-2" target="_blank"><small>Romanos 12:1-2</small></a>). <br>
+        <br>
+        </font></font></li>
+      <li><font face="Arial">Pela <b>fé</b> tome posse da plenitude do Espírito Santo, de acordo
+        com:</font><blockquote>
+          <p><font face="Arial">1.<b> <font color="#000080">Sua Ordem</font><big> </big>-</b> Seja
+          cheio do Espírito Santo. &quot;E não vos embriagueis com vinho, em que há contenda, mas
+          enchei-vos do Espírito&quot; <b>(Efésios 5:18)</b></font></p>
+          <p><font face="Arial">2.<b> <font color="#000080">Sua Promessa</font> -</b> Ele
+          responderá quando orarmos de acordo com Sua vontade. &quot;E esta é a confiança que
+          temos Nele, que, se perdirmos alguma coisa, segundo a sua vontade, ele nos ouve. E, se
+          sabemos que ele nos ouve em tudo o que pedimos, sabemos que alcançamos as petições que
+          lhe fizemos&quot;. <b>(1 João 5:14,15)</b></font></p>
+        </blockquote>
+      </li>
+    </ul>
+    <i><p><font face="Arial">A fé pode ser expressa através da oração&#133;</font></i></p>
+    <div align="center"><center><table border="0" cellpadding="25" width="100%" cellspacing="1">
+      <tr>
+        <td width="100%" bgcolor="#FFFFFF"><font size="4" face="Arial"><b>Como orar com fé para
+        ser cheio do Espírito Santo</b></font><p><font face="Arial">Somos cheios do Espírito
+        Santo pela fé. Entretanto, a verdadeira oração é um modo de expressar a sua fé.
+        Sugerismo a seguinte oração:</font></p>
+        <blockquote>
+          <i><p><font face="Arial">&quot;Querido Pai, eu preciso de Ti. Reconheço que tenho
+          procurado dirigir a minha própria vida e como resultado, tenho pecado contra Ti. Te
+          agradeço pelo perdão dos meus pecados através da morte de Cristo na cruz. Agora convido
+          a Cristo para tomar novamente a direção da minha vida. Enche-me do teu Espírito como
+          ordenastes que eu fosse cheio e como prometeste em Tua Palavra que farias se pedisse com
+          fé. Peço isto no nome de Jesus. Como expressão da minha fé, agradeço-te agora por
+          dirigir a minha vida e encher-me do teu Espírito Santo. Amém&quot; </font></i></p>
+        </blockquote>
+        <p><font face="Arial">Esta oração expressa o desejo do seu coração ? Se é assim ore a
+        Deus e confie em que Ele o encherá do Espírito Santo <strong>agora mesmo.</strong></font></p>
+        <hr width="80%">
+        <b><p><font face="Arial">Como saber que você está cheio (sob o controle e poder) do
+        Espírito Santo?</font></b></p>
+        <p><font face="Arial">Você pediu a Deus que o enchesse do Espírito Santo ? Você sabe
+        que está cheio do Espírito Santo agora? Baseado em que? (Na fidelidade do próprio Deus
+        e Sua Palavra), (<small><a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Hebreus+11:6" target="_blank">Hebreus 11:6</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Romanos+14:22-23" target="_blank">Romanos 14:22, 23</a></small>.)</font></p>
+        <p><font face="Arial">A nossa autoridade é a promessa da Palavra de Deus, a Bíblia, e
+        não as nossas emoções . O cristão vive pela fé (confiança) na fidelidade de Deus e
+        de Sua Palavra. O diagrama do trem, ilustra a relação entre fato (Deus e Sua Palavra),
+        fé (nossa confiança em Deus e em Sua Palavra), e emoção (o resultado da nossa fé e
+        obediência) (<a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Romanos+14:22-23" target="_blank"><small>João 14:21</small></a>). </font></p>
+        <p align="center"><font face="Arial"><img src="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/train.gif" alt="train.gif (7319 bytes)" WIDTH="477" HEIGHT="109"><br>
+        </font></p>
+        <p align="left"><font face="Arial">A locomotiva correrá com o vagão ou sem ele.
+        Entretanto, seria inútil o vagão tentar puxar a locomotiva. Da mesma forma, nós, como
+        cristãos, não dependemos de&nbsp; sentimentos ou emoções, mas colocamos a nossa fé
+        (confiança) na fidelidade de Deus e nas promessas de Sua Palavra. </font></p>
+        <hr>
+        <font size="4"><b><p align="center"><font face="Arial">Como andar no Espírito</font></b></font></p>
+        <p><font face="Arial">A fé (confiança em Deus e em Suas Promessas) é o único meio pelo
+        qual um cristão pode viver uma vida dirigida pelo Espírito Santo. À medida que você
+        continua confiando em Cristo momento após momento:</font><ol>
+          <li><font face="Arial">Sua vida demonstrará mais e mais o fruto do Espírito (<a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Galatas+5:22-23" target="_blank"><small>Gálatas 5:22, 23</small></a>) e será cada vez mais transformado a
+            imagem de Cristo (<small><a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Romanos+12:2" target="_blank">Romanos 12:2</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=2Corintios+3:18" target="_blank">2 Coríntios 3:18</a></small>). <br>
+            <br>
+            </font></li>
+          <li><font face="Arial">Sua vida de oração e seu estudo da Palavra de Deus se tornarão
+            mais significativos.<br>
+            <br>
+            </font></li>
+          <li><font face="Arial">Você experimentará o Seu poder ao testemunhar (<a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Atos+1:8" target="_blank"><small>Atos 1:8</small></a>). <br>
+            <br>
+            </font></li>
+          <li><font face="Arial">Você estará preparado para o confronto espiritual contra o mundo (<a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Joao+2:15-17" target="_blank"><small>1 João 2:15-17</small></a>); contra a carne (<a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Galatas+5:16-17" target="_blank"><small>Gálatas 5:16-17</small></a>); e contra satanás (<small><a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=1Pedro+5:7-9" target="_blank">1 Pedro 5:7-9</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Efesios+6:10-13" target="_blank">Efésios 6:10-13</a></small>).<br>
+            <br>
+            </font></li>
+          <li><font face="Arial">Você experimentará o poder de Deus para resistir a tentação e ao
+            pecado (<small><a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=1Corintios+10:13" target="_blank">1 Coríntios 10:13</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Filipenses+4:13" target="_blank">Filipenses 4:13</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Efesios+1:19-23" target="_blank">Efésios 1:19-23</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=2Timoteo+1:7" target="_blank">2 Timóteo 1:7</a>; <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Romanos+6:1-16" target="_blank">Romanos 6:1-16</a></small>). </font></li>
+        </ol>
+        <hr>
+        <font size="4"><b><p align="center"><font face="Arial">Respiração Espiritual</font></b></font></p>
+        <p><font face="Arial">Pela fé você pode continuar a experimentar o amor de Deus e Seu
+        perdão.</font></p>
+        <p><font face="Arial">Se você percebe que algo em sua vida (atitudes ou ações)
+        desagrada a Deus, mesmo que esteja andando com Ele e sinceramente deseje serví-lo,
+        agradeça a Deus o perdão dos seus pecados - passados, presentes e futuros - mediante a
+        morte de Cristo na cruz. Pela fé receba o amor e perdão de Deus e continue a ter
+        comunhão com Ele.</font></p>
+        <p><font face="Arial">Se você retomar o trono de sua vida através de algum pecado - o
+        que é um ato definido de desobediência - respire espiritualmente.</font></p>
+        <b><p><font face="Arial">Respiração Espiritual</b> (exalando o que é impuro e inalando
+        o que é puro) é um exercício de fé que permite a você continuar a experimentar o amor
+        e o perdão de Deus.<br>
+        </font></p>
+        <blockquote>
+          <p><font face="Arial">1. <i><b>Exale</b></i> - confesse o pecado - reconheça que este
+          pecado (ou pecados) é errado e desagrada a Deus e agradeça-lhe pelo seu perdão, de
+          acordo com <small><a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=1Joao+1:9" target="_blank">1 João 1:9</a> e <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Hebreus+10:1-25" target="_blank">Hebreus 10:1-25</a></small>. A confissão também envolve arrependimento -
+          uma mudança de atitude que gera um mudança de ação.</font></p>
+          <p><font face="Arial">2.<strong> </strong><i><b>Inale</b></i> - submeta o controle de sua
+          vida a Cristo e pela fé aproprie-se da plenitude do Espírito Santo. Confie em que agora
+          Ele o dirige e fortalece de acordo com a <strong>ordem</strong> de <a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=Efesios+5:18" target="_blank"><small>Efésios 5:18</small></a>, e a <strong>promessa</strong> de <small><a href="/web/20011130082010/http://bible.gospelcom.net/bible?language=Portuguese&version=NVI&search=&passage=1Joao+5:14-15" target="_blank">1 João 5:14,15</a>. </small></font></p>
+        </blockquote>
+        <hr>
+        <b><font size="4"><p></font><font size="3" face="Arial">Se estas páginas ajudaram você,
+        por favor, compartilhe com outras pessoas.<br>
+        </font></b></p>
+        <p><font face="Arial">Milhares de cópias do folheto<i><b>, &quot;Você já fez a
+        maravilhosa descoberta da vida cheia do Espírito?&quot;</b></i> tem sido distribuídas
+        nos principais idiomas do mundo. Como resultado, milhares de cristãos tem aprendido como
+        experimentar o poder e o controle do Espírito Santo, momento após momento. A vida
+        abundante que Cristo prometeu a eles, a qual&nbsp; estão agora experimentando, fez com
+        que se tornassem mais efetivos em compartilhar a sua fé com os outros. Estas
+        experiências tem confirmado o mandamento que Cristo deu aos seus discipulos para esperar
+        até que eles fossem cheios do Espírito Santo antes de sair e levar ao mundo as boas
+        novas do Seu amor e perdão. Muitos cristãos, quando aprendem sobre a vida cheia do
+        Espírito Santo, querem compartilhar Cristo como um estilo de vida e ajudar a cumprir a
+        Grande Comissão em nossa geração.</font></p>
+        <i><b><p><font face="Arial">Se você gostaria de saber como obter cópias deste livreto</b></i><strong>
+        <a href="mailto:portugues@mdalink" target="_blank">clique aqui.</a></strong></font></td>
+      </tr>
+    </table>
+    </center></div></td>
+  </tr>
+</table>
+</center></div><div align="center"><center>
+
+<table border="0" cellpadding="25" width="93%" height="754">
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF" height="702"><font size="4"><b><p align="center"><font face="Arial">INFORMAÇÃO ADICIONAL</font></b></font></p>
+    <!--webbot BOT="GeneratedScript" PREVIEW=" " startspan --><script Language="JavaScript"><!--
+function FrontPage_Form1_Validator(theForm)
+{
+
+  var chkVal = theForm.name.value;
+  var prsVal = chkVal;
+  if (chkVal != "" && !(prsVal > "3"))
+  {
+    alert("Please enter a value greater than \"3\" in the \"name\" field.");
+    theForm.name.focus();
+    return (false);
+  }
+
+  var chkVal = theForm.address.value;
+  var prsVal = chkVal;
+  if (chkVal != "" && !(prsVal > "5"))
+  {
+    alert("Please enter a value greater than \"5\" in the \"address\" field.");
+    theForm.address.focus();
+    return (false);
+  }
+
+  var chkVal = theForm.city.value;
+  var prsVal = chkVal;
+  if (chkVal != "" && !(prsVal > "2"))
+  {
+    alert("Please enter a value greater than \"2\" in the \"city\" field.");
+    theForm.city.focus();
+    return (false);
+  }
+
+  var chkVal = theForm.state.value;
+  var prsVal = chkVal;
+  if (chkVal != "" && !(prsVal >= "2"))
+  {
+    alert("Please enter a value greater than or equal to \"2\" in the \"state\" field.");
+    theForm.state.focus();
+    return (false);
+  }
+
+  var checkOK = "0123456789-.";
+  var checkStr = theForm.zip.value;
+  var allValid = true;
+  var decPoints = 0;
+  var allNum = "";
+  for (i = 0;  i < checkStr.length;  i++)
+  {
+    ch = checkStr.charAt(i);
+    for (j = 0;  j < checkOK.length;  j++)
+      if (ch == checkOK.charAt(j))
+        break;
+    if (j == checkOK.length)
+    {
+      allValid = false;
+      break;
+    }
+    if (ch == ".")
+    {
+      allNum += ".";
+      decPoints++;
+    }
+    else
+      allNum += ch;
+  }
+  if (!allValid)
+  {
+    alert("Please enter only digit characters in the \"zip\" field.");
+    theForm.zip.focus();
+    return (false);
+  }
+
+  if (decPoints > 1)
+  {
+    alert("Please enter a valid number in the \"zip\" field.");
+    theForm.zip.focus();
+    return (false);
+  }
+
+  var chkVal = allNum;
+  var prsVal = parseFloat(allNum);
+  if (chkVal != "" && !(prsVal >= "5"))
+  {
+    alert("Please enter a value greater than or equal to \"5\" in the \"zip\" field.");
+    theForm.zip.focus();
+    return (false);
+  }
+
+  var chkVal = theForm.country.value;
+  var prsVal = chkVal;
+  if (chkVal != "" && !(prsVal >= "3"))
+  {
+    alert("Please enter a value greater than or equal to \"3\" in the \"country\" field.");
+    theForm.country.focus();
+    return (false);
+  }
+  return (true);
+}
+//--></script><!--webbot BOT="GeneratedScript" endspan --><form method="POST" action="/web/20011130082010/http://www.jesuswho.org/portugues/_vti_bin/shtml.exe/spirit.htm" onsubmit="return FrontPage_Form1_Validator(this)" name="FrontPage_Form1" webbot-action="--WEBBOT-SELF--">
+      <!--webbot bot="SaveResults" S-Email-Format="TEXT/PRE" B-Email-Label-Fields="TRUE" S-Builtin-Fields="Date Time REMOTE_USER" S-Form-Fields="form_name Response_source userid Prayed_to_be_Filled_HS not_sure More_about_Christ name address address2 city state zip country phone fax email S1 " U-Confirmation-Url="confirm.htm" S-Email-Address="portugues@greatcom.org" startspan --><input TYPE="hidden" NAME="VTI-GROUP" VALUE="0"><!--webbot bot="SaveResults" endspan i-checksum="43374" --><input type="hidden" name="form_name" value="english_response"><input type="hidden" name="Response_source" value="Holy_Spirit_Booklet"><p><font face="Arial"><font size="2"><input type="checkbox" name="Prayed_to_be_Filled_HS" value="Yes"></font><small>Eu fiz a oração contida neste
+      artigo e pedi ao Espírito Santo para encher e dirigir o meu ser. Por favor, enviem-me
+      todas as informações que possam ajudar-me a crescer em minha vida cristã.</small></font></p>
+      <p><font face="Arial"><font size="2"><input type="checkbox" name="not_sure" value="Wants_more_info_about_becoming_a_Christian"></font><small>Eu não estou seguro se
+      realmente sou salvo. Enviem-me mais informações sobre como eu posso obter a certeza da
+      salvação em Cristo.</small></font></p>
+      <p><font face="Arial"><font size="2"><input type="checkbox" name="More_about_Christ" value="Send_more_info_about_Jesus"></font><small>Eu ainda tenho dúvidas. Por favor,
+      enviem-me mais informações acerca de Jesus Cristo</small></font></p>
+      <div align="left"><table border="0" width="100%" cellspacing="0">
+        <tr>
+          <td width="60" align="right"><font face="Arial"><small>Nome:</small></font></td>
+          <td width="5" rowspan="13"></td>
+          <td width="100%"><font face="Arial"><!--webbot bot="Validation" S-Data-Type="String" S-Validation-Constraint="Greater than" S-Validation-Value="3" --><input type="text" size="36" name="name"></font></td>
+        </tr>
+        <tr>
+          <td width="60" align="right"><font face="Arial"><small>Endereço:</small></font></td>
+          <td width="100%"><font face="Arial"><!--webbot bot="Validation" S-Data-Type="String" S-Validation-Constraint="Greater than" S-Validation-Value="5" --><input type="text" size="36" name="address"></font></td>
+        </tr>
+        <tr>
+          <td width="60" align="right"></td>
+          <td width="100%"><font face="Arial"><input type="text" size="36" name="address2"></font></td>
+        </tr>
+        <tr>
+          <td width="60" align="right"><font face="Arial"><small>Cidade</small></font></td>
+          <td width="100%"><font face="Arial"><!--webbot bot="Validation" S-Data-Type="String" S-Validation-Constraint="Greater than" S-Validation-Value="2" --><input type="text" size="36" name="city"></font></td>
+        </tr>
+        <tr>
+          <td width="60" align="right"><font face="Arial"><small>Estado</small></font></td>
+          <td width="100%"><font face="Arial"><!--webbot bot="Validation" S-Data-Type="String" S-Validation-Constraint="Greater than or equal to" S-Validation-Value="2" --><input type="text" size="15" name="state"></font></td>
+        </tr>
+        <tr>
+          <td width="60" align="right"><font face="Arial"><small>Cep</small></font></td>
+          <td width="100%"><font face="Arial"><!--webbot bot="Validation" S-Data-Type="Number" S-Number-Separators="x." S-Validation-Constraint="Greater than or equal to" S-Validation-Value="5" --><input type="text" size="15" name="zip"></font></td>
+        </tr>
+        <tr>
+          <td width="60" align="right"><font face="Arial"><small>País:</small></font></td>
+          <td width="100%"><font face="Arial"><!--webbot bot="Validation" S-Data-Type="String" S-Validation-Constraint="Greater than or equal to" S-Validation-Value="3" --><input type="text" size="36" name="country"></font></td>
+        </tr>
+        <tr>
+          <td width="60" align="right"><font face="Arial"><small>Telefone:</small></font></td>
+          <td width="100%"><font face="Arial"><input type="text" size="36" name="phone"></font></td>
+        </tr>
+        <tr>
+          <td width="60" align="right"><font face="Arial"><small>Fax:</small></font></td>
+          <td width="100%"><font face="Arial"><input type="text" size="36" name="fax"></font></td>
+        </tr>
+        <tr>
+          <td width="60" align="right"><font face="Arial"><small>E-Mail:</small></font></td>
+          <td width="100%"><font face="Arial"><input type="text" size="36" name="email"></font></td>
+        </tr>
+        <tr>
+          <td width="60" align="right"><font face="Arial"><small>Como soube do site?</small></font></td>
+          <td width="100%"><font face="Arial"><textarea rows="2" name="comments" cols="36"></textarea></font></td>
+        </tr>
+        <tr>
+          <td width="60" align="right"></td>
+          <td width="100%"></td>
+        </tr>
+        <tr>
+          <td width="60" align="right"></td>
+          <td width="100%"><font face="Arial"><input type="submit" value="Enviar formulário " style="font-family: Arial"><input type="reset" value="Limpar formulário  " style="font-family: Arial"></font></td>
+        </tr>
+      </table>
+      </div>
+    </form>
+    <p><font face="Arial"><em><small>O artigo &quot;Quem é Jesus?&quot; e as &quot;Quatro
+    Leis Espirituais&quot; foram escritos pelo Dr. Willian R. Bright, Presidente-fundador da
+    Cruzada Estudantil e Profissional para Cristo. Ambos estão disponíveis em forma de
+    folheto.</small></em></font></p>
+    <font size="4"><p ALIGN="left"></font><em><strong><font face="Arial" SIZE="4">CRUZADA
+    ESTUDANTIL E PROFISSIONAL PARA CRISTO</font><font face="Arial"><br>
+    <br>
+    </strong></em>D<font size="2">esejamos que a mensagem contida neste folheto tenha a mais
+    ampla distribuição possível. Por esta razão, este folheto poderá ser adquirido por
+    qualquer indivíduo ou organização que deseje usá-lo. </font><small>A <strong>Cruzada
+    Estudantil e Profissional para Cristo </strong>é um movimento cristão
+    inter-denominacional com ministérios nacionais em mais de 172 países, cobrindo 98% da
+    população mundial. </small></font></p>
+    <p ALIGN="center"><font face="Arial"><small>Você pode comprar o folheto das &quot;Quatro
+    Leis Espirituais&quot; e &quot;Quem é Jesus&quot;, ou a fita de vídeo do &quot;Filme
+    Jesus&quot; ou receber gratuitamente materiais sobre Jesus Cristo, no endereço abaixo: </small></font></p>
+    <p ALIGN="center"><font face="Arial"><strong><small>Caixa Postal 41.582 Cep:</small> <small>05422-970</small><br>
+    <small>São Paulo-SP</small>, <small>Brasil</small><br>
+    <small>Fone: 55 (0xx11) 5071.1326</small><br>
+    <small>e-mail: <a href="mailto:cepc@sti.com.br">cepc@sti.com.br</a></small></strong></font></td>
+  </tr>
+</table>
+</center></div><!--webbot bot="Include" u-include="foot1.htm" tag="BODY" startspan -->
+<div align="center"><center>
+
+<table border="0" cellpadding="4" width="94%">
+  <tr>
+    <td align="center" width="11%" bgcolor="#A4A4FF" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif"><a
+    href="/web/20011130082010/http://www.jesuswho.org/portugues/default.htm"><font face="Arial" size="2" color="#0000FF"><strong>Home</strong></font></a></td>
+    <td align="center" width="13%" bgcolor="#A4A4FF" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif"><font
+    face="Arial" size="2" color="#0000FF"><strong><a href="/web/20011130082010/http://www.jesuswho.org/portugues/whois.htm">Quem é Jesus?</a></strong></font></td>
+    <td align="center" width="15%" bgcolor="#A4A4FF" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif"><font
+    face="Arial" size="2" color="#0000FF"><strong><a href="/web/20011130082010/http://www.jesuswho.org/portugues/jesusfil.htm">O Filme Jesus </a></strong></font></td>
+    <td align="center" width="19%" bgcolor="#A4A4FF" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif"><font
+    face="Arial" size="2" color="#0000FF"><strong><a href="/web/20011130082010/http://www.jesuswho.org/portugues/four.htm">As Quatro Leis
+    Espirituais</a></strong></font></td>
+    <td align="center" width="22%" bgcolor="#A4A4FF" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif"><font
+    face="Arial" size="2" color="#0000FF"><strong><a href="/web/20011130082010/http://www.jesuswho.org/portugues/spirit.htm">Uma vida cheia do
+    Espírito</a></strong></font></td>
+    <td align="center" width="20%" bgcolor="#A4A4FF" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif"><font
+    face="Arial" size="2" color="#0000FF"><strong><a href="/web/20011130082010/http://www.jesuswho.org/portugues/oportuni.htm">Oportunidades</a></strong></font></td>
+    <td align="center" width="15%" bgcolor="#A4A4FF" background="/web/20011130082010im_/http://www.jesuswho.org/portugues/images/spirback.gif"><font
+    face="Arial" size="2" color="#0000FF"><strong><a href="/web/20011130082010/http://www.jesuswho.org/portugues/resource.htm">Recursos</a></strong></font></td>
+  </tr>
+</table>
+</center></div>
+<!--webbot bot="Include" endspan i-checksum="52724" -->
+<!--webbot bot="Include" u-include="foot2.htm" tag="BODY" startspan -->
+
+<p align="center"><font color="#808080" size="1">© 1995-2001 Cruzada Estudantil e
+Profissional para Cristo </font><font color="#808080" size="3">|</font><font color="#808080" size="1"> 
+<a href="mailto:webmaster@greatcom.org">webmaster@greatcom.org</a></font></p>
+<!--webbot bot="Include" endspan i-checksum="20058" -->
+
+
+<p><font color="#808080" size="1" face="Arial"><!--webbot bot="Timestamp" s-type="EDITED" s-format="%m/%d/%y" startspan -->08/08/01<!--webbot bot="Timestamp" endspan i-checksum="12476" --></font></p>
+
+<p><small><small><small><!--webbot bot="HitCounter" i-image="1" i-digits="6" PREVIEW="&lt;strong&gt;[Hit Counter]&lt;/strong&gt;" u-custom i-resetvalue="30" startspan --><img src="/web/20011130082010im_/http://www.jesuswho.org/portugues/_vti_bin/fpcount.exe/portugues/?Page=spirit.htm|Image=1|Digits=6" alt="Hit Counter"><!--webbot bot="HitCounter" endspan i-checksum="21027" --></small></small></small></p>
+</body>
+</html>
+
+
+
+
+
+<!--
+     FILE ARCHIVED ON 8:20:10 Nov 30, 2001 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 5:31:57 Oct 20, 2013.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
