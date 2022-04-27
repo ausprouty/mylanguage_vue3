@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
 /dist
-/public/sites/default/content/*
+
 /public/sites/default/ckeditor/*
 /public/sites/default/ckfinder/*
 
