@@ -105,7 +105,7 @@ function mylanguage_page_frontX($hl_id = null){
 	}
 	//$text = '<p><img class = "header_image" src = "https://mylanguage.net.au/sites/mylanguage.net.au/themes/twentyfifteen/img/newheader.jpg"></p>';
 	$text = '';
-	$title = db_query('SELECT mylanguage, name, direction FROM my_language 
+	$title = sqlFetchObject('SELECT mylanguage, name, direction FROM my_language 
 		WHERE hl_id = :hl_id
 		LIMIT 1',
 		array(':hl_id' => $hl_id)) ->fetchObject();
@@ -157,7 +157,7 @@ function mylanguage_page_frontX($hl_id = null){
 		$text .=  mylanguage_page_front_image('read.png', $direction);
 		$text .=   '<h2>'.mylanguage_t_ethnic('Read God\'s Word: the Bible') . '</h2>';
 		db_set_active('common');
-		$bid = db_query('SELECT bid FROM dbm_bible
+		$bid = sqlFetchObject('SELECT bid FROM dbm_bible
 			WHERE hl_id = :hl_id AND (collection_code = :nt OR collection_code = :fu )
 			AND text = :y1 
 			ORDER BY weight DESC LIMIT 1',
@@ -205,7 +205,7 @@ function mylanguage_page_frontX($hl_id = null){
 	$text .= mylanguage_page_front_section_end();
 	if (mylanguage_menu_links_written('hl_online_kgp',  $_SESSION['mylanguage_written_hl_id'], 'hl_online')){
 		db_set_active('hl_online');
-		$kgp = db_query('SELECT * FROM hl_online_kgp 
+		$kgp = sqlFetchObject('SELECT * FROM hl_online_kgp 
 			WHERE hl_id = :hl_id', 
 			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']))->fetchObject();
 		$text .= mylanguage_page_front_image('tracts.png', $direction);
@@ -228,7 +228,7 @@ function mylanguage_page_frontX($hl_id = null){
 	if (mylanguage_menu_links_written( 'hl_spirit',  $hl_id)){
 		$text .= mylanguage_page_front_image('study.png', $direction);
 		db_set_active('hl_online');
-		$spirit = db_query('SELECT * FROM hl_online_spirit 
+		$spirit = sqlFetchObject('SELECT * FROM hl_online_spirit 
 			WHERE hl_id = :hl_id', 
 			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']))->fetchObject();
 		db_set_active('default');
@@ -248,7 +248,7 @@ function mylanguage_page_frontX($hl_id = null){
 	if (mylanguage_menu_links_written('hl_online_everystudent',  $_SESSION['mylanguage_written_hl_id'], 'hl_online')){
 		$text .=  mylanguage_page_front_image('everyone.png', $direction);
 		db_set_active('hl_online');
-		$website = db_query('SELECT * FROM hl_online_everystudent 
+		$website = sqlFetchObject('SELECT * FROM hl_online_everystudent 
 			WHERE hl_id = :hl_id', 
 			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']))->fetchObject();
 		db_set_active('default');

@@ -152,7 +152,7 @@ function mylanguage_block_select_browser(){
 	$space = '<span style="white-space: pre-wrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
 	$hl_id = isset($_SESSION['mylanguage_browser_hl_id']) ? $_SESSION['mylanguage_browser_hl_id'] : 'eng00';
 	db_set_active('my');
-	$ethnic_name = db_query('SELECT ethnic_name FROM my_language
+	$ethnic_name = sqlFetchObject('SELECT ethnic_name FROM my_language
 			WHERE hl_id = :hl_id',
 			array(':hl_id'=> $hl_id)) ->fetchField();
 	if (mylanguage_find_is_mobile()){
@@ -173,7 +173,7 @@ function mylanguage_block_select_common(){
   $output = '';
   $output .= '<table cellspacing="10"> <tr><td align = "left">';
   db_set_active('my');
-  $result = db_query('SELECT hl_id, name  FROM my_language 
+  $result = sqlFetchObject('SELECT hl_id, name  FROM my_language 
 	ORDER BY requests DESC LIMIT 20');
 	db_set_active('default');
   foreach ($result as $data){
@@ -225,7 +225,7 @@ function mylanguage_block_select_ethnic ($format = 'laptop'){
 	$i = 0;
 	foreach ($ethnic as $lang){
 		db_set_active('my');
-		$data = db_query('SELECT ethnic_name, hl_id FROM my_language
+		$data = sqlFetchObject('SELECT ethnic_name, hl_id FROM my_language
 			WHERE name = :name',
 			array(':name'=> $lang)) ->fetchObject();
 		db_set_active('default');	
@@ -297,7 +297,7 @@ function mylanguage_block_view($block_key){
 		$block['subject']  = mylanguage_t_browser('Other Options');
 		$block['content'] ='';
 		db_set_active('hl');
-		$results = db_query('SELECT name, ethnic_name, hl_id 
+		$results = sqlFetchObject('SELECT name, ethnic_name, hl_id 
 			FROM hl_connect  WHERE arc_id != :arc_id ORDER BY name',
 			array(':arc_id' => ''));
 		db_set_active('default');
@@ -311,7 +311,7 @@ function mylanguage_block_view($block_key){
 		$hl_id = isset($_SESSION['mylanguage_hl_id']) ? $_SESSION['mylanguage_hl_id'] : 'eng00';
 		$i = '';
 		 db_set_active('common');	
-		$results = db_query ('SELECT volume_name, dam_id FROM dbm_bible 
+		$results = sqlFetchObject ('SELECT volume_name, dam_id FROM dbm_bible 
 			WHERE hl_id = :hl_id AND text = :text  AND collection_code= :nt', 
 			array(':hl_id' =>$hl_id, ':text' =>'', ':nt'=> 'NT' )
 		);
@@ -325,7 +325,7 @@ function mylanguage_block_view($block_key){
 		}
 		$block['content'] .= '<br>';
 		db_set_active('hl');
-		$results = db_query('SELECT DISTINCT title  FROM hl_recording WHERE 
+		$results = sqlFetchObject('SELECT DISTINCT title  FROM hl_recording WHERE 
 			hl_id = :hl_id AND audio_file_1 != :audio_file_1 AND exclude !=:exclude ORDER by title ',
 			array(':hl_id' => $hl_id, ':audio_file_1' => '', ':exclude' => 'x')
 		);
@@ -347,7 +347,7 @@ function mylanguage_block_view($block_key){
 		mylanguage_chinese($hl_id);
 		if (isset($_SESSION['mylanguage_chinese'])){
 			db_set_active('my');
-			$results = db_query('SELECT hl_id FROM my_language WHERE chinese = 1');
+			$results = sqlFetchObject('SELECT hl_id FROM my_language WHERE chinese = 1');
 			db_set_active('default');
 			$chinese_codes = '';
 			foreach($results as $data){
@@ -355,7 +355,7 @@ function mylanguage_block_view($block_key){
 			}
 			$chinese_codes = substr($chinese_codes, 0, -1);
 			db_set_active('hl_online');
-			$results = db_query ('SELECT * FROM hl_online_jfilm WHERE hl_id IN (' . $chinese_codes . ')  AND 
+			$results = sqlFetchObject ('SELECT * FROM hl_online_jfilm WHERE hl_id IN (' . $chinese_codes . ')  AND 
 				(title = :title1 OR title = :title2 OR title  = :title3)  ORDER BY language',
 				array(':title1' => 'JESUS', 
 					':title2' => 'The Story of JESUS for Children', 
@@ -366,7 +366,7 @@ function mylanguage_block_view($block_key){
 		// non Chinese
 		else{
 			db_set_active('hl_online');
-			$results = db_query ('SELECT * FROM hl_online_jfilm WHERE hl_id = :hl_id  AND 
+			$results = sqlFetchObject ('SELECT * FROM hl_online_jfilm WHERE hl_id = :hl_id  AND 
 				(title = :title1 OR title = :title2 OR title  = :title3)  ORDER BY language',
 				array(':hl_id' => $hl_id,
 					':title1' => 'JESUS', 
@@ -449,7 +449,7 @@ function mylanguage_block_view($block_key){
 		mylanguage_language($hl_id);
 		$block['subject']  =translate('Discussions');
 		db_set_active('hl_online');
-		$results = db_query('SELECT reference, session FROM hl_online_passage 
+		$results = sqlFetchObject('SELECT reference, session FROM hl_online_passage 
 			WHERE study = :study AND hl_id = :hl_id ORDER BY session',
 			array(':study'=> 'dbs', ':hl_id' => $_SESSION['mylanguage_hl_id'])
 		);
@@ -471,7 +471,7 @@ function mylanguage_cache($hl_id){
 	$browser_language = $_SESSION['mylanguage_browser_language'];
 	$id = $hl_id . '-'. $browser_language->language;
 	db_set_active('my');
-	$cache = db_query('SELECT * FROM my_cache
+	$cache = sqlFetchObject('SELECT * FROM my_cache
 		WHERE id = :id',
 		array('id' => $id))->fetchObject();
 	db_set_active('default');
@@ -531,7 +531,7 @@ function mylanguage_chinese($hl_id){
 		$hl_id = 'eng00';
 	}
 	db_set_active('my');
-	$data = db_query('SELECT name, ethnic_name, requests, chinese FROM my_language 
+	$data = sqlFetchObject('SELECT name, ethnic_name, requests, chinese FROM my_language 
 		WHERE hl_id = :hl_id', 
 		array(':hl_id' =>$hl_id)
 	)-> fetchObject();
@@ -617,14 +617,14 @@ function mylanguage_find_browser_language_parse($http_accept, $deflang = "en") {
 function mylanguage_find_ethnic_name_browser_language($hl_id){
 	$browser_name_for_language = '';
 	db_set_active('my');
-	$language_number = db_query('SELECT bible_brain FROM my_language
+	$language_number = sqlFetchObject('SELECT bible_brain FROM my_language
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' => $hl_id))->fetchField();
-	$translation_language_number = db_query('SELECT bible_brain FROM my_language
+	$translation_language_number = sqlFetchObject('SELECT bible_brain FROM my_language
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' => $_SESSION['mylanguage_browser_hl_id']))->fetchField();
 	if ($language_number && $translation_language_number){
-		$browser_name_for_language = db_query('SELECT translation FROM my_language_translation
+		$browser_name_for_language = sqlFetchObject('SELECT translation FROM my_language_translation
 			WHERE language_number = :language_number AND translation_language_number = :translation_language_number
 			LIMIT 1', 
 			array(':language_number' => $language_number, 
@@ -636,7 +636,7 @@ function mylanguage_find_ethnic_name_browser_language($hl_id){
 		return $browser_name_for_language;
 	}
 	else{
-		$english_name_for_language = db_query('SELECT name FROM my_language
+		$english_name_for_language = sqlFetchObject('SELECT name FROM my_language
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' => $hl_id))->fetchField();
 		db_set_active('default');
@@ -673,7 +673,7 @@ function mylanguage_hl_validate(){
 	else{
 		$hl_id = $_SESSION['mylanguage_browser_hl_id'];
 	}
-	$test = db_query('SELECT hl_id FROM my_language
+	$test = sqlFetchObject('SELECT hl_id FROM my_language
 		WHERE hl_id = :hl_id',
 		array(':hl_id' => $hl_id))
 		->fetchField();
@@ -686,9 +686,9 @@ function mylanguage_hl_validate(){
 	return $test;
 }
 function mylanguage_hl_id_to_bible(){
-	$result = db_query('SELECT distinct language_iso FROM dbm_bible');
+	$result = sqlFetchObject('SELECT distinct language_iso FROM dbm_bible');
 	foreach ($result as $data){
-		$hl_id = db_query('SELECT hl_id FROM my_language
+		$hl_id = sqlFetchObject('SELECT hl_id FROM my_language
 			WHERE language_iso = :iso',
 			array(':iso' => $data-> language_iso))->fetchField();
 		if ($hl_id){
@@ -762,18 +762,18 @@ function mylanguage_injeel_request_mylanguage_page_thanks(){
 function mylanguage_language($hl_id){
 	db_set_active('default');
 	global $language;
-	$drupal = db_query('SELECT drupal FROM my_language
+	$drupal = sqlFetchObject('SELECT drupal FROM my_language
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' =>$hl_id)
 	) ->fetchField();
 	if (empty($drupal)){
 		$drupal = 'en';
 	}
-	$l = db_query('SELECT * FROM languages 
+	$l = sqlFetchObject('SELECT * FROM languages 
 			WHERE language = :drupal',
 			array(':drupal' => $drupal))->fetchAll();
 	if (empty($l)){
-		$l = db_query('SELECT * FROM languages 
+		$l = sqlFetchObject('SELECT * FROM languages 
 			WHERE language = :drupal',
 			array(':drupal' => 'en'))->fetchAll();
 	}
@@ -815,12 +815,12 @@ function mylanguage_language_autocomplete($string){
   drupal_json_output($matches);
 }
 function mylanguage_language_iso($hl_id){
-	$iso = db_query('SELECT language_iso FROM my_language
+	$iso = sqlFetchObject('SELECT language_iso FROM my_language
 		WHERE hl_id = :hl_id',
 		array(':hl_id' => $hl_id))
 		->fetchField();
 	if ($iso == NULL){
-		$iso = db_query('SELECT language_iso FROM my_language
+		$iso = sqlFetchObject('SELECT language_iso FROM my_language
 		WHERE hl_id = :hl_id',
 		array(':hl_id' => 'eng'))
 		->fetchField();
@@ -833,7 +833,7 @@ function mylanguage_language_from_browser(){
 	if ($language_browser){
 		$language_browser = substr($language_browser, 0,2);
 	}
-	$hl_id = db_query('SELECT hl_id FROM my_language
+	$hl_id = sqlFetchObject('SELECT hl_id FROM my_language
 		WHERE language_browser = :language_browser',
 		array(':language_browser' => $language_browser))
 		->fetchField();
@@ -842,18 +842,18 @@ function mylanguage_language_from_browser(){
 	}
 	$_SESSION['mylanguage_browser_hl_id']= $hl_id;
 	
-	$drupal = db_query('SELECT drupal FROM my_language
+	$drupal = sqlFetchObject('SELECT drupal FROM my_language
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' =>$hl_id)
 	) ->fetchField();
 	if (empty($drupal)){
 		$drupal = 'en';
 	}
-	$l = db_query('SELECT * FROM languages 
+	$l = sqlFetchObject('SELECT * FROM languages 
 			WHERE language = :drupal',
 			array(':drupal' => $drupal))->fetchAll();
 	if (empty($l)){
-		$l = db_query('SELECT * FROM languages 
+		$l = sqlFetchObject('SELECT * FROM languages 
 			WHERE language = :drupal',
 			array(':drupal' => 'en'))->fetchAll();
 	}
@@ -877,7 +877,7 @@ function mylanguage_language_select_form($form, &$form_state){
 	return $form;
 }
 function mylanguage_language_select_form_submit($form, &$form_state){
-	$hl_id = db_query ('SELECT hl_id FROM my_language
+	$hl_id = sqlFetchObject ('SELECT hl_id FROM my_language
 		WHERE name = :name OR ethnic_name = :ethnic',
 		array(':name' => $form_state ['values']['language'],
 			':ethnic' => $form_state ['values']['language']
@@ -890,16 +890,16 @@ function mylanguage_language_select_form_submit($form, &$form_state){
 }
 function mylanguage_language_in_my_language($language_iso){
 	$output = '';
-	$language_number = db_query('SELECT bible_brain FROM my_language	
+	$language_number = sqlFetchObject('SELECT bible_brain FROM my_language	
 		WHERE language_iso = :language_iso LIMIT 1',
 		array(':language_iso' => $language_iso))->fetchField();
 	if ($language_number){
-		$result = db_query('SELECT language_number, translation FROM my_language_translation	
+		$result = sqlFetchObject('SELECT language_number, translation FROM my_language_translation	
 			WHERE translation_language_number = :language_number 
 			ORDER BY translation',
 			array(':language_number' => $language_number));
 		foreach ($result as $data){
-			$hl_id = db_query('SELECT hl_id FROM my_language
+			$hl_id = sqlFetchObject('SELECT hl_id FROM my_language
 				WHERE bible_brain = :bible_brain LIMIT 1',
 				array(':bible_brain' => $data->language_number))->fetchField();
 			if ($hl_id){
@@ -911,13 +911,13 @@ function mylanguage_language_in_my_language($language_iso){
 }
 function mylanguage_language_translation_deduplicate(){
 	$output = '';
-	$result = db_query('SELECT distinct language_number  FROM my_language_translation');
+	$result = sqlFetchObject('SELECT distinct language_number  FROM my_language_translation');
 	foreach ($result as $language_number){
-		$result2 = db_query('SELECT distinct translation_language_number  FROM my_language_translation
+		$result2 = sqlFetchObject('SELECT distinct translation_language_number  FROM my_language_translation
 			WHERE language_number = :language_number',
 			array(':language_number' => $language_number->language_number));
 		foreach ($result2 as $translation_language_number){
-			$result3 = db_query('SELECT id FROM my_language_translation
+			$result3 = sqlFetchObject('SELECT id FROM my_language_translation
 				WHERE language_number = :language_number  AND  translation_language_number = :translation_language_number',
 				array(':language_number' => $language_number->language_number, ':translation_language_number' => $translation_language_number->translation_language_number));
 			$count = 1;
@@ -1142,7 +1142,7 @@ function mylanguage_menu_button_load($hl_id, $image_name, $source, $text){
   // for button 125x164
   // get font
   $font_dir = mylanguage_realpath_files() .'/fonts/';
-  $result = db_query('SELECT font, direction, chinese from my_language WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ->fetchObject();
+  $result = sqlFetchObject('SELECT font, direction, chinese from my_language WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ->fetchObject();
   $data = db_fetch_object($result);
   $font = $data->font;
   $data_direction = $data->direction;
@@ -1241,7 +1241,7 @@ function mylanguage_menu_button_load_175($hl_id, $image_name, $source, $text){
   $_SESSION['debug'] .= 'from button load <br>';
   // get font
   $font_dir = mylanguage_realpath_files() .'/fonts/';
-  $data = db_query('SELECT font, direction, chinese from my_language 
+  $data = sqlFetchObject('SELECT font, direction, chinese from my_language 
 	WHERE hl_id = :hl_id', 
 	array(':hl_id' => $hl_id)) 
 	->fetchObject();
@@ -1331,7 +1331,7 @@ function mylanguage_menu_button_load_171($hl_id, $image_name, $source, $text){
   // for button 125x164
   // get font
   $font_dir = mylanguage_realpath_files() .'/fonts/';
-  $result = db_query('SELECT font, direction, chinese from my_language WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ->fetchObject();
+  $result = sqlFetchObject('SELECT font, direction, chinese from my_language WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ->fetchObject();
   $data = db_fetch_object($result);
   $font = $data->font;
   $data_direction = $data->direction;
@@ -1431,12 +1431,12 @@ function mylanguage_menu_button_load_205($hl_id, $image_name, $source, $text){
 	$hl_id = 'chn06';
   }
   $font_dir = mylanguage_realpath_files() .'/fonts/';
-  $data = db_query('SELECT font, direction, chinese from my_language 
+  $data = sqlFetchObject('SELECT font, direction, chinese from my_language 
 	WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ->fetchObject();
 	// in case url is messed up
   if (!isset($data->font)){
 	$hl_id = 'eng00';
-	$data = db_query('SELECT font, direction, chinese from my_language 
+	$data = sqlFetchObject('SELECT font, direction, chinese from my_language 
 		WHERE hl_id = :hl_id', 
 		array(':hl_id' => $hl_id)) ->fetchObject();
 	  
@@ -1536,7 +1536,7 @@ function mylanguage_menu_cache($hl_id){
 	}
 	$browser_language = $_SESSION['mylanguage_browser_language'];
 	$id = $hl_id . '-'. $browser_language->language;
-	$cache = db_query('SELECT * FROM hl_cache
+	$cache = sqlFetchObject('SELECT * FROM hl_cache
 		WHERE id = :id',
 		array('id' => $id))->fetchObject();
 	if (isset($cache->laptop_menu)){
@@ -1578,13 +1578,13 @@ function mylanguage_menu_image_another_language($hl_id, $i){
   $image= ImageCreateFromJPEG($photo) or die ("failed to create $photo for $i in logo load 150");
   $fgcolour=ImageColorAllocate($image,255, 255, 255);
   $debugcolour=ImageColorAllocate($image,0, 0, 0);
-  $data = db_query('SELECT mylanguage, name , font, direction FROM my_language
+  $data = sqlFetchObject('SELECT mylanguage, name , font, direction FROM my_language
 	WHERE hl_id = :hl_id', 
 	array(':hl_id' => $hl_id)) 
 	->fetchObject();
 	// in case url messed up
   if (!isset($data->name)){
-	$data = db_query('SELECT mylanguage, name , font, direction FROM my_language
+	$data = sqlFetchObject('SELECT mylanguage, name , font, direction FROM my_language
 		WHERE hl_id = :hl_id', 
 		array(':hl_id' => 'eng00')) 
 		->fetchObject();
@@ -1653,7 +1653,7 @@ function mylanguage_menu_l($text, $path, $image) {
 }
 function mylanguage_menu_links_5fish($hl_id) {
 	$link = null;
-	$result = db_query('SELECT * FROM hl_5fish
+	$result = sqlFetchObject('SELECT * FROM hl_5fish
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' => $hl_id))->fetchObject();
 	if ($result){
@@ -1672,13 +1672,13 @@ function mylanguage_menu_links_5fish($hl_id) {
 function mylanguage_menu_links_adventure($hl_id) {
 	$link = null;
 	if (isset($_SESSION['mylanguage_chinese']) ){
-		$result = db_query('SELECT hl_id FROM hl_spirit
+		$result = sqlFetchObject('SELECT hl_id FROM hl_spirit
 			WHERE hl_id = :hl_id1 OR hl_id = :hl_id2 LIMIT 1',
 			array(':hl_id1' => 'chn-s', ':hl_id2' => 'chn-t')
 			) ->fetchField();
 	}
 	else{
-		$result = db_query('SELECT hl_id FROM hl_spirit
+		$result = sqlFetchObject('SELECT hl_id FROM hl_spirit
 			WHERE hl_id = :hl_id',
 			array(':hl_id' => $hl_id))->fetchField();
 	}
@@ -1698,13 +1698,13 @@ function mylanguage_menu_links_ask($hl_id){
 	$link = null;
 	db_set_active('hl_online');
 	if (isset($_SESSION['mylanguage_chinese']) ){
-		$contact = db_query('SELECT contact FROM hl_online_everystudent
+		$contact = sqlFetchObject('SELECT contact FROM hl_online_everystudent
 			WHERE hl_id = :hl_id1 OR hl_id = :hl_id2 LIMIT 1',
 			array(':hl_id1' => 'chn-s', ':hl_id2' => 'chn-t')
 			) ->fetchField();
 	}
 	else{
-		$contact = db_query('SELECT contact FROM hl_online_everystudent
+		$contact = sqlFetchObject('SELECT contact FROM hl_online_everystudent
 			WHERE hl_id = :hl_id LIMIT 1',
 			array(':hl_id' => $hl_id))->fetchField();
 	}
@@ -1728,7 +1728,7 @@ function mylanguage_menu_links_ask($hl_id){
 function mylanguage_menu_links_audio_bible($hl_id) {
 	$link = null;
 	db_set_active('common');
-	$dam_id = db_query('SELECT dam_id FROM dbm_bible 
+	$dam_id = sqlFetchObject('SELECT dam_id FROM dbm_bible 
 		WHERE hl_id = :hl_id AND audio = :y1 AND (collection_code = :full OR collection_code = :nt)
 		LIMIT 1',
 		array(':hl_id' =>$hl_id, ':y1' => 'Y', ':full' => 'FU', ':nt' =>'NT')) -> fetchField();
@@ -1750,13 +1750,13 @@ function mylanguage_menu_links_audio_bible($hl_id) {
 function mylanguage_menu_links_discuss($hl_id) {
 	$link = null;
 	if (isset($_SESSION['mylanguage_chinese']) ){
-		$result = db_query('SELECT hl_id FROM hl_dbm_questions
+		$result = sqlFetchObject('SELECT hl_id FROM hl_dbm_questions
 			WHERE hl_id = :hl_id1 OR hl_id = :hl_id2 LIMIT 1',
 			array(':hl_id1' => 'chn-s', ':hl_id2' => 'chn-t')
 			) ->fetchField();
 	}
 	else{
-		$result = db_query('SELECT hl_id FROM hl_dbm_questions
+		$result = sqlFetchObject('SELECT hl_id FROM hl_dbm_questions
 			WHERE hl_id = :hl_id',
 			array(':hl_id' => $hl_id))->fetchField();
 	}
@@ -1776,7 +1776,7 @@ function mylanguage_menu_links_discuss($hl_id) {
 function mylanguage_menu_links_jfilm( $hl_id) {
 	$link = null;
 	db_set_active('hl_online');
-	$result = db_query('SELECT hl_id FROM hl_online_jfilm
+	$result = sqlFetchObject('SELECT hl_id FROM hl_online_jfilm
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' => $hl_id))->fetchField();
 	db_set_active('default');
@@ -1814,13 +1814,13 @@ function mylanguage_menu_links_change_language($hl_id, $links) {
 function mylanguage_menu_links_meet_god($hl_id) {
 	$link = null;
 	if (isset($_SESSION['mylanguage_chinese']) ){
-		$result = db_query('SELECT hl_id FROM hl_online_kgp
+		$result = sqlFetchObject('SELECT hl_id FROM hl_online_kgp
 			WHERE hl_id = :hl_id1 OR hl_id = :hl_id2 LIMIT 1',
 			array(':hl_id1' => 'chn-s', ':hl_id2' => 'chn-t')
 			) ->fetchField();
 	}
 	else{
-		$result = db_query('SELECT hl_id FROM hl_online_kgp
+		$result = sqlFetchObject('SELECT hl_id FROM hl_online_kgp
 			WHERE hl_id = :hl_id',
 			array(':hl_id' => $hl_id))->fetchField();
 	}
@@ -1841,7 +1841,7 @@ function mylanguage_menu_links_read_bible($hl_id) {
 	$link = null;
 	db_set_active('hl_online');
 	if (isset($_SESSION['mylanguage_chinese']) ){	  
-		$h = db_query('SELECT hl_id FROM dbm_bible
+		$h = sqlFetchObject('SELECT hl_id FROM dbm_bible
 			WHERE hl_id = :hl_id1 OR hl_id = :hl_id2  AND (collection_code = :nt OR collection_code = :fu )
 			AND text = :y1 
 			ORDER BY weight DESC LIMIT 1',
@@ -1853,7 +1853,7 @@ function mylanguage_menu_links_read_bible($hl_id) {
 		->fetchField();
 	}
 	else{
-		$h = db_query('SELECT hl_id FROM dbm_bible
+		$h = sqlFetchObject('SELECT hl_id FROM dbm_bible
 			WHERE hl_id = :hl_id AND (collection_code = :nt OR collection_code = :fu )
 			AND text = :y1 
 			ORDER BY weight DESC LIMIT 1',
@@ -1880,13 +1880,13 @@ function mylanguage_menu_links_website($hl_id){
 	$link = null;
 	db_set_active('hl_online');
 	if (isset($_SESSION['mylanguage_chinese']) ){
-		$result = db_query('SELECT * FROM hl_online_everystudent
+		$result = sqlFetchObject('SELECT * FROM hl_online_everystudent
 			WHERE hl_id = :hl_id1 OR hl_id = :hl_id2 LIMIT 1',
 			array(':hl_id1' => 'chn-s', ':hl_id2' => 'chn-t')
 			) ->fetchObject();
 	}
 	else{
-		$result = db_query('SELECT * FROM hl_online_everystudent
+		$result = sqlFetchObject('SELECT * FROM hl_online_everystudent
 			WHERE hl_id = :hl_id LIMIT 1',
 			array(':hl_id' => $hl_id))->fetchObject();
 	}
@@ -2122,12 +2122,12 @@ function mylanguage_find_nation(){
 }
 
 function mylanguage_page_adventure(){
-	$count = db_query('SELECT count(id) as count 
+	$count = sqlFetchObject('SELECT count(id) as count 
 		FROM hl_spirit') -> fetchField();
 	$length = ($count->count)/3;
 	$i = 0;
 	$output .= '<table><tr><td>'. "\n";
-	$results = db_query('SELECT * FROM hl_spirit ORDER BY name') ->fetchObject();
+	$results = sqlFetchObject('SELECT * FROM hl_spirit ORDER BY name') ->fetchObject();
 	foreach ($results as $data){
 		$i++;
 		$output .= l( $data->name , 'https://mylanguage.net.au/study_online/'. $data->hl_id ) .'<br>' . "\n";
@@ -2149,14 +2149,14 @@ function mylanguage_page_ask($hl_id = 'eng00'){
 	}
 	mylanguage_language($hl_id);
 	db_set_active('hl_online');
-	$everystudent = db_query('SELECT contact FROM hl_online_everystudent
+	$everystudent = sqlFetchObject('SELECT contact FROM hl_online_everystudent
 		WHERE hl_id = :hl_id',
 		array(':hl_id' => $hl_id)) -> fetchField();
 	db_set_active('default');
 	if ($everystudent){
 		drupal_goto($everystudent, $options = array('external'), $http_response_code = 302);
 	}
-	$gmo_website_question = db_query ('SELECT gmo_website_question FROM hl_connect 
+	$gmo_website_question = sqlFetchObject ('SELECT gmo_website_question FROM hl_connect 
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' =>$hl_id)) -> fetchField();
 	if ($gmo_website_question){
@@ -2182,7 +2182,7 @@ function mylanguage_page_ask($hl_id = 'eng00'){
         $results = $query->execute();
 		*/
 		db_set_active('hl_online');
-		$results = db_query('SELECT ethnic_name, contact FROM hl_online_everystudent 
+		$results = sqlFetchObject('SELECT ethnic_name, contact FROM hl_online_everystudent 
 			ORDER BY ethnic_name');
 		db_set_active('default');
 		foreach($results as $data){
@@ -2253,7 +2253,7 @@ function mylanguage_page_bible($hl_id = 'eng00', $chapter_id = 1) {
 	$output .= '</div>';
 	$output .= '<hr>' ."\n";
 	db_set_active('common');
-    $bid = db_query('SELECT bid FROM dbm_bible
+    $bid = sqlFetchObject('SELECT bid FROM dbm_bible
 		WHERE hl_id = :hl_id AND (collection_code = :nt OR collection_code = :fu )
 		AND text = :y1 
 		ORDER BY weight DESC LIMIT 1',
@@ -2285,12 +2285,12 @@ function mylanguage_page_bible_dbt($bid, $chapterId, $hl_id){
 	$a = drupal_get_form('mylanguage_page_bible_navigation_form', $hl_id, $chapterId);
 	$output = drupal_render($a);
 		
-	$data = db_query('SELECT * FROM hl_luke_passage
+	$data = sqlFetchObject('SELECT * FROM hl_luke_passage
 		WHERE bid = :bid AND reference = :chapter',
     array(':bid' => $bid, ':chapter' => $chapterId))
 		->fetchObject();
 	if (isset($data->passage)){
-			db_query('UPDATE hl_luke_passage SET
+			sqlFetchObject('UPDATE hl_luke_passage SET
 				last_access = :last_access, times_access = :times_access
 				WHERE id = :id',
 				array(':last_access' => time(), ':times_access' => $data->times_access + 1,
@@ -2302,7 +2302,7 @@ function mylanguage_page_bible_dbt($bid, $chapterId, $hl_id){
 	$bookId = 'Luke';
 	if ($chapterId < 1) {$chapterId = 1;}
 	db_set_active('common');
-	$data = db_query('SELECT dam_id, right_to_left, volume_name, language_name FROM dbm_bible
+	$data = sqlFetchObject('SELECT dam_id, right_to_left, volume_name, language_name FROM dbm_bible
 		WHERE bid = :bid', 
 		array(':bid' => $bid ))->fetchObject();
 	db_set_active('default');
@@ -2356,7 +2356,7 @@ function mylanguage_page_bible_find($nt, $chapter_id, $hl_id){
 	//uses bid of NT.
 	$ot = NULL;
 	db_set_active('hl_online');
-	$verses = db_query('SELECT verses FROM hl_online_luke_verses
+	$verses = sqlFetchObject('SELECT verses FROM hl_online_luke_verses
 		WHERE chapter = :chapter',
 		array(':chapter' => $chapter_id))-> fetchField();
 	db_set_active('default');
@@ -2446,7 +2446,7 @@ function mylanguage_page_bilingual_read() {
      $output .= mylanguage_chinese_display('read_bilingual_page'); 
   }
   $output .= mylanguage_display_loading();
-  $webpage = db_query('SELECT webpage from hl_bilingual
+  $webpage = sqlFetchObject('SELECT webpage from hl_bilingual
 	WHERE hl_id = :hl_id',
 	array(':hl_id' => $hl_id)
   ) ->fetchField();
@@ -2509,7 +2509,7 @@ function mylanguage_page_discuss($hl_id = 'eng00', $session = 1){
 	global $language;
 	// find passage
 	db_set_active('common');
-	$passage = db_query('SELECT * FROM dbm_study_passage
+	$passage = sqlFetchObject('SELECT * FROM dbm_study_passage
 			WHERE study = :study AND lesson = :session AND language = :language', 
 			array(':study' => 'ctc',
 				':session' =>  $session, 
@@ -2525,7 +2525,7 @@ function mylanguage_page_discuss($hl_id = 'eng00', $session = 1){
 	$nt = '';
 	$dir = "ltr";
 	if ($dbt_array['collection_code'] == 'OT'){
-		$bible = db_query('SELECT bid, right_to_left FROM dbm_bible
+		$bible = sqlFetchObject('SELECT bid, right_to_left FROM dbm_bible
 			WHERE hl_id = :hl_id AND (collection_code = :testament OR collection_code = :fu )
 			AND text = :y1 
 			ORDER BY weight DESC LIMIT 1',
@@ -2537,7 +2537,7 @@ function mylanguage_page_discuss($hl_id = 'eng00', $session = 1){
 			// in case looking for Bible that does not exist
 			if (!isset($bible->bid)){
 				watchdog ('mylanguage', $hl_id .' does not have OT');
-				$bible = db_query('SELECT bid, right_to_left FROM dbm_bible
+				$bible = sqlFetchObject('SELECT bid, right_to_left FROM dbm_bible
 				WHERE hl_id = :hl_id AND (collection_code = :testament OR collection_code = :fu )
 				AND text = :y1 
 				ORDER BY weight DESC LIMIT 1',
@@ -2554,7 +2554,7 @@ function mylanguage_page_discuss($hl_id = 'eng00', $session = 1){
 		
 	}
 	else{
-		$bible = db_query('SELECT bid, right_to_left FROM dbm_bible
+		$bible = sqlFetchObject('SELECT bid, right_to_left FROM dbm_bible
 			WHERE hl_id = :hl_id AND (collection_code = :testament OR collection_code = :fu )
 			AND text = :y1 
 			ORDER BY weight DESC LIMIT 1',
@@ -2565,7 +2565,7 @@ function mylanguage_page_discuss($hl_id = 'eng00', $session = 1){
 			->fetchObject();
 		if (!isset($bible->bid)){
 			watchdog ('mylanguage', $hl_id .' does not have OT');
-			$bible = db_query('SELECT bid, right_to_left FROM dbm_bible
+			$bible = sqlFetchObject('SELECT bid, right_to_left FROM dbm_bible
 				WHERE hl_id = :hl_id AND (collection_code = :testament OR collection_code = :fu )
 				AND text = :y1 
 				ORDER BY weight DESC LIMIT 1',
@@ -2613,7 +2613,7 @@ function mylanguage_page_discuss($hl_id = 'eng00', $session = 1){
 	return $output;
 }
 function mylanguage_page_discuss_design_form($form_values = NULL){
-    $results3 = db_query('SELECT * FROM hl_online_passage 
+    $results3 = sqlFetchObject('SELECT * FROM hl_online_passage 
 		WHERE study = :study AND language = :language ORDER BY session',
 		array(':study' =>'dbs', ':language' =>'en')
 	);
@@ -2627,10 +2627,10 @@ function mylanguage_page_discuss_design_form($form_values = NULL){
     '#options' => $passage,
     '#default_value' => $_SESSION['mylanguage_page_discuss_session'],
   );
-    $results2 = db_query('SELECT distinct(language) FROM hl_online_passage  ORDER BY language');
+    $results2 = sqlFetchObject('SELECT distinct(language) FROM hl_online_passage  ORDER BY language');
 	 $lang[''] =translate('SELECT VALUE');
     foreach($results2 as $data2){
-        $data3 = db_query('SELECT name, native FROM {languages} WHERE language= :language', 
+        $data3 = sqlFetchObject('SELECT name, native FROM {languages} WHERE language= :language', 
 			array('language' =>$data2->language)
 		)->fetchObject();
 	    $lang[$data2->language] = $data3->name . '  ('. $data3->native. ')';
@@ -2678,13 +2678,13 @@ function mylanguage_page_discuss_design_form_submit($form_id, $form_values){
 }
 function mylanguage_page_discuss_header($nmbr = 1, $hl_id = 'eng00'){
 	//foreach ($language as $lang){
-		$data = db_query('SELECT topic FROM hl_online_topics
+		$data = sqlFetchObject('SELECT topic FROM hl_online_topics
 			WHERE nmbr = :nmbr AND hl_id = :hl_id LIMIT 1', 
 			array(':nmbr' =>$nmbr,':hl_id' => $hl_id)) ->fetchObject();
 		$topic .= $data->topic . ' -- ';
 	//}
 	if (!$topic){
-			$data = db_query('SELECT topic FROM hl_online_topics
+			$data = sqlFetchObject('SELECT topic FROM hl_online_topics
 				WHERE nmbr = :nmbr AND hl_id = :hl_id LIMIT 1', 
 				array(':nmbr' =>$nmbr, ':hl_id' =>'eng00')
 			)->fetchObject();
@@ -2706,24 +2706,24 @@ function mylanguage_page_discuss_select_form($form, &$form_state, $session){
 	$nt = NULL;
 	$ot = NULL;
 	db_set_active('common');
-	$nt = db_query('SELECT bid FROM dbm_bible
+	$nt = sqlFetchObject('SELECT bid FROM dbm_bible
 		WHERE hl_id = :hl_id AND text = :text AND
 		(collection_code = :collection_code1 or collection_code = :collection_code2)',
 		array(':hl_id' => $hl_id, ':text' => 'Y', ':collection_code1' => 'FU', ':collection_code2' => 'NT'))
 		->fetchField();
-	$ot = db_query('SELECT bid FROM dbm_bible
+	$ot = sqlFetchObject('SELECT bid FROM dbm_bible
 		WHERE hl_id = :hl_id  AND text = :text AND
 		(collection_code = :collection_code1 or collection_code = :collection_code2)',
 		array(':hl_id' => $hl_id, ':text' => 'Y', ':collection_code1' => 'FU', ':collection_code2' => 'OT'))
 		->fetchField();
 		// if we have nothing in their language, give them everything in English
 	if (!$ot && !$nt){
-		$nt = db_query('SELECT bid FROM dbm_bible
+		$nt = sqlFetchObject('SELECT bid FROM dbm_bible
 			WHERE hl_id = :hl_id AND text = :text AND
 			(collection_code = :collection_code1 or collection_code = :collection_code2)',
 			array(':hl_id' => 'eng00', ':text' => 'Y', ':collection_code1' => 'FU', ':collection_code2' => 'NT'))
 			->fetchField();
-		$ot = db_query('SELECT bid FROM dbm_bible
+		$ot = sqlFetchObject('SELECT bid FROM dbm_bible
 			WHERE hl_id = :hl_id  AND text = :text AND
 			(collection_code = :collection_code1 or collection_code = :collection_code2)',
 			array(':hl_id' => 'eng00', ':text' => 'Y', ':collection_code1' => 'FU', ':collection_code2' => 'OT'))
@@ -2732,7 +2732,7 @@ function mylanguage_page_discuss_select_form($form, &$form_state, $session){
 	}
 	db_set_active('default');
 	db_set_active('common');
-	$results = db_query('SELECT lesson, dbt_array FROM dbm_study_passage 
+	$results = sqlFetchObject('SELECT lesson, dbt_array FROM dbm_study_passage 
 		WHERE study = :study AND language = :language ORDER BY lesson',
 		array(':study' => 'ctc', ':language' => 'eng'));
 	db_set_active('default');
@@ -2792,7 +2792,7 @@ function mylanguage_page_discuss_select_form_submit ($form, &$form_state){
 function mylanguage_page_discuss_q ($nmbr, $hl_id = 'eng00', $dir = 'ltr'){
 	$question = '';
 	db_set_active('common');
-	$data = db_query('SELECT question FROM dbm_questions 
+	$data = sqlFetchObject('SELECT question FROM dbm_questions 
 		WHERE nmbr = :nmbr AND hl_id = :hl_id',
 		array( ':nmbr' => $nmbr,':hl_id' => $hl_id)) ->fetchObject();
 	db_set_active('default');
@@ -2801,7 +2801,7 @@ function mylanguage_page_discuss_q ($nmbr, $hl_id = 'eng00', $dir = 'ltr'){
 	}
 	else{
 		db_set_active('common');
-		$data = db_query('SELECT question FROM dbm_questions 
+		$data = sqlFetchObject('SELECT question FROM dbm_questions 
 			WHERE nmbr = :nmbr AND hl_id = :hl_id',
 			array( ':nmbr' => $nmbr,':hl_id' => 'eng00')) ->fetchObject();
 		db_set_active('default');
@@ -2822,7 +2822,7 @@ function mylanguage_footer(){
 	if ($hl_id == 'eng00'){
 		return;
 	}
-	$data = db_query('SELECT google, language_bing FROM my_language
+	$data = sqlFetchObject('SELECT google, language_bing FROM my_language
 		WHERE hl_id = :hl_id',
 		array(':hl_id' => $hl_id))->fetchObject();
 	if (!empty($data->language_bing)){
@@ -2844,7 +2844,7 @@ function mylanguage_page_footer(){
 	if ($hl_id == 'eng00'){
 		return;
 	}
-	$data = db_query('SELECT google, language_bing FROM my_language
+	$data = sqlFetchObject('SELECT google, language_bing FROM my_language
 		WHERE hl_id = :hl_id',
 		array(':hl_id' => $hl_id))->fetchObject();
 	if (!empty($data->language_bing)){
@@ -2960,7 +2960,7 @@ function mylanguage_page_frontX($hl_id = null){
 	}
 	//$text = '<p><img class = "header_image" src = "https://mylanguage.net.au/sites/mylanguage.net.au/themes/twentyfifteen/img/newheader.jpg"></p>';
 	$text = '';
-	$title = db_query('SELECT mylanguage, name, direction FROM my_language 
+	$title = sqlFetchObject('SELECT mylanguage, name, direction FROM my_language 
 		WHERE hl_id = :hl_id
 		LIMIT 1',
 		array(':hl_id' => $hl_id)) ->fetchObject();
@@ -3012,7 +3012,7 @@ function mylanguage_page_frontX($hl_id = null){
 		$text .=  mylanguage_page_front_image('read.png', $direction);
 		$text .=   '<h2>'.mylanguage_t_ethnic('Read God\'s Word: the Bible') . '</h2>';
 		db_set_active('common');
-		$bid = db_query('SELECT bid FROM dbm_bible
+		$bid = sqlFetchObject('SELECT bid FROM dbm_bible
 			WHERE hl_id = :hl_id AND (collection_code = :nt OR collection_code = :fu )
 			AND text = :y1 
 			ORDER BY weight DESC LIMIT 1',
@@ -3060,7 +3060,7 @@ function mylanguage_page_frontX($hl_id = null){
 	$text .= mylanguage_page_front_section_end();
 	if (mylanguage_menu_links_written('hl_online_kgp',  $_SESSION['mylanguage_written_hl_id'], 'hl_online')){
 		db_set_active('hl_online');
-		$kgp = db_query('SELECT * FROM hl_online_kgp 
+		$kgp = sqlFetchObject('SELECT * FROM hl_online_kgp 
 			WHERE hl_id = :hl_id', 
 			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']))->fetchObject();
 		$text .= mylanguage_page_front_image('tracts.png', $direction);
@@ -3083,7 +3083,7 @@ function mylanguage_page_frontX($hl_id = null){
 	if (mylanguage_menu_links_written( 'hl_spirit',  $hl_id)){
 		$text .= mylanguage_page_front_image('study.png', $direction);
 		db_set_active('hl_online');
-		$spirit = db_query('SELECT * FROM hl_online_spirit 
+		$spirit = sqlFetchObject('SELECT * FROM hl_online_spirit 
 			WHERE hl_id = :hl_id', 
 			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']))->fetchObject();
 		db_set_active('default');
@@ -3103,7 +3103,7 @@ function mylanguage_page_frontX($hl_id = null){
 	if (mylanguage_menu_links_written('hl_online_everystudent',  $_SESSION['mylanguage_written_hl_id'], 'hl_online')){
 		$text .=  mylanguage_page_front_image('everyone.png', $direction);
 		db_set_active('hl_online');
-		$website = db_query('SELECT * FROM hl_online_everystudent 
+		$website = sqlFetchObject('SELECT * FROM hl_online_everystudent 
 			WHERE hl_id = :hl_id', 
 			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']))->fetchObject();
 		db_set_active('default');
@@ -3149,7 +3149,7 @@ function mylanguage_page_jfilm($hl_id = 'eng00', $movie = 'JESUS', $video = NULL
 	if ($hl_id !='') {
 		// make sure valid code (and not from mypage/chris giving value of chris)
 		db_set_active('hl_online');
-		$data = db_query('SELECT id FROM hl_online_jfilm
+		$data = sqlFetchObject('SELECT id FROM hl_online_jfilm
 			WHERE hl_id = :hl_id LIMIT 1', 
 			array(':hl_id' =>$hl_id)) ->fetchObject();
 		db_set_active('default');
@@ -3169,7 +3169,7 @@ function mylanguage_page_jfilm($hl_id = 'eng00', $movie = 'JESUS', $video = NULL
 	}
 	//return '4003';
 	db_set_active('hl_online');
-	$data = db_query('SELECT * FROM hl_online_jfilm 
+	$data = sqlFetchObject('SELECT * FROM hl_online_jfilm 
 		WHERE film_code = :film_code LIMIT 1',
 		array(':film_code' =>$video))
 		->fetchObject();
@@ -3177,7 +3177,7 @@ function mylanguage_page_jfilm($hl_id = 'eng00', $movie = 'JESUS', $video = NULL
 	// what if they messed up the url?
 	if (!isset($data->id)){
 		db_set_active('hl_online');
-		$data = db_query('SELECT * FROM hl_online_jfilm 
+		$data = sqlFetchObject('SELECT * FROM hl_online_jfilm 
 			WHERE hl_id = :hl_id AND title = :title LIMIT 1',
 			array(':hl_id' =>$hl_id, ':title' => 'JESUS' ))
 			->fetchObject();
@@ -3238,7 +3238,7 @@ function mylanguage_page_jfilm_segments_form ($form, &$form_state, $hl_id, $movi
 	if ($movie == 'JESUS'){
 		$luke =translate('Luke');
 		db_set_active('hl_online');
-		$results = db_query('SELECT * FROM hl_online_jfilm
+		$results = sqlFetchObject('SELECT * FROM hl_online_jfilm
 			 WHERE film_code LIKE :film_code AND movie = :movie ORDER BY segment',
 			 array(':film_code' => $film .'%', ':movie' => $movie));
 		db_set_active('default');
@@ -3263,7 +3263,7 @@ function mylanguage_page_jfilm_segments_form ($form, &$form_state, $hl_id, $movi
 	}
 	else{
 		db_set_active('hl_online');
-	   $results = db_query('SELECT * FROM hl_online_jfilm
+	   $results = sqlFetchObject('SELECT * FROM hl_online_jfilm
 			 WHERE film_code LIKE :film_code AND title LIKE :movie ORDER BY id',
 			 array(':film_code' => $film .'%', ':movie' => 'Magdalena (7 clips)%'));
 		db_set_active('default');
@@ -3280,7 +3280,7 @@ function mylanguage_page_jfilm_segments_form ($form, &$form_state, $hl_id, $movi
 		return $form;
 	}
 	db_set_active('hl_online');
-	$data = db_query('SELECT * FROM hl_online_jfilm
+	$data = sqlFetchObject('SELECT * FROM hl_online_jfilm
 			WHERE film_code = :film_code',
 			array(':film_code' => $film_code))->fetchObject();
 	$fc = substr($film_code, 0, -6) .'%';
@@ -3292,7 +3292,7 @@ function mylanguage_page_jfilm_segments_form ($form, &$form_state, $hl_id, $movi
 
 	if ($data->segment > 1){
 		db_set_active('hl_online');
-		$watch = db_query ('SELECT film_code FROM hl_online_jfilm
+		$watch = sqlFetchObject ('SELECT film_code FROM hl_online_jfilm
 			WHERE film_code LIKE :film_code AND segment = :segment',
 		 array(':film_code' => $fc , ':segment' =>  $data->segment -1)) ->fetchField();
 		 db_set_active('default');
@@ -3305,7 +3305,7 @@ function mylanguage_page_jfilm_segments_form ($form, &$form_state, $hl_id, $movi
 	}
 	if ($data->segment > 0){
 		db_set_active('hl_online');
-		$watch = db_query ('SELECT film_code FROM hl_online_jfilm
+		$watch = sqlFetchObject ('SELECT film_code FROM hl_online_jfilm
 				WHERE film_code LIKE :film_code AND segment = :segment',
        array(':film_code' => $fc , ':segment' => $data->segment +1)) ->fetchField();
 		db_set_active('default');
@@ -3362,7 +3362,7 @@ function mylanguage_page_jfilm_options($hl_id = 'eng00'){
 	$mag_video = '';
 	$child_video = '';
 	db_set_active('hl_online');
-	$results = db_query ('SELECT film_code, title, weight FROM hl_online_jfilm 
+	$results = sqlFetchObject ('SELECT film_code, title, weight FROM hl_online_jfilm 
 		WHERE hl_id = :hl_id  AND 
 		(title = :title1 OR title = :title2 OR title  = :title3)', 
 		array(':hl_id' =>$hl_id , 
@@ -3419,7 +3419,7 @@ function mylanguage_page_jfilm_options($hl_id = 'eng00'){
 			$f = explode('-', $mag_video); //1_10014-jf6128-0-0
 	    $film_code  = $f[0] . '-%'; //1-10014
 			db_set_active('hl_online');
-			$video = db_query ('SELECT film_code  FROM hl_online_jfilm 
+			$video = sqlFetchObject ('SELECT film_code  FROM hl_online_jfilm 
 				WHERE film_code LIKE :film_code  AND segment = 1', 
 				array(':film_code' =>$film_code))-> fetchField(); 
 			db_set_active('default');
@@ -3453,11 +3453,11 @@ function mylanguage_page_study($hl_id = 'eng00', $page = 1) {
     if ($_SESSION['mylanguage_chinese_written'] == 'chn-t') {$hl_id = 'chn-t';}
     $output .= mylanguage_chinese_display('study_online'); 
   }
-  $data = db_query('SELECT * from hl_spirit 
+  $data = sqlFetchObject('SELECT * from hl_spirit 
 		WHERE hl_id = :hl_id LIMIT 1', 
 		array(':hl_id' =>$hl_id))->fetchObject();
 	if (!isset($data->webpage)){
-		$data = db_query('SELECT * from hl_spirit 
+		$data = sqlFetchObject('SELECT * from hl_spirit 
 			WHERE hl_id = :hl_id LIMIT 1', 
 			array(':hl_id' =>'eng00'))->fetchObject();
 	}
@@ -3571,7 +3571,7 @@ function mylanguage_select(){
 return $output;
 }
 function mylanguage_select_form($form, &$form_state) {
-  $results =  db_query ('SELECT name, hl_id from my_language 
+  $results =  sqlFetchObject ('SELECT name, hl_id from my_language 
 	WHERE jfilm = :jfilm ORDER BY name ',
 	array(':jfilm' => 'Y'	));
   foreach($results as $data){
@@ -3597,7 +3597,7 @@ function mylanguage_select_form_submit($form, &$form_state){
   return;
 }
 function mylanguage_select_aboriginal_form($form, &$form_state) {
-  $results =  db_query ('SELECT name, hl_id from my_language_aboriginal 
+  $results =  sqlFetchObject ('SELECT name, hl_id from my_language_aboriginal 
 	WHERE not_aboriginal IS NULL AND hl_id IS NOT NULL ORDER BY name');
   foreach ($results as $data){
     $id = $data->hl_id;
@@ -3623,7 +3623,7 @@ function mylanguage_select_aboriginal_form_submit($form, &$form_state){
 }
 function mylanguage_select_country_form($form, &$form_state) {
   $sql = 
-  $results =  db_query ('SELECT name, hl_id from my_language_country 
+  $results =  sqlFetchObject ('SELECT name, hl_id from my_language_country 
 	ORDER BY name');
   foreach($results as $data){
     $id = $data->hl_id;
@@ -3649,7 +3649,7 @@ function mylanguage_select_country_form_submit($form, &$form_state){
 }//show
 function mylanguage_select_ethnic() {
 	$output = '';
-  $results =  db_query ('SELECT ethnic_name, name,  hl_id from my_language 
+  $results =  sqlFetchObject ('SELECT ethnic_name, name,  hl_id from my_language 
 	WHERE jfilm = :jfilm ORDER BY ethnic_name',
 	array(':jfilm' => 'Y'	));
   foreach($results as $data){
@@ -3672,7 +3672,7 @@ function mylanguage_select_translated_form($form, &$form_state) {
 	}
 	if ($_SESSION['mylanguage_browser_hl_id'] == 'eng00'){
 	}
-	$bible_brain = db_query('SELECT bible_brain FROM my_language
+	$bible_brain = sqlFetchObject('SELECT bible_brain FROM my_language
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id'=> $_SESSION['mylanguage_browser_hl_id']))->fetchField();
 	$query = db_select('my_language', 'l');
@@ -3708,7 +3708,7 @@ function mylanguage_select_translated_form_submit($form, &$form_state){
 }
 
 function mylanguage_stats_update($hl_id){
-	$requests = db_query ('SELECT requests FROM my_language  
+	$requests = sqlFetchObject ('SELECT requests FROM my_language  
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' =>$hl_id )
 		)->fetchField(); 
@@ -3862,8 +3862,8 @@ function theme_mylanguage_select_mobile($variables) {
 
 function mylanguage_page_thank($drupal){
 	db_set_active ('info');
-	$l = db_fetch_object(db_query('SELECT * FROM hl_connect WHERE language = :language LIMIT 1', $drupal));
-	$e = db_fetch_object(db_query('SELECT * FROM hl_connect WHERE language = :language LIMIT 1', 'en'));
+	$l = db_fetch_object(sqlFetchObject('SELECT * FROM hl_connect WHERE language = :language LIMIT 1', $drupal));
+	$e = db_fetch_object(sqlFetchObject('SELECT * FROM hl_connect WHERE language = :language LIMIT 1', 'en'));
 	db_set_active('default');
 	
 	$output .= '<h1>'. mylanguage_connect_t($l->message_sent, $e->message_sent) . '</h1>';
@@ -3884,12 +3884,12 @@ function meet($hl_id = 'eng00') {
 	}  
 	db_set_active ('hl_online');
 	if (isset($_SESSION['mylanguage_chinese'])){
-		$data = db_query('SELECT * from hl_online_kgp 
+		$data = sqlFetchObject('SELECT * from hl_online_kgp 
 			WHERE hl_id = :hl_id  LIMIT 1', 
 			array(':hl_id' =>$hl_id)) ->fetchObject();
 	}
 	else {
-		$data = db_query('SELECT * from hl_online_kgp 
+		$data = sqlFetchObject('SELECT * from hl_online_kgp 
 			WHERE hl_id = :hl_id LIMIT 1', 
 			array(':hl_id' =>$hl_id)) ->fetchObject();
 	}
@@ -3918,17 +3918,17 @@ function mylanguage_url_file() {
 }
 function mylanguage_vance($hl_id){
 	$wants = "('Arabic', 'Bengali','Bosnian', 'Farsi', 'Hausa', 'Indonesian', 'Kurdish / Kurmanji', 'Somali', 'Turkish', 'Urdu', 'Tajik', 'Uyghur','Uzbek' )";
-	$result = db_query("SELECT id FROM my_language 
+	$result = sqlFetchObject("SELECT id FROM my_language 
 		WHERE hl_id ='$hl_id' AND name IN $wants LIMIT 1") ->fetchField();
 	return $result;
 }
 function mylanguage_vance2(){
 	$output = '';
-	$result = db_query ('SELECT * FROM my_language WHERE jfilm = :yes',
+	$result = sqlFetchObject ('SELECT * FROM my_language WHERE jfilm = :yes',
 		array(':yes' => 'Y'));
 	foreach ($result as $data){
 		db_set_active('hl_online');
-		$film_code = db_query('SELECT film_code FROM hl_online_jfilm
+		$film_code = sqlFetchObject('SELECT film_code FROM hl_online_jfilm
 			WHERE hl_id = :hl_id AND segment = :segment AND movie = :jesus LIMIT 1', 
 			array(':hl_id' =>$data->hl_id, ':segment' => 12, ':jesus' => 'JESUS')) ->fetchField();
 		db_set_active('default');
@@ -4038,13 +4038,13 @@ class BibleStreamWrapper extends DrupalPublicStreamWrapper {
 
 function mylanguage_film_language_ethnic(){
 	db_set_active('default');
-	$r = db_query('SELECT distinct google, hl_id FROM my_language
+	$r = sqlFetchObject('SELECT distinct google, hl_id FROM my_language
 		WHERE google IS NOT NULL');
 	$output = '';
 	foreach ($r as $d){
 		$output .=  '<br>' . $d->google . '<br>';
 		db_set_active('hl_online');
-		$results = db_query('SELECT distinct language FROM hl_online_jfilm 
+		$results = sqlFetchObject('SELECT distinct language FROM hl_online_jfilm 
 			WHERE hl_id = :hl_id AND language_ethnic IS NULL',
 			array(':hl_id' => $d->hl_id));
 		foreach ($results as $data){
@@ -4052,7 +4052,7 @@ function mylanguage_film_language_ethnic(){
 				db_set_active('default');
 				$translated = mylanguage_translate_google_text($data->language, $d->google);
 				db_set_active('hl_online');
-				db_query('UPDATE hl_online_jfilm SET language_ethnic = :language_ethnic
+				sqlFetchObject('UPDATE hl_online_jfilm SET language_ethnic = :language_ethnic
 					WHERE language = :language',
 					array('language_ethnic' => $translated, 'language' => $data->language));	
 		}
@@ -4064,13 +4064,13 @@ function mylanguage_film_language_ethnic(){
 
 function mylanguage_film_language_ethnic2(){
 	db_set_active('default');
-	$r = db_query('SELECT distinct google, language_iso FROM my_language
+	$r = sqlFetchObject('SELECT distinct google, language_iso FROM my_language
 		WHERE google IS NOT NULL');
 	$output = '';
 	foreach ($r as $d){
 		$output .=  '<br>' . $d->google . '<br>';
 		db_set_active('hl_online');
-		$results = db_query('SELECT distinct language FROM hl_online_jfilm 
+		$results = sqlFetchObject('SELECT distinct language FROM hl_online_jfilm 
 			WHERE iso_code = :iso_code AND language_ethnic IS NULL',
 			array(':iso_code' => $d->language_iso));
 		foreach ($results as $data){

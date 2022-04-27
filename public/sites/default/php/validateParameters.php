@@ -9,5 +9,8 @@ function validateParameters($p, $required, $source){
             $p[$key]= $value;
         }
     }
+    if (isset($p['hl_id'])){
+        $_SESSION['hl_id'] = $p['hl_id'];
+    }
     return $valid;
 }

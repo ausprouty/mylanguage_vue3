@@ -3,18 +3,18 @@
 function language($hl_id){
 	db_set_active('default');
 	global $language;
-	$drupal = db_query('SELECT drupal FROM my_language
+	$drupal = sqlFetchObject('SELECT drupal FROM my_language
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' =>$hl_id)
 	) ->fetchField();
 	if (empty($drupal)){
 		$drupal = 'en';
 	}
-	$l = db_query('SELECT * FROM languages 
+	$l = sqlFetchObject('SELECT * FROM languages 
 			WHERE language = :drupal',
 			array(':drupal' => $drupal))->fetchAll();
 	if (empty($l)){
-		$l = db_query('SELECT * FROM languages 
+		$l = sqlFetchObject('SELECT * FROM languages 
 			WHERE language = :drupal',
 			array(':drupal' => 'en'))->fetchAll();
 	}
@@ -56,12 +56,12 @@ function language_autocomplete($string){
   drupal_json_output($matches);
 }
 function language_iso($hl_id){
-	$iso = db_query('SELECT language_iso FROM my_language
+	$iso = sqlFetchObject('SELECT language_iso FROM my_language
 		WHERE hl_id = :hl_id',
 		array(':hl_id' => $hl_id))
 		->fetchField();
 	if ($iso == NULL){
-		$iso = db_query('SELECT language_iso FROM my_language
+		$iso = sqlFetchObject('SELECT language_iso FROM my_language
 		WHERE hl_id = :hl_id',
 		array(':hl_id' => 'eng'))
 		->fetchField();
@@ -74,7 +74,7 @@ function language_from_browser(){
 	if ($language_browser){
 		$language_browser = substr($language_browser, 0,2);
 	}
-	$hl_id = db_query('SELECT hl_id FROM my_language
+	$hl_id = sqlFetchObject('SELECT hl_id FROM my_language
 		WHERE language_browser = :language_browser',
 		array(':language_browser' => $language_browser))
 		->fetchField();
@@ -83,18 +83,18 @@ function language_from_browser(){
 	}
 	$_SESSION['mylanguage_browser_hl_id']= $hl_id;
 	
-	$drupal = db_query('SELECT drupal FROM my_language
+	$drupal = sqlFetchObject('SELECT drupal FROM my_language
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' =>$hl_id)
 	) ->fetchField();
 	if (empty($drupal)){
 		$drupal = 'en';
 	}
-	$l = db_query('SELECT * FROM languages 
+	$l = sqlFetchObject('SELECT * FROM languages 
 			WHERE language = :drupal',
 			array(':drupal' => $drupal))->fetchAll();
 	if (empty($l)){
-		$l = db_query('SELECT * FROM languages 
+		$l = sqlFetchObject('SELECT * FROM languages 
 			WHERE language = :drupal',
 			array(':drupal' => 'en'))->fetchAll();
 	}
@@ -118,7 +118,7 @@ function language_select_form($form, &$form_state){
 	return $form;
 }
 function language_select_form_submit($form, &$form_state){
-	$hl_id = db_query ('SELECT hl_id FROM my_language
+	$hl_id = sqlFetchObject ('SELECT hl_id FROM my_language
 		WHERE name = :name OR ethnic_name = :ethnic',
 		array(':name' => $form_state ['values']['language'],
 			':ethnic' => $form_state ['values']['language']
@@ -131,16 +131,16 @@ function language_select_form_submit($form, &$form_state){
 }
 function language_in_my_language($language_iso){
 	$output = '';
-	$language_number = db_query('SELECT bible_brain FROM my_language	
+	$language_number = sqlFetchObject('SELECT bible_brain FROM my_language	
 		WHERE language_iso = :language_iso LIMIT 1',
 		array(':language_iso' => $language_iso))->fetchField();
 	if ($language_number){
-		$result = db_query('SELECT language_number, translation FROM my_language_translation	
+		$result = sqlFetchObject('SELECT language_number, translation FROM my_language_translation	
 			WHERE translation_language_number = :language_number 
 			ORDER BY translation',
 			array(':language_number' => $language_number));
 		foreach ($result as $data){
-			$hl_id = db_query('SELECT hl_id FROM my_language
+			$hl_id = sqlFetchObject('SELECT hl_id FROM my_language
 				WHERE bible_brain = :bible_brain LIMIT 1',
 				array(':bible_brain' => $data->language_number))->fetchField();
 			if ($hl_id){
@@ -152,13 +152,13 @@ function language_in_my_language($language_iso){
 }
 function language_translation_deduplicate(){
 	$output = '';
-	$result = db_query('SELECT distinct language_number  FROM my_language_translation');
+	$result = sqlFetchObject('SELECT distinct language_number  FROM my_language_translation');
 	foreach ($result as $language_number){
-		$result2 = db_query('SELECT distinct translation_language_number  FROM my_language_translation
+		$result2 = sqlFetchObject('SELECT distinct translation_language_number  FROM my_language_translation
 			WHERE language_number = :language_number',
 			array(':language_number' => $language_number->language_number));
 		foreach ($result2 as $translation_language_number){
-			$result3 = db_query('SELECT id FROM my_language_translation
+			$result3 = sqlFetchObject('SELECT id FROM my_language_translation
 				WHERE language_number = :language_number  AND  translation_language_number = :translation_language_number',
 				array(':language_number' => $language_number->language_number, ':translation_language_number' => $translation_language_number->translation_language_number));
 			$count = 1;

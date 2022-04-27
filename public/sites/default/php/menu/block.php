@@ -142,7 +142,7 @@ function block_select_browser(){
 	$space = '<span style="white-space: pre-wrap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
 	$hl_id = isset($_SESSION['mylanguage_browser_hl_id']) ? $_SESSION['mylanguage_browser_hl_id'] : 'eng00';
 	db_set_active('my');
-	$ethnic_name = db_query('SELECT ethnic_name FROM my_language
+	$ethnic_name = sqlFetchObject('SELECT ethnic_name FROM my_language
 			WHERE hl_id = :hl_id',
 			array(':hl_id'=> $hl_id)) ->fetchField();
 	if (mylanguage_find_is_mobile()){
@@ -163,7 +163,7 @@ function block_select_common(){
   $output = '';
   $output .= '<table cellspacing="10"> <tr><td align = "left">';
   db_set_active('my');
-  $result = db_query('SELECT hl_id, name  FROM my_language 
+  $result = sqlFetchObject('SELECT hl_id, name  FROM my_language 
 	ORDER BY requests DESC LIMIT 20');
 	db_set_active('default');
   foreach ($result as $data){
@@ -215,7 +215,7 @@ function block_select_ethnic ($format = 'laptop'){
 	$i = 0;
 	foreach ($ethnic as $lang){
 		db_set_active('my');
-		$data = db_query('SELECT ethnic_name, hl_id FROM my_language
+		$data = sqlFetchObject('SELECT ethnic_name, hl_id FROM my_language
 			WHERE name = :name',
 			array(':name'=> $lang)) ->fetchObject();
 		db_set_active('default');	
@@ -287,7 +287,7 @@ function block_view($block_key){
 		$block['subject']  = mylanguage_t_browser('Other Options');
 		$block['content'] ='';
 		db_set_active('hl');
-		$results = db_query('SELECT name, ethnic_name, hl_id 
+		$results = sqlFetchObject('SELECT name, ethnic_name, hl_id 
 			FROM hl_connect  WHERE arc_id != :arc_id ORDER BY name',
 			array(':arc_id' => ''));
 		db_set_active('default');
@@ -301,7 +301,7 @@ function block_view($block_key){
 		$hl_id = isset($_SESSION['mylanguage_hl_id']) ? $_SESSION['mylanguage_hl_id'] : 'eng00';
 		$i = '';
 		 db_set_active('common');	
-		$results = db_query ('SELECT volume_name, dam_id FROM dbm_bible 
+		$results = sqlFetchObject ('SELECT volume_name, dam_id FROM dbm_bible 
 			WHERE hl_id = :hl_id AND text = :text  AND collection_code= :nt', 
 			array(':hl_id' =>$hl_id, ':text' =>'', ':nt'=> 'NT' )
 		);
@@ -315,7 +315,7 @@ function block_view($block_key){
 		}
 		$block['content'] .= '<br>';
 		db_set_active('hl');
-		$results = db_query('SELECT DISTINCT title  FROM hl_recording WHERE 
+		$results = sqlFetchObject('SELECT DISTINCT title  FROM hl_recording WHERE 
 			hl_id = :hl_id AND audio_file_1 != :audio_file_1 AND exclude !=:exclude ORDER by title ',
 			array(':hl_id' => $hl_id, ':audio_file_1' => '', ':exclude' => 'x')
 		);
@@ -337,7 +337,7 @@ function block_view($block_key){
 		mylanguage_chinese($hl_id);
 		if (isset($_SESSION['mylanguage_chinese'])){
 			db_set_active('my');
-			$results = db_query('SELECT hl_id FROM my_language WHERE chinese = 1');
+			$results = sqlFetchObject('SELECT hl_id FROM my_language WHERE chinese = 1');
 			db_set_active('default');
 			$chinese_codes = '';
 			foreach($results as $data){
@@ -345,7 +345,7 @@ function block_view($block_key){
 			}
 			$chinese_codes = substr($chinese_codes, 0, -1);
 			db_set_active('hl_online');
-			$results = db_query ('SELECT * FROM hl_online_jfilm WHERE hl_id IN (' . $chinese_codes . ')  AND 
+			$results = sqlFetchObject ('SELECT * FROM hl_online_jfilm WHERE hl_id IN (' . $chinese_codes . ')  AND 
 				(title = :title1 OR title = :title2 OR title  = :title3)  ORDER BY language',
 				array(':title1' => 'JESUS', 
 					':title2' => 'The Story of JESUS for Children', 
@@ -356,7 +356,7 @@ function block_view($block_key){
 		// non Chinese
 		else{
 			db_set_active('hl_online');
-			$results = db_query ('SELECT * FROM hl_online_jfilm WHERE hl_id = :hl_id  AND 
+			$results = sqlFetchObject ('SELECT * FROM hl_online_jfilm WHERE hl_id = :hl_id  AND 
 				(title = :title1 OR title = :title2 OR title  = :title3)  ORDER BY language',
 				array(':hl_id' => $hl_id,
 					':title1' => 'JESUS', 
@@ -439,7 +439,7 @@ function block_view($block_key){
 		mylanguage_language($hl_id);
 		$block['subject']  =translate('Discussions');
 		db_set_active('hl_online');
-		$results = db_query('SELECT reference, session FROM hl_online_passage 
+		$results = sqlFetchObject('SELECT reference, session FROM hl_online_passage 
 			WHERE study = :study AND hl_id = :hl_id ORDER BY session',
 			array(':study'=> 'dbs', ':hl_id' => $_SESSION['mylanguage_hl_id'])
 		);

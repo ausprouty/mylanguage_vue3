@@ -1,6 +1,7 @@
 <?php
 myRequireOnce('resources/language/translate.php');
 myRequireOnce('validateParameters.php');
+myRequireOnce('data/sql.php');
 
 function getSpiritPage($p) {
     $required= array(
@@ -10,11 +11,8 @@ function getSpiritPage($p) {
     if (!validateParameters($p, $required, 'getSpiritPage')){
         $return;
     }
-
-
-  //return "line 3000";
-  $output .= '<h1>' .translate('Adventure') . '</h1>';
-  if (isset($_SESSION['mylanguage_chinese']) || $hl_id == 'chn00'){
+    $output .= '<h1>' .translate('Adventure') . '</h1>';
+ /* if (isset($_SESSION['mylanguage_chinese']) || $hl_id == 'chn00'){
     $hl_id = 'chn-s';
 	if (!isset($_SESSION['mylanguage_chinese_written'])){
 		$_SESSION['mylanguage_chinese_written'] = 'chn-s';
@@ -22,13 +20,14 @@ function getSpiritPage($p) {
     if ($_SESSION['mylanguage_chinese_written'] == 'chn-t') {$hl_id = 'chn-t';}
     $output .= mylanguage_chinese_display('study_online');
   }
-  $data = db_query('SELECT * from hl_spirit
+  */
+  $data = sqlFetchObject('SELECT * from hl_spirit
 		WHERE hl_id = :hl_id LIMIT 1',
-		array(':hl_id' =>$hl_id))->fetchObject();
+		array(':hl_id' =>$hl_id));
 	if (!isset($data->webpage)){
-		$data = db_query('SELECT * from hl_spirit
+		$data = sqlFetchObject('SELECT * from hl_spirit
 			WHERE hl_id = :hl_id LIMIT 1',
-			array(':hl_id' =>'eng00'))->fetchObject();
+			array(':hl_id' =>'eng00'));
 	}
 	$webpage = $data->webpage;
 	$this_dir = str_replace('default.htm', '', $webpage); //does not work for html

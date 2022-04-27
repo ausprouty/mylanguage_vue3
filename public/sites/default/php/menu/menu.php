@@ -22,7 +22,7 @@ function menu_button_load($hl_id, $image_name, $source, $text){
   // for button 125x164
   // get font
   $font_dir = mylanguage_realpath_files() .'/fonts/';
-  $result = db_query('SELECT font, direction, chinese from my_language WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ->fetchObject();
+  $result = sqlFetchObject('SELECT font, direction, chinese from my_language WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ->fetchObject();
   $data = db_fetch_object($result);
   $font = $data->font;
   $data_direction = $data->direction;
@@ -121,7 +121,7 @@ function menu_button_load_175($hl_id, $image_name, $source, $text){
   $_SESSION['debug'] .= 'from button load <br>';
   // get font
   $font_dir = mylanguage_realpath_files() .'/fonts/';
-  $data = db_query('SELECT font, direction, chinese from my_language 
+  $data = sqlFetchObject('SELECT font, direction, chinese from my_language 
 	WHERE hl_id = :hl_id', 
 	array(':hl_id' => $hl_id)) 
 	->fetchObject();
@@ -211,7 +211,7 @@ function menu_button_load_171($hl_id, $image_name, $source, $text){
   // for button 125x164
   // get font
   $font_dir = mylanguage_realpath_files() .'/fonts/';
-  $result = db_query('SELECT font, direction, chinese from my_language WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ->fetchObject();
+  $result = sqlFetchObject('SELECT font, direction, chinese from my_language WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ->fetchObject();
   $data = db_fetch_object($result);
   $font = $data->font;
   $data_direction = $data->direction;
@@ -311,12 +311,12 @@ function menu_button_load_205($hl_id, $image_name, $source, $text){
 	$hl_id = 'chn06';
   }
   $font_dir = mylanguage_realpath_files() .'/fonts/';
-  $data = db_query('SELECT font, direction, chinese from my_language 
+  $data = sqlFetchObject('SELECT font, direction, chinese from my_language 
 	WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ->fetchObject();
 	// in case url is messed up
   if (!isset($data->font)){
 	$hl_id = 'eng00';
-	$data = db_query('SELECT font, direction, chinese from my_language 
+	$data = sqlFetchObject('SELECT font, direction, chinese from my_language 
 		WHERE hl_id = :hl_id', 
 		array(':hl_id' => $hl_id)) ->fetchObject();
 	  
@@ -416,7 +416,7 @@ function menu_cache($hl_id){
 	}
 	$browser_language = $_SESSION['mylanguage_browser_language'];
 	$id = $hl_id . '-'. $browser_language->language;
-	$cache = db_query('SELECT * FROM hl_cache
+	$cache = sqlFetchObject('SELECT * FROM hl_cache
 		WHERE id = :id',
 		array('id' => $id))->fetchObject();
 	if (isset($cache->laptop_menu)){
@@ -458,13 +458,13 @@ function menu_image_another_language($hl_id, $i){
   $image= ImageCreateFromJPEG($photo) or die ("failed to create $photo for $i in logo load 150");
   $fgcolour=ImageColorAllocate($image,255, 255, 255);
   $debugcolour=ImageColorAllocate($image,0, 0, 0);
-  $data = db_query('SELECT mylanguage, name , font, direction FROM my_language
+  $data = sqlFetchObject('SELECT mylanguage, name , font, direction FROM my_language
 	WHERE hl_id = :hl_id', 
 	array(':hl_id' => $hl_id)) 
 	->fetchObject();
 	// in case url messed up
   if (!isset($data->name)){
-	$data = db_query('SELECT mylanguage, name , font, direction FROM my_language
+	$data = sqlFetchObject('SELECT mylanguage, name , font, direction FROM my_language
 		WHERE hl_id = :hl_id', 
 		array(':hl_id' => 'eng00')) 
 		->fetchObject();
@@ -533,7 +533,7 @@ function menu_l($text, $path, $image) {
 }
 function menu_links_5fish($hl_id) {
 	$link = null;
-	$result = db_query('SELECT * FROM hl_5fish
+	$result = sqlFetchObject('SELECT * FROM hl_5fish
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' => $hl_id))->fetchObject();
 	if ($result){
@@ -552,13 +552,13 @@ function menu_links_5fish($hl_id) {
 function menu_links_adventure($hl_id) {
 	$link = null;
 	if (isset($_SESSION['mylanguage_chinese']) ){
-		$result = db_query('SELECT hl_id FROM hl_spirit
+		$result = sqlFetchObject('SELECT hl_id FROM hl_spirit
 			WHERE hl_id = :hl_id1 OR hl_id = :hl_id2 LIMIT 1',
 			array(':hl_id1' => 'chn-s', ':hl_id2' => 'chn-t')
 			) ->fetchField();
 	}
 	else{
-		$result = db_query('SELECT hl_id FROM hl_spirit
+		$result = sqlFetchObject('SELECT hl_id FROM hl_spirit
 			WHERE hl_id = :hl_id',
 			array(':hl_id' => $hl_id))->fetchField();
 	}
@@ -578,13 +578,13 @@ function menu_links_ask($hl_id){
 	$link = null;
 	db_set_active('hl_online');
 	if (isset($_SESSION['mylanguage_chinese']) ){
-		$contact = db_query('SELECT contact FROM hl_online_everystudent
+		$contact = sqlFetchObject('SELECT contact FROM hl_online_everystudent
 			WHERE hl_id = :hl_id1 OR hl_id = :hl_id2 LIMIT 1',
 			array(':hl_id1' => 'chn-s', ':hl_id2' => 'chn-t')
 			) ->fetchField();
 	}
 	else{
-		$contact = db_query('SELECT contact FROM hl_online_everystudent
+		$contact = sqlFetchObject('SELECT contact FROM hl_online_everystudent
 			WHERE hl_id = :hl_id LIMIT 1',
 			array(':hl_id' => $hl_id))->fetchField();
 	}
@@ -608,7 +608,7 @@ function menu_links_ask($hl_id){
 function menu_links_audio_bible($hl_id) {
 	$link = null;
 	db_set_active('common');
-	$dam_id = db_query('SELECT dam_id FROM dbm_bible 
+	$dam_id = sqlFetchObject('SELECT dam_id FROM dbm_bible 
 		WHERE hl_id = :hl_id AND audio = :y1 AND (collection_code = :full OR collection_code = :nt)
 		LIMIT 1',
 		array(':hl_id' =>$hl_id, ':y1' => 'Y', ':full' => 'FU', ':nt' =>'NT')) -> fetchField();
@@ -630,13 +630,13 @@ function menu_links_audio_bible($hl_id) {
 function menu_links_discuss($hl_id) {
 	$link = null;
 	if (isset($_SESSION['mylanguage_chinese']) ){
-		$result = db_query('SELECT hl_id FROM hl_dbm_questions
+		$result = sqlFetchObject('SELECT hl_id FROM hl_dbm_questions
 			WHERE hl_id = :hl_id1 OR hl_id = :hl_id2 LIMIT 1',
 			array(':hl_id1' => 'chn-s', ':hl_id2' => 'chn-t')
 			) ->fetchField();
 	}
 	else{
-		$result = db_query('SELECT hl_id FROM hl_dbm_questions
+		$result = sqlFetchObject('SELECT hl_id FROM hl_dbm_questions
 			WHERE hl_id = :hl_id',
 			array(':hl_id' => $hl_id))->fetchField();
 	}
@@ -656,7 +656,7 @@ function menu_links_discuss($hl_id) {
 function menu_links_jfilm( $hl_id) {
 	$link = null;
 	db_set_active('hl_online');
-	$result = db_query('SELECT hl_id FROM hl_online_jfilm
+	$result = sqlFetchObject('SELECT hl_id FROM hl_online_jfilm
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' => $hl_id))->fetchField();
 	db_set_active('default');
@@ -694,13 +694,13 @@ function menu_links_change_language($hl_id, $links) {
 function menu_links_meet_god($hl_id) {
 	$link = null;
 	if (isset($_SESSION['mylanguage_chinese']) ){
-		$result = db_query('SELECT hl_id FROM hl_online_kgp
+		$result = sqlFetchObject('SELECT hl_id FROM hl_online_kgp
 			WHERE hl_id = :hl_id1 OR hl_id = :hl_id2 LIMIT 1',
 			array(':hl_id1' => 'chn-s', ':hl_id2' => 'chn-t')
 			) ->fetchField();
 	}
 	else{
-		$result = db_query('SELECT hl_id FROM hl_online_kgp
+		$result = sqlFetchObject('SELECT hl_id FROM hl_online_kgp
 			WHERE hl_id = :hl_id',
 			array(':hl_id' => $hl_id))->fetchField();
 	}
@@ -721,7 +721,7 @@ function menu_links_read_bible($hl_id) {
 	$link = null;
 	db_set_active('hl_online');
 	if (isset($_SESSION['mylanguage_chinese']) ){	  
-		$h = db_query('SELECT hl_id FROM dbm_bible
+		$h = sqlFetchObject('SELECT hl_id FROM dbm_bible
 			WHERE hl_id = :hl_id1 OR hl_id = :hl_id2  AND (collection_code = :nt OR collection_code = :fu )
 			AND text = :y1 
 			ORDER BY weight DESC LIMIT 1',
@@ -733,7 +733,7 @@ function menu_links_read_bible($hl_id) {
 		->fetchField();
 	}
 	else{
-		$h = db_query('SELECT hl_id FROM dbm_bible
+		$h = sqlFetchObject('SELECT hl_id FROM dbm_bible
 			WHERE hl_id = :hl_id AND (collection_code = :nt OR collection_code = :fu )
 			AND text = :y1 
 			ORDER BY weight DESC LIMIT 1',
@@ -760,13 +760,13 @@ function menu_links_website($hl_id){
 	$link = null;
 	db_set_active('hl_online');
 	if (isset($_SESSION['mylanguage_chinese']) ){
-		$result = db_query('SELECT * FROM hl_online_everystudent
+		$result = sqlFetchObject('SELECT * FROM hl_online_everystudent
 			WHERE hl_id = :hl_id1 OR hl_id = :hl_id2 LIMIT 1',
 			array(':hl_id1' => 'chn-s', ':hl_id2' => 'chn-t')
 			) ->fetchObject();
 	}
 	else{
-		$result = db_query('SELECT * FROM hl_online_everystudent
+		$result = sqlFetchObject('SELECT * FROM hl_online_everystudent
 			WHERE hl_id = :hl_id LIMIT 1',
 			array(':hl_id' => $hl_id))->fetchObject();
 	}

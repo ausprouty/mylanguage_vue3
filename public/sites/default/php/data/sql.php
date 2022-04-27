@@ -20,6 +20,16 @@ function getUidFromEmail($email){
     return ($output);
 }
 
+function  sqlFetchObject ($sql, $data){
+    $pdo = new PDO (DSN, USER, PASS);
+    $pdo->SetAttribute (PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute ($data);
+    return ($stmt);
+
+}
+
 function sqlReturnObjectMany($sql, $data){
     $pdo = new PDO (DSN, USER, PASS);
     $pdo->SetAttribute (PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);

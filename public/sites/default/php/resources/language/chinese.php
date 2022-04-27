@@ -4,7 +4,7 @@ function mylanguage_chinese($hl_id){
 		$hl_id = 'eng00';
 	}
 	db_set_active('my');
-	$data = db_query('SELECT name, ethnic_name, requests, chinese FROM my_language 
+	$data = sqlFetchObject('SELECT name, ethnic_name, requests, chinese FROM my_language 
 		WHERE hl_id = :hl_id', 
 		array(':hl_id' =>$hl_id)
 	)-> fetchObject();

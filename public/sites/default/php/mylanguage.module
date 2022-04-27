@@ -17,7 +17,7 @@ function mylanguage_cache($hl_id){
 	$browser_language = $_SESSION['mylanguage_browser_language'];
 	$id = $hl_id . '-'. $browser_language->language;
 	db_set_active('my');
-	$cache = db_query('SELECT * FROM my_cache
+	$cache = sqlFetchObject('SELECT * FROM my_cache
 		WHERE id = :id',
 		array('id' => $id))->fetchObject();
 	db_set_active('default');
@@ -115,14 +115,14 @@ function mylanguage_find_browser_language_parse($http_accept, $deflang = "en") {
 function mylanguage_find_ethnic_name_browser_language($hl_id){
 	$browser_name_for_language = '';
 	db_set_active('my');
-	$language_number = db_query('SELECT bible_brain FROM my_language
+	$language_number = sqlFetchObject('SELECT bible_brain FROM my_language
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' => $hl_id))->fetchField();
-	$translation_language_number = db_query('SELECT bible_brain FROM my_language
+	$translation_language_number = sqlFetchObject('SELECT bible_brain FROM my_language
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' => $_SESSION['mylanguage_browser_hl_id']))->fetchField();
 	if ($language_number && $translation_language_number){
-		$browser_name_for_language = db_query('SELECT translation FROM my_language_translation
+		$browser_name_for_language = sqlFetchObject('SELECT translation FROM my_language_translation
 			WHERE language_number = :language_number AND translation_language_number = :translation_language_number
 			LIMIT 1', 
 			array(':language_number' => $language_number, 
@@ -134,7 +134,7 @@ function mylanguage_find_ethnic_name_browser_language($hl_id){
 		return $browser_name_for_language;
 	}
 	else{
-		$english_name_for_language = db_query('SELECT name FROM my_language
+		$english_name_for_language = sqlFetchObject('SELECT name FROM my_language
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' => $hl_id))->fetchField();
 		db_set_active('default');
@@ -171,7 +171,7 @@ function mylanguage_hl_validate(){
 	else{
 		$hl_id = $_SESSION['mylanguage_browser_hl_id'];
 	}
-	$test = db_query('SELECT hl_id FROM my_language
+	$test = sqlFetchObject('SELECT hl_id FROM my_language
 		WHERE hl_id = :hl_id',
 		array(':hl_id' => $hl_id))
 		->fetchField();
@@ -184,9 +184,9 @@ function mylanguage_hl_validate(){
 	return $test;
 }
 function mylanguage_hl_id_to_bible(){
-	$result = db_query('SELECT distinct language_iso FROM dbm_bible');
+	$result = sqlFetchObject('SELECT distinct language_iso FROM dbm_bible');
 	foreach ($result as $data){
-		$hl_id = db_query('SELECT hl_id FROM my_language
+		$hl_id = sqlFetchObject('SELECT hl_id FROM my_language
 			WHERE language_iso = :iso',
 			array(':iso' => $data-> language_iso))->fetchField();
 		if ($hl_id){
@@ -371,12 +371,12 @@ function mylanguage_find_nation(){
 }
 
 function mylanguage_page_adventure(){
-	$count = db_query('SELECT count(id) as count 
+	$count = sqlFetchObject('SELECT count(id) as count 
 		FROM hl_spirit') -> fetchField();
 	$length = ($count->count)/3;
 	$i = 0;
 	$output .= '<table><tr><td>'. "\n";
-	$results = db_query('SELECT * FROM hl_spirit ORDER BY name') ->fetchObject();
+	$results = sqlFetchObject('SELECT * FROM hl_spirit ORDER BY name') ->fetchObject();
 	foreach ($results as $data){
 		$i++;
 		$output .= l( $data->name , 'https://mylanguage.net.au/study_online/'. $data->hl_id ) .'<br>' . "\n";
@@ -398,14 +398,14 @@ function mylanguage_page_ask($hl_id = 'eng00'){
 	}
 	mylanguage_language($hl_id);
 	db_set_active('hl_online');
-	$everystudent = db_query('SELECT contact FROM hl_online_everystudent
+	$everystudent = sqlFetchObject('SELECT contact FROM hl_online_everystudent
 		WHERE hl_id = :hl_id',
 		array(':hl_id' => $hl_id)) -> fetchField();
 	db_set_active('default');
 	if ($everystudent){
 		drupal_goto($everystudent, $options = array('external'), $http_response_code = 302);
 	}
-	$gmo_website_question = db_query ('SELECT gmo_website_question FROM hl_connect 
+	$gmo_website_question = sqlFetchObject ('SELECT gmo_website_question FROM hl_connect 
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' =>$hl_id)) -> fetchField();
 	if ($gmo_website_question){
@@ -431,7 +431,7 @@ function mylanguage_page_ask($hl_id = 'eng00'){
         $results = $query->execute();
 		*/
 		db_set_active('hl_online');
-		$results = db_query('SELECT ethnic_name, contact FROM hl_online_everystudent 
+		$results = sqlFetchObject('SELECT ethnic_name, contact FROM hl_online_everystudent 
 			ORDER BY ethnic_name');
 		db_set_active('default');
 		foreach($results as $data){
@@ -466,7 +466,7 @@ function mylanguage_page_bilingual_read() {
      $output .= mylanguage_chinese_display('read_bilingual_page'); 
   }
   $output .= mylanguage_display_loading();
-  $webpage = db_query('SELECT webpage from hl_bilingual
+  $webpage = sqlFetchObject('SELECT webpage from hl_bilingual
 	WHERE hl_id = :hl_id',
 	array(':hl_id' => $hl_id)
   ) ->fetchField();
@@ -554,7 +554,7 @@ function mylanguage_rtl(&$str){
 }
 
 function mylanguage_stats_update($hl_id){
-	$requests = db_query ('SELECT requests FROM my_language  
+	$requests = sqlFetchObject ('SELECT requests FROM my_language  
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' =>$hl_id )
 		)->fetchField(); 
@@ -708,8 +708,8 @@ function theme_mylanguage_select_mobile($variables) {
 
 function mylanguage_page_thank($drupal){
 	db_set_active ('info');
-	$l = db_fetch_object(db_query('SELECT * FROM hl_connect WHERE language = :language LIMIT 1', $drupal));
-	$e = db_fetch_object(db_query('SELECT * FROM hl_connect WHERE language = :language LIMIT 1', 'en'));
+	$l = db_fetch_object(sqlFetchObject('SELECT * FROM hl_connect WHERE language = :language LIMIT 1', $drupal));
+	$e = db_fetch_object(sqlFetchObject('SELECT * FROM hl_connect WHERE language = :language LIMIT 1', 'en'));
 	db_set_active('default');
 	
 	$output .= '<h1>'. mylanguage_connect_t($l->message_sent, $e->message_sent) . '</h1>';
@@ -730,12 +730,12 @@ function meet($hl_id = 'eng00') {
 	}  
 	db_set_active ('hl_online');
 	if (isset($_SESSION['mylanguage_chinese'])){
-		$data = db_query('SELECT * from hl_online_kgp 
+		$data = sqlFetchObject('SELECT * from hl_online_kgp 
 			WHERE hl_id = :hl_id  LIMIT 1', 
 			array(':hl_id' =>$hl_id)) ->fetchObject();
 	}
 	else {
-		$data = db_query('SELECT * from hl_online_kgp 
+		$data = sqlFetchObject('SELECT * from hl_online_kgp 
 			WHERE hl_id = :hl_id LIMIT 1', 
 			array(':hl_id' =>$hl_id)) ->fetchObject();
 	}
@@ -764,17 +764,17 @@ function mylanguage_url_file() {
 }
 function mylanguage_vance($hl_id){
 	$wants = "('Arabic', 'Bengali','Bosnian', 'Farsi', 'Hausa', 'Indonesian', 'Kurdish / Kurmanji', 'Somali', 'Turkish', 'Urdu', 'Tajik', 'Uyghur','Uzbek' )";
-	$result = db_query("SELECT id FROM my_language 
+	$result = sqlFetchObject("SELECT id FROM my_language 
 		WHERE hl_id ='$hl_id' AND name IN $wants LIMIT 1") ->fetchField();
 	return $result;
 }
 function mylanguage_vance2(){
 	$output = '';
-	$result = db_query ('SELECT * FROM my_language WHERE jfilm = :yes',
+	$result = sqlFetchObject ('SELECT * FROM my_language WHERE jfilm = :yes',
 		array(':yes' => 'Y'));
 	foreach ($result as $data){
 		db_set_active('hl_online');
-		$film_code = db_query('SELECT film_code FROM hl_online_jfilm
+		$film_code = sqlFetchObject('SELECT film_code FROM hl_online_jfilm
 			WHERE hl_id = :hl_id AND segment = :segment AND movie = :jesus LIMIT 1', 
 			array(':hl_id' =>$data->hl_id, ':segment' => 12, ':jesus' => 'JESUS')) ->fetchField();
 		db_set_active('default');
@@ -884,13 +884,13 @@ class BibleStreamWrapper extends DrupalPublicStreamWrapper {
 
 function mylanguage_film_language_ethnic(){
 	db_set_active('default');
-	$r = db_query('SELECT distinct google, hl_id FROM my_language
+	$r = sqlFetchObject('SELECT distinct google, hl_id FROM my_language
 		WHERE google IS NOT NULL');
 	$output = '';
 	foreach ($r as $d){
 		$output .=  '<br>' . $d->google . '<br>';
 		db_set_active('hl_online');
-		$results = db_query('SELECT distinct language FROM hl_online_jfilm 
+		$results = sqlFetchObject('SELECT distinct language FROM hl_online_jfilm 
 			WHERE hl_id = :hl_id AND language_ethnic IS NULL',
 			array(':hl_id' => $d->hl_id));
 		foreach ($results as $data){
@@ -898,7 +898,7 @@ function mylanguage_film_language_ethnic(){
 				db_set_active('default');
 				$translated = mylanguage_translate_google_text($data->language, $d->google);
 				db_set_active('hl_online');
-				db_query('UPDATE hl_online_jfilm SET language_ethnic = :language_ethnic
+				sqlFetchObject('UPDATE hl_online_jfilm SET language_ethnic = :language_ethnic
 					WHERE language = :language',
 					array('language_ethnic' => $translated, 'language' => $data->language));	
 		}
@@ -910,13 +910,13 @@ function mylanguage_film_language_ethnic(){
 
 function mylanguage_film_language_ethnic2(){
 	db_set_active('default');
-	$r = db_query('SELECT distinct google, language_iso FROM my_language
+	$r = sqlFetchObject('SELECT distinct google, language_iso FROM my_language
 		WHERE google IS NOT NULL');
 	$output = '';
 	foreach ($r as $d){
 		$output .=  '<br>' . $d->google . '<br>';
 		db_set_active('hl_online');
-		$results = db_query('SELECT distinct language FROM hl_online_jfilm 
+		$results = sqlFetchObject('SELECT distinct language FROM hl_online_jfilm 
 			WHERE iso_code = :iso_code AND language_ethnic IS NULL',
 			array(':iso_code' => $d->language_iso));
 		foreach ($results as $data){

@@ -19,7 +19,7 @@ function page_discuss($hl_id = 'eng00', $session = 1){
 	global $language;
 	// find passage
 	db_set_active('common');
-	$passage = db_query('SELECT * FROM dbm_study_passage
+	$passage = sqlFetchObject('SELECT * FROM dbm_study_passage
 			WHERE study = :study AND lesson = :session AND language = :language', 
 			array(':study' => 'ctc',
 				':session' =>  $session, 
@@ -35,7 +35,7 @@ function page_discuss($hl_id = 'eng00', $session = 1){
 	$nt = '';
 	$dir = "ltr";
 	if ($dbt_array['collection_code'] == 'OT'){
-		$bible = db_query('SELECT bid, right_to_left FROM dbm_bible
+		$bible = sqlFetchObject('SELECT bid, right_to_left FROM dbm_bible
 			WHERE hl_id = :hl_id AND (collection_code = :testament OR collection_code = :fu )
 			AND text = :y1 
 			ORDER BY weight DESC LIMIT 1',
@@ -47,7 +47,7 @@ function page_discuss($hl_id = 'eng00', $session = 1){
 			// in case looking for Bible that does not exist
 			if (!isset($bible->bid)){
 				watchdog ('mylanguage', $hl_id .' does not have OT');
-				$bible = db_query('SELECT bid, right_to_left FROM dbm_bible
+				$bible = sqlFetchObject('SELECT bid, right_to_left FROM dbm_bible
 				WHERE hl_id = :hl_id AND (collection_code = :testament OR collection_code = :fu )
 				AND text = :y1 
 				ORDER BY weight DESC LIMIT 1',
@@ -64,7 +64,7 @@ function page_discuss($hl_id = 'eng00', $session = 1){
 		
 	}
 	else{
-		$bible = db_query('SELECT bid, right_to_left FROM dbm_bible
+		$bible = sqlFetchObject('SELECT bid, right_to_left FROM dbm_bible
 			WHERE hl_id = :hl_id AND (collection_code = :testament OR collection_code = :fu )
 			AND text = :y1 
 			ORDER BY weight DESC LIMIT 1',
@@ -75,7 +75,7 @@ function page_discuss($hl_id = 'eng00', $session = 1){
 			->fetchObject();
 		if (!isset($bible->bid)){
 			watchdog ('mylanguage', $hl_id .' does not have OT');
-			$bible = db_query('SELECT bid, right_to_left FROM dbm_bible
+			$bible = sqlFetchObject('SELECT bid, right_to_left FROM dbm_bible
 				WHERE hl_id = :hl_id AND (collection_code = :testament OR collection_code = :fu )
 				AND text = :y1 
 				ORDER BY weight DESC LIMIT 1',
@@ -123,7 +123,7 @@ function page_discuss($hl_id = 'eng00', $session = 1){
 	return $output;
 }
 function page_discuss_design_form($form_values = NULL){
-    $results3 = db_query('SELECT * FROM hl_online_passage 
+    $results3 = sqlFetchObject('SELECT * FROM hl_online_passage 
 		WHERE study = :study AND language = :language ORDER BY session',
 		array(':study' =>'dbs', ':language' =>'en')
 	);
@@ -137,10 +137,10 @@ function page_discuss_design_form($form_values = NULL){
     '#options' => $passage,
     '#default_value' => $_SESSION['mylanguage_page_discuss_session'],
   );
-    $results2 = db_query('SELECT distinct(language) FROM hl_online_passage  ORDER BY language');
+    $results2 = sqlFetchObject('SELECT distinct(language) FROM hl_online_passage  ORDER BY language');
 	 $lang[''] =translate('SELECT VALUE');
     foreach($results2 as $data2){
-        $data3 = db_query('SELECT name, native FROM {languages} WHERE language= :language', 
+        $data3 = sqlFetchObject('SELECT name, native FROM {languages} WHERE language= :language', 
 			array('language' =>$data2->language)
 		)->fetchObject();
 	    $lang[$data2->language] = $data3->name . '  ('. $data3->native. ')';
@@ -188,13 +188,13 @@ function page_discuss_design_form_submit($form_id, $form_values){
 }
 function page_discuss_header($nmbr = 1, $hl_id = 'eng00'){
 	//foreach ($language as $lang){
-		$data = db_query('SELECT topic FROM hl_online_topics
+		$data = sqlFetchObject('SELECT topic FROM hl_online_topics
 			WHERE nmbr = :nmbr AND hl_id = :hl_id LIMIT 1', 
 			array(':nmbr' =>$nmbr,':hl_id' => $hl_id)) ->fetchObject();
 		$topic .= $data->topic . ' -- ';
 	//}
 	if (!$topic){
-			$data = db_query('SELECT topic FROM hl_online_topics
+			$data = sqlFetchObject('SELECT topic FROM hl_online_topics
 				WHERE nmbr = :nmbr AND hl_id = :hl_id LIMIT 1', 
 				array(':nmbr' =>$nmbr, ':hl_id' =>'eng00')
 			)->fetchObject();
@@ -216,24 +216,24 @@ function page_discuss_select_form($form, &$form_state, $session){
 	$nt = NULL;
 	$ot = NULL;
 	db_set_active('common');
-	$nt = db_query('SELECT bid FROM dbm_bible
+	$nt = sqlFetchObject('SELECT bid FROM dbm_bible
 		WHERE hl_id = :hl_id AND text = :text AND
 		(collection_code = :collection_code1 or collection_code = :collection_code2)',
 		array(':hl_id' => $hl_id, ':text' => 'Y', ':collection_code1' => 'FU', ':collection_code2' => 'NT'))
 		->fetchField();
-	$ot = db_query('SELECT bid FROM dbm_bible
+	$ot = sqlFetchObject('SELECT bid FROM dbm_bible
 		WHERE hl_id = :hl_id  AND text = :text AND
 		(collection_code = :collection_code1 or collection_code = :collection_code2)',
 		array(':hl_id' => $hl_id, ':text' => 'Y', ':collection_code1' => 'FU', ':collection_code2' => 'OT'))
 		->fetchField();
 		// if we have nothing in their language, give them everything in English
 	if (!$ot && !$nt){
-		$nt = db_query('SELECT bid FROM dbm_bible
+		$nt = sqlFetchObject('SELECT bid FROM dbm_bible
 			WHERE hl_id = :hl_id AND text = :text AND
 			(collection_code = :collection_code1 or collection_code = :collection_code2)',
 			array(':hl_id' => 'eng00', ':text' => 'Y', ':collection_code1' => 'FU', ':collection_code2' => 'NT'))
 			->fetchField();
-		$ot = db_query('SELECT bid FROM dbm_bible
+		$ot = sqlFetchObject('SELECT bid FROM dbm_bible
 			WHERE hl_id = :hl_id  AND text = :text AND
 			(collection_code = :collection_code1 or collection_code = :collection_code2)',
 			array(':hl_id' => 'eng00', ':text' => 'Y', ':collection_code1' => 'FU', ':collection_code2' => 'OT'))
@@ -242,7 +242,7 @@ function page_discuss_select_form($form, &$form_state, $session){
 	}
 	db_set_active('default');
 	db_set_active('common');
-	$results = db_query('SELECT lesson, dbt_array FROM dbm_study_passage 
+	$results = sqlFetchObject('SELECT lesson, dbt_array FROM dbm_study_passage 
 		WHERE study = :study AND language = :language ORDER BY lesson',
 		array(':study' => 'ctc', ':language' => 'eng'));
 	db_set_active('default');
@@ -302,7 +302,7 @@ function page_discuss_select_form_submit ($form, &$form_state){
 function page_discuss_q ($nmbr, $hl_id = 'eng00', $dir = 'ltr'){
 	$question = '';
 	db_set_active('common');
-	$data = db_query('SELECT question FROM dbm_questions 
+	$data = sqlFetchObject('SELECT question FROM dbm_questions 
 		WHERE nmbr = :nmbr AND hl_id = :hl_id',
 		array( ':nmbr' => $nmbr,':hl_id' => $hl_id)) ->fetchObject();
 	db_set_active('default');
@@ -311,7 +311,7 @@ function page_discuss_q ($nmbr, $hl_id = 'eng00', $dir = 'ltr'){
 	}
 	else{
 		db_set_active('common');
-		$data = db_query('SELECT question FROM dbm_questions 
+		$data = sqlFetchObject('SELECT question FROM dbm_questions 
 			WHERE nmbr = :nmbr AND hl_id = :hl_id',
 			array( ':nmbr' => $nmbr,':hl_id' => 'eng00')) ->fetchObject();
 		db_set_active('default');

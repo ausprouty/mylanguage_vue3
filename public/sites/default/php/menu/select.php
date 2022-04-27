@@ -5,7 +5,7 @@ function select(){
 return $output;
 }
 function select_form($form, &$form_state) {
-  $results =  db_query ('SELECT name, hl_id from my_language 
+  $results =  sqlFetchObject ('SELECT name, hl_id from my_language 
 	WHERE jfilm = :jfilm ORDER BY name ',
 	array(':jfilm' => 'Y'	));
   foreach($results as $data){
@@ -31,7 +31,7 @@ function select_form_submit($form, &$form_state){
   return;
 }
 function select_aboriginal_form($form, &$form_state) {
-  $results =  db_query ('SELECT name, hl_id from my_language_aboriginal 
+  $results =  sqlFetchObject ('SELECT name, hl_id from my_language_aboriginal 
 	WHERE not_aboriginal IS NULL AND hl_id IS NOT NULL ORDER BY name');
   foreach ($results as $data){
     $id = $data->hl_id;
@@ -57,7 +57,7 @@ function select_aboriginal_form_submit($form, &$form_state){
 }
 function select_country_form($form, &$form_state) {
   $sql = 
-  $results =  db_query ('SELECT name, hl_id from my_language_country 
+  $results =  sqlFetchObject ('SELECT name, hl_id from my_language_country 
 	ORDER BY name');
   foreach($results as $data){
     $id = $data->hl_id;
@@ -85,7 +85,7 @@ function select_country_form_submit($form, &$form_state){
 
 function select_ethnic() {
 	$output = '';
-  $results =  db_query ('SELECT ethnic_name, name,  hl_id from my_language 
+  $results =  sqlFetchObject ('SELECT ethnic_name, name,  hl_id from my_language 
 	WHERE jfilm = :jfilm ORDER BY ethnic_name',
 	array(':jfilm' => 'Y'	));
   foreach($results as $data){
@@ -108,7 +108,7 @@ function select_translated_form($form, &$form_state) {
 	}
 	if ($_SESSION['mylanguage_browser_hl_id'] == 'eng00'){
 	}
-	$bible_brain = db_query('SELECT bible_brain FROM my_language
+	$bible_brain = sqlFetchObject('SELECT bible_brain FROM my_language
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id'=> $_SESSION['mylanguage_browser_hl_id']))->fetchField();
 	$query = db_select('my_language', 'l');

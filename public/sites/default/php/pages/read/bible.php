@@ -51,7 +51,7 @@ function page_bible($hl_id = 'eng00', $chapter_id = 1) {
 	$output .= '</div>';
 	$output .= '<hr>' ."\n";
 	db_set_active('common');
-    $bid = db_query('SELECT bid FROM dbm_bible
+    $bid = sqlFetchObject('SELECT bid FROM dbm_bible
 		WHERE hl_id = :hl_id AND (collection_code = :nt OR collection_code = :fu )
 		AND text = :y1 
 		ORDER BY weight DESC LIMIT 1',
@@ -83,12 +83,12 @@ function page_bible_dbt($bid, $chapterId, $hl_id){
 	$a = drupal_get_form('mylanguage_page_bible_navigation_form', $hl_id, $chapterId);
 	$output = drupal_render($a);
 		
-	$data = db_query('SELECT * FROM hl_luke_passage
+	$data = sqlFetchObject('SELECT * FROM hl_luke_passage
 		WHERE bid = :bid AND reference = :chapter',
     array(':bid' => $bid, ':chapter' => $chapterId))
 		->fetchObject();
 	if (isset($data->passage)){
-			db_query('UPDATE hl_luke_passage SET
+			sqlFetchObject('UPDATE hl_luke_passage SET
 				last_access = :last_access, times_access = :times_access
 				WHERE id = :id',
 				array(':last_access' => time(), ':times_access' => $data->times_access + 1,
@@ -100,7 +100,7 @@ function page_bible_dbt($bid, $chapterId, $hl_id){
 	$bookId = 'Luke';
 	if ($chapterId < 1) {$chapterId = 1;}
 	db_set_active('common');
-	$data = db_query('SELECT dam_id, right_to_left, volume_name, language_name FROM dbm_bible
+	$data = sqlFetchObject('SELECT dam_id, right_to_left, volume_name, language_name FROM dbm_bible
 		WHERE bid = :bid', 
 		array(':bid' => $bid ))->fetchObject();
 	db_set_active('default');
@@ -154,7 +154,7 @@ function page_bible_find($nt, $chapter_id, $hl_id){
 	//uses bid of NT.
 	$ot = NULL;
 	db_set_active('hl_online');
-	$verses = db_query('SELECT verses FROM hl_online_luke_verses
+	$verses = sqlFetchObject('SELECT verses FROM hl_online_luke_verses
 		WHERE chapter = :chapter',
 		array(':chapter' => $chapter_id))-> fetchField();
 	db_set_active('default');

@@ -8,7 +8,7 @@ function footer(){
 	if ($hl_id == 'eng00'){
 		return;
 	}
-	$data = db_query('SELECT google, language_bing FROM my_language
+	$data = sqlFetchObject('SELECT google, language_bing FROM my_language
 		WHERE hl_id = :hl_id',
 		array(':hl_id' => $hl_id))->fetchObject();
 	if (!empty($data->language_bing)){
@@ -30,7 +30,7 @@ function page_footer(){
 	if ($hl_id == 'eng00'){
 		return;
 	}
-	$data = db_query('SELECT google, language_bing FROM my_language
+	$data = sqlFetchObject('SELECT google, language_bing FROM my_language
 		WHERE hl_id = :hl_id',
 		array(':hl_id' => $hl_id))->fetchObject();
 	if (!empty($data->language_bing)){
