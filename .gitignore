@@ -2,8 +2,7 @@
 node_modules
 /dist
 
-/public/sites/default/ckeditor/*
-/public/sites/default/ckfinder/*
+
 
 
 # local env files
