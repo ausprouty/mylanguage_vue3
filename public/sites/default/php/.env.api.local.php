@@ -8,19 +8,25 @@ define("SITE_CODE", 'mylanguage');
 define("VERSION", '0.01');
 define("DBT_KEY", '3d116e49d7d98c6e20bf0f4a9c88e4cc');
 define('VIDEO_WIDTH', 480);
-define ("ROOT",  'c:/xampp/htdocs/mylanguage_vue3/public/' );
+define ("ROOT_DIR",  'c:/xampp/htdocs/mylanguage_vue3/public/' );
+define ("ROOT_URL",  'http://10.0.0.1/' );
+define ("CONTENT_DIRECTORY", ROOT_DIR . 'sites/default/content/');
+define ("CONTENT_URL", ROOT_DIR_URL . 'sites/default/content/');
 
 
 define ('DIR_DEFAULT_SITE', 'sites/default/');
-define('DEFAULT_PHP_DIRECTORY', ROOT. 'sites/default/php/');
-define('TESTING_PHP_DIRECTORY', ROOT. 'sites/testing/php/');
+define('DEFAULT_PHP_DIRECTORY', ROOT_DIR. 'sites/default/php/');
+define('TESTING_PHP_DIRECTORY', ROOT_DIR. 'sites/testing/php/');
 
-define("HOST", "localhost");
-define("USER", "globa544_pro-34ap");
+define("HOST", "localhost:9443");
+define("USER", "mc22020");
 define("DEVELOPER", 11);
-define("PASS", "g5x+8JfQ3xCin9=_@u");
-define("DATABASE_CONTENT", "globa544_pro-ap34");
-define("DATABASE_PORT", 3306);
+define("PASS", "ULuMOg13MZ01o0Sz");
+define("DATABASE", "mylanguage2022");
+define("DATABASE_PORT", 9306);
+define("CHARSET", 'utf8');
+define("DSN", 'mysql:host=' . HOST . ';dbname='. DATABASE .';charset='. CHARSET );
+
 
 define('WEBADDRESS', 'https://edit.mc2.online');
 

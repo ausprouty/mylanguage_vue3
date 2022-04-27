@@ -303,7 +303,7 @@ function page_jfilm_options($hl_id = 'eng00'){
 function page_study($hl_id = 'eng00', $page = 1) {
 	mylanguage_meta('study_online');
 	global $base_url;
-	$root = mylanguage_shared_dir() ;
+	$root =CONTENT_DIRECTORY ;
 	
   if ($hl_id) {
     $_SESSION['mylanguage_hl_id'] = $hl_id;
@@ -333,11 +333,11 @@ function page_study($hl_id = 'eng00', $page = 1) {
 	}
 	$webpage = $data->webpage;
 	$this_dir = str_replace('default.htm', '', $webpage); //does not work for html
-	$image_dir =  mylanguage_shared_dir()  . $this_dir;
-	$image_url =  mylanguage_getExternalSharedUrl(). $this_dir;
+	$image_dir = CONTENT_DIRECTORY  . $this_dir;
+	$image_url = CONTENT_URL. $this_dir;
 	// if page is not made of images
   if ($data->name && $data->images == 0){
-		$p =  file_get_contents(mylanguage_shared_dir() . $webpage);
+		$p =  file_get_contents(CONTENT_DIRECTORY . $webpage);
 		$p = str_ireplace('src="images', 'src="'. $image_url . '/images', $p);
 		$p = str_ireplace('src="/sites', 'src="'. $base_url . '/sites', $p);
 		if (!$data->convert_this){ // some need conversion; others do not.  I put an 'N' for those that do not need conversion
@@ -376,13 +376,13 @@ function page_study($hl_id = 'eng00', $page = 1) {
 		$image = '<img src = "'. $image_url . 'images/leftarrow.gif">';
 		$path = 'study_online/'. $hl_id . '/'. ($page - 2); 
 		$options['html'] = TRUE;
-		$output .= l($image, $path, $options) .'&nbsp;&nbsp;&nbsp;&nbsp;' . "\n";
+		$output .= link($image, $path, $options) .'&nbsp;&nbsp;&nbsp;&nbsp;' . "\n";
 	}
 	if ($page < $data->images - 1){
 		$image = '<img src = "'. $image_url . 'images/rightarrow.gif">';
 		$path = 'study_online/'. $hl_id . '/'. ($page + 2); 
 		$options['html'] = TRUE;
-		$output .= l($image, $path, $options) .'&nbsp;&nbsp;&nbsp;&nbsp;' . "\n";
+		$output .= link($image, $path, $options) .'&nbsp;&nbsp;&nbsp;&nbsp;' . "\n";
 	}
 	$output .= '<br>';
 	$output .= '</div>';

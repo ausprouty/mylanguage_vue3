@@ -528,7 +528,7 @@ function menu_l($text, $path, $image) {
 	$t .= ' src="' . mylanguage_url_file() . 'icons/' . $image .'"> ';
 	$options['html'] = TRUE;
 	$options['language'] = $language;
-	$output =  l($t, $path, $options)  . "\n";
+	$output =  link($t, $path, $options)  . "\n";
 	return $output;
 }
 function menu_links_5fish($hl_id) {
@@ -842,7 +842,7 @@ function menu_maker_laptop($links){
 			$img = '<img align = "center"  style="menu_images"';
 			$img .= ' src = "' . mylanguage_url_file() .$link['image'] . '"';
 			$img .= ' alt = "'. $link['title'] . '">';
-			$output .= l($img, $url, $options); 
+			$output .= link($img, $url, $options); 
 			$output .=  '</p></th>'."\n";
 		}
 	}

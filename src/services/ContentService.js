@@ -23,6 +23,10 @@ export default {
     params.action = 'getBiblePassage'
     return await this.aReturnResponse(params)
   },
+  async get(action, params) {
+    params.action = 'get/' + action
+    return await this.aReturnResponse(params)
+  },
 
   consoleLog(params, response) {
     if (log == true) {

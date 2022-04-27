@@ -4,21 +4,16 @@
 
 
  // // see https://www.youtube.com/watch?v=kEW6f7Pilc4
+ /*
+define("HOST", "localhost:9443");
+define("USER", "mc22020");
+define("PASS", "ULuMOg13MZ01o0Sz");
+define("DATABASE", "mylanguage2022");
+define("DATABASE_PORT", 9306);
+define("CHARSET", 'utf8');
+define("DSN", 'mysql:host=' . HOST . ';dbname='. DATABASE .';charset='. CHARSET );
+*/
 
-function getUidFromEmail($email){
-    $sql = 'SELECT uid FROM users WHERE email = :email';
-    $data = array(
-        'email' => $email
-    );
-    $pdo = new PDO (DSN, USER, PASS);
-    $pdo->SetAttribute (PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute ($data);
-    $data = $stmt->fetch();
-    $output = $data->uid;
-    return ($output);
-}
 
 function  sqlFetchObject ($sql, $data){
     $pdo = new PDO (DSN, USER, PASS);
@@ -26,11 +21,12 @@ function  sqlFetchObject ($sql, $data){
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $pdo->prepare($sql);
     $stmt->execute ($data);
-    return ($stmt);
+    $output = $stmt->fetchAll();
+    return ($output);
 
 }
 
-function sqlReturnObjectMany($sql, $data){
+function sqlFetchObjectMany($sql, $data){
     $pdo = new PDO (DSN, USER, PASS);
     $pdo->SetAttribute (PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -39,7 +35,7 @@ function sqlReturnObjectMany($sql, $data){
     $output = $stmt->fetchAll();
     return ($output);
 }
-function sqlReturnObjectOne($sql, $data){
+function sqlFetchObjectOne($sql, $data){
 	$output = [];
 	$pdo = new PDO (DSN, USER, PASS);
 	$pdo->SetAttribute (PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
@@ -50,7 +46,7 @@ function sqlReturnObjectOne($sql, $data){
 	return ($output);
 }
 
-function sqlSafe($sql, $data){
+function sql($sql, $data){
     $output=[];
     $output['debug'] = 'ran sqlSafe ' ."\n";
 	$pdo = new PDO (DSN, USER, PASS);
@@ -59,7 +55,7 @@ function sqlSafe($sql, $data){
 	$stmt->execute($data);
 	return ($output);
 }
-function sqlReturnArrayMany($sql, $data){
+function sqlFetchArrayMany($sql, $data){
     $pdo = new PDO (DSN, USER, PASS);
     $pdo->SetAttribute (PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -68,7 +64,7 @@ function sqlReturnArrayMany($sql, $data){
     $output = $stmt->fetchAll();
     return ($output);
 }
-function sqlReturnArrayOne($sql, $data){
+function sqlFetchArrayOne($sql, $data){
     $pdo = new PDO (DSN, USER, PASS);
     $pdo->SetAttribute (PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

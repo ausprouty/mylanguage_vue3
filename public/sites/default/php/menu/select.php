@@ -96,7 +96,7 @@ function select_ethnic() {
 	else{
 		$name = $data->name;
 	}
-    $link = l($name, '/intro/' . $id);
+    $link = link($name, '/intro/' . $id);
 	$output .= $link . '&nbsp;&nbsp;&nbsp;&nbsp;';
   }
   return $output;

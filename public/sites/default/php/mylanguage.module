@@ -258,11 +258,11 @@ function mylanguage_injeel_request_mylanguage_page_thanks(){
 }
 
 function mylanguage_menu_link2($title, $page){
-  $output = l($title , $page ). '<br>'. "\n";
+  $output = link($title , $page ). '<br>'. "\n";
   return $output;
 }
 function mylanguage_link_language($name, $hl_id){
-  $output = l($name , 'intro/'. $hl_id). '<br>'. "\n";
+  $output = link($name , 'intro/'. $hl_id). '<br>'. "\n";
   return $output;
 }
 
@@ -379,7 +379,7 @@ function mylanguage_page_adventure(){
 	$results = sqlFetchObject('SELECT * FROM hl_spirit ORDER BY name') ->fetchObject();
 	foreach ($results as $data){
 		$i++;
-		$output .= l( $data->name , 'https://mylanguage.net.au/study_online/'. $data->hl_id ) .'<br>' . "\n";
+		$output .= link( $data->name , 'https://mylanguage.net.au/study_online/'. $data->hl_id ) .'<br>' . "\n";
 		if ($i == $length){
 			$i = 0;
 			$output .= '</td><td>'. "\n";
@@ -437,7 +437,7 @@ function mylanguage_page_ask($hl_id = 'eng00'){
 		foreach($results as $data){
 		  $language_name = $data->ethnic_name;
 			$count++;
-		  $output .=  '<td>'. l($language_name, $data->contact). '</td>';
+		  $output .=  '<td>'. link($language_name, $data->contact). '</td>';
 			if (($count) %  $columns == 0){
 		    $output .= '</tr><tr>';	
 	    }
@@ -743,7 +743,7 @@ function meet($hl_id = 'eng00') {
 	if($data->tract){
 		$webpage = '4sl/'. $data->tract . '.html';
 		$output = '<br><br>';
-		$output .=  file_get_contents(mylanguage_shared_dir() . $webpage);
+		$output .=  file_get_contents(CONTENT_DIRECTORY . $webpage);
 		return $output;
 	}
 	else{
@@ -841,10 +841,10 @@ function mylanguage_stream_wrappers() {
   return $wrappers;
 }
 
-function mylanguage_shared_dir(){
+functionCONTENT_DIRECTORY{
 	return '/home/vx5ui10wb4ln/public_html/drupal7/sites/all/files/';
 }
-function mylanguage_getExternalSharedUrl(){
+functionCONTENT_URL{
 	global $base_url;
 	return $base_url .  '/sites/all/files/';
 }

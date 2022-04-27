@@ -1,6 +1,6 @@
 <?php
 
-myRequireOnce('writeLog.php');
+
 
 function validateParameters($p, $required, $source){
     $valid = TRUE;
