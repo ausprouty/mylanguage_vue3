@@ -1,12 +1,11 @@
 import axios from 'axios'
-import store from '@/store/index.js'
 import LogService from '@/services/LogService.js'
 
 const log = process.env.VUE_APP_SITE_SHOW_CONSOLE_LOG
-const apiURL = process.env.VUE_APP_DEFAULT_SITES_URL
+const apiURL = process.env.VUE_APP_DEFAULT_PHP_URL
 const apiLocation = process.env.VUE_APP_SITE_LOCATION
 //const apiLocation = 'author'
-const postDestination = 'AuthorApi.php?location=' + apiLocation
+const postDestination = 'ContentApi.php?location=' + apiLocation
 const apiSELECT = axios.create({
   baseURL: apiURL,
   withCredentials: false, // This is the default
@@ -21,11 +20,11 @@ const apiSELECT = axios.create({
 export default {
   async getBiblePassage(params) {
     params.action = 'getBiblePassage'
-    return await this.aReturnResponse(params)
+    return await this.zReturnResponse(params)
   },
   async get(action, params) {
     params.action = 'get/' + action
-    return await this.aReturnResponse(params)
+    return await this.zReturnResponse(params)
   },
 
   consoleLog(params, response) {
@@ -39,22 +38,18 @@ export default {
   async zReturnResponse(params) {
     try {
       var contentForm = this.toAuthorizedFormData(params)
+      console.log(params)
       var response = await apiSELECT.post(postDestination, contentForm)
-      params.function = 'aReturnContentParsed'
-      LogService.consoleLog('aReturnResponse', params, response)
-      if (response.data.login) {
-        alert('Author Service is pushing you to login')
-        this.$router.push({
-          name: 'login',
-        })
-      }
+      console.log(response)
+      params.function = 'zReturnResponse'
+      LogService.consoleLog('zReturnResponse', params, response)
       return response
     } catch (error) {
       this.error = error.toString() + ' ' + params.action
       LogService.consoleLogError(
-        'something went wrong',
+        'something went Wrong',
         this.error,
-        'aReturnResponse'
+        'zReturnResponse'
       )
       return 'error'
     }
@@ -151,8 +146,6 @@ export default {
   },
 
   toAuthorizedFormData(params) {
-    params.my_uid = store.state.user.uid
-    params.token = store.state.user.token
     var form_data = new FormData()
     for (var key in params) {
       form_data.append(key, params[key])
@@ -167,6 +160,6 @@ export default {
   async updateUser(params) {
     params.page = 'updateUser'
     params.action = 'updateUser'
-    return this.aReturnResponse(params)
+    return this.zReturnResponse(params)
   },
 }

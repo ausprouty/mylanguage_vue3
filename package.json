@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --mode myfriends.local ",
-    "build": "vue-cli-service build --mode myfriends.remote ",
+    "serve": "vue-cli-service serve --mode mylanguage.local ",
+    "build": "vue-cli-service build --mode mylanguage.remote ",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

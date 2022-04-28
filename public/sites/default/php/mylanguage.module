@@ -258,11 +258,11 @@ function mylanguage_injeel_request_mylanguage_page_thanks(){
 }
 
 function mylanguage_menu_link2($title, $page){
-  $output = link($title , $page ). '<br>'. "\n";
+  $output = myLink($title , $page ). '<br>'. "\n";
   return $output;
 }
 function mylanguage_link_language($name, $hl_id){
-  $output = link($name , 'intro/'. $hl_id). '<br>'. "\n";
+  $output = myLink($name , 'intro/'. $hl_id). '<br>'. "\n";
   return $output;
 }
 
@@ -379,7 +379,7 @@ function mylanguage_page_adventure(){
 	$results = sqlFetchObject('SELECT * FROM hl_spirit ORDER BY name') ->fetchObject();
 	foreach ($results as $data){
 		$i++;
-		$output .= link( $data->name , 'https://mylanguage.net.au/study_online/'. $data->hl_id ) .'<br>' . "\n";
+		$output .= myLink( $data->name , 'https://mylanguage.net.au/study_online/'. $data->hl_id ) .'<br>' . "\n";
 		if ($i == $length){
 			$i = 0;
 			$output .= '</td><td>'. "\n";
@@ -437,7 +437,7 @@ function mylanguage_page_ask($hl_id = 'eng00'){
 		foreach($results as $data){
 		  $language_name = $data->ethnic_name;
 			$count++;
-		  $output .=  '<td>'. link($language_name, $data->contact). '</td>';
+		  $output .=  '<td>'. myLink($language_name, $data->contact). '</td>';
 			if (($count) %  $columns == 0){
 		    $output .= '</tr><tr>';	
 	    }

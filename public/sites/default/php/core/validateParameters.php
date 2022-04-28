@@ -3,7 +3,6 @@
 
 
 function validateParameters($p, $required, $source){
-    $valid = TRUE;
     foreach ($required as $key=>$value){
         if (!isset($p[$key])){
             $p[$key]= $value;
@@ -12,5 +11,6 @@ function validateParameters($p, $required, $source){
     if (isset($p['hl_id'])){
         $_SESSION['hl_id'] = $p['hl_id'];
     }
-    return $valid;
+    writeLogDebug('validateParameters', $p);
+    return $p;
 }

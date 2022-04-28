@@ -1,7 +1,6 @@
-import { createApp } from 'vue'
-import { createStore } from 'vuex'
+import Vuex from 'vuex'
 
-const store = createStore({
+const store = new Vuex.Store({
   state() {
     return {
       user: {
@@ -12,8 +11,8 @@ const store = createStore({
         expires: null,
       },
       language: {
-        hl_id: null,
-        iso: null,
+        hl_id: 'eng00',
+        iso: 'eng',
         direction: 'ltr',
         chinese: null,
         menu_laptop: null,
@@ -25,10 +24,3 @@ const store = createStore({
   actions: {},
   modules: {},
 })
-
-const app = createApp({
-  /* your root component */
-})
-
-// Install the store instance as a plugin
-app.use(store)

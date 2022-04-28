@@ -7,10 +7,11 @@ function SpiritPage($p) {
         'hl_id' => 'eng00',
         'page'=> 1
     );
-    if (!validateParameters($p, $required, 'getSpiritPage')){
+	$p = validateParameters($p, $required, 'getSpiritPage');
+    if (!$p){
         $return;
     }
-    $output .= '<h1>' .translate('Adventure') . '</h1>';
+    $output = '<h1>' .translate('Adventure') . '</h1>';
  /* if (isset($_SESSION['mylanguage_chinese']) || $hl_id == 'chn00'){
     $hl_id = 'chn-s';
 	if (!isset($_SESSION['mylanguage_chinese_written'])){
@@ -22,7 +23,7 @@ function SpiritPage($p) {
   */
   $data = sqlFetchObject('SELECT * from hl_spirit
 		WHERE hl_id = :hl_id LIMIT 1',
-		array(':hl_id' =>$hl_id));
+		array(':hl_id' =>$p['hl_id']));
 	if (!isset($data->webpage)){
 		$data = sqlFetchObject('SELECT * from hl_spirit
 			WHERE hl_id = :hl_id LIMIT 1',
@@ -73,13 +74,13 @@ function SpiritPage($p) {
 		$image = '<img src = "'. $image_url . 'images/leftarrow.gif">';
 		$path = 'study_online/'. $hl_id . '/'. ($page - 2);
 		$options['html'] = TRUE;
-		$output .= link($image, $path, $options) .'&nbsp;&nbsp;&nbsp;&nbsp;' . "\n";
+		$output .= myLink($image, $path, $options) .'&nbsp;&nbsp;&nbsp;&nbsp;' . "\n";
 	}
 	if ($page < $data->images - 1){
 		$image = '<img src = "'. $image_url . 'images/rightarrow.gif">';
 		$path = 'study_online/'. $hl_id . '/'. ($page + 2);
 		$options['html'] = TRUE;
-		$output .= link($image, $path, $options) .'&nbsp;&nbsp;&nbsp;&nbsp;' . "\n";
+		$output .= myLink($image, $path, $options) .'&nbsp;&nbsp;&nbsp;&nbsp;' . "\n";
 	}
 	$output .= '<br>';
 	$output .= '</div>';

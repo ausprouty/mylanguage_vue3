@@ -151,7 +151,7 @@ function block_select_browser(){
 	else{
 		$class = 'welcome_ethnic';
 	}
-	$output = $space . link($ethnic_name, 
+	$output = $space . myLink($ethnic_name, 
 			'intro/'. $hl_id,
 			 array('attributes' => array('class' => array($class))));
 	db_set_active('default');
@@ -219,7 +219,7 @@ function block_select_ethnic ($format = 'laptop'){
 			WHERE name = :name',
 			array(':name'=> $lang)) ->fetchObject();
 		db_set_active('default');	
-		$output .= link($data->ethnic_name, 
+		$output .= myLink($data->ethnic_name, 
 			'intro/'. $data->hl_id,
 			 array('attributes' => array('class' => array($class)))) . $space;
 		$i ++;
@@ -292,7 +292,7 @@ function block_view($block_key){
 			array(':arc_id' => ''));
 		db_set_active('default');
 		foreach($results as $data){
-		    $block['content'] .= link($data->ethnic_name , '/ask/' . $data->hl_id ). ' - '. $data->name . '<br><br>' . "\n";
+		    $block['content'] .= myLink($data->ethnic_name , '/ask/' . $data->hl_id ). ' - '. $data->name . '<br><br>' . "\n";
 		}  
 		break;
 	case 'listen_options':
@@ -311,7 +311,7 @@ function block_view($block_key){
 				$block['content'] .=translate('Listen to the Bible') . '<br>';
 				$i = '1';
 			}  
-			$block['content'] .= '&nbsp;&nbsp;&nbsp;&nbsp;'. link($data->volume_name, 'listen_online/' . $hl_id . '/New Testament/'. $data->dam_id) . '<br>'. "\n";
+			$block['content'] .= '&nbsp;&nbsp;&nbsp;&nbsp;'. myLink($data->volume_name, 'listen_online/' . $hl_id . '/New Testament/'. $data->dam_id) . '<br>'. "\n";
 		}
 		$block['content'] .= '<br>';
 		db_set_active('hl');
@@ -323,8 +323,8 @@ function block_view($block_key){
 		foreach($results as $data){
 			$title = trim($data->title);                      
 			$block['content'] = $title . '<br>';
-			$block['content'] .= '&nbsp;&nbsp;&nbsp;&nbsp;' . link('Part 1', 'listen_online/' . $hl_id . '/'. $title .'/1') . '<br>'. "\n";
-			$block['content'] .= '&nbsp;&nbsp;&nbsp;&nbsp;' . link('Part 2', 'listen_online/' . $hl_id . '/'. $title .'/2') . '<br>'. "\n";
+			$block['content'] .= '&nbsp;&nbsp;&nbsp;&nbsp;' . myLink('Part 1', 'listen_online/' . $hl_id . '/'. $title .'/1') . '<br>'. "\n";
+			$block['content'] .= '&nbsp;&nbsp;&nbsp;&nbsp;' . myLink('Part 2', 'listen_online/' . $hl_id . '/'. $title .'/2') . '<br>'. "\n";
 		}
 		break;
 	case 'other_options':
@@ -372,7 +372,7 @@ function block_view($block_key){
 				$videos .= '<br><br><b>'. $lang . '</b><br>';
 				$last_language = $data->language;
 			}
-			$videos .= '<br>'. link(t($data->title) , 
+			$videos .= '<br>'. myLink(t($data->title) , 
 				'https://mylanguage.net.au/jfilm/'. $hl_id . '/'. $data->title .'/'. $data->film_code). '<br>';
 			$video_count++;
 		}
@@ -416,7 +416,7 @@ function block_view($block_key){
 		if ( mylanguage_vance($hl_id)) {
 			$block['subject']  =translate('FREE HOLY INJEEL');
 			$block['content'] = '<img  align = "center" width = "90%" src = "'. mylanguage_url_file() .'apps/injil.jpg"><br>';
-			$block['content'] .= link(mylanguage_t_ethnic('Ask for your FREE HOLY INJEEL today') , 'injeel') .'<br>';
+			$block['content'] .= myLink(mylanguage_t_ethnic('Ask for your FREE HOLY INJEEL today') , 'injeel') .'<br>';
 			$block['content'] .= '<p style="color:green; font-size:0.7em">'.translate('Offer valid in USA and Canada') . '</p>';
     }
 		break;
@@ -446,7 +446,7 @@ function block_view($block_key){
 		db_set_active('default');
 		$block['content']= '';
 		foreach($results as $data){
-			$block['content'] .= link( $data->session . '. ' . $data->reference, 
+			$block['content'] .= myLink( $data->session . '. ' . $data->reference, 
 			'https://mylanguage.net.au/discuss/'. $_SESSION['mylanguage_hl_id'] . '/'. $data->session). '<br><br>' . "\n";
 		}
 		break;

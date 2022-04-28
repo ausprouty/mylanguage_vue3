@@ -8,7 +8,7 @@
     <router-link to="/ask">Ask</router-link> |
     <router-link to="/meet">Meet God</router-link> |
     <router-link to="/spirit">Adventure</router-link> |
-    <router-link to="/links">Link</router-link> |
+    <router-link to="/link">Link</router-link> |
   </div>
   <router-view />
 </template>

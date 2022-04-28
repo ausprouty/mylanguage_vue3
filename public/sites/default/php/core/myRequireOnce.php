@@ -10,7 +10,15 @@ function myRequireOnce($filename){
             $new_name = TESTING_PHP_DIRECTORY . $filename;
         }
     }
-    require_once($new_name);
+    if($new_name){
+        writeLogAppend('myRequireOnce-14', $new_name);
+        require_once($new_name);
+    }
+    else{
+        $message = "myRequireOnce did not find ". DEFAULT_PHP_DIRECTORY. $filename;
+        writeLogErrorAppend('myRequireOnce-18', $message);
+        trigger_error( $message, E_USER_ERROR);
+    }
 }
 
 function myRequireOnceSetup($user){

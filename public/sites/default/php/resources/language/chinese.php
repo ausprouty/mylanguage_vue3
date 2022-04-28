@@ -37,12 +37,12 @@ function mylanguage_chinese_display($webpage){
 		$_SESSION ['mylanguage_chinese_written']= 'chn-s';
 	}
   if ($_SESSION ['mylanguage_chinese_written'] == 'chn-s'){
-    $output =  '<h4>' . link('中文 - 普通话 - Simplified Chinese', 'chinese_change/chn-s/'. $webpage ). '</h4> ';
-    $output .=  '<br><p>('. t ('also available in ') . link('中文 – 華語/國語 - Traditional Chinese', 'chinese_change/chn-t/'. $webpage ) . '</p><br><br>'. "\n";
+    $output =  '<h4>' . myLink('中文 - 普通话 - Simplified Chinese', 'chinese_change/chn-s/'. $webpage ). '</h4> ';
+    $output .=  '<br><p>('. t ('also available in ') . myLink('中文 – 華語/國語 - Traditional Chinese', 'chinese_change/chn-t/'. $webpage ) . '</p><br><br>'. "\n";
   }
   else {
    
-    $output =   '<h4>' . link('中文 – 華語/國語 - Traditional Chinese', 'chinese_change/chn-t/'. $webpage) . '</h4> ';
+    $output =   '<h4>' . myLink('中文 – 華語/國語 - Traditional Chinese', 'chinese_change/chn-t/'. $webpage) . '</h4> ';
     $output .=  '<br><p>('. t ('also available in ') .l('中文 - 普通话 - Simplified Chinese' , 'chinese_change/chn-s/' . $webpage) . '</p><br><br> '. "\n";
   }  
   return $output;

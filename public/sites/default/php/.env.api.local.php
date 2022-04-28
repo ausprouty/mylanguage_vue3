@@ -4,14 +4,16 @@
 //use ReallySimpleJWT\Token;
 define("LOG_MODE", 'write_log');
 define("SITE_CODE", 'mylanguage');
+define ("ROOT_LOGS",  'c:/xampp/htdocs/logs/' );
 
 define("VERSION", '0.01');
 define("DBT_KEY", '3d116e49d7d98c6e20bf0f4a9c88e4cc');
 define('VIDEO_WIDTH', 480);
-define ("ROOT_DIR",  'c:/xampp/htdocs/mylanguage_vue3/public/' );
-define ("ROOT_URL",  'http://10.0.0.1/' );
+define ("ROOT_DIR",  'c:/xampp/htdocs/mylanguage-vue3/public/' );
+
+define ("ROOT_URL",  'http://10.0.0.12/' );
 define ("CONTENT_DIRECTORY", ROOT_DIR . 'sites/default/content/');
-define ("CONTENT_URL", ROOT_DIR_URL . 'sites/default/content/');
+define ("CONTENT_URL", ROOT_URL . 'sites/default/content/');
 
 
 define ('DIR_DEFAULT_SITE', 'sites/default/');
@@ -19,7 +21,7 @@ define('DEFAULT_PHP_DIRECTORY', ROOT_DIR. 'sites/default/php/');
 define('TESTING_PHP_DIRECTORY', ROOT_DIR. 'sites/testing/php/');
 
 define("HOST", "localhost:9443");
-define("USER", "mc22020");
+define("USER", "mylanguage2019");
 define("DEVELOPER", 11);
 define("PASS", "ULuMOg13MZ01o0Sz");
 define("DATABASE", "mylanguage2022");

@@ -376,13 +376,13 @@ function page_study($hl_id = 'eng00', $page = 1) {
 		$image = '<img src = "'. $image_url . 'images/leftarrow.gif">';
 		$path = 'study_online/'. $hl_id . '/'. ($page - 2); 
 		$options['html'] = TRUE;
-		$output .= link($image, $path, $options) .'&nbsp;&nbsp;&nbsp;&nbsp;' . "\n";
+		$output .= myLink($image, $path, $options) .'&nbsp;&nbsp;&nbsp;&nbsp;' . "\n";
 	}
 	if ($page < $data->images - 1){
 		$image = '<img src = "'. $image_url . 'images/rightarrow.gif">';
 		$path = 'study_online/'. $hl_id . '/'. ($page + 2); 
 		$options['html'] = TRUE;
-		$output .= link($image, $path, $options) .'&nbsp;&nbsp;&nbsp;&nbsp;' . "\n";
+		$output .= myLink($image, $path, $options) .'&nbsp;&nbsp;&nbsp;&nbsp;' . "\n";
 	}
 	$output .= '<br>';
 	$output .= '</div>';
