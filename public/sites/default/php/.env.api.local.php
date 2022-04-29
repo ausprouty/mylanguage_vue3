@@ -11,7 +11,8 @@ define("DBT_KEY", '3d116e49d7d98c6e20bf0f4a9c88e4cc');
 define('VIDEO_WIDTH', 480);
 define ("ROOT_DIR",  'c:/xampp/htdocs/mylanguage-vue3/public/' );
 
-define ("ROOT_URL",  'http://10.0.0.12/' );
+define ("ROOT_URL",  'http://10.1.1.245/' );
+define ("BASE_URL",  'http://10.1.1.245/' );
 define ("CONTENT_DIRECTORY", ROOT_DIR . 'sites/default/content/');
 define ("CONTENT_URL", ROOT_URL . 'sites/default/content/');
 
@@ -20,7 +21,7 @@ define ('DIR_DEFAULT_SITE', 'sites/default/');
 define('DEFAULT_PHP_DIRECTORY', ROOT_DIR. 'sites/default/php/');
 define('TESTING_PHP_DIRECTORY', ROOT_DIR. 'sites/testing/php/');
 
-define("HOST", "localhost:9443");
+/*define("HOST", "localhost:9443");
 define("USER", "mylanguage2019");
 define("DEVELOPER", 11);
 define("PASS", "ULuMOg13MZ01o0Sz");
@@ -28,14 +29,23 @@ define("DATABASE", "mylanguage2022");
 define("DATABASE_PORT", 9306);
 define("CHARSET", 'utf8');
 define("DSN", 'mysql:host=' . HOST . ';dbname='. DATABASE .';charset='. CHARSET );
+*/
 
+define("HOST", "localhost");
+define("USER", "mylanguagevuejs");
+define("DEVELOPER", 11);
+define("PASS", "ULu98&6(01o0Sz");
+define("DATABASE", "mylanguagevuejs");
+define("DATABASE_PORT", 3306);
+define("CHARSET", 'utf8');
+define("DSN", 'mysql:host=' . HOST . ';dbname='. DATABASE .';charset='. CHARSET );
 
 define('WEBADDRESS', 'https://edit.mc2.online');
 
-define('ACCEPTABLE_IP', 'https://edit.mc2.online');
+define('ACCEPTABLE_IP', '');
 define('LOCAL_TOKEN', 'JY^&%$Goiuts2');
 define("LOGIN_SECRET", 's0hygedSuSMc2T423*&');
-define("LOGIN_ISSUER", 'myfriends.network');
+define("LOGIN_ISSUER", 'mylanguage.network');
 
 function  myApiAuthorize($token){
     if ($token == LOCAL_TOKEN){
@@ -75,6 +85,6 @@ function myApiLogin($p) {
 
 
 function myHeaders(){
-    header("Access-Control-Allow-Origin: " . ACCEPTABLE_IP);
+   // header("Access-Control-Allow-Origin:" . ACCEPTABLE_IP);
     header("Access-Control-Allow-Methods: POST, GET");
 }

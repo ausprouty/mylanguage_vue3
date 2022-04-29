@@ -845,12 +845,12 @@ functionCONTENT_DIRECTORY{
 	return '/home/vx5ui10wb4ln/public_html/drupal7/sites/all/files/';
 }
 functionCONTENT_URL{
-	global $base_url;
-	return $base_url .  '/sites/all/files/';
+	global BASE_URL;
+	return BASE_URL .  '/sites/all/files/';
 }
 function mylanguage_getExternalUrl(){
-	global $base_url;
-	return $base_url .  '/sites/mylanguage.net.au/files/';
+	global BASE_URL;
+	return BASE_URL .  '/sites/mylanguage.net.au/files/';
 }
 /**
  * Default files (foobar://) stream wrapper class.
@@ -860,8 +860,8 @@ class SharedStreamWrapper extends DrupalPublicStreamWrapper {
     return 'sites/all/files';
   }
 	public function getExternalUrl() {
-		global $base_url;
-    return $base_url .  '/sites/all/files/';
+		global BASE_URL;
+    return BASE_URL .  '/sites/all/files/';
   }
   public function realpath() {
     return '/home/vx5ui10wb4ln/public_html/drupal7/sites/all/files/';
@@ -870,8 +870,8 @@ class SharedStreamWrapper extends DrupalPublicStreamWrapper {
 }
 class BibleStreamWrapper extends DrupalPublicStreamWrapper {
   public function getDirectoryPath() {
-		global $base_url;
-		if ($base_url == 'mylanguage7'){
+		global BASE_URL;
+		if (BASE_URL == 'mylanguage7'){
 			return 'c:/Projects/dbm/protype/www/sites/all/files/bible/';
 		}
 		else{

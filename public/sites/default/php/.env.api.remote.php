@@ -12,12 +12,13 @@ define ("ROOT_DIR",  '/home/globa544/' );
 
 define ('DIR_DEFAULT_SITE', 'sites/default/');
 
-define("HOST", "localhost");
+/*define("HOST", "localhost");
 define("USER", "globa544_pro-34ap");
 define("DEVELOPER", 11);
 define("PASS", "g5x+8JfQ3xCin9=_@u");
 define("DATABASE", "globa544_pro-ap34");
 define("DATABASE_PORT", 3306);
+*/
 
 define('WEBADDRESS', 'https://mylanguage.net.au');
 

@@ -233,9 +233,9 @@ function mylanguage_block_select_ethnic ($format = 'laptop'){
   return $output;
 }
 function mylanguage_block_select_translated(){
-    global $base_url;
+    global BASE_URL;
 	$output = '<div class="block-191">';
-	$output .= '<p class = "title"><img  src = "'. $base_url . '/' ;
+	$output .= '<p class = "title"><img  src = "'. BASE_URL . '/' ;
     $output .=	file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath()  .'/img/' ;
 	$output .= 'worldwide_top.jpg' . '" alt = "'. mylanguage_t_browser('Worldwide Languages') . '">';
 	$a = drupal_get_form('mylanguage_select_translated_form');
@@ -245,9 +245,9 @@ function mylanguage_block_select_translated(){
  return $output;
 }
 function mylanguage_block_select_worldwide(){
-    global $base_url;
+    global BASE_URL;
 	$output = '<div class="block-191">';
-	$output .= '<p class = "title"><img  src = "'. $base_url . '/' ;
+	$output .= '<p class = "title"><img  src = "'. BASE_URL . '/' ;
     $output .=	file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath()  .'/img/' ;
 	$output .= 'worldwide_top.jpg' . '" alt = "'. mylanguage_t_browser('English Names') . '">';
 	$a = drupal_get_form('mylanguage_select_form');

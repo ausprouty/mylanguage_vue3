@@ -28,13 +28,13 @@ function  sqlFetchObject ($sql, $data){
      writeLogDebug('sqlFetchObject-28', $stmt);
     $stmt->execute ($data);
     writeLogDebug('sqlFetchObject-30', $stmt);
-    $output = $stmt->fetchAll();
+    $output = $stmt->fetch();
     writeLogDebug('sqlFetchObject-32', $output);
     return $output;
 
 }
 
-function sqlFetchObjectMany($sql, $data){
+function sqlFetchObjects($sql, $data){
     $pdo = new PDO (DSN, USER, PASS);
     $pdo->SetAttribute (PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

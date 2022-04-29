@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="navbar"><NavBar /></div>
-    <div class="content">Spirit {{ this.text }}</div>
+    <div v-html="text"></div>
   </div>
 </template>
 <script>
@@ -26,7 +26,8 @@ export default {
     try {
       var params = {}
       console.log('creating Spirit')
-      this.text = await ContentService.get('SpiritPage', params)
+      var resp = await ContentService.get('SpiritPage', params)
+      this.text = resp.data
       console.log('I have content')
       console.log(this.text)
     } catch (error) {

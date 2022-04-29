@@ -29,6 +29,7 @@ $parts = explode('/', $action);
 
 $call= end($parts);
 $out= $call($p);
+writeLogDebug('Content-32', $out);
 myHeaders(); // send cors headers
 $debug .= "\n\n\n";
 $debug .= strlen(json_encode($out, JSON_UNESCAPED_UNICODE));

@@ -2,9 +2,9 @@
 
 
 function menu_block_format_191($image, $alt, $content){
-	global $base_url;
+	global BASE_URL;
 	$output = '<div class="block-191">';
-	$output .= '<p class = "title"><img  src = "'. $base_url . '/' . file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath()  .'/img/' . $image . '" alt = "'. $alt. '">';
+	$output .= '<p class = "title"><img  src = "'. BASE_URL . '/' . file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath()  .'/img/' . $image . '" alt = "'. $alt. '">';
 	$output .= $content;
 	$output .='<div class="block-bottom-191"></p></div>';
     $output .= '</div>';
