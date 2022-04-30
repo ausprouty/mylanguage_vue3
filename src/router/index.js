@@ -35,6 +35,13 @@ const routes = [
     },
   },
   {
+    path: '/bible_online/:hl_id?',
+    name: 'Bible',
+    component: function () {
+      return import(/* webpackChunkName: "bible" */ '../views/pages/Bible.vue')
+    },
+  },
+  {
     path: '/listen/:hl_id?',
     name: 'Listen',
     component: function () {
@@ -59,6 +66,15 @@ const routes = [
   },
   {
     path: '/meet/:hl_id?',
+    name: 'Gospel',
+    component: function () {
+      return import(
+        /* webpackChunkName: "gospel" */ '../views/pages/Gospel.vue'
+      )
+    },
+  },
+  {
+    path: '/gospel/:hl_id?',
     name: 'Gospel',
     component: function () {
       return import(
