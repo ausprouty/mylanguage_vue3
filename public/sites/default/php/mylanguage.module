@@ -716,42 +716,7 @@ function mylanguage_page_thank($drupal){
 	$output .=  mylanguage_connect_t($l->mylanguage_page_thank_you, $e->mylanguage_page_thank_you);
 	return $output;
 }
-function meet($hl_id = 'eng00') {
-	mylanguage_meta('meet');
-	$hl_id = arg(1);
-	if ($hl_id) {
-		$_SESSION['mylanguage_hl_id'] = $hl_id;
-	}
-	$hl_id = mylanguage_hl_validate();
-	mylanguage_language($hl_id);
-	mylanguage_chinese($hl_id);
-	if (isset($_SESSION['mylanguage_chinese'])) {
-		$hl_id = $_SESSION['mylanguage_chinese_written'] ;
-	}
-	db_set_active ('hl_online');
-	if (isset($_SESSION['mylanguage_chinese'])){
-		$data = sqlFetchObject('SELECT * from hl_online_kgp
-			WHERE hl_id = :hl_id  LIMIT 1',
-			array(':hl_id' =>$hl_id)) ->fetchObject();
-	}
-	else {
-		$data = sqlFetchObject('SELECT * from hl_online_kgp
-			WHERE hl_id = :hl_id LIMIT 1',
-			array(':hl_id' =>$hl_id)) ->fetchObject();
-	}
-	db_set_active ('default');
-	if($data->tract){
-		$webpage = '4sl/'. $data->tract . '.html';
-		$output = '<br><br>';
-		$output .=  file_get_contents(CONTENT_DIRECTORY . $webpage);
-		return $output;
-	}
-	else{
-		$webpage = $data->webpage;
-		drupal_goto($webpage);
-	}
-	return $output;
-	}
+
 /**
  *  Returns link to dbm directory
  *

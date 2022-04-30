@@ -16,20 +16,20 @@ define("DSN", 'mysql:host=' . HOST . ';dbname='. DATABASE .';charset='. CHARSET 
 
 
 function  sqlFetchObject ($sql, $data){
-    writeLogDebug('sqlFetchObject-19', $sql);
-    writeLogDebug('sqlFetchObject-20', $data);
+    //writeLogDebug('sqlFetchObject-19', $sql);
+    //writeLogDebug('sqlFetchObject-20', $data);
     $pdo = new PDO (DSN, USER, PASS);
-    writeLogDebug('sqlFetchObject-22', DSN);
+    //writeLogDebug('sqlFetchObject-22', DSN);
     $pdo->SetAttribute (PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-     writeLogDebug('sqlFetchObject-24', USER);
+     //writeLogDebug('sqlFetchObject-24', USER);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    writeLogDebug('sqlFetchObject-26', $pdo);
+    //writeLogDebug('sqlFetchObject-26', $pdo);
     $stmt = $pdo->prepare($sql);
-     writeLogDebug('sqlFetchObject-28', $stmt);
+    // writeLogDebug('sqlFetchObject-28', $stmt);
     $stmt->execute ($data);
-    writeLogDebug('sqlFetchObject-30', $stmt);
+    //writeLogDebug('sqlFetchObject-30', $stmt);
     $output = $stmt->fetch();
-    writeLogDebug('sqlFetchObject-32', $output);
+    //writeLogDebug('sqlFetchObject-32', $output);
     return $output;
 
 }

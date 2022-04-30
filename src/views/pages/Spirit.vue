@@ -11,6 +11,7 @@ import LogService from '@/services/LogService.js'
 import NavBar from '@/components/NavBar.vue'
 
 export default {
+  props: ['hl_id'],
   components: {
     NavBar,
   },
@@ -24,12 +25,9 @@ export default {
 
   async created() {
     try {
-      var params = {}
-      console.log('creating Spirit')
+      var params = this.$route.params
       var resp = await ContentService.get('SpiritPage', params)
       this.text = resp.data
-      console.log('I have content')
-      console.log(this.text)
     } catch (error) {
       LogService.consoleLogError('There was an error in Spirit.vue:', error) // Logs out the error
     }

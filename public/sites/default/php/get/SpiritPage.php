@@ -1,13 +1,10 @@
 <?php
-
-
-
 function SpiritPage($p) {
     $required= array(
-        'hl_id' => 'eng00',
+        'hl_id_written' => 'eng00',
         'page'=> 1
     );
-	$p = validateParameters($p, $required, 'getSpiritPage');
+	$p = validateParameters($p, $required, 'SpiritPage');
     if (!$p){
         $return;
     }
@@ -23,7 +20,7 @@ function SpiritPage($p) {
   */
  	$data = sqlFetchObject('SELECT * from my_spirit
 		WHERE hl_id = :hl_id LIMIT 1',
-		array(':hl_id' =>$p['hl_id']));
+		array(':hl_id' =>$p['hl_id_written']));
 	if (!isset($data->webpage)){
 		$data = sqlFetchObject('SELECT * from my_spirit
 			WHERE hl_id = :hl_id LIMIT 1',
@@ -36,21 +33,16 @@ function SpiritPage($p) {
 	// if page is not made of images
   	if ($data->name && $data->images == 0){
 		$page =  file_get_contents(CONTENT_DIRECTORY . $webpage);
-		writeLogDebug('SpiritPage-39', $page);
-		//$page = str_ireplace('src="images', 'src="'. $image_url . '/images', $page);
-		//$page = str_ireplace('src="/sites', 'src="'. ROOT_URL . 'sites', $page);
-		$good = 'SRC="/public/sites/default/content/spirit/';
+		$good = 'SRC="'. ROOT_URL .'/public/sites/default/content/spirit/';
 		$bad = 'SRC="/sites/all/files/spirit/';
 		$page = str_ireplace($bad, $good, $page);
 		if (!$data->convert_this){ // some need conversion; others do not.  I put an 'N' for those that do not need conversion
 			$page = iconv("ISO-8859-1", "UTF-8//TRANSLIT", $page);
 		}
 		$output .= $page;
-		writeLogDebug('SpiritPage-49', $output);
   	}
 	// we are working with images
 	elseif ($data->name && $data->images > 0){
-		writeLogDebug('SpiritPage-50-', $data);
 		$output .= '<div align = "center">';
 		$show_image = 'images/page'. $page .'-lg.gif';
 		$width = 600;
@@ -91,6 +83,5 @@ function SpiritPage($p) {
 		$output .= '<br>';
 		$output .= '</div>';
 	}
-	writeLogDebug('SpiritPage-91', $output);
   	return $output;
 }

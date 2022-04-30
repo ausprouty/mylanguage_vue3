@@ -203,9 +203,9 @@ function mylanguage_page_frontX($hl_id = null){
 	$text .= '<a class = "intro" href = "/ask/'. $hl_id. '">'.translate('Ask') . '</a>';
 	$text .= '<br><br>';
 	$text .= mylanguage_page_front_section_end();
-	if (mylanguage_menu_links_written('hl_online_kgp',  $_SESSION['mylanguage_written_hl_id'], 'hl_online')){
+	if (mylanguage_menu_links_written('my_online_kgp',  $_SESSION['mylanguage_written_hl_id'], 'hl_online')){
 		db_set_active('hl_online');
-		$kgp = sqlFetchObject('SELECT * FROM hl_online_kgp 
+		$kgp = sqlFetchObject('SELECT * FROM my_online_kgp 
 			WHERE hl_id = :hl_id', 
 			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']))->fetchObject();
 		$text .= mylanguage_page_front_image('tracts.png', $direction);

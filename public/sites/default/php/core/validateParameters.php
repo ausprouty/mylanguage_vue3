@@ -10,6 +10,7 @@ function validateParameters($p, $required, $source){
     }
     if (isset($p['hl_id'])){
         $_SESSION['hl_id'] = $p['hl_id'];
+        $p['hl_id_written'] =  $p['hl_id'];
     }
     writeLogDebug('validateParameters', $p);
     return $p;

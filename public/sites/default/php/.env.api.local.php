@@ -42,7 +42,7 @@ define("DSN", 'mysql:host=' . HOST . ';dbname='. DATABASE .';charset='. CHARSET 
 
 define('WEBADDRESS', 'https://edit.mc2.online');
 
-define('ACCEPTABLE_IP', '');
+define('ACCEPTABLE_IP', '*');
 define('LOCAL_TOKEN', 'JY^&%$Goiuts2');
 define("LOGIN_SECRET", 's0hygedSuSMc2T423*&');
 define("LOGIN_ISSUER", 'mylanguage.network');
@@ -85,6 +85,6 @@ function myApiLogin($p) {
 
 
 function myHeaders(){
-   // header("Access-Control-Allow-Origin:" . ACCEPTABLE_IP);
+   header("Access-Control-Allow-Origin:" . ACCEPTABLE_IP);
     header("Access-Control-Allow-Methods: POST, GET");
 }

@@ -694,13 +694,13 @@ function menu_links_change_language($hl_id, $links) {
 function menu_links_meet_god($hl_id) {
 	$link = null;
 	if (isset($_SESSION['mylanguage_chinese']) ){
-		$result = sqlFetchObject('SELECT hl_id FROM hl_online_kgp
+		$result = sqlFetchObject('SELECT hl_id FROM my_online_kgp
 			WHERE hl_id = :hl_id1 OR hl_id = :hl_id2 LIMIT 1',
 			array(':hl_id1' => 'chn-s', ':hl_id2' => 'chn-t')
 			) ->fetchField();
 	}
 	else{
-		$result = sqlFetchObject('SELECT hl_id FROM hl_online_kgp
+		$result = sqlFetchObject('SELECT hl_id FROM my_online_kgp
 			WHERE hl_id = :hl_id',
 			array(':hl_id' => $hl_id))->fetchField();
 	}
