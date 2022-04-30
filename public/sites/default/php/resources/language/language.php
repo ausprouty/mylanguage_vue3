@@ -2,7 +2,7 @@
 
 function language($hl_id){
 	db_set_active('default');
-	global $language;
+	
 	$drupal = sqlFetchObject('SELECT drupal FROM my_language
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' =>$hl_id)
@@ -69,7 +69,7 @@ function language_iso($hl_id){
 	return $iso;
 }
 function language_from_browser(){
-	global $language;
+	
 	$language_browser = mylanguage_find_browser_language();
 	if ($language_browser){
 		$language_browser = substr($language_browser, 0,2);

@@ -5,7 +5,7 @@ function mylanguage_front_page(){
 
 
 function mylanguage_page_front(){
-  global $language;
+  
   mylanguage_meta('welcome');
   $hl_id = mylanguage_language_from_browser();
   $hl_id = mylanguage_language($hl_id);
@@ -19,7 +19,7 @@ function mylanguage_page_front(){
   }  
 }
 function mylanguage_page_front_laptop($hl_id){
-  global $language;
+  
   return base_path() . drupal_get_path('theme', 'twentyfifteen');
   mylanguage_meta('welcome');
   $hl_id = mylanguage_language_from_browser();

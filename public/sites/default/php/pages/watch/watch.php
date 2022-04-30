@@ -14,7 +14,7 @@ function page_jfilm($hl_id = 'eng00', $movie = 'JESUS', $video = NULL) {
 	function showEmailForm() {
 		document.getElementById(\'email\').style.display = \'block\';
 	} ', 'inline');
-	global $language;
+	
 	mylanguage_meta('jfilm');
 	if ($hl_id !='') {
 		// make sure valid code (and not from mypage/chris giving value of chris)
@@ -302,7 +302,7 @@ function page_jfilm_options($hl_id = 'eng00'){
 }
 function page_study($hl_id = 'eng00', $page = 1) {
 	mylanguage_meta('study_online');
-	global BASE_URL;
+	
 	$root =CONTENT_DIRECTORY ;
 	
   if ($hl_id) {
@@ -339,7 +339,7 @@ function page_study($hl_id = 'eng00', $page = 1) {
   if ($data->name && $data->images == 0){
 		$p =  file_get_contents(CONTENT_DIRECTORY . $webpage);
 		$p = str_ireplace('src="images', 'src="'. $image_url . '/images', $p);
-		$p = str_ireplace('src="/sites', 'src="'. BASE_URL . '/sites', $p);
+		$p = str_ireplace('src="/sites', 'src="'. ROOT_URL . '/sites', $p);
 		if (!$data->convert_this){ // some need conversion; others do not.  I put an 'N' for those that do not need conversion
 			$p = iconv("ISO-8859-1", "UTF-8//TRANSLIT", $p);
 		}

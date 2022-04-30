@@ -37,13 +37,16 @@ function SpiritPage($p) {
   	if ($data->name && $data->images == 0){
 		$page =  file_get_contents(CONTENT_DIRECTORY . $webpage);
 		writeLogDebug('SpiritPage-39', $page);
-		$page = str_ireplace('src="images', 'src="'. $image_url . '/images', $page);
-		$page = str_ireplace('src="/sites', 'src="'. BASE_URL . 'sites', $page);
+		//$page = str_ireplace('src="images', 'src="'. $image_url . '/images', $page);
+		//$page = str_ireplace('src="/sites', 'src="'. ROOT_URL . 'sites', $page);
+		$good = 'SRC="/public/sites/default/content/spirit/';
+		$bad = 'SRC="/sites/all/files/spirit/';
+		$page = str_ireplace($bad, $good, $page);
 		if (!$data->convert_this){ // some need conversion; others do not.  I put an 'N' for those that do not need conversion
 			$page = iconv("ISO-8859-1", "UTF-8//TRANSLIT", $page);
 		}
 		$output .= $page;
-		writeLogDebug('SpiritPage-46', $output);
+		writeLogDebug('SpiritPage-49', $output);
   	}
 	// we are working with images
 	elseif ($data->name && $data->images > 0){

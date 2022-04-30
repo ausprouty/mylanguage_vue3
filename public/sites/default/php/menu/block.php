@@ -233,9 +233,9 @@ function block_select_ethnic ($format = 'laptop'){
   return $output;
 }
 function block_select_translated(){
-    global BASE_URL;
+    
 	$output = '<div class="block-191">';
-	$output .= '<p class = "title"><img  src = "'. BASE_URL . '/' ;
+	$output .= '<p class = "title"><img  src = "'. ROOT_URL . '/' ;
     $output .=	file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath()  .'/img/' ;
 	$output .= 'worldwide_top.jpg' . '" alt = "'. mylanguage_t_browser('Worldwide Languages') . '">';
 	$a = drupal_get_form('mylanguage_select_translated_form');
@@ -245,9 +245,9 @@ function block_select_translated(){
  return $output;
 }
 function block_select_worldwide(){
-    global BASE_URL;
+    
 	$output = '<div class="block-191">';
-	$output .= '<p class = "title"><img  src = "'. BASE_URL . '/' ;
+	$output .= '<p class = "title"><img  src = "'. ROOT_URL . '/' ;
     $output .=	file_stream_wrapper_get_instance_by_uri('public://')->getDirectoryPath()  .'/img/' ;
 	$output .= 'worldwide_top.jpg' . '" alt = "'. mylanguage_t_browser('English Names') . '">';
 	$a = drupal_get_form('mylanguage_select_form');
@@ -428,7 +428,7 @@ function block_view($block_key){
 		$block['content'] .=translate('Tens of millions of people are using this to make God\'s Word a part of their daily lives. Available in more than 100 languages worldwide, all on your mobile device');
 		break;
 	case('dbs'):
-		global $language;
+		
 		if (isset($_SESSION['mylanguage_chinese'])){
 			$hl_id = 'chn-s';
 			if ($_SESSION['mylanguage_chinese_written'] == 'chn-t') {

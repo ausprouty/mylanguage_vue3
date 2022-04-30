@@ -16,7 +16,7 @@ function page_discuss($hl_id = 'eng00', $session = 1){
 			$drupal = 'zh-hans';
 		}
 	}
-	global $language;
+	
 	// find passage
 	db_set_active('common');
 	$passage = sqlFetchObject('SELECT * FROM dbm_study_passage
@@ -203,7 +203,7 @@ function page_discuss_header($nmbr = 1, $hl_id = 'eng00'){
     return $output;
 }
 function page_discuss_select_form($form, &$form_state, $session){
-	global $language;
+	
 	if (isset($_SESSION['mylanguage_chinese'])){
 		$hl_id = 'chn-s';
 		if ($_SESSION['mylanguage_chinese_written'] == 'chn-t') {
