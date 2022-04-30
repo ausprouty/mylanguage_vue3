@@ -21,8 +21,8 @@ function page_jfilm($hl_id = 'eng00', $movie = 'JESUS', $video = NULL) {
 		db_set_active('hl_online');
 		$data = sqlFetchObject('SELECT id FROM hl_online_jfilm
 			WHERE hl_id = :hl_id LIMIT 1', 
-			array(':hl_id' =>$hl_id)) ->fetchObject();
-		db_set_active('default');
+			array(':hl_id' =>$hl_id)) ;
+		
 		if (!isset($data->id)) {
 			$hl_id = 'eng00';
 		}
@@ -42,19 +42,19 @@ function page_jfilm($hl_id = 'eng00', $movie = 'JESUS', $video = NULL) {
 	$data = sqlFetchObject('SELECT * FROM hl_online_jfilm 
 		WHERE film_code = :film_code LIMIT 1',
 		array(':film_code' =>$video))
-		->fetchObject();
-	db_set_active('default');
+		;
+	
 	// what if they messed up the url?
 	if (!isset($data->id)){
 		db_set_active('hl_online');
 		$data = sqlFetchObject('SELECT * FROM hl_online_jfilm 
 			WHERE hl_id = :hl_id AND title = :title LIMIT 1',
 			array(':hl_id' =>$hl_id, ':title' => 'JESUS' ))
-			->fetchObject();
+			;
 		$movie = 'JESUS';
 		$video = $data->film_code;
 	}
-	db_set_active('default');
+	
 	//return '4018';
 	// title
 	if (empty($movie)){
@@ -111,7 +111,7 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
 		$results = sqlFetchObject('SELECT * FROM hl_online_jfilm
 			 WHERE film_code LIKE :film_code AND movie = :movie ORDER BY segment',
 			 array(':film_code' => $film .'%', ':movie' => $movie));
-		db_set_active('default');
+		
 	  foreach($results as $data){
 			 if ($data->segment == 1 || $data->film_code == $film_code){
 				 $default = $data->film_code;	
@@ -136,7 +136,7 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
 	   $results = sqlFetchObject('SELECT * FROM hl_online_jfilm
 			 WHERE film_code LIKE :film_code AND title LIKE :movie ORDER BY id',
 			 array(':film_code' => $film .'%', ':movie' => 'Magdalena (7 clips)%'));
-		db_set_active('default');
+		
 	    $i = 1;
 		foreach($results as $data){
 		   $segment[$data->film_code] = $i. '. '. substr($data->title, 32);
@@ -152,9 +152,9 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
 	db_set_active('hl_online');
 	$data = sqlFetchObject('SELECT * FROM hl_online_jfilm
 			WHERE film_code = :film_code',
-			array(':film_code' => $film_code))->fetchObject();
+			array(':film_code' => $film_code));
 	$fc = substr($film_code, 0, -6) .'%';
-	 db_set_active('default');
+	 
 	$menu = mylanguage_menu_l(mylanguage_t_ethnic('Download Video'),
 		$data->share_short_url,
 		'download_blue_24x24.png'
@@ -165,7 +165,7 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
 		$watch = sqlFetchObject ('SELECT film_code FROM hl_online_jfilm
 			WHERE film_code LIKE :film_code AND segment = :segment',
 		 array(':film_code' => $fc , ':segment' =>  $data->segment -1)) ->fetchField();
-		 db_set_active('default');
+		 
 		if (!empty($watch)){
 			$menu .= mylanguage_menu_l(mylanguage_t_ethnic('Previous Segment'),
 				'jfilm/'. $hl_id .'/' . $movie . '/'. $watch,
@@ -178,7 +178,7 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
 		$watch = sqlFetchObject ('SELECT film_code FROM hl_online_jfilm
 				WHERE film_code LIKE :film_code AND segment = :segment',
        array(':film_code' => $fc , ':segment' => $data->segment +1)) ->fetchField();
-		db_set_active('default');
+		
 		if (!empty($watch)){
 			$menu .= mylanguage_menu_l(mylanguage_t_ethnic('Next Segment'),
 				'jfilm/'. $hl_id .'/' . $movie . '/'. $watch,
@@ -227,7 +227,7 @@ function page_jfilm_segments_form_submit ($form, &$form_state){
 	return;
 }
 function page_jfilm_options($hl_id = 'eng00'){
-	db_set_active('default');
+	
 	$jesus_video = '';
 	$mag_video = '';
 	$child_video = '';
@@ -240,7 +240,7 @@ function page_jfilm_options($hl_id = 'eng00'){
 			':title2'=>'The Story of JESUS for Children',
 			':title3'=> 'Magdalena' )
 	);
-	db_set_active('default');
+	
 	$weight = -10;
 	foreach ($results as $data){
 		if (preg_match("/for Children/i", $data->title)) {
@@ -270,8 +270,8 @@ function page_jfilm_options($hl_id = 'eng00'){
 				->condition('segment', 1, '=')
 				->range(0, 1)
 				->execute()
-				->fetchObject();
-			db_set_active('default');
+				;
+			
 			
 			$video = $v->film_code;
 			
@@ -292,7 +292,7 @@ function page_jfilm_options($hl_id = 'eng00'){
 			$video = sqlFetchObject ('SELECT film_code  FROM hl_online_jfilm 
 				WHERE film_code LIKE :film_code  AND segment = 1', 
 				array(':film_code' =>$film_code))-> fetchField(); 
-			db_set_active('default');
+			
 		}
 		else{
 			$video = $mag_video;
@@ -325,11 +325,11 @@ function page_study($hl_id = 'eng00', $page = 1) {
   }
   $data = sqlFetchObject('SELECT * from hl_spirit 
 		WHERE hl_id = :hl_id LIMIT 1', 
-		array(':hl_id' =>$hl_id))->fetchObject();
+		array(':hl_id' =>$hl_id));
 	if (!isset($data->webpage)){
 		$data = sqlFetchObject('SELECT * from hl_spirit 
 			WHERE hl_id = :hl_id LIMIT 1', 
-			array(':hl_id' =>'eng00'))->fetchObject();
+			array(':hl_id' =>'eng00'));
 	}
 	$webpage = $data->webpage;
 	$this_dir = str_replace('default.htm', '', $webpage); //does not work for html

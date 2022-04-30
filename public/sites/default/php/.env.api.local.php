@@ -8,6 +8,7 @@ define ("ROOT_LOGS",  'c:/ampp/htdocs/logs/' );
 
 define("VERSION", '0.01');
 define("DBT_KEY", '3d116e49d7d98c6e20bf0f4a9c88e4cc');
+///$applicationKey = '1c1c206cc9a9d8d3ab335eb6a3ed61cd';
 define('VIDEO_WIDTH', 480);
 define ("ROOT_DIR",  'c:/ampp/htdocs/mylanguage-vue3/' );
 

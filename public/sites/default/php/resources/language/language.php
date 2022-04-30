@@ -1,7 +1,7 @@
 <?php
 
 function language($hl_id){
-	db_set_active('default');
+	
 	
 	$drupal = sqlFetchObject('SELECT drupal FROM my_language
 		WHERE hl_id = :hl_id LIMIT 1',

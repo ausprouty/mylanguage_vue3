@@ -22,7 +22,7 @@ function menu_button_load($hl_id, $image_name, $source, $text){
   // for button 125x164
   // get font
   $font_dir = mylanguage_realpath_files() .'/fonts/';
-  $result = sqlFetchObject('SELECT font, direction, chinese from my_language WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ->fetchObject();
+  $result = sqlFetchObject('SELECT font, direction, chinese from my_language WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ;
   $data = db_fetch_object($result);
   $font = $data->font;
   $data_direction = $data->direction;
@@ -124,7 +124,7 @@ function menu_button_load_175($hl_id, $image_name, $source, $text){
   $data = sqlFetchObject('SELECT font, direction, chinese from my_language
 	WHERE hl_id = :hl_id',
 	array(':hl_id' => $hl_id))
-	->fetchObject();
+	;
   $font = $data->font;
   if (!$font) {$font = 'tahoma.ttf';}
   $font = $font_dir . $font;
@@ -211,7 +211,7 @@ function menu_button_load_171($hl_id, $image_name, $source, $text){
   // for button 125x164
   // get font
   $font_dir = mylanguage_realpath_files() .'/fonts/';
-  $result = sqlFetchObject('SELECT font, direction, chinese from my_language WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ->fetchObject();
+  $result = sqlFetchObject('SELECT font, direction, chinese from my_language WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ;
   $data = db_fetch_object($result);
   $font = $data->font;
   $data_direction = $data->direction;
@@ -312,13 +312,13 @@ function menu_button_load_205($hl_id, $image_name, $source, $text){
   }
   $font_dir = mylanguage_realpath_files() .'/fonts/';
   $data = sqlFetchObject('SELECT font, direction, chinese from my_language
-	WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ->fetchObject();
+	WHERE hl_id = :hl_id', array(':hl_id' => $hl_id)) ;
 	// in case url is messed up
   if (!isset($data->font)){
 	$hl_id = 'eng00';
 	$data = sqlFetchObject('SELECT font, direction, chinese from my_language
 		WHERE hl_id = :hl_id',
-		array(':hl_id' => $hl_id)) ->fetchObject();
+		array(':hl_id' => $hl_id)) ;
 
   }
   $font = $data->font;
@@ -418,7 +418,7 @@ function menu_cache($hl_id){
 	$id = $hl_id . '-'. $browser_language->language;
 	$cache = sqlFetchObject('SELECT * FROM hl_cache
 		WHERE id = :id',
-		array('id' => $id))->fetchObject();
+		array('id' => $id));
 	if (isset($cache->laptop_menu)){
 		$is_mobile = mylanguage_find_is_mobile();
 		if ($is_mobile){
@@ -461,13 +461,13 @@ function menu_image_another_language($hl_id, $i){
   $data = sqlFetchObject('SELECT mylanguage, name , font, direction FROM my_language
 	WHERE hl_id = :hl_id',
 	array(':hl_id' => $hl_id))
-	->fetchObject();
+	;
 	// in case url messed up
   if (!isset($data->name)){
 	$data = sqlFetchObject('SELECT mylanguage, name , font, direction FROM my_language
 		WHERE hl_id = :hl_id',
 		array(':hl_id' => 'eng00'))
-		->fetchObject();
+		;
 
   }
   $data_direction = $data->direction;
@@ -535,7 +535,7 @@ function menu_links_5fish($hl_id) {
 	$link = null;
 	$result = sqlFetchObject('SELECT * FROM hl_5fish
 		WHERE hl_id = :hl_id LIMIT 1',
-		array(':hl_id' => $hl_id))->fetchObject();
+		array(':hl_id' => $hl_id));
 	if ($result){
 		$link = array(
 		 'title'=>translate('Watch'),
@@ -588,7 +588,7 @@ function menu_links_ask($hl_id){
 			WHERE hl_id = :hl_id LIMIT 1',
 			array(':hl_id' => $hl_id))->fetchField();
 	}
-	db_set_active('default');
+	
 	if ($contact){
 		$contact_link = $contact->contact;
 	}
@@ -607,12 +607,12 @@ function menu_links_ask($hl_id){
 }
 function menu_links_audio_bible($hl_id) {
 	$link = null;
-	db_set_active('common');
+	
 	$dam_id = sqlFetchObject('SELECT dam_id FROM dbm_bible
 		WHERE hl_id = :hl_id AND audio = :y1 AND (collection_code = :full OR collection_code = :nt)
 		LIMIT 1',
 		array(':hl_id' =>$hl_id, ':y1' => 'Y', ':full' => 'FU', ':nt' =>'NT')) -> fetchField();
-	db_set_active('default');
+	
 	if ($dam_id){
 		$bible = substr($dam_id,0,6);
 		$link= array(
@@ -659,7 +659,7 @@ function menu_links_jfilm( $hl_id) {
 	$result = sqlFetchObject('SELECT hl_id FROM hl_online_jfilm
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' => $hl_id))->fetchField();
-	db_set_active('default');
+	
 	if ($result){
 		$link = array(
 			'title'=>translate('Watch the JESUS film'),
@@ -743,7 +743,7 @@ function menu_links_read_bible($hl_id) {
 					':fu' => 'FU'))
 			->fetchField();
 	}
-	db_set_active('default');
+	
 	if ($h){
 		$link = array(
 			'title'=>translate('Read the Bible'),
@@ -763,14 +763,14 @@ function menu_links_website($hl_id){
 		$result = sqlFetchObject('SELECT * FROM hl_online_everystudent
 			WHERE hl_id = :hl_id1 OR hl_id = :hl_id2 LIMIT 1',
 			array(':hl_id1' => 'chn-s', ':hl_id2' => 'chn-t')
-			) ->fetchObject();
+			) ;
 	}
 	else{
 		$result = sqlFetchObject('SELECT * FROM hl_online_everystudent
 			WHERE hl_id = :hl_id LIMIT 1',
-			array(':hl_id' => $hl_id))->fetchObject();
+			array(':hl_id' => $hl_id));
 	}
-	db_set_active('default');
+	
     if ($result){
 		$title = str_ireplace('www.', '', $result->url);
 		$link = array(

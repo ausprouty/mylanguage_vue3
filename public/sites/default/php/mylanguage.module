@@ -19,8 +19,8 @@ function mylanguage_cache($hl_id){
 	db_set_active('my');
 	$cache = sqlFetchObject('SELECT * FROM my_cache
 		WHERE id = :id',
-		array('id' => $id))->fetchObject();
-	db_set_active('default');
+		array('id' => $id));
+	
 	return $cache;
 }
 function mylanguage_cache_update($hl_id, $laptop_menu, $mobile_menu ){
@@ -47,7 +47,7 @@ function mylanguage_cache_update($hl_id, $laptop_menu, $mobile_menu ){
 		);
 		drupal_write_record ('my_cache', $fields);
 	}
-	db_set_active('default');
+	
 }
 function mylanguage_cache_update_intro($hl_id, $intro ){
 	$existing = mylanguage_cache($hl_id);
@@ -69,7 +69,7 @@ function mylanguage_cache_update_intro($hl_id, $intro ){
 		);
 		drupal_write_record ('my_cache', $fields);
 	}
-	db_set_active('default');
+	
 }
 
 
@@ -130,14 +130,14 @@ function mylanguage_find_ethnic_name_browser_language($hl_id){
 			)->fetchField();
 	}
 	if ($browser_name_for_language){
-		db_set_active('default');
+		
 		return $browser_name_for_language;
 	}
 	else{
 		$english_name_for_language = sqlFetchObject('SELECT name FROM my_language
 		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' => $hl_id))->fetchField();
-		db_set_active('default');
+		
 		return $english_name_for_language;
 	}
 }
@@ -376,7 +376,7 @@ function mylanguage_page_adventure(){
 	$length = ($count->count)/3;
 	$i = 0;
 	$output .= '<table><tr><td>'. "\n";
-	$results = sqlFetchObject('SELECT * FROM hl_spirit ORDER BY name') ->fetchObject();
+	$results = sqlFetchObject('SELECT * FROM hl_spirit ORDER BY name') ;
 	foreach ($results as $data){
 		$i++;
 		$output .= myLink( $data->name , 'https://mylanguage.net.au/study_online/'. $data->hl_id ) .'<br>' . "\n";
@@ -401,7 +401,7 @@ function mylanguage_page_ask($hl_id = 'eng00'){
 	$everystudent = sqlFetchObject('SELECT contact FROM hl_online_everystudent
 		WHERE hl_id = :hl_id',
 		array(':hl_id' => $hl_id)) -> fetchField();
-	db_set_active('default');
+	
 	if ($everystudent){
 		drupal_goto($everystudent, $options = array('external'), $http_response_code = 302);
 	}
@@ -433,7 +433,7 @@ function mylanguage_page_ask($hl_id = 'eng00'){
 		db_set_active('hl_online');
 		$results = sqlFetchObject('SELECT ethnic_name, contact FROM hl_online_everystudent
 			ORDER BY ethnic_name');
-		db_set_active('default');
+		
 		foreach($results as $data){
 		  $language_name = $data->ethnic_name;
 			$count++;
@@ -710,7 +710,7 @@ function mylanguage_page_thank($drupal){
 	db_set_active ('info');
 	$l = db_fetch_object(sqlFetchObject('SELECT * FROM hl_connect WHERE language = :language LIMIT 1', $drupal));
 	$e = db_fetch_object(sqlFetchObject('SELECT * FROM hl_connect WHERE language = :language LIMIT 1', 'en'));
-	db_set_active('default');
+	
 
 	$output .= '<h1>'. mylanguage_connect_t($l->message_sent, $e->message_sent) . '</h1>';
 	$output .=  mylanguage_connect_t($l->mylanguage_page_thank_you, $e->mylanguage_page_thank_you);
@@ -742,7 +742,7 @@ function mylanguage_vance2(){
 		$film_code = sqlFetchObject('SELECT film_code FROM hl_online_jfilm
 			WHERE hl_id = :hl_id AND segment = :segment AND movie = :jesus LIMIT 1',
 			array(':hl_id' =>$data->hl_id, ':segment' => 12, ':jesus' => 'JESUS')) ->fetchField();
-		db_set_active('default');
+		
 		$output.= $data->name . '|'. 'https://mylanguage.net.au/jfilm/'. $data->hl_id . '/JESUS/'. $film_code . "\n";
 	}
 	return $output;
@@ -843,7 +843,7 @@ class BibleStreamWrapper extends DrupalPublicStreamWrapper {
 }
 
 function mylanguage_film_language_ethnic(){
-	db_set_active('default');
+	
 	$r = sqlFetchObject('SELECT distinct google, hl_id FROM my_language
 		WHERE google IS NOT NULL');
 	$output = '';
@@ -855,21 +855,21 @@ function mylanguage_film_language_ethnic(){
 			array(':hl_id' => $d->hl_id));
 		foreach ($results as $data){
 			  $output .= $data->language. '<br>';
-				db_set_active('default');
+				
 				$translated = mylanguage_translate_google_text($data->language, $d->google);
 				db_set_active('hl_online');
 				sqlFetchObject('UPDATE hl_online_jfilm SET language_ethnic = :language_ethnic
 					WHERE language = :language',
 					array('language_ethnic' => $translated, 'language' => $data->language));
 		}
-		db_set_active('default');
+		
 	}
-	db_set_active('default');
+	
  return $output;
 }
 
 function mylanguage_film_language_ethnic2(){
-	db_set_active('default');
+	
 	$r = sqlFetchObject('SELECT distinct google, language_iso FROM my_language
 		WHERE google IS NOT NULL');
 	$output = '';
@@ -882,8 +882,8 @@ function mylanguage_film_language_ethnic2(){
 		foreach ($results as $data){
 			  $output .=  $d->google . '-- ' . $data->language. '<br>';
 		}
-		db_set_active('default');
+		
 	}
-	db_set_active('default');
+	
  return $output;
 }

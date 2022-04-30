@@ -12,7 +12,7 @@ function mylanguage_footer(){
 	}
 	$data = sqlFetchObject('SELECT google, language_bing FROM my_language
 		WHERE hl_id = :hl_id',
-		array(':hl_id' => $hl_id))->fetchObject();
+		array(':hl_id' => $hl_id));
 	if (!empty($data->language_bing)){
 		$output = mylanguage_menu_l($text = NULL, $path = 'https://www.microsoft.com/en-us/translator/apps.aspx?WT.mc_id=Attribution', $image = 'microsoft_translate.png');
 		return  $output;
@@ -34,7 +34,7 @@ function mylanguage_page_footer(){
 	}
 	$data = sqlFetchObject('SELECT google, language_bing FROM my_language
 		WHERE hl_id = :hl_id',
-		array(':hl_id' => $hl_id))->fetchObject();
+		array(':hl_id' => $hl_id));
 	if (!empty($data->language_bing)){
 		$output = mylanguage_menu_l($text = NULL, $path = 'https://www.microsoft.com/en-us/translator/apps.aspx?WT.mc_id=Attribution', $image = 'microsoft_translate.png');
 		return  $output;
@@ -151,7 +151,7 @@ function mylanguage_page_frontX($hl_id = null){
 	$title = sqlFetchObject('SELECT mylanguage, name, direction FROM my_language 
 		WHERE hl_id = :hl_id
 		LIMIT 1',
-		array(':hl_id' => $hl_id)) ->fetchObject();
+		array(':hl_id' => $hl_id)) ;
 	if ($title->mylanguage){
 		$text .= '<h2>'. $title->mylanguage . '</h2>';
 		$english = 'N';
@@ -199,7 +199,7 @@ function mylanguage_page_frontX($hl_id = null){
 	if  (mylanguage_menu_links_written( 'dbm_bible',   $_SESSION['mylanguage_written_hl_id'], 'common')){
 		$text .=  mylanguage_page_front_image('read.png', $direction);
 		$text .=   '<h2>'.mylanguage_t_ethnic('Read God\'s Word: the Bible') . '</h2>';
-		db_set_active('common');
+		
 		$bid = sqlFetchObject('SELECT bid FROM dbm_bible
 			WHERE hl_id = :hl_id AND (collection_code = :nt OR collection_code = :fu )
 			AND text = :y1 
@@ -209,7 +209,7 @@ function mylanguage_page_frontX($hl_id = null){
 					':nt' => 'NT', 
 					':fu' => 'FU'))
 			->fetchField();
-		db_set_active('default');
+		
 		$bad = array('<p>', '</p>');
 		$bible = mylanguage_page_bible_intro($bid, $_SESSION['mylanguage_written_hl_id']);
 		//$bible = str_replace('<div', '<p', $bible);
@@ -250,9 +250,9 @@ function mylanguage_page_frontX($hl_id = null){
 		db_set_active('hl_online');
 		$kgp = sqlFetchObject('SELECT * FROM my_online_kgp 
 			WHERE hl_id = :hl_id', 
-			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']))->fetchObject();
+			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']));
 		$text .= mylanguage_page_front_image('tracts.png', $direction);
-	    db_set_active('default');
+	    
 		if ($kgp->title){
 			$kgp_title = $kgp->title; // all local files will have title
 		}
@@ -273,8 +273,8 @@ function mylanguage_page_frontX($hl_id = null){
 		db_set_active('hl_online');
 		$spirit = sqlFetchObject('SELECT * FROM hl_online_spirit 
 			WHERE hl_id = :hl_id', 
-			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']))->fetchObject();
-		db_set_active('default');
+			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']));
+		
 		$text .= '<h2>'.translate('Adventure'). '</h2>';
 		if ($spirit->promo){
 			$text .= '<p>'. $spirit->promo .'</p>';
@@ -293,8 +293,8 @@ function mylanguage_page_frontX($hl_id = null){
 		db_set_active('hl_online');
 		$website = sqlFetchObject('SELECT * FROM hl_online_everystudent 
 			WHERE hl_id = :hl_id', 
-			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']))->fetchObject();
-		db_set_active('default');
+			array(':hl_id' => $_SESSION['mylanguage_written_hl_id']));
+		
 		$text .= '<h2>'. $website->url . '</h2>';
 		$text .='<p>'. $website->promo . '</p>';
 		$text .= '<p><a class = "intro" href = "https://'.$website->url. '">'.translate('Read More') . '</a></p>';

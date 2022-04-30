@@ -8,7 +8,7 @@ function mylanguage_chinese($hl_id){
 		WHERE hl_id = :hl_id', 
 		array(':hl_id' =>$hl_id)
 	)-> fetchObject();
-	db_set_active('default');
+	
     $name = isset($data->name) ? $data->name : NULL;
 	$chinese = isset($data->chinese)? $data->chinese : 0;
   // check to see if Chinese

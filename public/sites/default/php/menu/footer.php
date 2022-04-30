@@ -10,7 +10,7 @@ function footer(){
 	}
 	$data = sqlFetchObject('SELECT google, language_bing FROM my_language
 		WHERE hl_id = :hl_id',
-		array(':hl_id' => $hl_id))->fetchObject();
+		array(':hl_id' => $hl_id));
 	if (!empty($data->language_bing)){
 		$output = mylanguage_menu_l($text = NULL, $path = 'https://www.microsoft.com/en-us/translator/apps.aspx?WT.mc_id=Attribution', $image = 'microsoft_translate.png');
 		return  $output;
@@ -32,7 +32,7 @@ function page_footer(){
 	}
 	$data = sqlFetchObject('SELECT google, language_bing FROM my_language
 		WHERE hl_id = :hl_id',
-		array(':hl_id' => $hl_id))->fetchObject();
+		array(':hl_id' => $hl_id));
 	if (!empty($data->language_bing)){
 		$output = mylanguage_menu_l($text = NULL, $path = 'https://www.microsoft.com/en-us/translator/apps.aspx?WT.mc_id=Attribution', $image = 'microsoft_translate.png');
 		return  $output;

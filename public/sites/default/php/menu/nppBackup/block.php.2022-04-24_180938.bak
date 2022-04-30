@@ -154,7 +154,7 @@ function mylanguage_block_select_browser(){
 	$output = $space . myLink($ethnic_name, 
 			'intro/'. $hl_id,
 			 array('attributes' => array('class' => array($class))));
-	db_set_active('default');
+	
 	return $output;
 }	
 function mylanguage_block_select_common(){
@@ -165,7 +165,7 @@ function mylanguage_block_select_common(){
   db_set_active('my');
   $result = sqlFetchObject('SELECT hl_id, name  FROM my_language 
 	ORDER BY requests DESC LIMIT 20');
-	db_set_active('default');
+	
   foreach ($result as $data){
     $top[$data->hl_id] = $data->name;
   }
@@ -217,8 +217,8 @@ function mylanguage_block_select_ethnic ($format = 'laptop'){
 		db_set_active('my');
 		$data = sqlFetchObject('SELECT ethnic_name, hl_id FROM my_language
 			WHERE name = :name',
-			array(':name'=> $lang)) ->fetchObject();
-		db_set_active('default');	
+			array(':name'=> $lang)) ;
+			
 		$output .= myLink($data->ethnic_name, 
 			'intro/'. $data->hl_id,
 			 array('attributes' => array('class' => array($class)))) . $space;
@@ -290,7 +290,7 @@ function mylanguage_block_view($block_key){
 		$results = sqlFetchObject('SELECT name, ethnic_name, hl_id 
 			FROM hl_connect  WHERE arc_id != :arc_id ORDER BY name',
 			array(':arc_id' => ''));
-		db_set_active('default');
+		
 		foreach($results as $data){
 		    $block['content'] .= myLink($data->ethnic_name , '/ask/' . $data->hl_id ). ' - '. $data->name . '<br><br>' . "\n";
 		}  
@@ -300,12 +300,12 @@ function mylanguage_block_view($block_key){
 		$block['subject']  = mylanguage_t_browser('Programs Available') . '<br><br>';
 		$hl_id = isset($_SESSION['mylanguage_hl_id']) ? $_SESSION['mylanguage_hl_id'] : 'eng00';
 		$i = '';
-		 db_set_active('common');	
+		 	
 		$results = sqlFetchObject ('SELECT volume_name, dam_id FROM dbm_bible 
 			WHERE hl_id = :hl_id AND text = :text  AND collection_code= :nt', 
 			array(':hl_id' =>$hl_id, ':text' =>'', ':nt'=> 'NT' )
 		);
-		db_set_active('default');	
+			
 		foreach ($results as $data){
 			if (!$i) {
 				$block['content'] .=translate('Listen to the Bible') . '<br>';
@@ -319,7 +319,7 @@ function mylanguage_block_view($block_key){
 			hl_id = :hl_id AND audio_file_1 != :audio_file_1 AND exclude !=:exclude ORDER by title ',
 			array(':hl_id' => $hl_id, ':audio_file_1' => '', ':exclude' => 'x')
 		);
-		db_set_active('default');
+		
 		foreach($results as $data){
 			$title = trim($data->title);                      
 			$block['content'] = $title . '<br>';
@@ -338,7 +338,7 @@ function mylanguage_block_view($block_key){
 		if (isset($_SESSION['mylanguage_chinese'])){
 			db_set_active('my');
 			$results = sqlFetchObject('SELECT hl_id FROM my_language WHERE chinese = 1');
-			db_set_active('default');
+			
 			$chinese_codes = '';
 			foreach($results as $data){
 				$chinese_codes .= '\'' . $data->hl_id . '\',';
@@ -351,7 +351,7 @@ function mylanguage_block_view($block_key){
 					':title2' => 'The Story of JESUS for Children', 
 					':title3' => 'Magdalena' )
 			);
-			db_set_active('default');
+			
 		}
 		// non Chinese
 		else{
@@ -363,7 +363,7 @@ function mylanguage_block_view($block_key){
 					':title2' => 'The Story of JESUS for Children', 
 					':title3' => 'Magdalena' )
 			);
-			db_set_active('default');
+			
 		}  
 		$last_language = '';
 		foreach($results as $data){
@@ -443,7 +443,7 @@ function mylanguage_block_view($block_key){
 			WHERE study = :study AND hl_id = :hl_id ORDER BY session',
 			array(':study'=> 'dbs', ':hl_id' => $_SESSION['mylanguage_hl_id'])
 		);
-		db_set_active('default');
+		
 		$block['content']= '';
 		foreach($results as $data){
 			$block['content'] .= myLink( $data->session . '. ' . $data->reference, 
