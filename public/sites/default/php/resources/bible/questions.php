@@ -1,6 +1,6 @@
 <?php
 
-function questions(){
+function questions($hl_id_written){
 	$output = '<ul>';
 	$output .= '<li>'.translate('What does this tell you about God?') . '</li>' . "\n";
 	$output .= '<li>'.translate('What does this tell you about Jesus?') . '</li>' . "\n";

@@ -10,6 +10,7 @@ else{
 }
 require_once('core/myRequireOnce.php');
 require_once('core/writeLog.php');
+require_once('core/isMobile.php');
 require_once('core/myLink.php');
 require_once('core/sql.php');
 require_once('core/translate.php');

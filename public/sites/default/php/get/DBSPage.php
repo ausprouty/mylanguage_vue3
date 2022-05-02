@@ -19,7 +19,7 @@ function page_discuss($hl_id = 'eng00', $session = 1){
 
 	// find passage
 
-	$passage = sqlFetchObject('SELECT * FROM dbm_study_passage
+	$passage = sqlFetchObject('SELECT * FROM my_studypassage
 			WHERE study = :study AND lesson = :session AND language = :language',
 			array(':study' => 'ctc',
 				':session' =>  $session,
@@ -35,7 +35,7 @@ function page_discuss($hl_id = 'eng00', $session = 1){
 	$nt = '';
 	$dir = "ltr";
 	if ($dbt_array['collection_code'] == 'OT'){
-		$bible = sqlFetchObject('SELECT bid, right_to_left FROM dbm_bible
+		$bible = sqlFetchObject('SELECT bid, right_to_left FROM my_bible
 			WHERE hl_id = :hl_id AND (collection_code = :testament OR collection_code = :fu )
 			AND text = :y1
 			ORDER BY weight DESC LIMIT 1',
@@ -47,7 +47,7 @@ function page_discuss($hl_id = 'eng00', $session = 1){
 			// in case looking for Bible that does not exist
 			if (!isset($bible->bid)){
 				watchdog ('mylanguage', $hl_id .' does not have OT');
-				$bible = sqlFetchObject('SELECT bid, right_to_left FROM dbm_bible
+				$bible = sqlFetchObject('SELECT bid, right_to_left FROM my_bible
 				WHERE hl_id = :hl_id AND (collection_code = :testament OR collection_code = :fu )
 				AND text = :y1
 				ORDER BY weight DESC LIMIT 1',
@@ -64,7 +64,7 @@ function page_discuss($hl_id = 'eng00', $session = 1){
 
 	}
 	else{
-		$bible = sqlFetchObject('SELECT bid, right_to_left FROM dbm_bible
+		$bible = sqlFetchObject('SELECT bid, right_to_left FROM my_bible
 			WHERE hl_id = :hl_id AND (collection_code = :testament OR collection_code = :fu )
 			AND text = :y1
 			ORDER BY weight DESC LIMIT 1',
@@ -75,7 +75,7 @@ function page_discuss($hl_id = 'eng00', $session = 1){
 			;
 		if (!isset($bible->bid)){
 			watchdog ('mylanguage', $hl_id .' does not have OT');
-			$bible = sqlFetchObject('SELECT bid, right_to_left FROM dbm_bible
+			$bible = sqlFetchObject('SELECT bid, right_to_left FROM my_bible
 				WHERE hl_id = :hl_id AND (collection_code = :testament OR collection_code = :fu )
 				AND text = :y1
 				ORDER BY weight DESC LIMIT 1',
@@ -216,24 +216,24 @@ function page_discuss_select_form($form, &$form_state, $session){
 	$nt = NULL;
 	$ot = NULL;
 
-	$nt = sqlFetchObject('SELECT bid FROM dbm_bible
+	$nt = sqlFetchObject('SELECT bid FROM my_bible
 		WHERE hl_id = :hl_id AND text = :text AND
 		(collection_code = :collection_code1 or collection_code = :collection_code2)',
 		array(':hl_id' => $hl_id, ':text' => 'Y', ':collection_code1' => 'FU', ':collection_code2' => 'NT'))
 		->fetchField();
-	$ot = sqlFetchObject('SELECT bid FROM dbm_bible
+	$ot = sqlFetchObject('SELECT bid FROM my_bible
 		WHERE hl_id = :hl_id  AND text = :text AND
 		(collection_code = :collection_code1 or collection_code = :collection_code2)',
 		array(':hl_id' => $hl_id, ':text' => 'Y', ':collection_code1' => 'FU', ':collection_code2' => 'OT'))
 		->fetchField();
 		// if we have nothing in their language, give them everything in English
 	if (!$ot && !$nt){
-		$nt = sqlFetchObject('SELECT bid FROM dbm_bible
+		$nt = sqlFetchObject('SELECT bid FROM my_bible
 			WHERE hl_id = :hl_id AND text = :text AND
 			(collection_code = :collection_code1 or collection_code = :collection_code2)',
 			array(':hl_id' => 'eng00', ':text' => 'Y', ':collection_code1' => 'FU', ':collection_code2' => 'NT'))
 			->fetchField();
-		$ot = sqlFetchObject('SELECT bid FROM dbm_bible
+		$ot = sqlFetchObject('SELECT bid FROM my_bible
 			WHERE hl_id = :hl_id  AND text = :text AND
 			(collection_code = :collection_code1 or collection_code = :collection_code2)',
 			array(':hl_id' => 'eng00', ':text' => 'Y', ':collection_code1' => 'FU', ':collection_code2' => 'OT'))
@@ -242,7 +242,7 @@ function page_discuss_select_form($form, &$form_state, $session){
 	}
 
 
-	$results = sqlFetchObject('SELECT lesson, dbt_array FROM dbm_study_passage
+	$results = sqlFetchObject('SELECT lesson, dbt_array FROM my_studypassage
 		WHERE study = :study AND language = :language ORDER BY lesson',
 		array(':study' => 'ctc', ':language' => 'eng'));
 
@@ -257,7 +257,7 @@ function page_discuss_select_form($form, &$form_state, $session){
 
 	}
 
-  if (mylanguage_find_is_mobile()){
+  if (isMobile()){
 		$class = 'form-select-mobile';
 	}
 	else{
