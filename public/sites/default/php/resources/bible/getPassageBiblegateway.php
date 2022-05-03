@@ -20,11 +20,7 @@
 		BASED ON THE LOGIC OF JANUARY 2020
 */
 
-
-function getPassageBiblegateway($p){
-	writeLogDebug('getPassageBiblegateway-25', $p);
-	$output = array();
-	// returns array (and I have no idea why both verse and reference; why k.
+// returns array (and I have no idea why both verse and reference; why k.
 	//1 =>
 	//array (
 	//  'verse' =>
@@ -39,17 +35,25 @@ function getPassageBiblegateway($p){
 	//<p><strong><a href="http://mobile.biblegateway.com/versions/New-International-Version-NIV-Bible/">New International Version</a> (NIV)</strong> <p>Holy Bible, New International Version®, NIV® Copyright ©  1973, 1978, 1984, 2011 by <a href="http://www.biblica.com/">Biblica, Inc.®</a> Used by permission. All rights reserved worldwide.</p>',
 	//   'reference' => 'John 14:15-26',
     // ),
+function getPassageBiblegateway($p){
+	//writeLogDebug('getPassageBiblegateway-39', $p);
+	$output = array();
+	$dbt =$p['dbt_array'];
+	//writeLogDebug('getPassageBiblegateway-42', $dbt);
     $parse = array();
 	// it seems that Chinese does not always like the way we enter things.
-	$reference_shaped = str_replace($p['bookLookup'], $p['bookId'], $p['entry']); // try this and see if it works/
+	if (isset($dbt['bookLookup'])){
+			$reference_shaped = str_replace($dbt['bookLookup'], $dbt['bookId'], $dbt['entry']); // try this and see if it works/
+	}
+	else{
+			$reference_shaped = $dbt['entry']; //
+	}
 	$reference_shaped = str_replace(' ' , '%20', $reference_shaped);
 
 	$agent = 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30)';
 	$reffer = 'http://biblegateway.com//passage/?search='. $reference_shaped . '&version='. $p['version_code']; // URL
 	$POSTFIELDS = null;
 	$cookie_file_path = null;
-
-
 	$ch = curl_init();	// Initialize a CURL conversation.
 	// The URL to fetch. You can also set this when initializing a conversation with curl_init().
 	curl_setopt($ch, CURLOPT_USERAGENT, $agent); // The contents of the "User-Agent: " header to be used in a HTTP request.
@@ -69,9 +73,9 @@ function getPassageBiblegateway($p){
   	$url = 'https://biblegateway.com/passage/?search='. $reference_shaped . '&version='. $p['version_code']; // URL
 	$output['link'] = $url;
   	curl_setopt($ch, CURLOPT_URL, $url);
-	writeLogDebug('bibleGetPassageBiblegateway-69-url', $url);
+	//writeLogDebug('getPassageBiblegateway-69-url', $url);
 	$parse['text'] = curl_exec($ch);  // grab URL and pass it to the variable.
-	writeLogDebug('bibleGetPassageBiblegateway-71-text', $parse['text']);
+	//writeLogDebug('getPassageBiblegateway-71-text', $parse['text']);
 	// get passage name
 	$parse['begin']= '<div class="dropdown-display-text">';
 	$parse['end'] =  '</div>';
@@ -163,6 +167,7 @@ function getPassageBiblegateway($p){
 		'text' => $output['bible'],
 		'link' => $output['link']
 	];
+    //writeLogDebug('getPassageBiblegateway-107', $output);
 	return $output ;
 }
 

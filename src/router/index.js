@@ -28,14 +28,14 @@ const routes = [
     },
   },
   {
-    path: '/read/:hl_id?',
+    path: '/read/:hl_id?/:chapter_id?',
     name: 'BibleRead',
     component: function () {
       return import(/* webpackChunkName: "bible" */ '../views/pages/Bible.vue')
     },
   },
   {
-    path: '/bible_online/:hl_id?',
+    path: '/bible_online/:hl_id?/:chapter_id?',
     name: 'Bible',
     component: function () {
       return import(/* webpackChunkName: "bible" */ '../views/pages/Bible.vue')

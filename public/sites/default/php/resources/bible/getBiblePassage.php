@@ -24,7 +24,7 @@
 */
 
 function getBiblePassage($p){
-    writeLogDebug('getBiblePassage-27', $p);
+    //writeLogDebug('getBiblePassage-27', $p);
     $required= array(
         'hl_id_written' => 'eng00',
 		'chapter_id' => 1,
@@ -35,7 +35,7 @@ function getBiblePassage($p){
     if (!$p){
         $return;
     }
-    writeLogDebug('getBiblePassage-38', $p);
+    //writeLogDebug('getBiblePassage-38', $p);
     if (!isset($p['bid'])){
         if (isset($p['dbt']['collection_code'])){
             if ($p['dbt']['collection_code'] == 'OT'){
@@ -56,24 +56,22 @@ function getBiblePassage($p){
     }
     $data = sqlFetchObject('SELECT * FROM my_bible WHERE bid = :bid LIMIT 1',
       array(':bid' =>$p['bid']));
-    writeLogDebug('getBiblePassage-58', $data);
+    //writeLogDebug('getBiblePassage-58', $data);
     if ($data->right_to_left != 't'){
         $p['rldir'] = 'ltr';
     }
     else{
         $p['rldir'] = 'rtl';
     }
-
-
     if ($data->source == 'bible_gateway'){
         myRequireOnce ('resources/bible/getPassageBiblegateway.php');
         $p['version_code'] = $data->version_code;
         $out = getPassageBiblegateway($p);
-         writeLogDebug('getBiblePassage-72', $out);
-        return $out['text'];
+         //writeLogDebug('getBiblePassage-72', $out);
+        return $out['bible'];
     }
     if ($data->source  == 'dbt'){
-        writeLogDebug('getBiblePassage-79', $p);
+        //writeLogDebug('getBiblePassage-79', $p);
         myRequireOnce ('resources/bible/getPassageDBT.php');
         $p['damId'] = $data->dam_id;
         $out = bibleGetPassageDBT($p);
@@ -84,7 +82,7 @@ function getBiblePassage($p){
                 'link' => $link
             ];
         */
-        writeLogDebug('getBiblePassage-83', $out);
+        //writeLogDebug('getBiblePassage-83', $out);
         return $out['text'];
     }
     return $out;

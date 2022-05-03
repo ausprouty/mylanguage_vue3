@@ -2,7 +2,7 @@
 myRequireOnce('resources/bible/getBiblePassage.php');
 
 function LukeChapterGet($p){
-	writeLogDebug('LukeChapterGet-5', $p);
+	//writeLogDebug('LukeChapterGet-5', $p);
 	$required= array(
         'hl_id_written' => 'eng00',
 		'chapter_id' => 1,
@@ -13,11 +13,11 @@ function LukeChapterGet($p){
     if (!$p){
         $return;
     }
-    writeLogDebug('LukeChapterGet-15', $p);
+    //writeLogDebug('LukeChapterGet-15', $p);
 	$end_verse = sqlFetchField('SELECT verses FROM my_luke_verse_count
         WHERE chapter = :chapter',
 		array(':chapter' => $p['chapter_id']));
-    writeLogDebug('LukeChapterGet-10', $end_verse);
+    //writeLogDebug('LukeChapterGet-10', $end_verse);
 	$p['dbt_array'] = array(
 	    'entry' => 'Luke '. $p['chapter_id'] . ':1-'. $end_verse,
 		'bookId' => 'Luke',
@@ -26,9 +26,9 @@ function LukeChapterGet($p){
 		'verseStart' => 1,
 		'verseEnd' => $end_verse,
 	);
-    writeLogDebug('LukeChapterGet-28', $p);
+    //writeLogDebug('LukeChapterGet-28', $p);
 	$passage = getBiblePassage($p);
-	writeLogDebug('LukeChapterGet-30', $p);
+	//writeLogDebug('LukeChapterGet-33', $passage);
     LukeChapterSave($p, $passage);
 	return $passage;
 }
