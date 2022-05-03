@@ -21,7 +21,7 @@ function  sqlFetchObject ($sql, $data){
     $pdo = new PDO (DSN, USER, PASS);
     //writeLogDebug('sqlFetchObject-22', DSN);
     $pdo->SetAttribute (PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-     //writeLogDebug('sqlFetchObject-24', USER);
+    // writeLogDebug('sqlFetchObject-24', USER);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //writeLogDebug('sqlFetchObject-26', $pdo);
     $stmt = $pdo->prepare($sql);
@@ -30,6 +30,25 @@ function  sqlFetchObject ($sql, $data){
     //writeLogDebug('sqlFetchObject-30', $stmt);
     $output = $stmt->fetch();
     //writeLogDebug('sqlFetchObject-32', $output);
+    return $output;
+
+}
+function  sqlFetchField ($sql, $data){
+
+   // writeLogDebug('sqlFetchField-38', $sql);
+   // writeLogDebug('sqlFetchField-39', $data);
+    $pdo = new PDO (DSN, USER, PASS);
+    //writeLogDebug('sqlFetchObject-22', DSN);
+    $pdo->SetAttribute (PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+     //writeLogDebug('sqlFetchObject-24', USER);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //writeLogDebug('sqlFetchField-45', $pdo);
+    $stmt = $pdo->prepare($sql);
+    //writeLogDebug('sqlFetchField-47', $stmt);
+    $stmt->execute ($data);
+    //writeLogDebug('sqlFetchField-49', $stmt);
+    $output = $stmt->fetchColumn();
+   // writeLogDebug('sqlFetchField-51', $output);
     return $output;
 
 }

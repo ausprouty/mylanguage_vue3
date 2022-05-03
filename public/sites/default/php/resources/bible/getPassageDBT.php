@@ -56,7 +56,6 @@ function bibleGetPassageDBT($p){
 	if ($v){
         $verses = json_decode($v);
         $text = convertDbtArrayToPassage($verses);
-        $debug .= $text['debug'];
         $out= [
             'reference' => $text['reference'],
             'text' => $text['text'],

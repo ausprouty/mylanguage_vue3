@@ -22,6 +22,7 @@
 
 
 function getPassageBiblegateway($p){
+	writeLogDebug('getPassageBiblegateway-25', $p);
 	$output = array();
 	// returns array (and I have no idea why both verse and reference; why k.
 	//1 =>
@@ -68,9 +69,8 @@ function getPassageBiblegateway($p){
   	$url = 'https://biblegateway.com/passage/?search='. $reference_shaped . '&version='. $p['version_code']; // URL
 	$output['link'] = $url;
   	curl_setopt($ch, CURLOPT_URL, $url);
-	  writeLogDebug('bibleGetPassageBiblegateway-69-url', $url);
+	writeLogDebug('bibleGetPassageBiblegateway-69-url', $url);
 	$parse['text'] = curl_exec($ch);  // grab URL and pass it to the variable.
-	$output['debug'] .= $parse['text'];
 	writeLogDebug('bibleGetPassageBiblegateway-71-text', $parse['text']);
 	// get passage name
 	$parse['begin']= '<div class="dropdown-display-text">';
@@ -95,15 +95,10 @@ function getPassageBiblegateway($p){
 		$parse['end'] = $try;
 	}
 	$parse = bible_parse($parse);
-	$output['debug'] .= 'line 92' . "\n";
-	//$output['debug'] .= isset($parse['end']. " is Parse end\n";
-	//$output['debug'] .= strpos($parse['text'], $try) . "is strpos\n";
-	$output['debug'] .= $parse['keep'] . "\n\n";
 	$lines = explode('<span id', $parse['keep']);
 	$clean = '';
 	$i = 1;
 	foreach($lines as $line){
-		$output['debug'] .= '---------------------------------------------- ' . "\n" . $line ."\n";
 		// add back what was exploded off.
 		if ($i > 1){
 			$line = '<span id'. $line;
@@ -129,12 +124,9 @@ function getPassageBiblegateway($p){
 		$line = str_replace('<sup class="versenum hide">', '<sup class="versenum">', $line);
 		$line = str_replace('href="/', 'href="http://www.biblegateway.com/', $line);
 		$line = rtrim($line);
-		$output['debug'] .= $line ."\n\n";
 		$clean .= $line;
 		$i++;
 	}
-	$output['debug'] .=  '++++++++++++++++++++++++++++++++++++++++++++++++++++' . "\n";
-	$output['debug'] .=  $clean . "\n";
 	// balance div markers by adding to begin;
 		$div_begin = substr_count ($clean, '<div');
 		$div_end = substr_count ($clean, '</div>');

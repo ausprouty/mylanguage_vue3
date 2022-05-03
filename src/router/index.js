@@ -29,7 +29,7 @@ const routes = [
   },
   {
     path: '/read/:hl_id?',
-    name: 'Bible',
+    name: 'BibleRead',
     component: function () {
       return import(/* webpackChunkName: "bible" */ '../views/pages/Bible.vue')
     },

@@ -3,7 +3,7 @@
 function getBid($p){
     $required= array(
         'hl_id_written' => 'eng00',
-        $p['collection_code']=> NULL,
+        'collection_code'=> NULL,
     );
 	$p = validateParameters($p, $required, 'getBid');
     if (!$p){
@@ -15,9 +15,8 @@ function getBid($p){
 			ORDER BY weight DESC LIMIT 1',
 			array(':hl_id' => $p['hl_id_written'],
 					':y1' => 'Y',
-					':nt' => $p['collection_code'],
-					':fu' => 'FU'))
-			->fetchField();
+					':collection_code' => $p['collection_code'],
+					':fu' => 'FU'));
     return $bid;
 
 }
