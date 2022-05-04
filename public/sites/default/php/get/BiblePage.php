@@ -13,9 +13,7 @@ function BiblePage($p){
     if (!$p){
         return;
     }
-    if ($p['chapter_id'] > 24){
-		$p['chapter_id'] = 24;
-	}
+
 	$output->title = translate('Read God\'s Word: the Bible');
 	$output->questions = questions($p['hl_id_written']);
     $p['collection_code'] = 'nt';

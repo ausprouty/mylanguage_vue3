@@ -66,7 +66,7 @@ const routes = [
   },
   {
     path: '/meet/:hl_id?',
-    name: 'Gospel',
+    name: 'Meet',
     component: function () {
       return import(
         /* webpackChunkName: "gospel" */ '../views/pages/Gospel.vue'

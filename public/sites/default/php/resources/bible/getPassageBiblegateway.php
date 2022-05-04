@@ -36,10 +36,10 @@
 	//   'reference' => 'John 14:15-26',
     // ),
 function getPassageBiblegateway($p){
-	//writeLogDebug('getPassageBiblegateway-39', $p);
+	writeLogDebug('getPassageBiblegateway-39', $p);
 	$output = array();
 	$dbt =$p['dbt_array'];
-	//writeLogDebug('getPassageBiblegateway-42', $dbt);
+	writeLogDebug('getPassageBiblegateway-42', $dbt);
     $parse = array();
 	// it seems that Chinese does not always like the way we enter things.
 	if (isset($dbt['bookLookup'])){
@@ -73,9 +73,9 @@ function getPassageBiblegateway($p){
   	$url = 'https://biblegateway.com/passage/?search='. $reference_shaped . '&version='. $p['version_code']; // URL
 	$output['link'] = $url;
   	curl_setopt($ch, CURLOPT_URL, $url);
-	//writeLogDebug('getPassageBiblegateway-69-url', $url);
+	writeLogDebug('getPassageBiblegateway-69-url', $url);
 	$parse['text'] = curl_exec($ch);  // grab URL and pass it to the variable.
-	//writeLogDebug('getPassageBiblegateway-71-text', $parse['text']);
+	writeLogDebug('getPassageBiblegateway-71-text', $parse['text']);
 	// get passage name
 	$parse['begin']= '<div class="dropdown-display-text">';
 	$parse['end'] =  '</div>';
@@ -167,7 +167,7 @@ function getPassageBiblegateway($p){
 		'text' => $output['bible'],
 		'link' => $output['link']
 	];
-    //writeLogDebug('getPassageBiblegateway-107', $output);
+    writeLogDebug('getPassageBiblegateway-107', $output);
 	return $output ;
 }
 

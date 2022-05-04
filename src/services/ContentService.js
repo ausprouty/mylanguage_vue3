@@ -18,10 +18,7 @@ const apiSELECT = axios.create({
 
 // I want to export a JSON.stringified of response.data.text
 export default {
-  async getBiblePassage(params) {
-    params.action = 'getBiblePassage'
-    return await this.zReturnResponse(params)
-  },
+
   async get(action, params) {
     params.action = 'get/' + action
     return await this.zReturnResponse(params)

@@ -27,6 +27,7 @@ export default {
     try {
       var params = this.$route.params
       var resp = await ContentService.get('GospelPage', params)
+      console.log(resp)
       if (typeof resp.data['link'] !== 'undefined') {
         window.location.href = resp.data.link
       } else {
