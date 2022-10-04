@@ -1,7 +1,7 @@
 <?php
 
 // will either return text or URL of site to visit
-function GospelPage($p) {
+function Gospel($p) {
     $output = new \stdClass;
     $required= array(
         'hl_id_written' => 'eng00'

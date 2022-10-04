@@ -1,5 +1,5 @@
 <?php
-function page_jfilm($hl_id = 'eng00', $movie = 'JESUS', $video = NULL) {
+function Watch($hl_id = 'eng00', $movie = 'JESUS', $video = NULL) {
 	// error for chinese using old references
 	if ($hl_id == 'chn00'){
 		$hl_id = 'chn06';
@@ -14,15 +14,15 @@ function page_jfilm($hl_id = 'eng00', $movie = 'JESUS', $video = NULL) {
 	function showEmailForm() {
 		document.getElementById(\'email\').style.display = \'block\';
 	} ', 'inline');
-	
+
 	mylanguage_meta('jfilm');
 	if ($hl_id !='') {
 		// make sure valid code (and not from mypage/chris giving value of chris)
 		db_set_active('hl_online');
 		$data = sqlFetchObject('SELECT id FROM hl_online_jfilm
-			WHERE hl_id = :hl_id LIMIT 1', 
+			WHERE hl_id = :hl_id LIMIT 1',
 			array(':hl_id' =>$hl_id)) ;
-		
+
 		if (!isset($data->id)) {
 			$hl_id = 'eng00';
 		}
@@ -39,41 +39,41 @@ function page_jfilm($hl_id = 'eng00', $movie = 'JESUS', $video = NULL) {
 	}
 	//return '4003';
 	db_set_active('hl_online');
-	$data = sqlFetchObject('SELECT * FROM hl_online_jfilm 
+	$data = sqlFetchObject('SELECT * FROM hl_online_jfilm
 		WHERE film_code = :film_code LIMIT 1',
 		array(':film_code' =>$video))
 		;
-	
+
 	// what if they messed up the url?
 	if (!isset($data->id)){
 		db_set_active('hl_online');
-		$data = sqlFetchObject('SELECT * FROM hl_online_jfilm 
+		$data = sqlFetchObject('SELECT * FROM hl_online_jfilm
 			WHERE hl_id = :hl_id AND title = :title LIMIT 1',
 			array(':hl_id' =>$hl_id, ':title' => 'JESUS' ))
 			;
 		$movie = 'JESUS';
 		$video = $data->film_code;
 	}
-	
+
 	//return '4018';
 	// title
 	if (empty($movie)){
 		$movie = 'JESUS';
 	}
 	$lang = empty($data->language_ethnic)? $data->language : $data->language_ethnic;
-	$output .= '<h2>' . t($data->title) . ' ('. $lang . ')</h2>' ."\n";	
+	$output .= '<h2>' . t($data->title) . ' ('. $lang . ')</h2>' ."\n";
 	if ($movie == 'JESUS' || $movie == 'Magdalena'){
 		$a = drupal_get_form('mylanguage_page_jfilm_segments_form', $hl_id, $movie, $video);
 		$output .= drupal_render($a);
 	}
 	// email a friend
-	
+
 	//$output .=  '<a class = "button" href="javascript:void(0)" onclick="showEmailForm()">'. mylanguage_t_browser('Click here to email to a friend') . '</a> </div>'."\n";
 	//$output .= '<div id = "email" style = "display:none;margin-left:40px;">' ."\n";
 	//$output .= drupal_render(drupal_get_form('mylanguage_tell_friend_form', $hl_id, $video));
 	//$output .= '</div>';
 	// show video & questions
-	
+
 	// show video
 	$is_mobile = mylanguage_find_is_mobile();
 	if ($is_mobile){
@@ -111,10 +111,10 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
 		$results = sqlFetchObject('SELECT * FROM hl_online_jfilm
 			 WHERE film_code LIKE :film_code AND movie = :movie ORDER BY segment',
 			 array(':film_code' => $film .'%', ':movie' => $movie));
-		
+
 	  foreach($results as $data){
 			 if ($data->segment == 1 || $data->film_code == $film_code){
-				 $default = $data->film_code;	
+				 $default = $data->film_code;
 			 }
 			 if ($data->segment ==2){
 				  // see if ethnic word for Luke is added
@@ -128,7 +128,7 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
 			 else{
 				$segment[$data->film_code] = $data->segment. '. '. t("$data->title") . '  ('. $luke . ' '. $data->luke  .')';
 			 }
-			
+
 		}
 	}
 	else{
@@ -136,7 +136,7 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
 	   $results = sqlFetchObject('SELECT * FROM hl_online_jfilm
 			 WHERE film_code LIKE :film_code AND title LIKE :movie ORDER BY id',
 			 array(':film_code' => $film .'%', ':movie' => 'Magdalena (7 clips)%'));
-		
+
 	    $i = 1;
 		foreach($results as $data){
 		   $segment[$data->film_code] = $i. '. '. substr($data->title, 32);
@@ -154,23 +154,23 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
 			WHERE film_code = :film_code',
 			array(':film_code' => $film_code));
 	$fc = substr($film_code, 0, -6) .'%';
-	 
+
 	$menu = mylanguage_menu_l(mylanguage_t_ethnic('Download Video'),
 		$data->share_short_url,
 		'download_blue_24x24.png'
-	) . '&nbsp;&nbsp;&nbsp;&nbsp;'; 
+	) . '&nbsp;&nbsp;&nbsp;&nbsp;';
 
 	if ($data->segment > 1){
 		db_set_active('hl_online');
 		$watch = sqlFetchObject ('SELECT film_code FROM hl_online_jfilm
 			WHERE film_code LIKE :film_code AND segment = :segment',
 		 array(':film_code' => $fc , ':segment' =>  $data->segment -1)) ->fetchField();
-		 
+
 		if (!empty($watch)){
 			$menu .= mylanguage_menu_l(mylanguage_t_ethnic('Previous Segment'),
 				'jfilm/'. $hl_id .'/' . $movie . '/'. $watch,
 				'back_blue_24x24.png'
-				)  . '&nbsp;&nbsp;&nbsp;&nbsp;'; 
+				)  . '&nbsp;&nbsp;&nbsp;&nbsp;';
 		}
 	}
 	if ($data->segment > 0){
@@ -178,12 +178,12 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
 		$watch = sqlFetchObject ('SELECT film_code FROM hl_online_jfilm
 				WHERE film_code LIKE :film_code AND segment = :segment',
        array(':film_code' => $fc , ':segment' => $data->segment +1)) ->fetchField();
-		
+
 		if (!empty($watch)){
 			$menu .= mylanguage_menu_l(mylanguage_t_ethnic('Next Segment'),
 				'jfilm/'. $hl_id .'/' . $movie . '/'. $watch,
 				'forward_blue_24x24.png'
-				); 
+				);
 		}
 	}
 	$form['hl_id'] = array(
@@ -200,7 +200,7 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
 	else{
 		$class = 'form-select';
 	}
-	
+
     $form['video'] = array(
       '#type' => 'select',
 			'#button' => $menu,
@@ -211,7 +211,7 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
       '#options'=> $segment,
 			'#attributes' => array('onchange' => 'form.submit("mylanguage_page_jfilm_segments_form")'),
      );
-		 
+
 
 	$form['submit'] = array(
 	  '#type' => 'image_button',
@@ -221,26 +221,26 @@ function page_jfilm_segments_form ($form, &$form_state, $hl_id, $movie = 'JESUS'
 	return $form;
 }
 function page_jfilm_segments_form_submit ($form, &$form_state){
-	$form_state['redirect'] = 'jfilm/' . $form_state['values']['hl_id'] 
+	$form_state['redirect'] = 'jfilm/' . $form_state['values']['hl_id']
 							 .'/'. $form_state['values']['movie']
 	                        .'/'. $form_state['values']['video'];
 	return;
 }
 function page_jfilm_options($hl_id = 'eng00'){
-	
+
 	$jesus_video = '';
 	$mag_video = '';
 	$child_video = '';
 	db_set_active('hl_online');
-	$results = sqlFetchObject ('SELECT film_code, title, weight FROM hl_online_jfilm 
-		WHERE hl_id = :hl_id  AND 
-		(title = :title1 OR title = :title2 OR title  = :title3)', 
-		array(':hl_id' =>$hl_id , 
-			':title1'=> 'JESUS', 
+	$results = sqlFetchObject ('SELECT film_code, title, weight FROM hl_online_jfilm
+		WHERE hl_id = :hl_id  AND
+		(title = :title1 OR title = :title2 OR title  = :title3)',
+		array(':hl_id' =>$hl_id ,
+			':title1'=> 'JESUS',
 			':title2'=>'The Story of JESUS for Children',
 			':title3'=> 'Magdalena' )
 	);
-	
+
 	$weight = -10;
 	foreach ($results as $data){
 		if (preg_match("/for Children/i", $data->title)) {
@@ -256,7 +256,7 @@ function page_jfilm_options($hl_id = 'eng00'){
 			}
 		}
 	}
-	if ($jesus_video) { 
+	if ($jesus_video) {
 	  // for mobile you want the 12th segment according to Vance,
 	  // but for Chinese you definately want 1
 		if (mylanguage_find_is_mobile()){
@@ -271,28 +271,28 @@ function page_jfilm_options($hl_id = 'eng00'){
 				->range(0, 1)
 				->execute()
 				;
-			
-			
+
+
 			$video = $v->film_code;
-			
+
 		}
 		else{
 			$video = $jesus_video;
 		}
-		
+
 	}
-	elseif ($child_video) { 
+	elseif ($child_video) {
 	 	$video = $child_video;
 	}
-	elseif ($mag_video) { 
+	elseif ($mag_video) {
 	   if (mylanguage_find_is_mobile()){
 			$f = explode('-', $mag_video); //1_10014-jf6128-0-0
 	    $film_code  = $f[0] . '-%'; //1-10014
 			db_set_active('hl_online');
-			$video = sqlFetchObject ('SELECT film_code  FROM hl_online_jfilm 
-				WHERE film_code LIKE :film_code  AND segment = 1', 
-				array(':film_code' =>$film_code))-> fetchField(); 
-			
+			$video = sqlFetchObject ('SELECT film_code  FROM hl_online_jfilm
+				WHERE film_code LIKE :film_code  AND segment = 1',
+				array(':film_code' =>$film_code))-> fetchField();
+
 		}
 		else{
 			$video = $mag_video;
@@ -302,15 +302,15 @@ function page_jfilm_options($hl_id = 'eng00'){
 }
 function page_study($hl_id = 'eng00', $page = 1) {
 	mylanguage_meta('study_online');
-	
+
 	$root =CONTENT_DIRECTORY ;
-	
+
   if ($hl_id) {
     $_SESSION['mylanguage_hl_id'] = $hl_id;
   }
- 
+
   $hl_id = mylanguage_hl_validate();
-   
+
   $output = '';
   mylanguage_language($hl_id);
   //return "line 3000";
@@ -321,14 +321,14 @@ function page_study($hl_id = 'eng00', $page = 1) {
 		$_SESSION['mylanguage_chinese_written'] = 'chn-s';
 	}
     if ($_SESSION['mylanguage_chinese_written'] == 'chn-t') {$hl_id = 'chn-t';}
-    $output .= mylanguage_chinese_display('study_online'); 
+    $output .= mylanguage_chinese_display('study_online');
   }
-  $data = sqlFetchObject('SELECT * from hl_spirit 
-		WHERE hl_id = :hl_id LIMIT 1', 
+  $data = sqlFetchObject('SELECT * from hl_spirit
+		WHERE hl_id = :hl_id LIMIT 1',
 		array(':hl_id' =>$hl_id));
 	if (!isset($data->webpage)){
-		$data = sqlFetchObject('SELECT * from hl_spirit 
-			WHERE hl_id = :hl_id LIMIT 1', 
+		$data = sqlFetchObject('SELECT * from hl_spirit
+			WHERE hl_id = :hl_id LIMIT 1',
 			array(':hl_id' =>'eng00'));
 	}
 	$webpage = $data->webpage;
@@ -370,17 +370,17 @@ function page_study($hl_id = 'eng00', $page = 1) {
 	}
 	$output .= '<img width="'. $width . '" src = "'.$image_url . $show_image . '">'. "\n";
 	$output .= '<br>';
-	
-	
+
+
 	if ($page > 1){
 		$image = '<img src = "'. $image_url . 'images/leftarrow.gif">';
-		$path = 'study_online/'. $hl_id . '/'. ($page - 2); 
+		$path = 'study_online/'. $hl_id . '/'. ($page - 2);
 		$options['html'] = TRUE;
 		$output .= myLink($image, $path, $options) .'&nbsp;&nbsp;&nbsp;&nbsp;' . "\n";
 	}
 	if ($page < $data->images - 1){
 		$image = '<img src = "'. $image_url . 'images/rightarrow.gif">';
-		$path = 'study_online/'. $hl_id . '/'. ($page + 2); 
+		$path = 'study_online/'. $hl_id . '/'. ($page + 2);
 		$options['html'] = TRUE;
 		$output .= myLink($image, $path, $options) .'&nbsp;&nbsp;&nbsp;&nbsp;' . "\n";
 	}

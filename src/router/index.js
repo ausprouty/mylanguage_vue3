@@ -8,7 +8,7 @@ const routes = [
     component: Home,
   },
   {
-    path: '/discuss/:hl_id?',
+    path: '/discuss/:hl_id?/:session?',
     name: 'DBS',
     component: () =>
       import(/* webpackChunkName: "dbs" */ '../views/pages/DBS.vue'),

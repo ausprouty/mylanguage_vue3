@@ -1,7 +1,7 @@
 <?php
 function sessionsIndex($p){
 
-    $passage = sqlFetchObject('SELECT * FROM my_studypassage
+    $passage = sqlFetchObject('SELECT * FROM my_study_passage
 			WHERE study = :study AND lesson = :session AND language = :language',
 			array(':study' => 'ctc',
 				':session' =>  $session,

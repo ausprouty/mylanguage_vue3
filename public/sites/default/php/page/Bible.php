@@ -3,7 +3,7 @@ myRequireOnce('resources/bible/questions.php');
 myRequireOnce('resources/bible/getBid.php');
 myRequireOnce('resources/bible/LukeChapterFind.php');
 // displays Luke
-function BiblePage($p){
+function Bible($p){
    $output = new \stdClass;
     $required= array(
         'hl_id_written' => 'eng00',

@@ -26,7 +26,7 @@ export default {
   async created() {
     try {
       var params = this.$route.params
-      var resp = await ContentService.get('SpiritPage', params)
+      var resp = await ContentService.get('page/Spirit', params)
       this.text = resp.data
     } catch (error) {
       LogService.consoleLogError('There was an error in Spirit.vue:', error) // Logs out the error

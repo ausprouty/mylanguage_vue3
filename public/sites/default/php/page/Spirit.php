@@ -1,5 +1,5 @@
 <?php
-function SpiritPage($p) {
+function Spirit($p) {
     $required= array(
         'hl_id_written' => 'eng00',
         'page'=> 1

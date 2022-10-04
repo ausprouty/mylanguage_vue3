@@ -27,7 +27,7 @@ export default {
   async created() {
     try {
       var params = this.$route.params
-      var resp = await ContentService.get('BiblePage', params)
+      var resp = await ContentService.get('page/Bible', params)
       this.text = resp.data.text
       this.title = resp.data.title
       this.questions = resp.data.questions

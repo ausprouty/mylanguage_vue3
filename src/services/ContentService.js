@@ -20,7 +20,7 @@ const apiSELECT = axios.create({
 export default {
 
   async get(action, params) {
-    params.action = 'get/' + action
+    params.action = action
     return await this.zReturnResponse(params)
   },
 
